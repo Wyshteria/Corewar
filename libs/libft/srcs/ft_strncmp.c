@@ -1,49 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   asm.h                                              :+:      :+:    :+:   */
+/*   ft_strncmp.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: toliver <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/11/19 18:18:38 by toliver           #+#    #+#             */
-/*   Updated: 2019/11/20 23:03:18 by toliver          ###   ########.fr       */
+/*   Created: 2017/11/07 11:56:26 by toliver           #+#    #+#             */
+/*   Updated: 2017/11/08 06:34:41 by toliver          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <unistd.h>
-#include <sys/errno.h>
-#include <fcntl.h>
 #include "libft.h"
-#include "libftprintf.h"
 
-
-#define FLAGS "a"
-
-
-enum mode 
+int		ft_strncmp(const char *s1, const char *s2, size_t len)
 {
-	CRASH,
-	PARSING_ARGS,
-	PARSING_FLAGS,
-	PARSING_FILES
-};
-
-enum error
-{
-	NO_PARAMS,
-	WRONG_FLAGS,
-};
-
-typedef struct		s_error
-{
-	int				value;
-	char			flag_error;
-}					t_error;
-
-typedef struct		s_env
-{
-	char			*prog_name;
-	int				mode;
-	t_error			error;
-	int				flags;
-}					t_env;
+	while (*s1 == *s2 && s1 && *s1 && len > 0)
+	{
+		s1++;
+		s2++;
+		len--;
+	}
+	if ((*s1 == *s2 && *s1 == '\0') || len == 0)
+		return (0);
+	return (*((unsigned char*)s1) - *((unsigned char*)s2));
+}

@@ -1,49 +1,19 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   asm.h                                              :+:      :+:    :+:   */
+/*   ft_putstr.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: toliver <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/11/19 18:18:38 by toliver           #+#    #+#             */
-/*   Updated: 2019/11/20 23:03:18 by toliver          ###   ########.fr       */
+/*   Created: 2017/11/07 11:37:15 by toliver           #+#    #+#             */
+/*   Updated: 2017/11/08 15:30:22 by toliver          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <unistd.h>
-#include <sys/errno.h>
-#include <fcntl.h>
 #include "libft.h"
-#include "libftprintf.h"
 
-
-#define FLAGS "a"
-
-
-enum mode 
+void				ft_putstr(char const *s)
 {
-	CRASH,
-	PARSING_ARGS,
-	PARSING_FLAGS,
-	PARSING_FILES
-};
-
-enum error
-{
-	NO_PARAMS,
-	WRONG_FLAGS,
-};
-
-typedef struct		s_error
-{
-	int				value;
-	char			flag_error;
-}					t_error;
-
-typedef struct		s_env
-{
-	char			*prog_name;
-	int				mode;
-	t_error			error;
-	int				flags;
-}					t_env;
+	if (s)
+		write(1, s, ft_strlen(s));
+}

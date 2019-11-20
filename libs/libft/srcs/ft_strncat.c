@@ -1,49 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   asm.h                                              :+:      :+:    :+:   */
+/*   ft_strncat.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: toliver <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/11/19 18:18:38 by toliver           #+#    #+#             */
-/*   Updated: 2019/11/20 23:03:18 by toliver          ###   ########.fr       */
+/*   Created: 2017/11/07 11:55:26 by toliver           #+#    #+#             */
+/*   Updated: 2017/11/07 21:58:52 by toliver          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <unistd.h>
-#include <sys/errno.h>
-#include <fcntl.h>
 #include "libft.h"
-#include "libftprintf.h"
 
-
-#define FLAGS "a"
-
-
-enum mode 
+char		*ft_strncat(char *s, const char *append, size_t count)
 {
-	CRASH,
-	PARSING_ARGS,
-	PARSING_FLAGS,
-	PARSING_FILES
-};
+	size_t	i;
+	size_t	j;
 
-enum error
-{
-	NO_PARAMS,
-	WRONG_FLAGS,
-};
-
-typedef struct		s_error
-{
-	int				value;
-	char			flag_error;
-}					t_error;
-
-typedef struct		s_env
-{
-	char			*prog_name;
-	int				mode;
-	t_error			error;
-	int				flags;
-}					t_env;
+	i = -1;
+	j = -1;
+	while (s[++i])
+		;
+	while (append[++j] && j < count)
+		s[i + j] = append[j];
+	s[i + j] = '\0';
+	return (s);
+}

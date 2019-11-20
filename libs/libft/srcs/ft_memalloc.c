@@ -1,49 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   asm.h                                              :+:      :+:    :+:   */
+/*   ft_memalloc.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: toliver <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/11/19 18:18:38 by toliver           #+#    #+#             */
-/*   Updated: 2019/11/20 23:03:18 by toliver          ###   ########.fr       */
+/*   Created: 2017/11/07 11:15:24 by toliver           #+#    #+#             */
+/*   Updated: 2017/11/08 00:01:16 by toliver          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <unistd.h>
-#include <sys/errno.h>
-#include <fcntl.h>
 #include "libft.h"
-#include "libftprintf.h"
 
-
-#define FLAGS "a"
-
-
-enum mode 
+void		*ft_memalloc(size_t size)
 {
-	CRASH,
-	PARSING_ARGS,
-	PARSING_FLAGS,
-	PARSING_FILES
-};
+	void	*ptr;
+	size_t	i;
 
-enum error
-{
-	NO_PARAMS,
-	WRONG_FLAGS,
-};
-
-typedef struct		s_error
-{
-	int				value;
-	char			flag_error;
-}					t_error;
-
-typedef struct		s_env
-{
-	char			*prog_name;
-	int				mode;
-	t_error			error;
-	int				flags;
-}					t_env;
+	i = -1;
+	if (size == 0 || !(ptr = (void*)malloc(sizeof(void) * size)))
+		return (NULL);
+	while (++i < size)
+		((char*)ptr)[i] = 0;
+	return (ptr);
+}

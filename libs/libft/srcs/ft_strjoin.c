@@ -1,49 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   asm.h                                              :+:      :+:    :+:   */
+/*   ft_strjoin.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: toliver <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/11/19 18:18:38 by toliver           #+#    #+#             */
-/*   Updated: 2019/11/20 23:03:18 by toliver          ###   ########.fr       */
+/*   Created: 2017/11/07 11:51:43 by toliver           #+#    #+#             */
+/*   Updated: 2019/01/06 23:43:49 by toliver          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <unistd.h>
-#include <sys/errno.h>
-#include <fcntl.h>
 #include "libft.h"
-#include "libftprintf.h"
 
-
-#define FLAGS "a"
-
-
-enum mode 
+char				*ft_strjoin(char const *s1, char const *s2)
 {
-	CRASH,
-	PARSING_ARGS,
-	PARSING_FLAGS,
-	PARSING_FILES
-};
+	unsigned int	i;
+	unsigned int	j;
+	char			*str;
 
-enum error
-{
-	NO_PARAMS,
-	WRONG_FLAGS,
-};
-
-typedef struct		s_error
-{
-	int				value;
-	char			flag_error;
-}					t_error;
-
-typedef struct		s_env
-{
-	char			*prog_name;
-	int				mode;
-	t_error			error;
-	int				flags;
-}					t_env;
+	i = s1 ? ft_strlen(s1) : 0;
+	j = s2 ? ft_strlen(s2) : 0;
+	if (!(str = (char*)malloc(sizeof(char) * (i + j + 1))))
+		return (NULL);
+	ft_memcpy(str, s1, i);
+	ft_memcpy(str + i, s2, j);
+	str[i + j] = '\0';
+	return (str);
+}
