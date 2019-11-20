@@ -6,7 +6,7 @@
 /*   By: toliver <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/19 18:19:18 by toliver           #+#    #+#             */
-/*   Updated: 2019/11/20 23:03:17 by toliver          ###   ########.fr       */
+/*   Updated: 2019/11/20 23:09:04 by toliver          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,6 +89,8 @@ void		ft_parse_files(t_env *env, char *file)
 		ft_open_error(env->prog_name, file);
 		return;
 	}
+	if (env->mode != CRASH)
+		env->mode = PARSING_FILES;
 }
 
 void		ft_parse_args(int ac, char **av, t_env *env)
