@@ -6,7 +6,7 @@
 /*   By: toliver <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/19 18:19:18 by toliver           #+#    #+#             */
-/*   Updated: 2019/11/20 23:09:04 by toliver          ###   ########.fr       */
+/*   Updated: 2019/11/22 01:58:22 by toliver          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,7 @@ int			ft_strchr_pos(char *str, int c)
 	return ((int)(val - str));
 }
 
-int			ft_error(t_env *env, int error)
+int			ft_crash(t_env *env, int error)
 {
 	env->mode = CRASH;
 	env->error.value = error;
@@ -65,7 +65,7 @@ int			ft_parse_flags(t_env *env, char *flag)
 		if ((pos = ft_strchr_pos(FLAGS, flag[i])) == -1)
 		{
 			env->error.flag_error = flag[i];
-			return (ft_error(env, WRONG_FLAGS));
+			return (ft_crash(env, WRONG_FLAGS));
 		}
 		flags = flags | ft_pow2(pos);
 		i++;
@@ -74,23 +74,128 @@ int			ft_parse_flags(t_env *env, char *flag)
 	return (1);
 }
 
-void		ft_open_error(char *name, char *file)
+int			ft_is_whitespace(char c)
 {
-	ft_dprintf(2, "%s: %s: %s\n", name, file, strerror(errno));
+	if (c == '\t' || c == '\n' || c == '\r' || c == '\v' || c == '\f'
+			|| c == ' ')
+		return (1);
+	return (0);
 }
 
-void		ft_parse_files(t_env *env, char *file)
+int			ft_error(t_env *env, t_file *file, int error)
+{
+	env->mode = ERROR;
+	env->error.value = error;
+	ft_dprintf(2, "%s: %s: %s\n", env->prog_name, file->filename, strerror(errno));
+	return (0);
+}
+
+int			ft_remove_spaces(t_env *env, t_file *file)
+{
+	int		size;
+	char	buffer[51];
+	int		retval;
+	int		i;
+
+	size = 0;
+	i = 0;
+	while ((retval = read(file->fd, buffer, 50)) > 0)
+	{
+		buffer[retval] = '\0';
+		i = 0;
+		while (buffer[i] && ft_is_whitespace(buffer[i]))
+		{
+			if (buffer[i] == '\n')
+			{
+				file->line += 1;
+				file->column = 0;
+			}
+			else
+				file->column += 1;
+			i++;
+		}
+		size += i;
+		if (i != retval)
+			break;
+	}
+	if (retval == -1)
+		return (ft_error(env, file, READ_ERROR));
+	file->offset = lseek(file->fd, file->offset + size, SEEK_SET);
+	if (file->offset == -1)
+		return (ft_error(env, file, LSEEK_ERROR));
+	return (1);
+}
+
+void		ft_parse_firstlines(t_env *env, t_file *file)
+{
+	ft_remove_spaces(env, file);
+	// ici on est soit sur NAME_CMD_STRING soit sur COMMENT_CMD_STRING soit on a une erreur
+}
+
+void		ft_dump_file(t_file *file)
+{
+	ft_printf("file name : %s\n", file->filename);
+	ft_printf("file fd : %d\n", file->fd);
+	ft_printf("file offset = %lld\n", file->offset);
+	ft_printf("file .name : %s\n", file->name);
+	ft_printf("file .comment : %s\n", file->comment);
+	ft_printf("file actual line : %zu\n", file->line);
+	ft_printf("file actual column : %zu\n", file->column);
+//	ft_dump_instructions(file);
+}
+
+void		ft_open_file(t_env *env, t_file *file, char *file_name)
 {
 	int		fd;
 
-	fd = open(file, O_RDONLY);
+	fd = open(file_name, O_RDONLY);
+	file->fd = fd;
+	file->filename = file_name;
+	file->name = NULL;
+	file->comment = NULL;
+	file->instructions = NULL;
+	file->offset = 0;
+	file->column = 0;
+	file->line = 0;
 	if (fd == -1)
 	{
-		ft_open_error(env->prog_name, file);
+		env->mode = ERROR;
+		ft_error(env, file, OPEN_ERROR); 
 		return;
+	}	
+}
+
+void		ft_parse_instructions(t_env *env, t_file *file)
+{
+	(void)file;
+	env->mode = PARSING_DONE;
+	// no need explanation here
+}
+
+void		ft_parse_files(t_env *env, char *file_name)
+{
+	t_file	file;
+
+	env->mode = PARSING_OPENFILE;
+	while (env->mode != ERROR && env->mode != CRASH && env->mode != PARSING_DONE)
+	{
+		if (env->mode == PARSING_OPENFILE)
+			ft_open_file(env, &file, file_name);
+		else if (env->mode == PARSING_FIRSTLINES)
+			ft_parse_firstlines(env, &file);
+		else if (env->mode == PARSING_INSTRUCTIONS)
+			ft_parse_instructions(env, &file);
 	}
+	if (env->mode != ERROR && env->error.value != OPEN_ERROR)
+		close(file.fd);
 	if (env->mode != CRASH)
 		env->mode = PARSING_FILES;
+	ft_dump_file(&file);
+	/*
+		ft_write_file(&file);
+		ft_free_file(&file);
+	*/
+	
 }
 
 void		ft_parse_args(int ac, char **av, t_env *env)
@@ -100,7 +205,7 @@ void		ft_parse_args(int ac, char **av, t_env *env)
 	i = 0;
 	env->mode = PARSING_FLAGS;
 	if (ac == 0)
-		ft_error(env, NO_PARAMS);
+		ft_crash(env, NO_PARAMS);
 	while (i < ac && env->mode != CRASH)
 	{
 		if (env->mode == PARSING_FLAGS)
@@ -115,7 +220,7 @@ void		ft_parse_args(int ac, char **av, t_env *env)
 		}
 	}
 	if (env->mode != CRASH)
-		env->mode = PARSING_FILES;
+		env->mode = FINISHED;
 }
 
 void		ft_dump_env(t_env *env)
