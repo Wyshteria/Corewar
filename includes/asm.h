@@ -6,7 +6,7 @@
 /*   By: toliver <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/19 18:18:38 by toliver           #+#    #+#             */
-/*   Updated: 2019/11/22 01:58:25 by toliver          ###   ########.fr       */
+/*   Updated: 2019/11/22 06:48:15 by toliver          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,12 +15,12 @@
 #include <fcntl.h>
 #include "libft.h"
 #include "libftprintf.h"
+#include "op.h"
+
+#define FLAGS ""
 
 
-#define FLAGS "a"
-
-
-enum mode 
+enum e_mode 
 {
 	CRASH,
 	ERROR,
@@ -29,20 +29,31 @@ enum mode
 	PARSING_FILES,
 	PARSING_OPENFILE,
 	PARSING_FIRSTLINES,
-	PARSING_NAME,
+	PARSING_NAME_CMD,
+	PARSING_COMMENT_CMD,
 	PARSING_COMMENT,
 	PARSING_INSTRUCTIONS,
 	PARSING_DONE,
 	FINISHED
 };
 
-enum error
+enum e_parsing_error
+{
+	UNEXPECTED_TOKEN,
+	NAME_TOO_LONG,
+	REDEFINED_NAME,
+	REDEFINED_COMMENT,
+};
+
+enum e_error
 {
 	NO_PARAMS,
 	WRONG_FLAGS,
+	MALLOC_FAIL,
 	OPEN_ERROR,
 	READ_ERROR,
 	LSEEK_ERROR,
+	PARSING_ERROR,
 };
 
 typedef struct		s_error
