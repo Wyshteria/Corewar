@@ -6,7 +6,7 @@
 /*   By: toliver <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/19 18:18:38 by toliver           #+#    #+#             */
-/*   Updated: 2019/11/22 06:48:15 by toliver          ###   ########.fr       */
+/*   Updated: 2019/11/23 17:44:44 by toliver          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,6 +43,8 @@ enum e_parsing_error
 	NAME_TOO_LONG,
 	REDEFINED_NAME,
 	REDEFINED_COMMENT,
+	MISSING_NAME,
+	MISSING_COMMENT
 };
 
 enum e_error

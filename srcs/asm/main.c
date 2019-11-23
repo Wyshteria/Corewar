@@ -6,7 +6,7 @@
 /*   By: toliver <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/19 18:19:18 by toliver           #+#    #+#             */
-/*   Updated: 2019/11/22 06:48:17 by toliver          ###   ########.fr       */
+/*   Updated: 2019/11/23 17:44:44 by toliver          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -90,6 +90,27 @@ int			ft_error(t_env *env, t_file *file, int error)
 	return (0);
 }
 
+int			ft_offset_head(t_env *env, t_file *file, char *str, int size)
+{
+	int		i;
+	
+	file->offset = lseek(file->fd, file->offset + size, SEEK_SET);
+	if (file->offset == -1)
+		return (ft_error(env, file, LSEEK_ERROR));
+	i = 0;
+	while (str && str[i] && i < size)
+	{
+		file->column += 1;
+		if (str[i] == '\n')
+		{
+			file->line += 1;
+			file->column = 0;
+		}
+		i++;
+	}
+	return (1);
+}
+
 int			ft_remove_spaces(t_env *env, t_file *file)
 {
 	int		size;
@@ -136,6 +157,10 @@ int			ft_parsing_error(t_env *env, int error, char *str, t_file *file)
 		ft_dprintf(2, "%s: %s: redefined '.name' at [%03d:%03d]\n", env->prog_name, file->filename, file->line + 1, file->column + 1);
 	else if (error == REDEFINED_COMMENT)
 		ft_dprintf(2, "%s: %s: redefined '.comment' at [%03d:%03d]\n", env->prog_name, file->filename, file->line + 1, file->column + 1);
+	else if (error == MISSING_NAME || error == MISSING_COMMENT)
+	{
+		ft_dprintf(2, "%s: %s: missing '%s' before instructions\n", env->prog_name, file->filename, error == MISSING_NAME ? ".name" : ".comment");
+	}
 	else
 		ft_dprintf(2, "unknown error !\n");
 	return (0);
@@ -157,7 +182,10 @@ int			ft_parse_unknown_firstline(t_env *env, t_file *file)
 	else if (buf[0] == COMMENT_CHAR)
 		env->mode = PARSING_COMMENT;
 	else
-		return (ft_parsing_error(env, UNEXPECTED_TOKEN, buf, file));
+	{
+		env->mode = PARSING_INSTRUCTIONS;
+		return (1);
+	}
 	if (env->mode == PARSING_COMMENT)
 		size = 1;
 	else if (env->mode == PARSING_NAME_CMD)
@@ -174,17 +202,7 @@ int			ft_parse_unknown_firstline(t_env *env, t_file *file)
 	}
 	else
 		size = 0;
-	file->column += size;
-	file->offset = lseek(file->fd, file->offset + size, SEEK_SET);
-	if (file->offset == -1)
-		return (ft_error(env, file, LSEEK_ERROR));
-	return (1);
-}
-
-int			ft_offset_head(t_file *file, char *str, int size)
-{
-	file->offset = lseek(file->fd, file->offset + size, SEEK_SET);
-	if (file->offset == -1)
+	if (!(ft_offset_head(env, file, buf, size)))
 		return (0);
 	return (1);
 }
@@ -205,33 +223,74 @@ int			ft_parse_name_cmd(t_env *env, t_file *file)
 		i++;
 	if (i > PROG_NAME_LENGTH + 1)
 		return (ft_parsing_error(env, NAME_TOO_LONG, buf, file));
-	file->offset = lseek(file->fd, file->offset + i + 1, SEEK_SET);
-	if (file->offset == -1)
-		return (ft_error(env, file, LSEEK_ERROR));
+	if (!(ft_offset_head(env, file, buf, i + 1)))
+		return (0);
 	if (!(file->name = ft_strsub(buf, 1, i - 1)))
 		return (ft_crash(env, MALLOC_FAIL));
 	env->mode = PARSING_FIRSTLINES;
 	return (1);
 }
 
-void		ft_parse_comment_cmd(t_env *env, t_file *file)
+int			ft_parse_comment_cmd(t_env *env, t_file *file)
 {
-	char	buf[11];
+	char	buf[COMMENT_LENGTH + 3];
 	int		retval;
+	int		i;
 
-	retval = read(file->fd, buf, 10);
+	i = 1;
+	if ((retval = read(file->fd, buf, COMMENT_LENGTH + 2)) == -1)
+		return (ft_error(env, file, READ_ERROR));
 	buf[retval] = '\0';
-	ft_printf(">%s<\n", buf);
-	(void)env;
-	(void)file;
-	env->mode = PARSING_INSTRUCTIONS;
+	if (buf[0] != '"')
+		return (ft_parsing_error(env, UNEXPECTED_TOKEN, buf, file));
+	while (buf[i] && buf[i] != '"')
+		i++;
+	if (i > COMMENT_LENGTH + 1)
+		return (ft_parsing_error(env, NAME_TOO_LONG, buf, file));
+	if (!(ft_offset_head(env, file, buf, i + 1)))
+		return (0);
+	if (!(file->comment = ft_strsub(buf, 1, i - 1)))
+		return (ft_crash(env, MALLOC_FAIL));
+	env->mode = PARSING_FIRSTLINES;
+	return (1);
 }
 
-void		ft_parse_comment(t_env *env, t_file *file)
+int			ft_parse_comment(t_env *env, t_file *file)
 {
-	(void)env;
-	(void)file;
-	env->mode = PARSING_INSTRUCTIONS;
+	int		size;
+	char	buffer[51];
+	int		retval;
+	int		i;
+
+	size = 0;
+	i = 0;
+	while ((retval = read(file->fd, buffer, 50)) > 0)
+	{
+		buffer[retval] = '\0';
+		i = 0;
+		while (buffer[i])
+		{
+			file->column += 1;
+			if (buffer[i] == '\n')
+			{
+				file->line += 1;
+				file->column = 0;
+				i++;
+				break;
+			}
+			i++;
+		}
+		size += i;
+		if (i != retval)
+			break;
+	}
+	if (retval == -1)
+		return (ft_error(env, file, READ_ERROR));
+	file->offset = lseek(file->fd, file->offset + size, SEEK_SET);
+	if (file->offset == -1)
+		return (ft_error(env, file, LSEEK_ERROR));
+	env->mode = PARSING_FIRSTLINES;
+	return (1);
 }
 
 int			ft_parse_firstlines(t_env *env, t_file *file)
@@ -288,11 +347,16 @@ void		ft_open_file(t_env *env, t_file *file, char *file_name)
 	env->mode = PARSING_FIRSTLINES;	
 }
 
-void		ft_parse_instructions(t_env *env, t_file *file)
+int			ft_parse_instructions(t_env *env, t_file *file)
 {
-	(void)file;
+	if (!file->name)
+		return (ft_parsing_error(env, MISSING_NAME, NULL, file));
+	else if (!file->comment)
+		return (ft_parsing_error(env, MISSING_COMMENT, NULL, file));
+	ft_printf("parse instructions !\n");
+	// go parser les instructions et split ton fichier, kaunar !
 	env->mode = PARSING_DONE;
-	// no need explanation here
+	return (1);
 }
 
 void		ft_parse_files(t_env *env, char *file_name)
