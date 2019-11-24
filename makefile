@@ -6,7 +6,7 @@
 #    By: toliver <marvin@42.fr>                     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/09/20 19:50:33 by toliver           #+#    #+#              #
-#    Updated: 2019/11/20 23:06:23 by toliver          ###   ########.fr        #
+#    Updated: 2019/11/24 16:36:31 by toliver          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -25,6 +25,10 @@ FLAGS = -Wall -Wextra -Werror
 OBJS = $(addprefix objs/, $(addsuffix .o, \
 			$(addprefix asm/, \
 				main \
+				error \
+				print \
+				utils \
+				op \
 				) \
 		)) 
 

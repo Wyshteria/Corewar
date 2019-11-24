@@ -6,45 +6,11 @@
 /*   By: toliver <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/19 18:19:18 by toliver           #+#    #+#             */
-/*   Updated: 2019/11/23 17:44:44 by toliver          ###   ########.fr       */
+/*   Updated: 2019/11/24 21:03:14 by toliver          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "asm.h"
-
-int			ft_pow2(int pow)
-{
-	int		i;
-	int		value;
-
-	if (pow < 0)
-		return (0);
-	value = 1;
-	i = 0;
-	while (i < pow)
-	{
-		value *= 2;
-		i++;
-	}
-	return (value);
-}
-
-int			ft_strchr_pos(char *str, int c)
-{
-	char	*val;
-
-	val = ft_strchr(str, c);
-	if (val == NULL)
-		return (-1);
-	return ((int)(val - str));
-}
-
-int			ft_crash(t_env *env, int error)
-{
-	env->mode = CRASH;
-	env->error.value = error;
-	return (0);
-}
 
 int			ft_parse_flags(t_env *env, char *flag)
 {
@@ -72,22 +38,6 @@ int			ft_parse_flags(t_env *env, char *flag)
 	}
 	env->flags |= flags;
 	return (1);
-}
-
-int			ft_is_whitespace(char c)
-{
-	if (c == '\t' || c == '\n' || c == '\r' || c == '\v' || c == '\f'
-			|| c == ' ')
-		return (1);
-	return (0);
-}
-
-int			ft_error(t_env *env, t_file *file, int error)
-{
-	env->mode = ERROR;
-	env->error.value = error;
-	ft_dprintf(2, "%s: %s: %s\n", env->prog_name, file->filename, strerror(errno));
-	return (0);
 }
 
 int			ft_offset_head(t_env *env, t_file *file, char *str, int size)
@@ -144,26 +94,6 @@ int			ft_remove_spaces(t_env *env, t_file *file)
 	if (file->offset == -1)
 		return (ft_error(env, file, LSEEK_ERROR));
 	return (1);
-}
-
-int			ft_parsing_error(t_env *env, int error, char *str, t_file *file)
-{
-	env->mode = ERROR;
-	if (error == UNEXPECTED_TOKEN)	
-		ft_dprintf(2, "%s: %s: unexpected token at [%03d:%03d]: %c\n", env->prog_name, file->filename, file->line + 1, file->column + 1, *str);
-	else if (error == NAME_TOO_LONG)
-		ft_dprintf(2, "%s: %s: Champion name too long (Max length %d)\n", env->prog_name, file->filename, PROG_NAME_LENGTH);
-	else if (error == REDEFINED_NAME)
-		ft_dprintf(2, "%s: %s: redefined '.name' at [%03d:%03d]\n", env->prog_name, file->filename, file->line + 1, file->column + 1);
-	else if (error == REDEFINED_COMMENT)
-		ft_dprintf(2, "%s: %s: redefined '.comment' at [%03d:%03d]\n", env->prog_name, file->filename, file->line + 1, file->column + 1);
-	else if (error == MISSING_NAME || error == MISSING_COMMENT)
-	{
-		ft_dprintf(2, "%s: %s: missing '%s' before instructions\n", env->prog_name, file->filename, error == MISSING_NAME ? ".name" : ".comment");
-	}
-	else
-		ft_dprintf(2, "unknown error !\n");
-	return (0);
 }
 
 int			ft_parse_unknown_firstline(t_env *env, t_file *file)
@@ -313,18 +243,6 @@ int			ft_parse_firstlines(t_env *env, t_file *file)
 	return (1);
 }
 
-void		ft_dump_file(t_file *file)
-{
-	ft_printf("file name : %s\n", file->filename);
-	ft_printf("file fd : %d\n", file->fd);
-	ft_printf("file offset = %lld\n", file->offset);
-	ft_printf("file .name : %s\n", file->name);
-	ft_printf("file .comment : %s\n", file->comment);
-	ft_printf("file actual line : %zu\n", file->line);
-	ft_printf("file actual column : %zu\n", file->column);
-//	ft_dump_instructions(file);
-}
-
 void		ft_open_file(t_env *env, t_file *file, char *file_name)
 {
 	int		fd;
@@ -347,14 +265,57 @@ void		ft_open_file(t_env *env, t_file *file, char *file_name)
 	env->mode = PARSING_FIRSTLINES;	
 }
 
+int			ft_add_op(t_env *env, t_file *file, t_instruction *op)
+{
+	t_instruction	*new_op;
+	t_instruction	*ptr;
+
+	if (!(new_op = (t_instruction*)malloc(sizeof(t_instruction))))
+		return (ft_crash(env, MALLOC_FAIL));
+	ft_memcpy(new_op, op, sizeof(t_instruction));
+	if (file->instructions == NULL)
+		file->instructions = new_op;
+	else
+	{
+		ptr = file->instructions;
+		while (ptr->next)
+			ptr = ptr->next;
+		ptr->next = new_op;
+	}
+	return (1);
+}
+
 int			ft_parse_instructions(t_env *env, t_file *file)
 {
+	t_instruction	op;
+
 	if (!file->name)
 		return (ft_parsing_error(env, MISSING_NAME, NULL, file));
 	else if (!file->comment)
 		return (ft_parsing_error(env, MISSING_COMMENT, NULL, file));
-	ft_printf("parse instructions !\n");
-	// go parser les instructions et split ton fichier, kaunar !
+
+	char		buf[51];
+	int			retval;
+
+	retval = read(file->fd, buf, 50);
+	buf[retval] = '\0';
+	ft_putendl(buf);
+
+
+	while (env->mode == PARSING_INSTRUCTIONS)
+	{
+		ft_bzero(&op, sizeof(t_instruction));
+		// get_label_or_op;
+		// get params;
+
+//		op.label = ft_strdup("test");
+//		op.opcode = 3;
+		if (env->mode == PARSING_INSTRUCTIONS)
+			ft_add_op(env, file, &op);
+
+
+		env->mode = PARSING_DONE;
+	}
 	env->mode = PARSING_DONE;
 	return (1);
 }
@@ -407,31 +368,6 @@ void		ft_parse_args(int ac, char **av, t_env *env)
 	}
 	if (env->mode != CRASH)
 		env->mode = FINISHED;
-}
-
-void		ft_dump_env(t_env *env)
-{
-	ft_printf("env mode = %d\n", env->mode);
-	ft_printf("env error = %d\n", env->error.value);
-	ft_printf("flags = %d, en binaire : %b\n", env->flags, env->flags);
-}
-
-void		ft_usage(t_error *error)
-{
-	if (error->value == WRONG_FLAGS)
-		ft_dprintf(2, "illegal option -- %c\n", error->flag_error);
-	ft_dprintf(2, "usage: ./asm [-%s] file ...\n", FLAGS);	
-}
-
-void		ft_print_crash(char *program, t_error *error)
-{
-	ft_dprintf(2, "%s: ", program);
-	if (error->value == NO_PARAMS || error->value == WRONG_FLAGS)
-		ft_usage(error);
-	else if (error->value == MALLOC_FAIL)
-		ft_dprintf(2, "malloc failed : %s\n", strerror(errno));
-	else
-		ft_putstr_fd("unknown error\n", 2);
 }
 
 int			main(int ac, char **av)
