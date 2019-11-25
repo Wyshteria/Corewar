@@ -1,37 +1,50 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   error.c                                            :+:      :+:    :+:   */
+/*   utils.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: toliver <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/11/25 21:14:07 by toliver           #+#    #+#             */
-/*   Updated: 2019/11/25 21:14:55 by toliver          ###   ########.fr       */
+/*   Created: 2019/11/24 16:31:18 by toliver           #+#    #+#             */
+/*   Updated: 2019/11/25 20:52:27 by toliver          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "asm.h"
 
-void		ft_usage(void)
+int			ft_pow2(int pow)
 {
-	ft_dprintf(2, "usage: ./asm [-%s] file ...\n", FLAGS);
-	exit(0);
+	int		i;
+	int		value;
+
+	if (pow < 0)
+		return (0);
+	value = 1;
+	i = 0;
+	while (i < pow)
+	{
+		value *= 2;
+		i++;
+	}
+	return (value);
 }
 
-void		ft_wrong_flag(t_env *env, char c)
+int			ft_strchr_pos(char *str, int c)
 {
-	ft_dprintf(2, "%s: illegal option -- %c\n", env->prog_name, c);
-	ft_usage();
+	char	*val;
+
+	val = ft_strchr(str, c);
+	if (val == NULL)
+		return (-1);
+	return ((int)(val - str));
 }
 
-void		ft_crash(int error)
+int			ft_is_whitespace(char c)
 {
-	t_env	*env;
-
-	env = ft_get_env();
-	ft_dprintf(2, "%s: ", env->prog_name);
-	if (error == MALLOC_FAIL)
-		ft_dprintf(2, "malloc failed: %s\n", strerror(errno));
-	ft_free_env(env);
-	exit(0);
+	if (c == '\t' || c == '\n' || c == '\r' || c == '\v' || c == '\f'
+			|| c == ' ')
+		return (1);
+	return (0);
 }
+
+

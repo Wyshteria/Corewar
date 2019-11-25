@@ -5,12 +5,21 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: toliver <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/11/24 16:31:18 by toliver           #+#    #+#             */
-/*   Updated: 2019/11/24 16:32:24 by toliver          ###   ########.fr       */
+/*   Created: 2019/11/25 21:55:29 by toliver           #+#    #+#             */
+/*   Updated: 2019/11/25 22:00:35 by toliver          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "asm.h"
+
+void		*ft_malloc(size_t size)
+{
+	void	*ptr;
+
+	if (!(ptr = malloc(size)))
+		ft_crash(MALLOC_FAIL);
+	return (ptr);
+}
 
 int			ft_pow2(int pow)
 {
@@ -38,13 +47,3 @@ int			ft_strchr_pos(char *str, int c)
 		return (-1);
 	return ((int)(val - str));
 }
-
-int			ft_is_whitespace(char c)
-{
-	if (c == '\t' || c == '\n' || c == '\r' || c == '\v' || c == '\f'
-			|| c == ' ')
-		return (1);
-	return (0);
-}
-
-
