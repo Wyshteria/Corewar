@@ -6,7 +6,7 @@
 /*   By: toliver <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/19 18:19:18 by toliver           #+#    #+#             */
-/*   Updated: 2019/11/28 23:45:37 by toliver          ###   ########.fr       */
+/*   Updated: 2019/11/28 23:47:56 by toliver          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -394,6 +394,7 @@ int			ft_op_reg_other(t_token *token)
 	if (ft_is_reg(token->value))
 	{
 		ft_strcpy(token->value, token->value + 1);
+		token->int_value = ft_atoi(token->value);
 		return (REGISTER);
 	}
 	else if (ft_is_op(token))
