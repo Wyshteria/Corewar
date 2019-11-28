@@ -6,7 +6,7 @@
 /*   By: toliver <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/19 18:18:38 by toliver           #+#    #+#             */
-/*   Updated: 2019/11/25 22:43:59 by toliver          ###   ########.fr       */
+/*   Updated: 2019/11/28 23:45:36 by toliver          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,8 +32,44 @@ enum e_error
 {
 	MALLOC_FAIL,
 	OPEN_ERROR,
+	READ_ERROR,
+	LSEEK_ERROR,
 };
 
+enum e_type
+{
+	COMMAND,
+	STRING,
+	COMMENT,
+	LABEL,
+	OPERATION,
+	PARAM,
+	NEWLINE,
+	DIRECT,
+	SEPARATOR,
+	REGISTER,
+	NUMBER,	
+	UNKNOWN,
+};
+// parse par token puis parse les tokens
+
+typedef struct		s_token
+{
+	int				type;
+	char			*value;
+	int				int_value;
+	int				col;
+	int				line;
+	struct s_token	*next;
+}					t_token;
+
+enum e_fileparsing_mode
+{
+	PARSING,
+	CRASH,
+	DONE,
+	CONTAIN_ERRORS,
+};
 
 typedef struct		s_file
 {
@@ -41,6 +77,9 @@ typedef struct		s_file
 	int				fd;
 	int				line;
 	int				col;
+	off_t			offset;
+	int				mode;
+	t_token			*tokens;
 	struct s_file	*next;
 }					t_file;
 

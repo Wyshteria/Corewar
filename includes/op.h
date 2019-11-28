@@ -6,10 +6,11 @@
 /*   By: zaz <marvin@42.fr>                         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2013/10/04 11:33:27 by zaz               #+#    #+#             */
-/*   Updated: 2019/11/25 22:44:00 by toliver          ###   ########.fr       */
+/*   Updated: 2019/11/28 23:45:36 by toliver          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-
+#ifndef OP_H
+# define OP_H
 /*
 ** Toutes les tailles sont en octets.
 ** On part du principe qu'un int fait 32 bits. Est-ce vrai chez vous ?
@@ -32,14 +33,17 @@
 #define CHAMP_MAX_SIZE			(MEM_SIZE / 6)
 
 #define COMMENT_CHAR			'#'
+#define CMD_CHAR				'.'
+#define STRING_CHAR				'"'
 #define LABEL_CHAR				':'
 #define DIRECT_CHAR				'%'
 #define SEPARATOR_CHAR			','
+#define NEWLINE_CHAR			'\n'
 
 #define LABEL_CHARS				"abcdefghijklmnopqrstuvwxyz_0123456789"
 
-#define NAME_CMD_STRING			".name"
-#define COMMENT_CMD_STRING		".comment"
+#define NAME_CMD_STRING			"name"
+#define COMMENT_CMD_STRING		"comment"
 
 #define REG_NUMBER				16
 
@@ -86,3 +90,6 @@ typedef struct		s_op
 	unsigned char	carry;
 	unsigned char	is_on_two_bytes;
 }					t_op;
+
+extern t_op    op_tab[17];
+#endif
