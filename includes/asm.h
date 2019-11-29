@@ -6,7 +6,7 @@
 /*   By: toliver <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/19 18:18:38 by toliver           #+#    #+#             */
-/*   Updated: 2019/11/28 23:45:36 by toliver          ###   ########.fr       */
+/*   Updated: 2019/11/29 17:46:05 by toliver          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -91,6 +91,39 @@ typedef struct		s_env
 }					t_env;
 
 /*
+	STRUCTURES POUR LA CONVERSION EN OPERATIONS
+
+typedef struct		s_param
+{
+	int				type;
+	int				value_type;
+	char			*value;
+	int				int_value;
+}					t_param;
+
+typedef struct		s_label
+{
+	char			*value;
+	struct s_label	*next;
+}					t_label;
+
+typedef struct		s_operation
+{
+	t_label			*labels;
+	unsigned		op_code;
+	t_param			params[3];	
+}					t_operation;
+
+typedef struct		s_program
+{
+	char			*filename;
+	char			*name;
+	char			*comment;
+	t_operation		*operations;
+}					t_program;
+*/
+
+/*
 ** PARSING FUNC
 */
 
@@ -103,7 +136,7 @@ void				ft_parse_args(int ac, char **av, t_env *env);
 void				ft_usage(void);
 void				ft_wrong_flag(t_env *env, char c);
 void				ft_crash(int error);
-
+int					ft_error(t_env *env, t_file *file, int error);
 /*
 ** ENV FUNC
 */
@@ -127,5 +160,29 @@ void				ft_free_files(t_env *env);
 void				*ft_malloc(size_t size);
 int					ft_pow2(int pow);
 int					ft_strchr_pos(char *str, int c);
+int					ft_is_one_of(char c, char *lookfor);
 
+/*
+** PARSING UTILS FUNC
+*/
+
+int					ft_parse_while(t_file *file, char *containing, char **line);
+int					ft_parse_until(t_file *file, char *limit, char **line, int skipping);
+void				ft_skip_spaces(t_env *env, t_file *file);
+int					ft_offset_lines(t_env *env, t_file *file, char *str);
+int					ft_offset_head(t_env *env, t_file *file, size_t size);
+
+/*
+** TOKEN FUNC
+*/
+
+void				ft_parse_token(t_env *env, t_file *file);
+
+/*
+** PRINTING FUNC
+*/
+
+void				ft_dump_tokens(t_file *file);
+void				ft_dump_env(t_env *env);
+void				ft_dump_files(t_file *files);
 #endif

@@ -6,7 +6,7 @@
 /*   By: zaz <marvin@42.fr>                         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2013/10/04 11:33:27 by zaz               #+#    #+#             */
-/*   Updated: 2019/11/28 23:45:36 by toliver          ###   ########.fr       */
+/*   Updated: 2019/11/29 17:46:08 by toliver          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #ifndef OP_H
@@ -83,7 +83,7 @@ typedef struct		s_op
 {
 	char			*opcode;
 	unsigned char	params_number;
-	unsigned char	params[4];
+	unsigned char	params[3];
 	unsigned char	opcode_value;
 	unsigned int	cycles;
 	char			*opcode_name;

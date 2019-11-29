@@ -6,7 +6,7 @@
 /*   By: toliver <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/25 21:55:29 by toliver           #+#    #+#             */
-/*   Updated: 2019/11/25 22:00:35 by toliver          ###   ########.fr       */
+/*   Updated: 2019/11/29 15:53:15 by toliver          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,4 +46,18 @@ int			ft_strchr_pos(char *str, int c)
 	if (val == NULL)
 		return (-1);
 	return ((int)(val - str));
+}
+
+int			ft_is_one_of(char c, char *lookfor)
+{
+	int		i;
+	
+	i = 0;
+	while (lookfor && lookfor[i])
+	{
+		if (lookfor[i] == c)
+			return (1);
+		i++;
+	}
+	return (0);
 }
