@@ -6,7 +6,7 @@
 /*   By: toliver <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/25 21:14:07 by toliver           #+#    #+#             */
-/*   Updated: 2019/11/29 15:54:41 by toliver          ###   ########.fr       */
+/*   Updated: 2019/12/04 01:29:09 by toliver          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 void		ft_usage(void)
 {
-	ft_dprintf(2, "usage: ./asm [-%s] file ...\n", FLAGS);
+	ft_dprintf(2, "usage: ./asm [-%s] file[.s] ...\n", FLAGS);
 	exit(0);
 }
 
@@ -43,5 +43,3 @@ int			ft_error(t_env *env, t_file *file, int error)
 	file->mode = CRASH;
 	return (0);
 }
-
-

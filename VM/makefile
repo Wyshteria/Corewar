@@ -6,12 +6,12 @@
 #    By: toliver <marvin@42.fr>                     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/09/20 19:50:33 by toliver           #+#    #+#              #
-#    Updated: 2019/12/04 01:32:54 by toliver          ###   ########.fr        #
+#    Updated: 2019/12/04 04:10:01 by toliver          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 
-NAME = asm
+NAME = vm
 
 INCLUDES = -I includes\
 		   -I ./libs/libft/includes\
@@ -23,26 +23,15 @@ LIBS =	./libs/libft/libft.a\
 FLAGS = -Wall -Wextra -Werror
 
 OBJS = $(addprefix objs/, $(addsuffix .o, \
-			$(addprefix asm/, \
+			$(addprefix vm/, \
 				main \
-				env \
-				error \
-				files \
-				parse_args \
-				utils \
-				parse_utils \
-				print \
-				token \
-				op \
+				op\
 				) \
 		)) 
 
-HEADERS = ./includes/asm.h ./includes/op.h
+HEADERS = ./includes/vm.h ./includes/op.h
 
 all: $(NAME)
-
-test: test.c
-	gcc -Wall -Werror -Wextra -I./includes test.c -o test
 
 $(NAME): $(LIBS) objs $(OBJS) $(HEADERS)
 	@printf "\033[92m\033[1:32mCompiling -------------> \033[91m$(NAME)\033[0m:\033[0m%-16s\033[32m[✔]\033[0m\n"
@@ -54,7 +43,7 @@ objs/%.o: srcs/%.c
 	@printf "\033[A\033[2K"
 
 objs:
-	@mkdir -p objs/asm
+	@mkdir -p objs/vm
 
 $(LIBS):
 	@make -C ./libs/libft/.
