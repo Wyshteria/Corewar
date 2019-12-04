@@ -6,7 +6,7 @@
 /*   By: toliver <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/04 01:38:07 by toliver           #+#    #+#             */
-/*   Updated: 2019/12/04 04:09:20 by toliver          ###   ########.fr       */
+/*   Updated: 2019/12/04 20:24:49 by toliver          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,6 +41,16 @@ enum				e_parsing_modes
 	PARSE_CRASH
 };
 
+typedef struct		s_champ
+{
+	t_header		header;
+	int				fd;
+	int				offset;
+	char			*filename;
+	char			*content;
+	struct s_champ	*next;
+}					t_champ;
+
 typedef struct		s_env
 {
 	char			*prog_name;
@@ -49,6 +59,7 @@ typedef struct		s_env
 	size_t			dump_cycles;
 	size_t			cycle_dump_cycles;
 	int				verbose_level;
+	t_champ			*champs;
 }					t_env;
 
 #endif

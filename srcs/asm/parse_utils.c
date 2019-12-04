@@ -6,12 +6,12 @@
 /*   By: toliver <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/29 15:48:43 by toliver           #+#    #+#             */
-/*   Updated: 2019/11/29 15:53:14 by toliver          ###   ########.fr       */
+/*   Updated: 2019/12/04 18:43:24 by toliver          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "asm.h"
-
+ 
 int			ft_offset_head(t_env *env, t_file *file, size_t size)
 {
 	file->offset = lseek(file->fd, file->offset + size, SEEK_SET);
