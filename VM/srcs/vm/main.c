@@ -6,7 +6,7 @@
 /*   By: toliver <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/19 18:19:18 by toliver           #+#    #+#             */
-/*   Updated: 2019/12/04 04:09:23 by toliver          ###   ########.fr       */
+/*   Updated: 2019/12/04 04:20:59 by toliver          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -103,7 +103,7 @@ void		ft_parse_param_flag_parameter(t_env *env, char **av, int *i, char flag)
 
 	if (*i >= env->ac)
 		ft_missing_param(env, flag);
- 	if (ft_is_containing_other_than(av[*i], "0123456789"))
+ 	if (ft_is_containing_other_than(av[*i], "+-0123456789"))
 		ft_missing_param(env, flag);
 	number = ft_atoi(av[*i]);
 	if (number < 0)
