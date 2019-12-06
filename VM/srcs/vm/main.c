@@ -6,7 +6,7 @@
 /*   By: toliver <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/19 18:19:18 by toliver           #+#    #+#             */
-/*   Updated: 2019/12/06 07:26:05 by toliver          ###   ########.fr       */
+/*   Updated: 2019/12/06 07:37:26 by toliver          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -129,13 +129,29 @@ int		retval;
 	retval = read(champ->fd, &(champ->header.prog_name), PROG_NAME_LENGTH);
 	if (retval == -1)
 		return (ft_champ_error(env, READ_ERROR, champ));
-	else if (retval == 0 || retval != 128)
+	else if (retval == 0 || retval != PROG_NAME_LENGTH)
 		return (ft_champ_error(env, TOO_SHORT, champ));
+	// verifier qu'il y a bien un \0 a la fin
+	// faire un truc plus propre
 	char buffer[12];
-	read(champ->fd, buffer, 8);		// TKT CA MARCHE
-	write(1, buffer, 8);
+	read(champ->fd, buffer, 4);		// go offset sur un alignement de 4 dependant de la size
+	write(1, buffer, 4);
 	return (1);	
 }
+
+int			ft_parse_size(t_env *env, t_champ *champ)
+{
+	int		retval;
+
+	retval = read(champ->fd, &(champ->header.prog_size), 4);
+	if (retval == -1)
+		return (ft_champ_error(env, READ_ERROR, champ));
+	else if (retval == 0)
+		return (ft_champ_error(env, TOO_SHORT, champ));
+	champ->header.prog_size = ft_swap(champ->header.prog_size);
+	return (1);	
+}
+
 
 int			ft_parse_champ(t_env *env, t_champ *champ)
 {
@@ -149,6 +165,10 @@ int			ft_parse_champ(t_env *env, t_champ *champ)
 		return (0);
 	if (!(ft_parse_name(env, champ)))
 		return (0);
+	if (!(ft_parse_size(env, champ)))
+		return (0);
+//	if (!(ft_parse_comment(env, champ)))
+//		return (0);
 	read(champ->fd, champ->header.comment, COMMENT_LENGTH);
 	/*
 	read(champ->fd, &(champ->header), sizeof(t_header));
