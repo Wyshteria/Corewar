@@ -6,11 +6,13 @@
 /*   By: zaz <marvin@42.fr>                         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2013/10/04 11:33:27 by zaz               #+#    #+#             */
-/*   Updated: 2019/12/04 20:24:50 by toliver          ###   ########.fr       */
+/*   Updated: 2019/12/06 07:26:08 by toliver          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #ifndef OP_H
 # define OP_H
+
+#include <stdint.h>
 /*
 ** Toutes les tailles sont en octets.
 ** On part du principe qu'un int fait 32 bits. Est-ce vrai chez vous ?
@@ -71,11 +73,13 @@ typedef char	t_arg_type;
 # define COMMENT_LENGTH			(2048)
 # define COREWAR_EXEC_MAGIC		0xea83f3
 
+// penser aux connards qui redefinissent prog name length et comment length en negatif
+
 typedef struct		s_header
 {
-  unsigned int		magic;
+  uint32_t			magic;
   char				prog_name[PROG_NAME_LENGTH + 1];
-  unsigned int		prog_size;
+  uint32_t			prog_size;
   char				comment[COMMENT_LENGTH + 1];
 }					t_header;
 

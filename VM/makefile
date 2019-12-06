@@ -6,7 +6,7 @@
 #    By: toliver <marvin@42.fr>                     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/09/20 19:50:33 by toliver           #+#    #+#              #
-#    Updated: 2019/12/04 04:10:01 by toliver          ###   ########.fr        #
+#    Updated: 2019/12/06 06:28:06 by toliver          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -26,6 +26,11 @@ OBJS = $(addprefix objs/, $(addsuffix .o, \
 			$(addprefix vm/, \
 				main \
 				op\
+				print \
+				utils \
+				env \
+				params \
+				free \
 				) \
 		)) 
 
