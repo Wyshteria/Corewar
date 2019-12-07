@@ -6,7 +6,7 @@
 /*   By: toliver <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/29 15:55:24 by toliver           #+#    #+#             */
-/*   Updated: 2019/11/29 15:57:23 by toliver          ###   ########.fr       */
+/*   Updated: 2019/12/07 19:05:50 by toliver          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -234,7 +234,7 @@ void		ft_parse_token(t_env *env, t_file *file)
 	if ((retval = read(file->fd, buf, 50)) > 0)
 	{
 		buf[retval] = 0;
-		if (buf[0] == COMMENT_CHAR && ft_offset_head(env, file, 1) && (file->col += 1))
+		if ((buf[0] == COMMENT_CHAR || buf[0] == ALT_COMMENT_CHAR) && ft_offset_head(env, file, 1) && (file->col += 1))
 			ft_parse_comment(file);
 		else if (buf[0] == CMD_CHAR && ft_offset_head(env, file, 1) && (file->col += 1))
 			ft_parse_cmd(file);

@@ -6,7 +6,7 @@
 #    By: toliver <marvin@42.fr>                     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/09/20 19:50:33 by toliver           #+#    #+#              #
-#    Updated: 2019/12/06 06:28:06 by toliver          ###   ########.fr        #
+#    Updated: 2019/12/07 19:50:27 by toliver          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -20,7 +20,7 @@ INCLUDES = -I includes\
 LIBS =	./libs/libft/libft.a\
 		./libs/ftprintf/libftprintf.a\
 
-FLAGS = -Wall -Wextra -Werror
+FLAGS = -Wall -Wextra -Werror -g3 -fsanitize=address
 
 OBJS = $(addprefix objs/, $(addsuffix .o, \
 			$(addprefix vm/, \
@@ -60,7 +60,7 @@ clean:
 
 fclean: clean
 	@printf  "\033[1:32mCleaning binary -------> \033[91m$(NAME)\033[0m\033[1:32m:\033[0m%-16s\033[32m[✔]\033[0m\n"
-	@	rm -f $(NAME)
+	@rm -f $(NAME)
 re:
 	@$(MAKE) fclean
 	@$(MAKE)

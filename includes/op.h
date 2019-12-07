@@ -6,7 +6,7 @@
 /*   By: zaz <marvin@42.fr>                         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2013/10/04 11:33:27 by zaz               #+#    #+#             */
-/*   Updated: 2019/11/29 17:46:08 by toliver          ###   ########.fr       */
+/*   Updated: 2019/12/07 19:51:36 by toliver          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #ifndef OP_H
@@ -33,6 +33,7 @@
 #define CHAMP_MAX_SIZE			(MEM_SIZE / 6)
 
 #define COMMENT_CHAR			'#'
+#define ALT_COMMENT_CHAR		';'
 #define CMD_CHAR				'.'
 #define STRING_CHAR				'"'
 #define LABEL_CHAR				':'

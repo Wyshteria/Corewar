@@ -6,7 +6,7 @@
 /*   By: toliver <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/04 01:38:07 by toliver           #+#    #+#             */
-/*   Updated: 2019/12/06 07:26:07 by toliver          ###   ########.fr       */
+/*   Updated: 2019/12/07 19:50:30 by toliver          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,7 +55,10 @@ enum				e_champ_error
 	OPEN_ERROR,
 	READ_ERROR,
 	MAGIC_ERROR,
-	TOO_SHORT
+	TOO_SHORT,
+	NAME_TOO_LONG,
+	COMMENT_TOO_LONG,
+	SIZE_ERROR,
 };
 
 typedef struct		s_champ
