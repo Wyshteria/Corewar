@@ -6,15 +6,30 @@
 /*   By: toliver <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/06 06:27:16 by toliver           #+#    #+#             */
-/*   Updated: 2019/12/07 19:05:07 by toliver          ###   ########.fr       */
+/*   Updated: 2019/12/08 08:29:40 by toliver          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "vm.h"
 
+void		ft_free_arena(t_env *env)
+{
+	t_process	*ptr;
+	t_process	*tmp;
+
+	ptr = env->arena.process;
+	while (ptr)
+	{
+		tmp = ptr->next;
+		free(ptr);
+		ptr = tmp;
+	}
+}
+
 void		ft_free_env(t_env *env)
 {
 	ft_free_champs(env);
+	ft_free_arena(env);
 }
 
 void		ft_free_champ(t_champ *champ)

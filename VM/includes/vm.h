@@ -6,7 +6,7 @@
 /*   By: toliver <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/04 01:38:07 by toliver           #+#    #+#             */
-/*   Updated: 2019/12/07 19:50:30 by toliver          ###   ########.fr       */
+/*   Updated: 2019/12/08 12:23:00 by toliver          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,8 +61,15 @@ enum				e_champ_error
 	SIZE_ERROR,
 };
 
+enum				e_arena_error
+{
+	NOT_ENOUGH_SPACE,
+	MALLOC_FAIL,
+};
+
 typedef struct		s_champ
 {
+	int				number;
 	t_header		header;
 	int				fd;
 	int				offset;
@@ -70,6 +77,29 @@ typedef struct		s_champ
 	char			*content;
 	struct s_champ	*next;
 }					t_champ;
+
+typedef struct		s_byte
+{
+	unsigned char	value;
+	int				writer;
+}					t_byte;
+
+typedef struct			s_process
+{
+	int					pos;
+	int					owner;
+	struct s_process	*next;
+}						t_process;
+
+typedef struct		s_arena
+{
+	int				maxx;
+	int				maxy;
+	int				op_per_line;
+	int				line_number;
+	t_byte			arena[MEM_SIZE];
+	t_process		*process;
+}					t_arena;
 
 typedef struct		s_env
 {
@@ -80,6 +110,7 @@ typedef struct		s_env
 	size_t			cycle_dump_cycles;
 	int				verbose_level;
 	t_champ			*champs;
+	t_arena			arena;
 }					t_env;
 
 /*
@@ -116,6 +147,12 @@ void		ft_free_env(t_env *env);
 */
 
 int			ft_parse_params(t_env *env, char **av);
+
+/*
+** CHAMP PARSING
+*/
+
+void		ft_parse_champs(t_env *env);
 
 /*
 ** FREE FUNCTIONS

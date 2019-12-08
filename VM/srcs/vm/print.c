@@ -6,7 +6,7 @@
 /*   By: toliver <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/05 23:52:15 by toliver           #+#    #+#             */
-/*   Updated: 2019/12/07 19:50:26 by toliver          ###   ########.fr       */
+/*   Updated: 2019/12/07 22:39:46 by toliver          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,6 +65,7 @@ void		ft_dump_content(t_champ *champ)
 		ft_printf("0x%.2hhx ", champ->content[i]);
 		i++;
 	}
+	ft_printf("\n");
 }
 
 void		ft_dump_champs(t_env *env)
@@ -76,12 +77,14 @@ void		ft_dump_champs(t_env *env)
 	while (ptr)
 	{
 		ft_printf("\tChampion in file %s\n", ptr->filename);
+		ft_printf("\t\tWith number %u\n", ptr->number);
 		ft_printf("\t\tWith fd : %d\n", ptr->fd);
 		ft_printf("\t\tWith header :\n");
 		ft_dump_header(&(ptr->header));
 		ft_printf("\t\twhich contains :\n");
 		ft_dump_content(ptr);
 		ptr = ptr->next;
+		ft_printf("\n");
 	}
 }
 

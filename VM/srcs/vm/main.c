@@ -6,242 +6,171 @@
 /*   By: toliver <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/19 18:19:18 by toliver           #+#    #+#             */
-/*   Updated: 2019/12/07 19:50:27 by toliver          ###   ########.fr       */
+/*   Updated: 2019/12/08 12:22:58 by toliver          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "vm.h"
+#include <ncurses.h>
 
-void		ft_delete_champ(t_env *env, t_champ *champ)
+void		ft_set_size(t_arena *arena, int maxx, int maxy)
 {
-	t_champ	*ptr;
-	t_champ	*tmp;
-
-	if (env->champs == champ)
-		env->champs = champ->next;
-	ptr = env->champs;
-	while (ptr->next && ptr->next != champ)
-		ptr = ptr->next;
-	if (ptr->next)
-		tmp = ptr->next->next;
-	else
-		tmp = NULL;
-	ft_free_champ(champ);
-	ptr->next = tmp;
+	arena->maxx = maxx;
+	arena->maxy = maxy;
+	arena->op_per_line = (maxx + 1) / 3;
+	while (MEM_SIZE % arena->op_per_line)
+		(arena->op_per_line)--;
+	arena->line_number = MEM_SIZE / arena->op_per_line;
+//	ft_printf("maxx : %d maxy : %d\n", maxx, maxy);
+//	ft_printf("line_number : %d op_per_line : %d\n", arena->line_number, arena->op_per_line);
+//	if (arena->line_number > maxy)
+//		ft_printf("not enough space to display the arena get a bigger terminal or try reducing character size\n");
 }
 
+void		ft_test(t_env *env)
+{
+//	int		lines;
+//	int		columns;
+	int		maxx;
+	int		maxy;
+
+
+	(void)env;
+	initscr();
+	noecho();
+	curs_set(FALSE);
+
+	getmaxyx(stdscr, maxy, maxx);
+//	env->arena.maxx = maxx;
+//	env->arena.maxy = maxy;
+	ft_set_size(&env->arena, maxx, maxy);
+
+		/*
+	columns = (maxx + 1) / 3;
+	while (MEM_SIZE % columns)
+		columns--;
+	lines = MEM_SIZE / columns;
+	ft_printf("maxx : %d maxy : %d\n", maxx, maxy);
+	ft_printf("lines : %d columns : %d\n", lines, columns);
+	if (lines > maxy)
+		ft_printf("not enough space to display the arena get a bigger terminal or try reducing character size\n");
+	*/
+	getmaxyx(stdscr, maxy, maxx);
+	if (maxx != env->arena.maxx || maxy != env->arena.maxy)
+		ft_set_size(&env->arena, maxx, maxy);
+	endwin();
+	ft_printf("line_number : %d op_per_line : %d\n", env->arena.line_number, env->arena.op_per_line);
 /*
-void		ft_read_error(t_champ *champ)
-{
-	ft_dprintf(2, "Couldn't read file %s : %s\n", champ->filename, strerror(errno));
+	while(1) {
+	 getmaxyx(stdscr, maxy, maxx);
+ clear();
+ mvprintw(y, x, "o");
+ refresh();
+ usleep(20000);
+ x++;
+ if (x > maxx)
+ {
+	x = 0;
+	y++;
+ }
+ if (y > maxy)
+	 y = 0;
+ }
+	*/
 }
 
-void		ft_open_error(t_champ *champ)
+int			ft_arena_error(int error)
 {
-	ft_dprintf(2, "Couldn't open file %s : %s\n", champ->filename, strerror(errno));
-}
-
-void		ft_lseek_error(t_env *env, t_champ *champ)
-{
-	(void)champ;
-	ft_dprintf(2, "%s: lseek failed: %s\n", env->prog_name, strerror(errno));
-}
-
-int			ft_offset_head(t_env *env, t_champ *champ, size_t size)
-{
-	champ->offset = lseek(champ->fd, champ->offset + size, SEEK_SET);
-	if (champ->offset == -1)
-	{
-		ft_lseek_error(env, champ);
-		return (0);
-	}
-	return (1);
-}
-
-int			ft_parse_str(t_champ *champ, char **line)
-{
-	char	buf[51];
-	int		i;
-	int		size;
-	int		retval;
-
-	size = 0;
-	while ((retval = read(champ->fd, buf, 50)) > 0)
-	{
-		i = 0;
-		while(i < retval && buf[i])
-			i++;
-		size += i;
-		if (i != retval)
-			break;
-	}
-	if (retval == -1)
-	{
-		ft_read_error(champ);
-		return (0);
-	}
-	*line = (char*)ft_malloc(sizeof(char) * (size + 1));
-	ft_offset_head(ft_get_env(), champ, 0);
-	retval = read(champ->fd, *line, size);
-	if (retval == -1)
-	{
-		free(*line);
-		*line = NULL;
-//		ft_malloc_fail(ft_get_env());
-		return (0);
-	}
-	(*line)[retval] = '\0';
-	ft_offset_head(ft_get_env(), champ, 0);
-	return (1);
-}
-*/
-int			ft_champ_error(t_env *env, int error, t_champ *champ)
-{
-	ft_dprintf(2, "%s: %s: ", env->prog_name, champ->filename);
-	if (error == OPEN_ERROR)
-		ft_dprintf(2, "Couldn't open the file: %s\n", strerror(errno));
-	else if (error == READ_ERROR)
-		ft_dprintf(2, "Couldn't read the file: %s\n", strerror(errno));
-	else if (error == TOO_SHORT)
-		ft_dprintf(2, "Reading the file ended too soon\n");
-	else if (error == MAGIC_ERROR)
-		ft_dprintf(2, "File is not a core-war champion\n");
-	else if (error == NAME_TOO_LONG)
-		ft_dprintf(2, "Champ name is too long, max size : %d\n", PROG_NAME_LENGTH);
-	else if (error == COMMENT_TOO_LONG)
-		ft_dprintf(2, "Champ comment is too long, max size : %d\n", COMMENT_LENGTH);
-	else if (error == SIZE_ERROR)
-		ft_dprintf(2, "Champ size do not match given size: %u\n", champ->header.prog_size);
+	ft_dprintf(2, "%s: ", ft_get_env()->prog_name);
+	if (error == NOT_ENOUGH_SPACE)
+		ft_dprintf(2, "Not enough space in arena to place all champions\n");
 	return (0);
 }
 
-int			ft_parse_magic(t_env *env, t_champ *champ)
+
+void			ft_dump_arena(t_arena *arena)
 {
-	int		retval;
-
-	retval = read(champ->fd, &(champ->header.magic), sizeof(uint32_t));
-	if (retval == -1)
-		return (ft_champ_error(env, READ_ERROR, champ));
-	else if (retval == 0)
-		return (ft_champ_error(env, TOO_SHORT, champ));
-	champ->header.magic = ft_swap(champ->header.magic);
-	if (champ->header.magic != COREWAR_EXEC_MAGIC)
-		return (ft_champ_error(env, MAGIC_ERROR, champ));
-	champ->offset = 4;
-	return (1);	
-}
-
-int			ft_parse_name(t_env *env, t_champ *champ)
-{
-	int		retval;
-	int		i;
-
-	retval = read(champ->fd, &(champ->header.prog_name), PROG_NAME_LENGTH + 1);
-	if (retval == -1)
-		return (ft_champ_error(env, READ_ERROR, champ));
-	else if (retval == 0 || retval != PROG_NAME_LENGTH + 1)
-		return (ft_champ_error(env, TOO_SHORT, champ));
-	champ->header.prog_name[retval] = '\0';
+	int			i;
+	t_process	*ptr;
 	i = 0;
-	while (i < PROG_NAME_LENGTH + 1 && champ->header.prog_name[i])
-		i++;
-	if (i == PROG_NAME_LENGTH + 1 && champ->header.prog_name[i])
-		return (ft_champ_error(env, NAME_TOO_LONG, champ));
-
-
-
-	if ((PROG_NAME_LENGTH + 1) & 3)
+	while (i < MEM_SIZE)
 	{
-		char buffer[12];
-		read(champ->fd, buffer, 4 - ((PROG_NAME_LENGTH + 1) & 3));
-	}
-	return (1);	
-}
-
-int			ft_parse_size(t_env *env, t_champ *champ)
-{
-	int		retval;
-
-	retval = read(champ->fd, &(champ->header.prog_size), sizeof(uint32_t));
-	if (retval == -1)
-		return (ft_champ_error(env, READ_ERROR, champ));
-	else if (retval == 0)
-		return (ft_champ_error(env, TOO_SHORT, champ));
-	champ->header.prog_size = ft_swap(champ->header.prog_size);
-	return (1);	
-}
-
-int			ft_parse_comment(t_env *env, t_champ *champ)
-{
-	int		retval;
-	int		i;
-
-	retval = read(champ->fd, &(champ->header.comment), COMMENT_LENGTH + 1);
-	if (retval == -1)
-		return (ft_champ_error(env, READ_ERROR, champ));
-	else if (retval == 0 || retval != COMMENT_LENGTH + 1)
-		return (ft_champ_error(env, TOO_SHORT, champ));
-	champ->header.comment[retval] = '\0';
-	i = 0;
-	while (i < COMMENT_LENGTH + 1 && champ->header.comment[i])
+		ft_printf("%.2x(%d) ", arena->arena[i].value, arena->arena[i].writer);
 		i++;
-	if (i == COMMENT_LENGTH + 1 && champ->header.comment[i])
-		return (ft_champ_error(env, COMMENT_TOO_LONG, champ));
-
-
-
-	if ((COMMENT_LENGTH + 1) & 3)
-	{
-		char buffer[12];
-		read(champ->fd, buffer, 4 - ((COMMENT_LENGTH + 1) & 3));
 	}
-	return (1);	
+	ft_printf("\n");
+	ptr = arena->process;
+	while (ptr)
+	{
+		ft_printf("process:\n");
+		ft_printf("\tpos = %d\n", ptr->pos);
+		ft_printf("\towner = %d\n", ptr->owner);
+		ptr = ptr->next;
+	}
 }
 
-
-int			ft_parse_champ(t_env *env, t_champ *champ)
+int			ft_add_process(t_arena *arena, int owner, int pos)
 {
+	t_process		*process;
 
-	if (champ->fd == -1)
-		return (ft_champ_error(env, READ_ERROR, champ));
-	if (!(ft_parse_magic(env, champ)))
-		return (0);
-	if (!(ft_parse_name(env, champ)))
-		return (0);
-	if (!(ft_parse_size(env, champ)))
-		return (0);
-	if (!(ft_parse_comment(env, champ)))
-		return (0);
-	champ->offset = lseek(champ->fd, 0, SEEK_CUR);
-	if (lseek(champ->fd, 0, SEEK_END) - champ->offset != champ->header.prog_size)
-		return (ft_champ_error(env, SIZE_ERROR, champ));
-	champ->offset = lseek(champ->fd, champ->offset, SEEK_SET);
-	champ->content = (char*)ft_malloc(champ->header.prog_size);
-	read(champ->fd, champ->content, champ->header.prog_size);
-
-
-
-
+	if (!(process = (t_process*)malloc(sizeof(t_process))))
+		return (ft_arena_error(MALLOC_FAIL));
+	process->pos = pos;
+	process->owner = owner;
+	process->next = arena->process;
+	arena->process = process;
 	return (1);
 }
 
-void		ft_parse_champs(t_env *env)
+void		ft_fill_arena(t_arena *arena, t_champ *champ, int pos)
 {
-	t_champ	*ptr;
-	t_champ	*tmp;
+	int		i;
 
+	i = 0;
+	while (i < (int)champ->header.prog_size)
+	{
+		arena->arena[pos + i].value = champ->content[i];
+		arena->arena[pos + i].writer = champ->number;
+		i++;
+	}
+}
+int			ft_init_arena(t_env *env)
+{
+	unsigned int	total_size;
+	t_champ			*ptr;
+	int				champ_number;
+	int				space_between;
+
+	ptr = env->champs;
+	total_size = 0;
+	champ_number = 0;
+	while (ptr)
+	{
+		total_size += ptr->header.prog_size;
+		champ_number++;
+		ptr = ptr->next;
+	}
+	if (total_size >= MEM_SIZE)
+		return (ft_arena_error(NOT_ENOUGH_SPACE)); 
+	space_between = (MEM_SIZE - total_size) / champ_number;
+	ptr = env->champs;
+	
+
+	int				actualpos;
+
+	actualpos = 0;
 	ptr = env->champs;
 	while (ptr)
 	{
-		if (!ft_parse_champ(env, ptr))
-		{
-			tmp = ptr->next;
-			ft_delete_champ(env, ptr);
-			ptr = tmp;
-		}
-		else
-			ptr = ptr->next;
+		if (!(ft_add_process(&env->arena, ptr->number, actualpos)))
+			return (0);
+		ft_fill_arena(&env->arena, ptr, actualpos);
+		actualpos += (ptr->header.prog_size + space_between);
+		ptr = ptr->next;
 	}
+	ft_test(env);
+//	ft_dump_arena(&env->arena);
+	return (1);
 }
 
 int			main(int ac, char **av)
@@ -252,7 +181,12 @@ int			main(int ac, char **av)
 	if (!ft_parse_params(&env, av + 1))
 		return (-1);
 	ft_parse_champs(&env);
-	ft_dump_env(&env);
+	// verifier qu'il y a bien un champion
+	if (ft_init_arena(&env))
+	{
+		ft_printf("working !\n");
+	}
+//	ft_dump_env(&env);
 	ft_free_env(&env);
 	return (0);
 }
