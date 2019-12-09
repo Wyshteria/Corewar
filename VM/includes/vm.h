@@ -6,7 +6,7 @@
 /*   By: toliver <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/04 01:38:07 by toliver           #+#    #+#             */
-/*   Updated: 2019/12/08 12:23:00 by toliver          ###   ########.fr       */
+/*   Updated: 2019/12/09 17:14:26 by toliver          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,7 @@
 #include "libftprintf.h"
 #include "op.h"
 #include <stdint.h>
+#include "display.h"
 
 #define CONCATABLE_FLAGS "a"
 #define PARAMS_FLAGS "dsv"
@@ -54,8 +55,8 @@ enum				e_champ_error
 {
 	OPEN_ERROR,
 	READ_ERROR,
-	MAGIC_ERROR,
 	TOO_SHORT,
+	MAGIC_ERROR,
 	NAME_TOO_LONG,
 	COMMENT_TOO_LONG,
 	SIZE_ERROR,
@@ -84,10 +85,22 @@ typedef struct		s_byte
 	int				writer;
 }					t_byte;
 
+typedef struct		s_reg
+{
+	char 			mem[REG_SIZE];
+} 					t_reg;
+
 typedef struct			s_process
 {
 	int					pos;
-	int					owner;
+	unsigned char		opcode_value;
+	int					cycles_to_exec;
+	t_reg				reg[REG_NUMBER];
+	int					op_size;
+	int					last_live_cycle;
+	int					carry;
+	int					live_number;
+	int					checks_number;
 	struct s_process	*next;
 }						t_process;
 
@@ -99,6 +112,11 @@ typedef struct		s_arena
 	int				line_number;
 	t_byte			arena[MEM_SIZE];
 	t_process		*process;
+	WINDOW			*main;
+	WINDOW			*infos;
+	int				cycles;
+	int				mode;
+	int				cycles_to_die;
 }					t_arena;
 
 typedef struct		s_env
@@ -161,5 +179,11 @@ void		ft_parse_champs(t_env *env);
 void		ft_free_env(t_env *env);
 void		ft_free_champs(t_env *env);
 void		ft_free_champ(t_champ *champ);
+
+/*
+**	VISU FUNC
+*/
+
+void		ft_visu(t_env *env);
 
 #endif

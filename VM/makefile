@@ -6,7 +6,7 @@
 #    By: toliver <marvin@42.fr>                     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/09/20 19:50:33 by toliver           #+#    #+#              #
-#    Updated: 2019/12/07 22:45:49 by toliver          ###   ########.fr        #
+#    Updated: 2019/12/09 04:39:51 by toliver          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -32,10 +32,11 @@ OBJS = $(addprefix objs/, $(addsuffix .o, \
 				params \
 				free \
 				champs \
+				visu \
 				) \
 		)) 
 
-HEADERS = ./includes/vm.h ./includes/op.h
+HEADERS = ./includes/vm.h ./includes/op.h ./includes/display.h
 
 all: $(NAME)
 

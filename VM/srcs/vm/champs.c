@@ -6,7 +6,7 @@
 /*   By: toliver <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/07 22:34:31 by toliver           #+#    #+#             */
-/*   Updated: 2019/12/08 12:23:00 by toliver          ###   ########.fr       */
+/*   Updated: 2019/12/09 04:58:41 by toliver          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -179,7 +179,7 @@ void		ft_parse_champs(t_env *env)
 		}
 		else
 		{
-			ptr->number = number;
+			ptr->number = -number;
 			ptr = ptr->next;
 			number++;
 		}

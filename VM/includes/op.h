@@ -6,7 +6,7 @@
 /*   By: zaz <marvin@42.fr>                         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2013/10/04 11:33:27 by zaz               #+#    #+#             */
-/*   Updated: 2019/12/08 12:22:59 by toliver          ###   ########.fr       */
+/*   Updated: 2019/12/09 16:49:27 by toliver          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #ifndef OP_H
@@ -88,12 +88,12 @@ typedef struct		s_op
 {
 	char			*opcode;
 	unsigned char	params_number;
-	unsigned char	params[3];
+	unsigned char	params[REG_NUMBER];
 	unsigned char	opcode_value;
 	unsigned int	cycles;
 	char			*opcode_name;
-	unsigned char	carry;
-	unsigned char	is_on_two_bytes;
+	int				need_encoding_byte;
+	int				t_dir_is_two_bytes;
 }					t_op;
 
 extern t_op    op_tab[17];
