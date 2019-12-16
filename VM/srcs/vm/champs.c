@@ -6,7 +6,7 @@
 /*   By: toliver <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/07 22:34:31 by toliver           #+#    #+#             */
-/*   Updated: 2019/12/09 04:58:41 by toliver          ###   ########.fr       */
+/*   Updated: 2019/12/10 20:26:47 by toliver          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,15 +19,18 @@ void		ft_delete_champ(t_env *env, t_champ *champ)
 
 	if (env->champs == champ)
 		env->champs = champ->next;
-	ptr = env->champs;
-	while (ptr->next && ptr->next != champ)
-		ptr = ptr->next;
-	if (ptr->next)
-		tmp = ptr->next->next;
 	else
-		tmp = NULL;
+	{
+		ptr = env->champs;
+		while (ptr->next && ptr->next != champ)
+			ptr = ptr->next;
+		if (ptr->next)
+			tmp = ptr->next->next;
+		else
+			tmp = NULL;
+		ptr->next = tmp;
+	}
 	ft_free_champ(champ);
-	ptr->next = tmp;
 }
 
 int			ft_champ_error(t_env *env, int error, t_champ *champ)
@@ -154,10 +157,6 @@ int			ft_parse_champ(t_env *env, t_champ *champ)
 	champ->offset = lseek(champ->fd, champ->offset, SEEK_SET);
 	champ->content = (char*)ft_malloc(champ->header.prog_size);
 	read(champ->fd, champ->content, champ->header.prog_size);
-
-
-
-
 	return (1);
 }
 

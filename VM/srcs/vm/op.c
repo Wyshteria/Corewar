@@ -6,11 +6,11 @@
 /*   By: zaz <marvin@42.fr>                         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2013/10/04 11:43:01 by zaz               #+#    #+#             */
-/*   Updated: 2019/12/09 15:12:21 by toliver          ###   ########.fr       */
+/*   Updated: 2019/12/16 06:59:54 by toliver          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "op.h"
+#include "vm.h"
 
 t_op    op_tab[17] =
 {
@@ -37,4 +37,26 @@ t_op    op_tab[17] =
 		"long load index", 1, 1},
 	{"lfork", 1, {T_DIR}, 15, 1000, "long fork", 0, 1},
 	{"aff", 1, {T_REG}, 16, 2, "aff", 1, 0},
+};
+
+void	(*op_func[17])(t_opcode*, t_process*, t_arena*) = 
+{
+	0,
+	&ft_live,
+	&ft_ld,
+	&ft_st,
+	&ft_add,
+	&ft_sub,
+	&ft_and,
+	&ft_or,
+	&ft_xor,
+	&ft_zjmp,
+	&ft_ldi,
+	&ft_sti,
+	&ft_fork,
+	&ft_lld,
+	&ft_lldi,
+	&ft_lfork,
+	&ft_aff,
+	// copier toutes les operations
 };

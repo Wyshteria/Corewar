@@ -6,7 +6,7 @@
 /*   By: toliver <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/29 15:55:24 by toliver           #+#    #+#             */
-/*   Updated: 2019/12/07 19:05:50 by toliver          ###   ########.fr       */
+/*   Updated: 2019/12/10 18:26:58 by toliver          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,10 +64,12 @@ void		ft_parse_cmd(t_file *file)
 
 void		ft_parse_string(t_file *file)
 {
+	// PENSER A VERIFIER SI LA STRING NE FINIT JAMAIS !
 	t_token	token;
 	
 	ft_token_init(&token, STRING, file->col, file->line);
 	ft_parse_until(file, "\"", &(token.value), 1);
+	// ici verifier le retour ou un truc pour si la string finit jamais
 	ft_add_token(file, &token);
 }
 

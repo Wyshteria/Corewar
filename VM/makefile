@@ -6,7 +6,7 @@
 #    By: toliver <marvin@42.fr>                     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/09/20 19:50:33 by toliver           #+#    #+#              #
-#    Updated: 2019/12/09 04:39:51 by toliver          ###   ########.fr        #
+#    Updated: 2019/12/15 23:18:04 by toliver          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -33,6 +33,7 @@ OBJS = $(addprefix objs/, $(addsuffix .o, \
 				free \
 				champs \
 				visu \
+				arena \
 				) \
 		)) 
 

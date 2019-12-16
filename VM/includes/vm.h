@@ -6,7 +6,7 @@
 /*   By: toliver <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/04 01:38:07 by toliver           #+#    #+#             */
-/*   Updated: 2019/12/09 17:14:26 by toliver          ###   ########.fr       */
+/*   Updated: 2019/12/16 06:59:53 by toliver          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,6 +66,13 @@ enum				e_arena_error
 {
 	NOT_ENOUGH_SPACE,
 	MALLOC_FAIL,
+	NO_CHAMPIONS,
+};
+
+union				u_converter
+{
+	char			value[4];
+	uint32_t		real_value;
 };
 
 typedef struct		s_champ
@@ -92,8 +99,10 @@ typedef struct		s_reg
 
 typedef struct			s_process
 {
+	int 				pid;
 	int					pos;
 	unsigned char		opcode_value;
+	int					owner;
 	int					cycles_to_exec;
 	t_reg				reg[REG_NUMBER];
 	int					op_size;
@@ -104,8 +113,24 @@ typedef struct			s_process
 	struct s_process	*next;
 }						t_process;
 
+typedef struct		s_opcode
+{
+	unsigned int	opcode;
+	char			*opcode_name;
+	int				params_number;
+	int				need_encoding_byte;
+	char			encoding_byte;
+	int				dir_two_bytes;
+	uint32_t		params[REG_NUMBER];
+	int				params_types[REG_NUMBER];
+	int				size;
+	int				is_valid;
+//	int				pos;
+}					t_opcode;
+
 typedef struct		s_arena
 {
+	int				pid;
 	int				maxx;
 	int				maxy;
 	int				op_per_line;
@@ -114,7 +139,7 @@ typedef struct		s_arena
 	t_process		*process;
 	WINDOW			*main;
 	WINDOW			*infos;
-	int				cycles;
+	long long int	cycles;
 	int				mode;
 	int				cycles_to_die;
 }					t_arena;
@@ -131,6 +156,7 @@ typedef struct		s_env
 	t_arena			arena;
 }					t_env;
 
+
 /*
 ** DUMP FUNCTIONS
 */
@@ -140,7 +166,7 @@ void		ft_dump_champs(t_env *env);
 void		ft_dump_header(t_header *header);
 void		ft_dump_flags(t_env *env);
 void		ft_dump_verbose_flags(t_env *env);
-
+void		ft_dump_arena(t_arena *arena);
 /*
 ** UTILS FUNCTIONS
 */
@@ -186,4 +212,37 @@ void		ft_free_champ(t_champ *champ);
 
 void		ft_visu(t_env *env);
 
+/*
+** ARENA FUNC
+*/
+
+int			ft_init_arena(t_env *env);
+int			ft_arena_error(int error);
+
+/*
+** PROCESS FUNC
+*/
+
+void		ft_get_process_infos(t_process *process, t_arena *arena);
+int			ft_add_process(t_arena *arena, int pos);
+
+void		ft_live(t_opcode *op, t_process *process, t_arena *arena);
+void		ft_ld(t_opcode *op, t_process *process, t_arena *arena);
+void		ft_st(t_opcode *op, t_process *process, t_arena *arena);
+void		ft_add(t_opcode *op, t_process *process, t_arena *arena);
+void		ft_sub(t_opcode *op, t_process *process, t_arena *arena);
+void		ft_and(t_opcode *op, t_process *process, t_arena *arena);
+void		ft_or(t_opcode *op, t_process *process, t_arena *arena);
+void		ft_xor(t_opcode *op, t_process *process, t_arena *arena);
+void		ft_zjmp(t_opcode *op, t_process *process, t_arena *arena);
+void		ft_ldi(t_opcode *op, t_process *process, t_arena *arena);
+void		ft_sti(t_opcode *op, t_process *process, t_arena *arena);
+void		ft_fork(t_opcode *op, t_process *process, t_arena *arena);
+void		ft_lld(t_opcode *op, t_process *process, t_arena *arena);
+void		ft_lldi(t_opcode *op, t_process *process, t_arena *arena);
+void		ft_lfork(t_opcode *op, t_process *process, t_arena *arena);
+void		ft_aff(t_opcode *op, t_process *process, t_arena *arena);
+
+
+extern void 		(*op_func[17])(t_opcode*, t_process*, t_arena*);
 #endif
