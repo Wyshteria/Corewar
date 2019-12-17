@@ -6,7 +6,7 @@
 /*   By: toliver <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/19 18:18:38 by toliver           #+#    #+#             */
-/*   Updated: 2019/11/29 17:46:05 by toliver          ###   ########.fr       */
+/*   Updated: 2019/12/17 06:38:37 by jates-           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -90,6 +90,15 @@ typedef struct		s_env
 	t_file			*files;
 }					t_env;
 
+typedef struct		s_program
+{
+	int			fd;
+	char			*filename;
+	char			*name;
+	char			*comment;
+//	t_operation		*operations;
+}					t_program;
+
 /*
 	STRUCTURES POUR LA CONVERSION EN OPERATIONS
 
@@ -136,7 +145,9 @@ void				ft_parse_args(int ac, char **av, t_env *env);
 void				ft_usage(void);
 void				ft_wrong_flag(t_env *env, char c);
 void				ft_crash(int error);
-int					ft_error(t_env *env, t_file *file, int error);
+int				ft_error(t_env *env, t_file *file, int error);
+int				ft_lexical_error(t_file *file);
+
 /*
 ** ENV FUNC
 */
