@@ -41,13 +41,13 @@ make -C $path_to_ft_asm							>>			$launcher_log
 		then
 		echo "\033[0;34mProducing testing .s file\033[0m"
 		#$tester >> $launcher_log
-		allKo=`ls "$path_to_testko" | grep ".s"`
-		let "total = `ls $path_to_testko | grep ".s" |  wc -l`"
+		allKo=`ls "$path_to_testko"`
+		let "total = `ls $path_to_testko | wc -l`"
 		for file in $allKo # Starting test with invalid syntax source files
 		do
 			let "koTest = $koTest + 1"
 			$asm "$path_to_testko$file" >> $launcher_log
-			cor=`echo $file | cut -d'.' -f1`
+			cor=`echo $file | rev | cut -d'.' -f2- | rev`
 			if [ -f "$path_to_testko$cor.cor" ]
 			then
 				#mv $path_to_testko$file $path_to_testok$file
@@ -70,13 +70,13 @@ make -C $path_to_ft_asm							>>			$launcher_log
 		let "success = 0"
 		let "fail = 0"
 		let "discarded = 0"
-		allOk=`ls "$path_to_testok" | grep ".s"`
-		let "total = `ls $path_to_testok | grep ".s" | wc -l`"
+		allOk=`ls "$path_to_testok"`
+		let "total = `ls $path_to_testok | wc -l`"
 		for file in $allOk # Starting test with valid syntax source files
 		do
 			let "okTest = $okTest + 1"
 			$asm "$path_to_testok$file" >> $launcher_log
-			cor=`echo $file | cut -d'.' -f1`
+			cor=`echo $file | rev | cut -d'.' -f2- | rev`
 			if [ -f "$path_to_testok$cor.cor" ]
 			then
 				hexdump -vC "$path_to_testok$cor.cor" > "$path_to_testok$cor.txt"
@@ -105,7 +105,6 @@ make -C $path_to_ft_asm							>>			$launcher_log
 		else
 			echo "$ft_asm is not executable"
 		fi
-		echo "$total\n"
 	else
 		echo "$asm is not executable"
 	fi
