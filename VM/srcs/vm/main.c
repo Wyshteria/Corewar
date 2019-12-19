@@ -6,7 +6,7 @@
 /*   By: toliver <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/19 18:19:18 by toliver           #+#    #+#             */
-/*   Updated: 2019/12/16 06:59:49 by toliver          ###   ########.fr       */
+/*   Updated: 2019/12/19 03:41:33 by toliver          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,9 @@ void		ft_get_process_infos(t_process *process, t_arena *arena)
 	process->opcode_value = arena->arena[process->pos].value;
 	process->owner = arena->arena[process->pos].writer;
 	if (process->opcode_value > 0 && process->opcode_value < 17)
+	{
 		process->cycles_to_exec = op_tab[process->opcode_value].cycles;
+	}
 	else
 		process->cycles_to_exec = 1;
 }
@@ -124,10 +126,14 @@ int			ft_parse_value(t_arena *arena, int pos, int size)
 	}
 	if (size == 4)
 		value.real_value = ft_swap(value.real_value);
-	// verifier ici le jour ou jai un param plus gros :x
+	else if (size == 2)
+	{
+		int			tmp = value.value[0];
 
-//	else if (size == 2)
-//		value.real_value = ft_miniswap(value.real_value);
+		value.value[0] = value.value[1];
+		value.value[1] = tmp;
+	}
+	// corriger plus tard :O
 	return (value.real_value);	
 }
 
@@ -390,7 +396,15 @@ void		ft_try_op(t_env *env, t_process *process)
 	// penser a tester le verbose
 	//ft_print_op(&opcode);
 	if (opcode.is_valid)
+	{
 		ft_display_op(env, process, &opcode);
+		ft_print_op(&opcode);
+	}
+	else if (opcode.opcode != 0)
+	{
+		ft_printf("soucis !\n");
+		ft_print_op(&opcode);
+	}
 	if (opcode.is_valid)
 		ft_exec_op(&opcode, process, &env->arena);
 	else
@@ -411,15 +425,42 @@ void		ft_check_for_action(t_env *env)
 	}
 }
 
+void		ft_run_dump(t_arena *arena)
+{
+	int		y;
+	int		x;
+
+	y = 0;
+	while (y < 64)
+	{
+		x = 0;
+		ft_printf("0x%.4x :", y * 64);
+		while (x < 64)
+		{
+			ft_printf(" %.2x", arena->arena[y * 64 + x].value);
+			x++;
+		}
+		ft_printf("\n");
+		y++;
+	}
+}
+
 int			ft_run(t_env *env)
 {
 	ft_intro(env);
+	if (env->flags & DUMP_FLAG)
+		ft_printf("dump !\n");
 	while (1)
 	{
+		if ((env->flags & CYCLE_DUMP_FLAG) && env->cycle_dump_cycles == env->arena.cycles)
+			ft_run_dump(&env->arena);
+		if ((env->flags & DUMP_FLAG) && env->dump_cycles == env->arena.cycles)
+		{
+			ft_run_dump(&env->arena);
+			break;
+		}
 		ft_increment_cycles(env);
 		ft_check_for_action(env);
-		if (env->arena.cycles == 101)
-			break;
 		// check pour la vie et tout ca
 	}
 	return (1);
