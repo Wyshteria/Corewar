@@ -34,7 +34,10 @@ size_t	ft_strspn(const char *s, const char *charset)
 
 int		ft_lexical_error(t_file *file, t_token *token)
 {
-	ft_printf("Lexical error at [%d:%d]\n", token->line, token->col);
+	if (!token)
+		ft_printf("Lexical error at [%d:%d]\n", file->line, file->col);
+	else
+		ft_printf("Lexical error at [%d:%d]\n", token->line, token->col);
 	file->mode = CONTAIN_ERRORS;
 	return (0);
 }
@@ -46,7 +49,7 @@ int		ft_syntax_error(t_file *file, t_token *tok)
 
 	if (!tok)
 		ft_printf("%s[%03d:%03d] END \"(null)\"\n",\
-	syntax, file->line,  file->col + 1);
+	syntax, file->line, file->col + 1);
 	else if (tok->type == NEWLINE)
 		ft_printf("%s[%03d:%03d] ENDLINE\n",\
 	syntax, tok->line, tok->col);

@@ -111,7 +111,7 @@ void		ft_parse_string(t_file *file)
 	}
 }
 
-void		ft_parse_label(t_file *file)
+void		ft_parse_indirect_label(t_file *file)
 {
 	t_token	token;
 	t_token	*const last = ft_last_token(file);
@@ -123,7 +123,7 @@ void		ft_parse_label(t_file *file)
 	}
 	else
 	{
-		ft_token_init(&token, LABEL, file->col, file->line);
+		ft_token_init(&token, INDIRECT_LABEL, file->col, file->line);
 		ft_parse_while(file, LABEL_CHARS, &(token.value));
 		ft_add_token(file, &token);
 	}
@@ -229,12 +229,12 @@ int			ft_is_number(t_token *token)
 			return (0);
 		i++;
 	}
-	if (i != 0 && token->value[i] == '\0')
+	if (i != 0 && i < 12 && token->value[i] == '\0')
 	{
 		token->int_value = ft_atoi(token->value);
 		return (1);
 	}	
-	// verifier qu'on a bien la bonne valeur en int
+	// verifier qu'on a bien la bonne valeur en int (int max pas plus de 12 char)
 	return (0);
 }
 
@@ -253,7 +253,7 @@ int			ft_op_reg_other(t_token *token)
 	return (UNKNOWN); // return other
 }
 
-int			ft_is_label(t_file *file, t_token *token)
+int			ft_is_label(t_file *file)
 {
 	char	buf[1];
 	int		retval;
@@ -263,7 +263,6 @@ int			ft_is_label(t_file *file, t_token *token)
 		ft_error(ft_get_env(), file, READ_ERROR);
 	else if (buf[0] == LABEL_CHAR)
 	{
-		file->col += 1;
 		ft_offset_head(ft_get_env(), file, 1);
 		return (1);
 	}
@@ -291,65 +290,66 @@ int			ft_label_or_op(t_file *file, t_token *token)
 	return (ft_op_reg_other(token));
 }
 
-int			ft_parse_number(t_file *file)
+int			ft_parse_number(t_file *file, t_token *token)
 {
-	char	buf[51];
+	char	buf[12];
 	int		i;
-	int		size;
 	int		retval;
 
-	retval = read(file->fd, buf, 1);
-	if (retval == -1)
-		ft_error(ft_get_env(), file, READ_ERROR);
-	if (retval)
-		size = (buf[0] == '-' || buf[0] == '+') ? 1 : 0;
-	while ((retval = read(file->fd, buf, 50)) > 0)
+	i = 0;
+	if ((retval = read(file->fd, buf, 11)) > 0)
 	{
-		i = 0;
-		while(buf[i] && ft_is_one_of(buf[i], "0123456789"))
+		i = (buf[0] == '-') ? 1 : 0;
+		if (!ft_is_one_of(buf[i], "0123456789"))
+			return (ft_lexical_error(file, token));
+		while(i != retval && ft_is_one_of(buf[i], "0123456789"))
 			i++;
-		size += i;
-		if (i != retval)
-			break;
 	}
 	if (retval == -1)
 		return (ft_error(ft_get_env(), file, READ_ERROR));
 	if (retval == 0)
 		file->mode = DONE;
-	*line = (char*)ft_malloc(sizeof(char) * (size + 1));
-	ft_offset_head(ft_get_env(), file, 0);
-	retval = read(file->fd, *line, size);
-	if (retval == -1)
-	{
-		free(*line);
-		*line = NULL;
-		return (ft_error(ft_get_env(), file, READ_ERROR));
-	}
-	(*line)[retval] = '\0';
-	ft_offset_head(ft_get_env(), file, size);
-	ft_offset_lines(ft_get_env(), file, *line);
+	buf[i] = '\0';
+	if (!(token->value = ft_strdup(buf)))
+		ft_crash(MALLOC_FAIL);
+	token->int_value = ft_atoi(token->value);
+	ft_offset_head(ft_get_env(), file, i);
+	ft_offset_lines(ft_get_env(), file, token->value);
 	return (1);
+}
+
+void		ft_parse_indirect(t_file *file)
+{
+	t_token token;
+	t_token *const last = ft_last_token(file);
+
+	if (last && last->type == DIRECT && last->value)
+		ft_parse_number(file, last);
+	else
+	{
+		ft_token_init(&token, INDIRECT, file->col, file->line);
+		ft_parse_number(file, &token);
+		ft_add_token(file, &token);
+	}
 }
 
 void		ft_parse_instruction(t_file *file)
 {
 	t_token	token;
-	t_token *const last = ft_last_token(file);
 
-	if (last && last->type == DIRECT)
+	ft_token_init(&token, UNKNOWN, file->col, file->line);
+	ft_parse_while(file, LABEL_CHARS, &(token.value));
+	if (ft_is_label(file))
+		token.type = LABEL;
+	else
 	{
-		ft_parse_while(file, LABEL_CHARS, &(last->value));
-		if (ft_is_label(file, last))
-			last->type = DIRECT_LABEL;
-		else
+		if (!(last->value[0]))
 		{
-			if (!(last->value[0]))
-				ft_parse_while(file, "0123456789+-")
-			if (ft_is_number(last))
-				
+			free(last->value);
+			ft_parse_number(file, &(last->value), &(last->int_value));
 		}
-		
-		// 	;
+		if (!ft_is_number(last))
+			ft_lexical_error(file, last);
 	}
 }
 
@@ -412,6 +412,8 @@ void		ft_parse_token(t_env *env, t_file *file)
 			ft_parse_newline(file);
 		else if (buf[0] == SEPARATOR_CHAR && ft_offset_head(env, file, 1))
 			ft_parse_separator(file);
+		else if (ft_is_one_of(buf[0], "0123456789-") && ft_offset_head(env, file, 0))
+			ft_parse_indirect(file);
 		else if (ft_is_one_of(buf[0], LABEL_CHARS) && ft_offset_head(env, file, 0))
 			ft_parse_label_op_reg(file);
 		else
