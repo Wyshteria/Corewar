@@ -23,7 +23,7 @@ size_t	ft_strspn(const char *s, const char *charset)
 		while (*charset && (*s == *charset))
 			charset++;
 		if (*s != *charset)
-			return (i);
+			return (++i);
 		else
 			charset = accept;
 		s++;

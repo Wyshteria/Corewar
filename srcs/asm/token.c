@@ -109,6 +109,7 @@ void		ft_parse_string(t_file *file)
 		ft_syntax_error(file, &token);
 		file->mode = CONTAIN_ERRORS;
 	}
+	file->col++;
 }
 
 void		ft_parse_indirect_label(t_file *file)
@@ -159,7 +160,7 @@ void		ft_parse_newline(t_file *file)
 		ft_crash(MALLOC_FAIL);
 	ft_add_token(file, &token);
 	file->line += 1;
-	file->col = 0;
+	file->col = 1;
 }
 
 void		ft_parse_separator(t_file *file)
@@ -203,15 +204,15 @@ int			ft_is_op(t_token *token)
 {
 	int		i;
 
-	i = 1;
-	while (i < 17)
+	i = 16;
+	while (i)
 	{
 		if (!ft_strncmp(token->value, op_tab[i].opcode, ft_strlen(op_tab[i].opcode)))
 		{
 			token->int_value = i;
 			return (i);
 		}
-		i++;
+		i--;
 	}
 	return (0);
 }
@@ -374,7 +375,7 @@ void		ft_parse_instruction(t_file *file)
 	ret = 0;
 	ft_token_init(&token, UNKNOWN, file->col, file->line);
 	ft_parse_while(file, LABEL_CHARS, &(token.value));
-	if (ft_is_label(file))
+	if (ft_is_label(file) && (file->col++))
 		token.type = LABEL;
 	else if (ft_is_one_of(token.value[0], "0123456789"))
 	{
@@ -386,7 +387,7 @@ void		ft_parse_instruction(t_file *file)
 	else if (token.value[0] == 'r')
 	{
 		token.type = REGISTER;
-		if ((ret = ft_strspn(token.value, "0123456789")) > 2)
+		if ((ret = ft_strspn(&(token.value[1]), "0123456789")) > 2)
 			ret = 2;
 		ft_parse_instruction2(file, &token, ret + 1);
 	}
@@ -442,15 +443,15 @@ void		ft_parse_token(t_env *env, t_file *file)
 		buf[retval] = 0;
 		if ((buf[0] == COMMENT_CHAR || buf[0] == ALT_COMMENT_CHAR) && ft_offset_head(env, file, 1) && (file->col += 1))
 			ft_parse_comment(file);
-		else if (buf[0] == CMD_CHAR && ft_offset_head(env, file, 1) && (file->col += 1))
+		else if (buf[0] == CMD_CHAR && ft_offset_head(env, file, 1))
 			ft_parse_cmd(file);
 		else if (buf[0] == STRING_CHAR && ft_offset_head(env, file, 1) && (file->col += 1))
 			ft_parse_string(file);
 		else if (buf[0] == LABEL_CHAR && ft_offset_head(env, file, 1) && (file->col += 1))
 			ft_parse_indirect_label(file);
-		else if (buf[0] == DIRECT_CHAR && ft_offset_head(env, file, 1) && (file->col += 1))
+		else if (buf[0] == DIRECT_CHAR && ft_offset_head(env, file, 1))
 			ft_parse_direct(file);
-		else if (buf[0] == NEWLINE_CHAR && ft_offset_head(env, file, 1) && (file->col += 1))
+		else if (buf[0] == NEWLINE_CHAR && ft_offset_head(env, file, 1))
 			ft_parse_newline(file);
 		else if (buf[0] == SEPARATOR_CHAR && ft_offset_head(env, file, 1))
 			ft_parse_separator(file);

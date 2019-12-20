@@ -46,7 +46,7 @@ int			ft_offset_lines(t_env *env, t_file *file, char *str)
 		if (str[i] == NEWLINE_CHAR)
 		{
 			file->line += 1;
-			file->col = 0;
+			file->col = 1;
 		}
 		else
 			file->col += 1;

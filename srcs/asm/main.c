@@ -65,9 +65,8 @@ int			ft_parse_file(t_env *env, t_file *file)
 		ft_skip_spaces(env, file);
 		ft_parse_token(env, file);
 	}
-	if (file->mode == CRASH)
-		ft_crash(MALLOC_FAIL);
-	else if (file->mode == DONE && (!file->header.prog_name[0]
+	ft_dump_tokens(file);
+	if (file->mode == DONE && (!file->header.prog_name[0]
 	|| !file->header.comment[0]))
 		return (ft_syntax_error(file, ft_last_token(file)));
 	// else if (file->mode == DONE)
@@ -132,7 +131,7 @@ int			main(int ac, char **av)
 	ft_set_env(&env);
 	ft_parse_args(ac, av, &env);
 	ft_parse_files(&env);
-	// ft_dump_env(&env);
+	ft_dump_env(&env);
 	ft_free_env(&env);
 	return (0);
 }
