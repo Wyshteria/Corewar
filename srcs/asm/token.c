@@ -206,10 +206,10 @@ int			ft_is_op(t_token *token)
 	i = 1;
 	while (i < 17)
 	{
-		if (!ft_strcmp(token->value, op_tab[i].opcode))
+		if (!ft_strncmp(token->value, op_tab[i].opcode, ft_strlen(op_tab[i].opcode)))
 		{
 			token->int_value = i;
-			return (1);
+			return (i);
 		}
 		i++;
 	}
@@ -333,11 +333,43 @@ void		ft_parse_indirect(t_file *file)
 	}
 }
 
+void		ft_parse_instruction2(t_file *file, t_token *token, size_t ret)
+{
+	char	*line;
+
+	if (ret != ft_strlen(token->value))
+	{
+		line = token->value;
+		if (!(token->value = ft_strsub(line, 0, ret)))
+			ft_crash(MALLOC_FAIL);
+		token->int_value = ft_atoi(token->value);
+		file->col = token->col;
+		file->line = token->line;
+		ft_offset_lines(ft_get_env(), file, token->value);
+		ft_add_token(file, token);
+		ft_token_init(token, UNKNOWN, file->col, file->line);
+		if (!(token->value = ft_strsub(line, ret, ft_strlen(line))))
+			ft_crash(MALLOC_FAIL);
+		free(line);
+	}
+}
+
+void		ft_parse_instruction3(t_file *file, t_token *token)
+{
+	int	ret;
+
+	ret = ft_is_op(token);
+	if (ret)
+	{
+		token->type = OPERATION;
+		ft_parse_instruction2(file, token, ft_strlen(op_tab[ret].opcode));
+	}
+}
+
 void		ft_parse_instruction(t_file *file)
 {
 	t_token	token;
 	int		ret;
-	char	*line;
 
 	ret = 0;
 	ft_token_init(&token, UNKNOWN, file->col, file->line);
@@ -346,42 +378,21 @@ void		ft_parse_instruction(t_file *file)
 		token.type = LABEL;
 	else if (ft_is_one_of(token.value[0], "0123456789"))
 	{
+		token.type = INDIRECT;
 		if ((ret = ft_strspn(token.value, "0123456789")) > 11)
 			ret = 11;
-		token.type = INDIRECT;
-		line = token.value;
-		if (!(token.value = ft_strsub(line, 0, ret)))
-			ft_crash(MALLOC_FAIL);
-		token.int_value = ft_atoi(token.value);
-		file->col = token.col;
-		file->line = token.line;
-		ft_offset_lines(ft_get_env(), file, token.value);
-		ft_add_token(file, &token);
-		ft_token_init(&token, UNKNOWN, file->col, file->line);
-		if (!(token.value = ft_strsub(line, ret, ft_strlen(line))))
-			ft_crash(MALLOC_FAIL);
-		free(line);
+		ft_parse_instruction2(file, &token, ret);
 	}
 	else if (token.value[0] == 'r')
 	{
 		token.type = REGISTER;
-		if ((ret = ft_strspn(token.value, "0123456789")) > 11)
-			ret = 11;
-		line = token.value;
-		if (!(token.value = ft_strsub(line, 0, ret + 1)))
-			ft_crash(MALLOC_FAIL);
-		token.int_value = ft_atoi(token.value + 1);
-		file->col = token.col;
-		file->line = token.line;
-		ft_offset_lines(ft_get_env(), file, token.value);
-		ft_add_token(file, &token);
-		ft_token_init(&token, UNKNOWN, file->col, file->line);
-		if (!(token.value = ft_strsub(line, ret + 1, ft_strlen(line))))
-			ft_crash(MALLOC_FAIL);
-		free(line);
+		if ((ret = ft_strspn(token.value, "0123456789")) > 2)
+			ret = 2;
+		ft_parse_instruction2(file, &token, ret + 1);
 	}
-	else if (ft_is_op(&token))
-	//else if (ft_is_reg or op)
+	else
+		ft_parse_instruction3(file, &token);
+	ft_add_token(file, &token);
 }
 
 void		ft_parse_label_op_reg(t_file *file)
@@ -443,10 +454,11 @@ void		ft_parse_token(t_env *env, t_file *file)
 			ft_parse_newline(file);
 		else if (buf[0] == SEPARATOR_CHAR && ft_offset_head(env, file, 1))
 			ft_parse_separator(file);
-		else if (buf[0] == "-" && ft_offset_head(env, file, 0))
+		else if (buf[0] == '-' && ft_offset_head(env, file, 0))
 			ft_parse_indirect(file);
 		else if (ft_is_one_of(buf[0], LABEL_CHARS) && ft_offset_head(env, file, 0))
-			ft_parse_label_op_reg(file);
+			// ft_parse_label_op_reg(file);
+			ft_parse_instruction(file);
 		else
 		{
 			ft_offset_head(env, file, 0);

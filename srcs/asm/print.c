@@ -40,8 +40,14 @@ char		*ft_tokentype_string(int type)
 		return ("DIRECT");
 	else if (type == DIRECT_LABEL)
 		return ("DIRECT_LABEL");
+	else if (type == INDIRECT)
+		return ("INDIRECT");
+	else if (type == INDIRECT_LABEL)
+		return ("INDIRECT_LABEL");
 	else if (type == NUMBER)
 		return ("NUMBER");
+	else if (type == INSTRUCTION)
+		return ("INSTRUCTION");
 	else
 		return ("UNKNOWN");
 }
