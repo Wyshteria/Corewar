@@ -14,6 +14,7 @@ let "koTest = 0"
 let "okTest = 0"
 let "success = 0"
 let "fail = 0"
+let "invalid_error = 0"
 let "invalid_dump = 0"
 let "discarded = 0"
 let "total = 0"
@@ -53,18 +54,28 @@ make -C $path_to_ft_asm							>>			$launcher_log
 				#mv $path_to_testko$file $path_to_testok$file
 				let "discarded = $discarded + 1"
 			else
-				$asm "$path_to_testko$file" > "$path_to_testko$cor.log"
+				$asm "$path_to_testko$file" > "$path_to_testko$cor.txt"
 				$ft_asm "$path_to_testko$file" >> $launcher_log
 				if [ -f "$path_to_testko$cor.cor" ]
 				then
 					let "fail = $fail + 1"
+					hexdump -vC "$path_to_testko$cor.cor" > "$path_to_testko$cor.log"
 				else
-					$ft_asm "$path_to_testko$file" > "$path_to_testko$cor.my.log"
-					let "success = $success + 1"
+					$ft_asm "$path_to_testko$file" > "$path_to_testko$cor.my.txt"
+					diff "$path_to_testko$cor.txt" "$path_to_testko$cor.my.txt" > "$path_to_testko$cor.diff"
+					if [ -s "$path_to_testko$cor.diff" ]
+					then
+						let "invalid_error = $invalid_error + 1"
+						cat "$path_to_testko$cor.my.txt">> $launcher_log
+					else
+						let "success = $success + 1"
+						rm "$path_to_testko$cor.diff"
+						rm "$path_to_testko$cor.my.txt"
+						rm "$path_to_testko$cor.txt"
+					fi
 				fi
 			fi
-			echo "\033[A\033[2K\033[0;36mkoTests: $koTest tests, $discarded discarded, $success success, $fail fails\033[0m"
-
+			echo "\033[A\033[2K\033[0;36mkoTests: $koTest tests, $discarded discarded, $success success, $fail fails, $invalid_error invalid error\033[0m"
 		done
 		echo "\n\n"
 		let "success = 0"
@@ -91,6 +102,7 @@ make -C $path_to_ft_asm							>>			$launcher_log
 						let "invalid_dump = $invalid_dump + 1"
 					else
 						let "success = $success + 1"
+						rm "$path_to_testok$cor.diff"
 					fi
 				else
 					$ft_asm "$path_to_testok$file" > "$path_to_testok$cor.log"
