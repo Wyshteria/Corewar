@@ -16,6 +16,10 @@ char		*ft_tokentype_string(int type)
 {
 	if (type == COMMAND)
 		return ("COMMAND");
+	else if (type == COMMAND_NAME)
+		return ("COMMAND_NAME");
+	else if (type == COMMAND_COMMENT)
+		return ("COMMAND_COMMENT");
 	else if (type == STRING)
 		return ("STRING");
 	else if (type == COMMENT)
@@ -34,6 +38,8 @@ char		*ft_tokentype_string(int type)
 		return ("REGISTER");
 	else if (type == DIRECT)
 		return ("DIRECT");
+	else if (type == DIRECT_LABEL)
+		return ("DIRECT_LABEL");
 	else if (type == NUMBER)
 		return ("NUMBER");
 	else
@@ -61,7 +67,11 @@ void		ft_dump_file(t_file *file)
 	ft_printf("\tfile fd = %d\n", file->fd);
 	ft_printf("\tline:col [%d:%d]\n", file->line, file->col);
 	ft_printf("\tfile offset = %zu\n", file->offset);
-	ft_printf("\t file mode = %d\n", file->mode);
+	ft_printf("\tfile mode = %d\n", file->mode);
+	ft_printf("\tHeader\n\t\tmagic = %u\n", file->header.magic);
+	ft_printf("\t\tprog_name = %.*s\n", PROG_NAME_LENGTH + 1, file->header.prog_name);
+	ft_printf("\t\tcomment = %.*s\n", COMMENT_LENGTH + 1, file->header.comment);
+	ft_printf("\t\tprog_size = %u\n", file->header.prog_size);
 	ft_printf("\n");
 }
 
@@ -77,9 +87,14 @@ void		ft_dump_files(t_file *files)
 	}
 }
 
+/*
+** There is a segfault with %b for 0
+*/
+
 void		ft_dump_env(t_env *env)
 {
 	ft_printf("prog name : %s\n", env->prog_name);
-	ft_printf("prog flags = %b\n", env->flags);
+	if (env->flags)
+		ft_printf("prog flags = %b\n", env->flags);
 	ft_dump_files(env->files);
 }

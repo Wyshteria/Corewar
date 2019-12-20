@@ -92,5 +92,5 @@ typedef struct		s_op
 	unsigned char	is_on_two_bytes;
 }					t_op;
 
-extern t_op    op_tab[17];
+extern t_op		op_tab[17];
 #endif

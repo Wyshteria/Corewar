@@ -11,7 +11,19 @@
 /* ************************************************************************** */
 
 #include "asm.h"
- 
+
+t_token		*ft_last_token(t_file *file)
+{
+	t_token *token;
+
+	token = file->tokens;
+	if (!token)
+		return (NULL);
+	while (token->next)
+		token = token->next;
+	return (token);
+}
+
 int			ft_offset_head(t_env *env, t_file *file, size_t size)
 {
 	file->offset = lseek(file->fd, file->offset + size, SEEK_SET);
@@ -116,12 +128,13 @@ int			ft_parse_until(t_file *file, char *limit, char **line, int skipping)
 	int		i;
 	int		size;
 	int		retval;
+	char	end;
 
 	size = 0;
 	while ((retval = read(file->fd, buf, 50)) > 0)
 	{
 		i = 0;
-		while(buf[i] && !ft_is_one_of(buf[i], limit))
+		while(buf[i] && !(end = ft_is_one_of(buf[i], limit)))
 			i++;
 		size += i;
 		if (i != retval)
@@ -143,6 +156,8 @@ int			ft_parse_until(t_file *file, char *limit, char **line, int skipping)
 	(*line)[retval] = '\0';
 	ft_offset_head(ft_get_env(), file, size + (skipping ? 1 : 0));
 	ft_offset_lines(ft_get_env(), file, *line);
+	if (end && skipping)
+		ft_offset_lines(ft_get_env(), file, ((char[]){end, '\0'}));
 	return (1);
 }
 

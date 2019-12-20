@@ -14,7 +14,18 @@
 
 void		ft_free_file(t_file *file)
 {
-	(void)file;
+	t_token	*ptr;
+	t_token *tmp;
+
+	ptr = file->tokens;
+	while (ptr)
+	{
+		tmp = ptr->next;
+		free(ptr->value);
+		free(ptr);
+		ptr = tmp;
+	}
+	file->tokens = NULL;
 }
 
 void		ft_free_files(t_env *env)

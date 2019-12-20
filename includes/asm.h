@@ -39,6 +39,8 @@ enum e_error
 enum e_type
 {
 	COMMAND,
+	COMMAND_NAME,
+	COMMAND_COMMENT,
 	STRING,
 	COMMENT,
 	LABEL,
@@ -46,9 +48,10 @@ enum e_type
 	PARAM,
 	NEWLINE,
 	DIRECT,
+	DIRECT_LABEL,
 	SEPARATOR,
 	REGISTER,
-	NUMBER,	
+	NUMBER,
 	UNKNOWN,
 };
 // parse par token puis parse les tokens
@@ -61,6 +64,7 @@ typedef struct		s_token
 	int				col;
 	int				line;
 	struct s_token	*next;
+	struct s_token	*prev;
 }					t_token;
 
 enum e_fileparsing_mode
@@ -80,6 +84,7 @@ typedef struct		s_file
 	off_t			offset;
 	int				mode;
 	t_token			*tokens;
+	header_t		header;
 	struct s_file	*next;
 }					t_file;
 
@@ -145,8 +150,10 @@ void				ft_parse_args(int ac, char **av, t_env *env);
 void				ft_usage(void);
 void				ft_wrong_flag(t_env *env, char c);
 void				ft_crash(int error);
-int				ft_error(t_env *env, t_file *file, int error);
-int				ft_lexical_error(t_file *file);
+int					ft_error(t_env *env, t_file *file, int error);
+int					ft_lexical_error(t_file *file, t_token *token);
+int					ft_syntax_error(t_file *file, t_token *token);
+
 
 /*
 ** ENV FUNC
@@ -188,12 +195,15 @@ int					ft_offset_head(t_env *env, t_file *file, size_t size);
 */
 
 void				ft_parse_token(t_env *env, t_file *file);
+t_token				*ft_last_token(t_file *file);
 
 /*
 ** PRINTING FUNC
 */
 
+char				*ft_tokentype_string(int type);
 void				ft_dump_tokens(t_file *file);
 void				ft_dump_env(t_env *env);
 void				ft_dump_files(t_file *files);
+
 #endif

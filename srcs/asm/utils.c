@@ -56,7 +56,7 @@ int			ft_is_one_of(char c, char *lookfor)
 	while (lookfor && lookfor[i])
 	{
 		if (lookfor[i] == c)
-			return (1);
+			return (c);
 		i++;
 	}
 	return (0);

@@ -6,7 +6,7 @@
 /*   By: toliver <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/25 21:14:07 by toliver           #+#    #+#             */
-/*   Updated: 2019/12/17 06:38:15 by jates-           ###   ########.fr       */
+/*   Updated: 2019/12/18 01:02:31 by jates-           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,13 +44,4 @@ int		ft_error(t_env *env, t_file *file, int error)
 	return (0);
 }
 
-int		ft_lexical_error(t_file *file)
-{
-//	if (!file)
-//	{
-//		
-//	}
-	ft_printf("Lexical error at [%d:%d]\n", file->line + 1, file->col);
-	file->mode = CONTAIN_ERRORS;
-	return (0);
-}
+
