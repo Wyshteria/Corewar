@@ -1,7 +1,7 @@
 	.name 		"zork"
 	.comment "just a basic living prog"
 		#test comment
-    l2:sti	r99,%:live, %-420
+    l2:live	%1
     l2:sti	r98,%:live, %-420
     l2:sti	r97,%:live, %-420
     l2:sti	r96,%:live, %-420

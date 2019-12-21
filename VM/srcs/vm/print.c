@@ -6,11 +6,40 @@
 /*   By: toliver <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/05 23:52:15 by toliver           #+#    #+#             */
-/*   Updated: 2019/12/11 00:44:02 by toliver          ###   ########.fr       */
+/*   Updated: 2019/12/21 18:07:26 by toliver          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "vm.h"
+
+void		ft_dump_process(t_process *process)
+{
+	int		i;
+
+	i = 0;
+	ft_printf("== DUMPING PROCESS %d ==\n", process->pid);
+	ft_printf("actual_pos = %d\n", process->pos);
+	ft_printf("dumping process register :\n");
+	while (i < REG_NUMBER)
+	{
+		ft_printf("\tregister %d = %u\n", i, *((uint32_t*)(process->reg[i].mem)));
+		i++;
+	}
+}
+
+void		ft_dump_op(t_opcode *op)
+{
+	ft_printf("==============================================\n");
+	ft_printf("op opcode : %.2x | op name %s | op param number %d\n", op->opcode, op->opcode_name, op->params_number);
+	ft_printf("op need an encoding byte : %s", op->need_encoding_byte ? "yes": "no\n");
+	if (op->need_encoding_byte)
+		ft_printf(" | encoding byte : %hhb\n", op->encoding_byte);
+	ft_printf("params types: %d %d %d %d\n", op->params_types[0], op->params_types[1], op->params_types[2], op->params_types[3]);
+	ft_printf("params : %d %d %d %d\n", op->params[0], op->params[1], op->params[2], op->params[3]);
+	ft_printf("is a valid operation ? %s | ", op->is_valid ? "yes" : "no");
+	ft_printf("its size is : %d\n", op->size);
+	ft_printf("==============================================\n");
+}
 
 void		ft_dump_verbose_flags(t_env *env)
 {

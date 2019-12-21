@@ -6,40 +6,11 @@
 /*   By: toliver <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/19 18:19:18 by toliver           #+#    #+#             */
-/*   Updated: 2019/12/19 03:41:33 by toliver          ###   ########.fr       */
+/*   Updated: 2019/12/21 18:07:40 by toliver          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "vm.h"
-
-// garder cette fonction de cote
-void		ft_get_process_infos(t_process *process, t_arena *arena)
-{
-	process->opcode_value = arena->arena[process->pos].value;
-	process->owner = arena->arena[process->pos].writer;
-	if (process->opcode_value > 0 && process->opcode_value < 17)
-	{
-		process->cycles_to_exec = op_tab[process->opcode_value].cycles;
-	}
-	else
-		process->cycles_to_exec = 1;
-}
-// celle la aussi
-int			ft_add_process(t_arena *arena, int pos)
-{
-	t_process		*process;
-
-	if (!(process = (t_process*)malloc(sizeof(t_process))))
-		return (ft_arena_error(MALLOC_FAIL));
-	ft_bzero(process, sizeof(t_process));
-	process->pos = pos % MEM_SIZE;
-	process->next = arena->process;
-	arena->process = process;
-	ft_get_process_infos(process, arena);
-	process->pid = arena->pid;
-	arena->pid += 1;
-	return (1);
-}
 
 void		ft_intro(t_env *env)
 {
@@ -51,7 +22,7 @@ void		ft_intro(t_env *env)
 	ptr = env->champs;
 	while (ptr)
 	{
-		ft_printf("* Player %d weighing %u bytes \"%s\" (\"%s\") !\n", i, ptr->header.prog_size, ptr->header.prog_name, ptr->header.comment);
+		ft_printf("* Player %d, weighing %u bytes, \"%s\" (\"%s\") !\n", i, ptr->header.prog_size, ptr->header.prog_name, ptr->header.comment);
 		i++;
 		ptr = ptr->next;
 	}
@@ -95,8 +66,36 @@ void		ft_display_op(t_env *env, t_process *process, t_opcode *op)
 	i = 0;
 	while (i < op->params_number)
 	{
-		ft_printf(" %c%u", (op->params_types[i] == T_REG ? 'r' : '\0'), op->params[i]);
+		if (op->params_types[i] == T_REG)
+			ft_printf(" r%u", op->params[i]);
+		else
+			ft_printf(" %d", op->params[i]);// anciennement nombre problematique
 		i++;
+	}
+	if (op->opcode == ZJMP)
+	{
+		if (process->carry)
+			ft_printf(" OK");
+		else
+			ft_printf(" FAILED");
+	}
+	else if (op->opcode == STI)
+	{
+		int32_t	value1;
+		int32_t	value2;
+
+		// au final faire une fonction pour les params supplementaires
+		value1 = ft_get_value_from(op, process, arena, 1);
+		value2 = ft_get_value_from(op, process, arena, 2);
+		ft_printf("\n%8c -> store to %d + %d = %d (with pc and mod %d)", '|', value1, value2, value1 + value2, process->pos + (value1 + value2) % IDX_MOD);
+	}
+	else if (op->opcode == FORK)
+	{
+		ft_printf(" (%d)", process->pos + op->params[0]);
+	}
+	else if (op->opcode == LDI)
+	{
+		ft_printf("\n%8c -> load from %d + %d = %d (with pc and mod %d)", '|', op->params[0], op->params[1], op->params[0] + op->params[1], process->pos + (op->params[0] + op->params[1]) % IDX_MOD);
 	}
 	ft_printf("\n");
 }
@@ -110,31 +109,6 @@ int			ft_get_real_size(int type, int dir_two_bytes)
 	else if (type == T_DIR && !dir_two_bytes)
 		return (4);
 	return (0);
-}
-
-int			ft_parse_value(t_arena *arena, int pos, int size)
-{
-	union u_converter	value;
-	int					i;
-
-	i = 0;
-	value.real_value = 0;
-	while (i < size)
-	{
-		value.value[i] = arena->arena[(pos + i) % MEM_SIZE].value;
-		i++;
-	}
-	if (size == 4)
-		value.real_value = ft_swap(value.real_value);
-	else if (size == 2)
-	{
-		int			tmp = value.value[0];
-
-		value.value[0] = value.value[1];
-		value.value[1] = tmp;
-	}
-	// corriger plus tard :O
-	return (value.real_value);	
 }
 
 void		ft_parse_op_params(t_opcode *op, t_process *process, t_arena *arena)
@@ -165,7 +139,7 @@ void		ft_set_op_params_types(t_opcode *op)
 		op->params_types[2] = ((op->encoding_byte & 0b1100) >> 2);
 		op->params_types[3] = (op->encoding_byte & 0b11);
 		i = 0;
-		while (i < 4)
+		while (i < op_tab[op->opcode].params_number)
 		{
 			if (op->params_types[i] == 3)
 				op->params_types[i] = T_IND;
@@ -174,173 +148,6 @@ void		ft_set_op_params_types(t_opcode *op)
 			i++;
 		}
 	}
-}
-
-
-void		ft_print_move_process(t_opcode *op, t_process *process,
-		t_arena *arena)
-{
-	int		i;
-
-	ft_printf("ADV %d (0x%.4x -> 0x%.4x)", op->size, process->pos,
-			(process->pos + op->size) % MEM_SIZE);
-	i = 0;
-	while (i < op->size)
-	{
-		ft_printf(" %.2x", arena->arena[(process->pos + i) % MEM_SIZE].value);
-		i++;
-	}
-	ft_printf("\n");
-}
-
-void		ft_move_process(t_opcode *op, t_process *process, t_arena *arena)
-{
-	ft_print_move_process(op, process, arena);
-	process->pos = (process->pos + op->size) % MEM_SIZE;
-	ft_get_process_infos(process, arena);
-}
-
-void		ft_live(t_opcode *op, t_process *process, t_arena *arena)
-{
-	(void)op;
-	(void)process;
-	(void)arena;
-	ft_printf("go coder ce que ca fait un live\n");
-	process->live_number += 1;
-	ft_move_process(op, process, arena);
-}
-
-void		ft_ld(t_opcode *op, t_process *process, t_arena *arena)
-{
-	(void)op;
-	(void)process;
-	(void)arena;
-	ft_printf("go coder ce que ca fait un ld\n");
-	ft_move_process(op, process, arena);
-}
-
-void		ft_st(t_opcode *op, t_process *process, t_arena *arena)
-{
-	(void)op;
-	(void)process;
-	(void)arena;
-	ft_printf("go coder ce que ca fait un st\n");
-	ft_move_process(op, process, arena);
-}
-
-void		ft_add(t_opcode *op, t_process *process, t_arena *arena)
-{
-	(void)op;
-	(void)process;
-	(void)arena;
-	ft_printf("go coder ce que ca fait un add\n");
-	ft_move_process(op, process, arena);
-}
-void		ft_sub(t_opcode *op, t_process *process, t_arena *arena)
-{
-	(void)op;
-	(void)process;
-	(void)arena;
-	ft_printf("go coder ce que ca fait un sub\n");
-	ft_move_process(op, process, arena);
-}
-
-void		ft_and(t_opcode *op, t_process *process, t_arena *arena)
-{
-	(void)op;
-	(void)process;
-	(void)arena;
-	ft_printf("go coder ce que ca fait un and\n");
-	ft_move_process(op, process, arena);
-}
-
-void		ft_or(t_opcode *op, t_process *process, t_arena *arena)
-{
-	(void)op;
-	(void)process;
-	(void)arena;
-	ft_printf("go coder ce que ca fait un or\n");
-	ft_move_process(op, process, arena);
-}
-
-void		ft_xor(t_opcode *op, t_process *process, t_arena *arena)
-{
-	(void)op;
-	(void)process;
-	(void)arena;
-	ft_printf("go coder ce que ca fait un xor\n");
-	ft_move_process(op, process, arena);
-}
-
-void		ft_zjmp(t_opcode *op, t_process *process, t_arena *arena)
-{
-	(void)op;
-	(void)process;
-	(void)arena;
-	ft_printf("go coder ce que ca fait un zjmp\n");
-	ft_move_process(op, process, arena);
-}
-
-void		ft_ldi(t_opcode *op, t_process *process, t_arena *arena)
-{
-	(void)op;
-	(void)process;
-	(void)arena;
-	ft_printf("go coder ce que ca fait un ldi\n");
-	ft_move_process(op, process, arena);
-}
-void		ft_sti(t_opcode *op, t_process *process, t_arena *arena)
-{
-	(void)op;
-	(void)process;
-	(void)arena;
-	ft_printf("go coder ce que ca fait un sti\n");
-	ft_move_process(op, process, arena);
-}
-
-void		ft_fork(t_opcode *op, t_process *process, t_arena *arena)
-{
-	(void)op;
-	(void)process;
-	(void)arena;
-	ft_printf("go coder ce que ca fait un fork\n");
-	ft_move_process(op, process, arena);
-}
-
-void		ft_lld(t_opcode *op, t_process *process, t_arena *arena)
-{
-	(void)op;
-	(void)process;
-	(void)arena;
-	ft_printf("go coder ce que ca fait un lld\n");
-	ft_move_process(op, process, arena);
-}
-
-void		ft_lldi(t_opcode *op, t_process *process, t_arena *arena)
-{
-	(void)op;
-	(void)process;
-	(void)arena;
-	ft_printf("go coder ce que ca fait un lldi\n");
-	ft_move_process(op, process, arena);
-}
-
-void		ft_lfork(t_opcode *op, t_process *process, t_arena *arena)
-{
-	(void)op;
-	(void)process;
-	(void)arena;
-	ft_printf("go coder ce que ca fait un lfork\n");
-	ft_move_process(op, process, arena);
-}
-
-void		ft_aff(t_opcode *op, t_process *process, t_arena *arena)
-{
-	(void)op;
-	(void)process;
-	(void)arena;
-	ft_printf("go coder ce que ca fait un aff\n");
-	ft_move_process(op, process, arena);
 }
 
 void		ft_exec_op(t_opcode *op, t_process *process, t_arena *arena)
@@ -355,7 +162,7 @@ void		ft_exec_op(t_opcode *op, t_process *process, t_arena *arena)
 void		ft_parse_op(t_opcode *op, t_arena *arena, t_process *process)
 {
 	op->size = 1;
-	if ((op->opcode = process->opcode_value) >= 17 || op->opcode == 0)
+	if ((op->opcode = process->opcode_value) >= 17 || op->opcode <= 0)
 	{
 		op->is_valid = 0;
 		return ;
@@ -373,18 +180,31 @@ void		ft_parse_op(t_opcode *op, t_arena *arena, t_process *process)
 	ft_parse_op_params(op, process, arena);
 }
 
-void		ft_print_op(t_opcode *op)
+void		ft_check_op_valid(t_opcode *op, t_arena *arena, t_process *process)
 {
-	ft_printf("==============================================\n");
-	ft_printf("op opcode : %.2x | op name %s | op param number %d\n", op->opcode, op->opcode_name, op->params_number);
-	ft_printf("op need an encoding byte : %s", op->need_encoding_byte ? "yes": "no\n");
-	if (op->need_encoding_byte)
-		ft_printf(" | encoding byte : %hhb\n", op->encoding_byte);
-	ft_printf("params types: %d %d %d %d\n", op->params_types[0], op->params_types[1], op->params_types[2], op->params_types[3]);
-	ft_printf("params : %d %d %d %d\n", op->params[0], op->params[1], op->params[2], op->params[3]);
-	ft_printf("is a valid operation ? %s | ", op->is_valid ? "yes" : "no");
-	ft_printf("its size is : %d\n", op->size);
-	ft_printf("==============================================\n");
+	int		i;
+
+	if (!op->is_valid)
+	   return;	
+	i = 0;
+	while (i < op_tab[op->opcode].params_number)
+	{
+		if ((op->params_types[i] == T_IND ||
+				(op->params_types[i] == T_DIR && op->dir_two_bytes)) 
+				&& op->params[i] & 0x8000)
+		{
+			op->params[i] = (int32_t)((int16_t)op->params[i]);
+		}
+		if (op->params_types[i] == T_REG && (op->params[i] > REG_NUMBER || op->params[i] == 0))
+		{
+			ft_printf("%d %d\n", i, op->params[i]);
+			ft_printf("rentre ici\n");
+			op->is_valid = 0; // NOT SURE ABOUT THAT
+		}
+		i++;
+	}
+	(void)arena;
+	(void)process;
 }
 
 void		ft_try_op(t_env *env, t_process *process)
@@ -393,22 +213,23 @@ void		ft_try_op(t_env *env, t_process *process)
 	
 	ft_bzero(&opcode, sizeof(t_opcode));
 	ft_parse_op(&opcode, &env->arena, process);
-	// penser a tester le verbose
-	//ft_print_op(&opcode);
+	ft_check_op_valid(&opcode, &env->arena, process);
 	if (opcode.is_valid)
 	{
 		ft_display_op(env, process, &opcode);
-		ft_print_op(&opcode);
-	}
-	else if (opcode.opcode != 0)
-	{
-		ft_printf("soucis !\n");
-		ft_print_op(&opcode);
 	}
 	if (opcode.is_valid)
 		ft_exec_op(&opcode, process, &env->arena);
 	else
-		ft_move_process(&opcode, process, &env->arena);
+	{
+		if (opcode.opcode >= 17 || opcode.opcode == 0)
+		{
+			process->pos = (process->pos + 1) % MEM_SIZE;
+			ft_get_process_infos(process, &env->arena);
+		}
+		else
+			ft_move_process(&opcode, process, &env->arena);
+	}
 	// penser a move
 }
 
@@ -440,7 +261,7 @@ void		ft_run_dump(t_arena *arena)
 			ft_printf(" %.2x", arena->arena[y * 64 + x].value);
 			x++;
 		}
-		ft_printf("\n");
+		ft_printf(" \n");
 		y++;
 	}
 }
@@ -448,8 +269,6 @@ void		ft_run_dump(t_arena *arena)
 int			ft_run(t_env *env)
 {
 	ft_intro(env);
-	if (env->flags & DUMP_FLAG)
-		ft_printf("dump !\n");
 	while (1)
 	{
 		if ((env->flags & CYCLE_DUMP_FLAG) && env->cycle_dump_cycles == env->arena.cycles)
@@ -480,12 +299,8 @@ int			main(int ac, char **av)
 		// voir si ca free
 		return (-1);
 	}
-//	ft_visu(&env);
 	ft_run(&env);
-//	ft_dump_arena(&env.arena);
-//	ft_dump_env(&env);
 	ft_free_env(&env);
 	return (0);
 }
 
-// penser a set les numeros de players en negatif

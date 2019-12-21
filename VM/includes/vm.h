@@ -6,7 +6,7 @@
 /*   By: toliver <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/04 01:38:07 by toliver           #+#    #+#             */
-/*   Updated: 2019/12/19 03:41:33 by toliver          ###   ########.fr       */
+/*   Updated: 2019/12/21 18:07:41 by toliver          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,10 +69,31 @@ enum				e_arena_error
 	NO_CHAMPIONS,
 };
 
+enum				e_op_type
+{
+	NOTHING,
+	LIVE,
+	LD,
+	ST,
+	ADD,
+	SUB,
+	AND,
+	OR,
+	XOR,
+	ZJMP,
+	LDI,
+	STI,
+	FORK,
+	LLD,
+	LLDI,
+	LFORK,
+	AFF,
+};
+
 union				u_converter
 {
 	char			value[4];
-	uint32_t		real_value;
+	int32_t			real_value;
 };
 
 typedef struct		s_champ
@@ -121,7 +142,7 @@ typedef struct		s_opcode
 	int				need_encoding_byte;
 	char			encoding_byte;
 	int				dir_two_bytes;
-	uint32_t		params[REG_NUMBER];
+	int32_t			params[REG_NUMBER];
 	int				params_types[REG_NUMBER];
 	int				size;
 	int				is_valid;
@@ -167,6 +188,9 @@ void		ft_dump_header(t_header *header);
 void		ft_dump_flags(t_env *env);
 void		ft_dump_verbose_flags(t_env *env);
 void		ft_dump_arena(t_arena *arena);
+void		ft_dump_process(t_process *process);
+void		ft_dump_op(t_opcode *op);
+void		ft_dump_process(t_process *process);
 /*
 ** UTILS FUNCTIONS
 */
@@ -225,7 +249,7 @@ int			ft_arena_error(int error);
 
 void		ft_get_process_infos(t_process *process, t_arena *arena);
 int			ft_add_process(t_arena *arena, int pos);
-
+int			ft_clone_process(t_arena *arena, t_process *to_clone, int pos);
 void		ft_live(t_opcode *op, t_process *process, t_arena *arena);
 void		ft_ld(t_opcode *op, t_process *process, t_arena *arena);
 void		ft_st(t_opcode *op, t_process *process, t_arena *arena);
@@ -242,6 +266,14 @@ void		ft_lld(t_opcode *op, t_process *process, t_arena *arena);
 void		ft_lldi(t_opcode *op, t_process *process, t_arena *arena);
 void		ft_lfork(t_opcode *op, t_process *process, t_arena *arena);
 void		ft_aff(t_opcode *op, t_process *process, t_arena *arena);
+
+void		ft_move_process(t_opcode *op, t_process *process, t_arena *arena);
+void		ft_write_in_arena(t_arena *arena, int pos, int32_t value, int owner);
+int32_t		ft_get_value_from_address(t_arena *arena, int pos, int offset);
+int32_t		ft_get_value_from(t_opcode *op, t_process *process, t_arena *arena, int num);
+int32_t		ft_parse_value(t_arena *arena, int pos, int size);
+
+
 
 
 extern void 		(*op_func[17])(t_opcode*, t_process*, t_arena*);

@@ -5,7 +5,7 @@
 .comment	"choo-choo, motherf*****s !"
 
 entry:
-	sti		r1, %:beegees_gen, %1
+	sti		r1, 124, %2
 	sti		r1, %:beegees, %1
 	sti		r1, %:cc_spawn, %1
 	sti		r1, %:wall, %1
