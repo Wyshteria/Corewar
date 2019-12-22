@@ -6,7 +6,7 @@
 /*   By: toliver <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/05 23:58:23 by toliver           #+#    #+#             */
-/*   Updated: 2019/12/21 18:07:39 by toliver          ###   ########.fr       */
+/*   Updated: 2019/12/22 05:03:18 by toliver          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,26 +60,10 @@ int			ft_clone_process(t_arena *arena, t_process *to_clone, int pos)
 	return (1);
 }
 
-
-void		ft_print_move_process(t_opcode *op, t_process *process,
-		t_arena *arena)
-{
-	int		i;
-
-	ft_printf("ADV %d (0x%.4x -> 0x%.4x)", op->size, process->pos,
-			(process->pos + op->size) % MEM_SIZE);
-	i = 0;
-	while (i < op->size)
-	{
-		ft_printf(" %.2x", arena->arena[(process->pos + i) % MEM_SIZE].value);
-		i++;
-	}
-	ft_printf(" \n");
-}
-
 void		ft_move_process(t_opcode *op, t_process *process, t_arena *arena)
 {
-	ft_print_move_process(op, process, arena);
+	if (op->opcode > 0 && op->opcode <= 16 && ft_verbose_flag(VERBOSE_PC_MOVEMENT_FLAG))
+		ft_verbose_move(op, process, arena);
 	process->pos = (process->pos + op->size) % MEM_SIZE;
 	ft_get_process_infos(process, arena);
 }
@@ -123,7 +107,6 @@ int32_t			ft_parse_value(t_arena *arena, int pos, int size)
 		value.value[0] = value.value[1];
 		value.value[1] = tmp;
 	}
-	// corriger plus tard :O
 	return (value.real_value);	
 }
 
@@ -151,7 +134,7 @@ int32_t		ft_get_value_from(t_opcode *op, t_process *process, t_arena *arena, int
 	else
 	{
 		value = ft_get_value_from_address(arena, process->pos, op->params[num]);
-		ft_printf("faire le t_ind !\n");
+//		ft_printf("faire le t_ind !\n");
 		// ici parser et faire le swap
 	}
 	return (value);

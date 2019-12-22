@@ -6,7 +6,7 @@
 /*   By: toliver <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/04 01:38:07 by toliver           #+#    #+#             */
-/*   Updated: 2019/12/21 18:07:41 by toliver          ###   ########.fr       */
+/*   Updated: 2019/12/22 06:02:58 by toliver          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -127,10 +127,9 @@ typedef struct			s_process
 	int					cycles_to_exec;
 	t_reg				reg[REG_NUMBER];
 	int					op_size;
-	int					last_live_cycle;
 	int					carry;
 	int					live_number;
-	int					checks_number;
+	size_t				last_live;
 	struct s_process	*next;
 }						t_process;
 
@@ -162,7 +161,9 @@ typedef struct		s_arena
 	WINDOW			*infos;
 	size_t			cycles;
 	int				mode;
+	int				actual_cycles_to_die;
 	int				cycles_to_die;
+	int				check_number;
 }					t_arena;
 
 typedef struct		s_env
@@ -273,8 +274,16 @@ int32_t		ft_get_value_from_address(t_arena *arena, int pos, int offset);
 int32_t		ft_get_value_from(t_opcode *op, t_process *process, t_arena *arena, int num);
 int32_t		ft_parse_value(t_arena *arena, int pos, int size);
 
+/*
+** VERBOSE FUNC
+*/
 
-
+int			ft_verbose_flag(int flag);
+void		ft_intro(t_env *env);
+void		ft_verbose_cycles(t_env *env);
+void		ft_verbose_dump_arena(t_arena *arena);
+void		ft_verbose_move(t_opcode *op, t_process *process, t_arena *arena);
+void		ft_verbose_op(t_env *env, t_process *process, t_opcode *opcode);
 
 extern void 		(*op_func[17])(t_opcode*, t_process*, t_arena*);
 #endif

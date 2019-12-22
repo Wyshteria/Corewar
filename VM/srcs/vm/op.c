@@ -6,7 +6,7 @@
 /*   By: zaz <marvin@42.fr>                         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2013/10/04 11:43:01 by zaz               #+#    #+#             */
-/*   Updated: 2019/12/21 17:52:12 by toliver          ###   ########.fr       */
+/*   Updated: 2019/12/22 06:00:26 by toliver          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -98,55 +98,70 @@ void		ft_add(t_opcode *op, t_process *process, t_arena *arena)
 {
 	int32_t		value1;
 	int32_t		value2;
-	int32_t		total;
+	int32_t		result;
 
 	value1 = ft_get_value_from(op, process, arena, 0);
 	value2 = ft_get_value_from(op, process, arena, 1);
-	total = value1 + value2;
-	process->carry = (total == 0 ? 1 : 0);
-	total = ft_swap(total);
-	*(int32_t*)process->reg[op->params[2] - 1].mem = total;
+	result = value1 + value2;
+	process->carry = (result == 0 ? 1 : 0);
+	*(int32_t*)process->reg[op->params[2] - 1].mem = result;
+//	ft_dump_process(process);
 	ft_move_process(op, process, arena);
 }
 void		ft_sub(t_opcode *op, t_process *process, t_arena *arena)
 {
 	int32_t		value1;
 	int32_t		value2;
-	int32_t		total;
+	int32_t		result;
 	
 	value1 = ft_get_value_from(op, process, arena, 0);
 	value2 = ft_get_value_from(op, process, arena, 1);
-	total = value1 - value2;
-	process->carry = (total == 0 ? 1 : 0);
-	total = ft_swap(total);
-	*(int32_t*)process->reg[op->params[2] - 1].mem = total;
+	result = value1 - value2;
+	process->carry = (result == 0 ? 1 : 0);
+	*(int32_t*)process->reg[op->params[2] - 1].mem = result;
 	ft_move_process(op, process, arena);
 }
 
 void		ft_and(t_opcode *op, t_process *process, t_arena *arena)
 {
-	(void)op;
-	(void)process;
-	(void)arena;
-	ft_printf("go coder ce que ca fait un and\n");
+	int32_t	value1;
+	int32_t	value2;
+	int32_t	result;
+
+	value1 = ft_get_value_from(op, process, arena, 0);
+	value2 = ft_get_value_from(op, process, arena, 1);
+	result = (value1 & value2);
+	process->carry = (result == 0 ? 1 : 0);
+	*(int32_t*)process->reg[op->params[2] - 1].mem = result;
 	ft_move_process(op, process, arena);
 }
 
 void		ft_or(t_opcode *op, t_process *process, t_arena *arena)
 {
-	(void)op;
-	(void)process;
-	(void)arena;
-	ft_printf("go coder ce que ca fait un or\n");
+	int32_t	value1;
+	int32_t	value2;
+	int32_t	result;
+
+	value1 = ft_get_value_from(op, process, arena, 0);
+	value2 = ft_get_value_from(op, process, arena, 1);
+	result = (value1 | value2);
+	process->carry = (result == 0 ? 1 : 0);
+	*(int32_t*)process->reg[op->params[2] - 1].mem = result;
+	ft_move_process(op, process, arena);
 	ft_move_process(op, process, arena);
 }
 
 void		ft_xor(t_opcode *op, t_process *process, t_arena *arena)
 {
-	(void)op;
-	(void)process;
-	(void)arena;
-	ft_printf("go coder ce que ca fait un xor\n");
+	int32_t	value1;
+	int32_t	value2;
+	int32_t	result;
+
+	value1 = ft_get_value_from(op, process, arena, 0);
+	value2 = ft_get_value_from(op, process, arena, 1);
+	result = (value1 ^ value2);
+	process->carry = (result == 0 ? 1 : 0);
+	*(int32_t*)process->reg[op->params[2] - 1].mem = result;
 	ft_move_process(op, process, arena);
 }
 
@@ -170,8 +185,14 @@ void		ft_ldi(t_opcode *op, t_process *process, t_arena *arena)
 
 	value1 = ft_get_value_from(op, process, arena, 0);
 	value2 = ft_get_value_from(op, process, arena, 1);
-	value3 = ft_get_value_from_address(arena, process->pos, (value1 + value2) % IDX_MOD);
+
+	int32_t offset = (((value1 + value2) % IDX_MOD) + process->pos) % MEM_SIZE;
+	if (offset < 0)
+		offset = MEM_SIZE + offset;
+	value3 = ft_parse_value(arena, offset, 4);
    	*(int32_t*)process->reg[op->params[2] - 1].mem = value3;
+//	ft_dump_op(op);
+//	ft_dump_process(process);
 //	ft_printf("go coder ce que ca fait un ldi\n");
 	ft_move_process(op, process, arena);
 }
@@ -182,8 +203,6 @@ void		ft_sti(t_opcode *op, t_process *process, t_arena *arena)
 	int32_t	param2;
 	int32_t	result;
 
-//	ft_print_op(op);
-//	ft_dump_process(process);
 	result = 0;
 	param1 = ft_get_value_from(op, process, arena, 1);
 	param2 = ft_get_value_from(op, process, arena, 2);
@@ -192,11 +211,13 @@ void		ft_sti(t_opcode *op, t_process *process, t_arena *arena)
 	result = (result < 0 ? MEM_SIZE + result : result);
 	ft_write_in_arena(arena, result, *(int32_t*)process->reg[op->params[0] - 1].mem, arena->arena[process->pos].writer);
 	ft_move_process(op, process, arena);
+	// should be working
 }
 
 void		ft_fork(t_opcode *op, t_process *process, t_arena *arena)
 {
 	// faire un process dup qui prend un process, une arena et une pos;
+	// penser a voir au niveau des cycles to live
 	ft_clone_process(arena, process, op->params[0]);
 	ft_move_process(op, process, arena);
 }
@@ -244,5 +265,6 @@ void		ft_live(t_opcode *op, t_process *process, t_arena *arena)
 	(void)arena;
 //	ft_printf("go coder ce que ca fait un live\n");
 	process->live_number += 1;
+	process->last_live = arena->cycles;
 	ft_move_process(op, process, arena);
 }

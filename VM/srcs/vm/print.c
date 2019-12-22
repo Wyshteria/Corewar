@@ -6,7 +6,7 @@
 /*   By: toliver <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/05 23:52:15 by toliver           #+#    #+#             */
-/*   Updated: 2019/12/21 18:07:26 by toliver          ###   ########.fr       */
+/*   Updated: 2019/12/22 04:40:44 by toliver          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ void		ft_dump_process(t_process *process)
 	ft_printf("dumping process register :\n");
 	while (i < REG_NUMBER)
 	{
-		ft_printf("\tregister %d = %u\n", i, *((uint32_t*)(process->reg[i].mem)));
+		ft_printf("\tregister %d = %d\n", i, *((int32_t*)(process->reg[i].mem)));
 		i++;
 	}
 }

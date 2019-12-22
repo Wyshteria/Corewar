@@ -6,7 +6,7 @@
 /*   By: toliver <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/15 23:18:10 by toliver           #+#    #+#             */
-/*   Updated: 2019/12/15 23:21:50 by toliver          ###   ########.fr       */
+/*   Updated: 2019/12/22 06:03:14 by toliver          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -110,9 +110,10 @@ int			ft_init_arena(t_env *env)
 		return (ft_arena_error(NO_CHAMPIONS));	
 	space_between = MEM_SIZE / champ_number;
 	ptr = env->champs;
+	env->arena.cycles_to_die = CYCLE_TO_DIE;
+	env->arena.actual_cycles_to_die = CYCLE_TO_DIE;
+	env->arena.check_number = 0;
 	if (!ft_init_process(env, space_between))
 		return (0);
 	return (1);
 }
-
-
