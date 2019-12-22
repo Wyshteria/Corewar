@@ -6,7 +6,7 @@
 /*   By: toliver <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/22 02:50:34 by toliver           #+#    #+#             */
-/*   Updated: 2019/12/22 05:03:22 by toliver          ###   ########.fr       */
+/*   Updated: 2019/12/22 15:21:39 by toliver          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ void		ft_verbose_op_params(t_arena *arena, t_process *process, t_opcode *op, int
 	i = 0;
 	while (i < op->params_number)
 	{
-		if (op->params_types[i] == T_REG && (as_is_flag & 0b1000 >> i))
+		if (op->params_types[i] == T_REG && (as_is_flag & 0b1000 >> i)) //&& !(op->opcode == LD && i == 1))
 			ft_printf(" r%u", op->params[i]);
 		else if (op->params_types[i] == T_REG)
 			ft_printf(" %d", ft_get_value_from(op, process, arena, i));
@@ -54,9 +54,9 @@ void		ft_verbose_op_params(t_arena *arena, t_process *process, t_opcode *op, int
 		value2 = ft_get_value_from(op, process, arena, 2);
 		ft_printf("\n%8c -> store to %d + %d = %d (with pc and mod %d)", '|', value1, value2, value1 + value2, process->pos + (value1 + value2) % IDX_MOD);
 	}
-	else if (op->opcode == FORK)
+	else if (op->opcode == FORK || op->opcode == LFORK)
 	{
-		ft_printf(" (%d)", process->pos + op->params[0]);
+		ft_printf(" (%d)", (process->pos + op->params[0]));
 	}
 	else if (op->opcode == LDI)
 	{
@@ -70,13 +70,29 @@ void		ft_verbose_op_params(t_arena *arena, t_process *process, t_opcode *op, int
 	ft_printf("\n");
 }
 
-void		ft_verbose_op(t_env *env, t_process *process, t_opcode *op)
+void		ft_verbose_op_params_bug(t_arena *arena, t_process *process, t_opcode *op, int as_is_flag)
 {
-	t_arena	*arena;
+	int		i;
+
+	i = 0;
+	while (i < op->params_number)
+	{
+		if ((op->params_types[i] == T_REG && (as_is_flag & (0b1000 >> i))) || (i != 1 && op->opcode == ST))
+			ft_printf(" r%u", op->params[i]);
+		else if (op->params_types[i] == T_REG && (i != 1 && op->opcode == ST))
+			ft_printf(" %d", ft_get_value_from(op, process, arena, i));
+		else if (op->params_types[i] == T_IND && (op->opcode == LD))
+			ft_printf(" %d", ft_parse_value(arena, process->pos + op->params[i], 4));
+		else
+			ft_printf(" %d", op->params[i]);// anciennement nombre problematique
+		i++;
+	}
+	ft_printf("\n");
+}
+void		ft_tmp_verboseparam(t_arena *arena, t_process *process, t_opcode *op)
+{
 	int		as_is;
 
-	arena = &(env->arena);
-	ft_printf("P %4d | %s", process->pid, op_tab[process->opcode_value].opcode);
 	as_is = 0b1111;
 	if (op->opcode == STI)
 		as_is = 0b1000;
@@ -84,7 +100,24 @@ void		ft_verbose_op(t_env *env, t_process *process, t_opcode *op)
 		as_is = 0b0010;
 	else if (op->opcode == LDI)
 		as_is = 0b0010;
+	else if (op->opcode == ST && op->params_types[1] == T_REG)
+	{
+		ft_verbose_op_params_bug(arena, process, op, as_is); // voir pokwa ca bug
+		return ;
+	}
+	else if (op->opcode == LD && op->params_types[0] == T_IND)
+	{
+		ft_verbose_op_params_bug(arena, process, op, 0b0100);
+		return ;
+	}
 	ft_verbose_op_params(arena, process, op, as_is);
+}
+
+void		ft_verbose_op(t_arena *arena, t_process *process, t_opcode *op)
+{
+
+	ft_printf("P %4d | %s", process->pid, op_tab[process->opcode_value].opcode);
+	ft_tmp_verboseparam(arena, process, op);
 }
 
 
@@ -132,13 +165,13 @@ void		ft_verbose_dump_arena(t_arena *arena)
 void		ft_verbose_move(t_opcode *op, t_process *process, t_arena *arena)
 {
 	int		i;
-
+	
 	ft_printf("ADV %d (0x%.4x -> 0x%.4x)", op->size, process->pos,
 			(process->pos + op->size) % MEM_SIZE);
 	i = 0;
 	while (i < op->size)
 	{
-		ft_printf(" %.2x", arena->arena[(process->pos + i) % MEM_SIZE].value);
+		ft_printf(" %.2x", arena->arena[((process->pos + i) % MEM_SIZE)].value);
 		i++;
 	}
 	ft_printf(" \n");

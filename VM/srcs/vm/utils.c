@@ -6,7 +6,7 @@
 /*   By: toliver <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/05 23:58:23 by toliver           #+#    #+#             */
-/*   Updated: 2019/12/22 05:03:18 by toliver          ###   ########.fr       */
+/*   Updated: 2019/12/22 13:40:37 by toliver          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,21 +51,29 @@ int			ft_clone_process(t_arena *arena, t_process *to_clone, int pos)
 		// verifier qunad meme
 	}
 	ft_memcpy(process, to_clone, sizeof(t_process));
-	process->pos = (pos + process->pos) % MEM_SIZE;
+	process->pos = (pos + to_clone->pos) % MEM_SIZE;
+	if (process->pos < 0)
+		process->pos = MEM_SIZE + process->pos;
 	process->pid = arena->pid;
 	arena->pid += 1;
 	process->next = arena->process;
 	arena->process = process;
-	ft_get_process_infos(process, arena);
+	process->need_refresh = 1;
+	//ft_get_process_infos(process, arena);
 	return (1);
 }
 
 void		ft_move_process(t_opcode *op, t_process *process, t_arena *arena)
 {
+	if (process->pos < 0)
+		process->pos = MEM_SIZE + process->pos;
 	if (op->opcode > 0 && op->opcode <= 16 && ft_verbose_flag(VERBOSE_PC_MOVEMENT_FLAG))
 		ft_verbose_move(op, process, arena);
+//	ft_printf("test %x %d %d\n", process->pos, op->size, op->opcode);
+//	ft_dump_op(op);
 	process->pos = (process->pos + op->size) % MEM_SIZE;
-	ft_get_process_infos(process, arena);
+	process->need_refresh = 1;
+//	ft_get_process_infos(process, arena);
 }
 
 void		ft_write_in_arena(t_arena *arena, int pos, int32_t value, int owner)
@@ -93,9 +101,11 @@ int32_t			ft_parse_value(t_arena *arena, int pos, int size)
 
 	i = 0;
 	value.real_value = 0;
+	if (pos < 0)
+		pos = MEM_SIZE + pos;
 	while (i < size)
 	{
-		value.value[i] = arena->arena[(pos + i) % MEM_SIZE].value;
+		value.value[i] = arena->arena[((pos + i) % MEM_SIZE)].value;
 		i++;
 	}
 	if (size == 4)

@@ -6,7 +6,7 @@
 /*   By: toliver <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/04 01:38:07 by toliver           #+#    #+#             */
-/*   Updated: 2019/12/22 06:02:58 by toliver          ###   ########.fr       */
+/*   Updated: 2019/12/22 15:21:42 by toliver          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -104,6 +104,7 @@ typedef struct		s_champ
 	int				offset;
 	char			*filename;
 	char			*content;
+	int				live;
 	struct s_champ	*next;
 }					t_champ;
 
@@ -130,6 +131,7 @@ typedef struct			s_process
 	int					carry;
 	int					live_number;
 	size_t				last_live;
+	int					need_refresh;
 	struct s_process	*next;
 }						t_process;
 
@@ -143,6 +145,7 @@ typedef struct		s_opcode
 	int				dir_two_bytes;
 	int32_t			params[REG_NUMBER];
 	int				params_types[REG_NUMBER];
+	int32_t			params_parsed[REG_NUMBER];
 	int				size;
 	int				is_valid;
 //	int				pos;
@@ -230,7 +233,7 @@ void		ft_parse_champs(t_env *env);
 void		ft_free_env(t_env *env);
 void		ft_free_champs(t_env *env);
 void		ft_free_champ(t_champ *champ);
-
+void		ft_free_process(t_process *process);
 /*
 **	VISU FUNC
 */
@@ -283,7 +286,7 @@ void		ft_intro(t_env *env);
 void		ft_verbose_cycles(t_env *env);
 void		ft_verbose_dump_arena(t_arena *arena);
 void		ft_verbose_move(t_opcode *op, t_process *process, t_arena *arena);
-void		ft_verbose_op(t_env *env, t_process *process, t_opcode *opcode);
+void		ft_verbose_op(t_arena *arena, t_process *process, t_opcode *opcode);
 
 extern void 		(*op_func[17])(t_opcode*, t_process*, t_arena*);
 #endif

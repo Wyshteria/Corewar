@@ -6,7 +6,7 @@
 /*   By: toliver <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/19 18:19:18 by toliver           #+#    #+#             */
-/*   Updated: 2019/12/22 06:15:33 by toliver          ###   ########.fr       */
+/*   Updated: 2019/12/22 15:21:40 by toliver          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,8 +86,8 @@ void		ft_exec_op(t_opcode *op, t_process *process, t_arena *arena)
 		ft_printf("(ne devrait pas arriver sauf sur 0)");
 	else
 	{
-		if (ft_verbose_flag(VERBOSE_OPERATIONS_FLAG))
-			ft_verbose_op(ft_get_env(), process, op);
+//		if (ft_verbose_flag(VERBOSE_OPERATIONS_FLAG))
+//			ft_verbose_op(ft_get_env(), process, op);
 		op_func[op->opcode](op, process, arena);
 	}
 	// verifier si l'op est 0 si ca fait le move
@@ -160,39 +160,103 @@ void		ft_check_for_action(t_env *env)
 	}
 }
 
-void		ft_check_cycles(t_env *env)
+void		ft_kill_process(t_arena *arena, t_process *process)
 {
-	t_process	*ptr;
 	t_process	*tmp;
 
-	ft_printf("---------CHECK !------------\n");
+	if (arena->process == process)
+		arena->process = process->next;
+	else
+	{
+		tmp = arena->process;
+		while (tmp && tmp->next != process)
+			tmp = tmp->next;
+		tmp->next = process->next;
+	}
+	ft_free_process(process);
+}
+
+void		ft_decrease_cycle_to_die(t_arena *arena)
+{
+	arena->cycles_to_die -= CYCLE_DELTA;
+	if (ft_verbose_flag(VERBOSE_CYCLES_FLAG))
+		ft_printf("Cycle to die is now %d\n", arena->cycles_to_die);
+}
+
+void		ft_check_cycles(t_env *env)
+{
+	// voir si on ne reset pas les lives des gens aussi
+	t_process	*ptr;
+	t_process	*tmp;
+	int			should_reset;
+	int			lifetotal;
+
+	should_reset = 0;
+	lifetotal = 0;
 	if (env->arena.cycles_to_die <= 0)
 	{
-		// kill all process but one;
+		while (env->arena.process)
+			ft_kill_process(&env->arena, env->arena.process);
 	}
 	ptr = env->arena.process;
 	while (ptr)
 	{
 		if (ptr->live_number == 0)
 		{
-			ft_printf("Process %d hasn't lived for %d cycles (CTD %d)\n", ptr->pid, env->arena.cycles - ptr->last_live, env->arena.cycles_to_die);
+			if (ft_verbose_flag(VERBOSE_LIVES_FLAG))
+				ft_printf("Process %d hasn't lived for %d cycles (CTD %d)\n", ptr->pid, env->arena.cycles - ptr->last_live, env->arena.cycles_to_die);
+			tmp = ptr->next;
+			ft_kill_process(&env->arena, ptr);
+			ptr = tmp;
+			continue;
 		}
-		if (ptr->live_number >= NBR_LIVE)
-		{
-			env->arena.cycles_to_die -= CYCLE_DELTA;
-			env->arena.check_number = 0;
-		}
-		else
-		{
-			env->arena.check_number++;
-			if (env->arena.check_number >= 10)
-				ft_printf("too many checks !\n");
-		}
+		lifetotal += ptr->live_number;
 		ptr->live_number = 0;
 		ptr = ptr->next;	
 	}
+	if (lifetotal > NBR_LIVE)
+		ft_decrease_cycle_to_die(&env->arena);
+	if (env->arena.check_number <= 0)
+	{
+		ft_decrease_cycle_to_die(&env->arena);
+		env->arena.check_number = MAX_CHECKS;
+	}
+	else
+		env->arena.check_number--;
 	env->arena.actual_cycles_to_die = env->arena.cycles_to_die;
-	(void)tmp;
+}
+
+void		ft_check_for_winner(t_env *env)
+{
+	t_champ	*ptr;
+	t_champ	*highest;
+
+	highest = env->champs;
+
+	ptr = env->champs;
+	while (ptr)
+	{
+		if (ptr->live >= highest->live)
+			highest = ptr;
+		ptr = ptr->next;
+	}
+	ft_printf("Contestant %d, \"%s\", has won !\n", -highest->number, highest->header.prog_name);
+}
+
+void		ft_check_refresh(t_env *env)
+{
+	t_process	*ptr;
+
+	ptr = env->arena.process;
+	while (ptr)
+	{
+		if (ptr->need_refresh == 1)
+		{
+			ft_get_process_infos(ptr, &env->arena);
+			ptr->need_refresh = 0;
+		}
+		ptr = ptr->next;
+	}
 }
 
 int			ft_run(t_env *env)
@@ -200,6 +264,7 @@ int			ft_run(t_env *env)
 	ft_intro(env);
 	while (1)
 	{
+		ft_check_refresh(env);
 		if ((env->flags & CYCLE_DUMP_FLAG) && env->arena.cycles % env->cycle_dump_cycles == 0)
 			ft_verbose_dump_arena(&env->arena);
 		if ((env->flags & DUMP_FLAG) && env->dump_cycles == env->arena.cycles)
@@ -211,6 +276,11 @@ int			ft_run(t_env *env)
 		ft_check_for_action(env);
 		if (env->arena.actual_cycles_to_die == 0)
 			ft_check_cycles(env);
+		if (env->arena.process == NULL)
+		{
+			ft_check_for_winner(env);
+			break;
+		}
 		// check for winner if no more process
 	}
 	return (1);
