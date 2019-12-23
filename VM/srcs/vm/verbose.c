@@ -6,7 +6,7 @@
 /*   By: toliver <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/22 02:50:34 by toliver           #+#    #+#             */
-/*   Updated: 2019/12/22 15:21:39 by toliver          ###   ########.fr       */
+/*   Updated: 2019/12/23 23:50:58 by toliver          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,7 +56,10 @@ void		ft_verbose_op_params(t_arena *arena, t_process *process, t_opcode *op, int
 	}
 	else if (op->opcode == FORK || op->opcode == LFORK)
 	{
-		ft_printf(" (%d)", (process->pos + op->params[0]));
+		int32_t	value;
+
+		value = (op->opcode == FORK) ? ((int16_t)op->params[0]) % IDX_MOD : op->params[0];
+		ft_printf(" (%d)", (process->pos + value));
 	}
 	else if (op->opcode == LDI)
 	{
@@ -165,9 +168,9 @@ void		ft_verbose_dump_arena(t_arena *arena)
 void		ft_verbose_move(t_opcode *op, t_process *process, t_arena *arena)
 {
 	int		i;
-	
+
 	ft_printf("ADV %d (0x%.4x -> 0x%.4x)", op->size, process->pos,
-			(process->pos + op->size) % MEM_SIZE);
+			(process->pos + op->size));
 	i = 0;
 	while (i < op->size)
 	{

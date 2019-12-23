@@ -6,7 +6,7 @@
 /*   By: zaz <marvin@42.fr>                         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2013/10/04 11:43:01 by zaz               #+#    #+#             */
-/*   Updated: 2019/12/22 15:21:41 by toliver          ###   ########.fr       */
+/*   Updated: 2019/12/24 00:27:45 by toliver          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -233,9 +233,10 @@ void		ft_sti(t_opcode *op, t_process *process, t_arena *arena)
 
 void		ft_fork(t_opcode *op, t_process *process, t_arena *arena)
 {
-	// faire un process dup qui prend un process, une arena et une pos;
-	// penser a voir au niveau des cycles to live
-	ft_clone_process(arena, process, op->params[0]);
+	int32_t	pos;
+
+	pos = ((int16_t)op->params[0]) % IDX_MOD;
+	ft_clone_process(arena, process, pos);
 	if (ft_verbose_flag(VERBOSE_OPERATIONS_FLAG))
 		ft_verbose_op(arena, process, op);
 	ft_move_process(op, process, arena);
@@ -306,7 +307,8 @@ void		ft_live(t_opcode *op, t_process *process, t_arena *arena)
 	{
 		champ->live++;
 		if (ft_verbose_flag(VERBOSE_LIVES_FLAG))
-			ft_printf("Player %d (%s) is said to be alive\n", -champ->number, champ->header.prog_name); // voir si c'est pas la value absolue
+			//ft_printf("Player %d (%s) is said to be alive (testvalue to delete : %d)\n", -champ->number, champ->header.prog_name, *(int32_t*)process->reg[0].mem); // voir si c'est pas la value absolue
+			ft_printf("Player %d (%s) is said to be alive\n", -champ->number, champ->header.prog_name);
 	}
 	process->live_number += 1;
 	process->last_live = arena->cycles;

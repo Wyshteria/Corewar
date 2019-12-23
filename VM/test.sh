@@ -4,9 +4,15 @@ MY_VM_PATH=./vm
 CHAMP_PATH=../vm_champs/
 
 #CHAMP1="${CHAMP_PATH}champs/maxidef.cor"
-CHAMP1="${CHAMP_PATH}champs/toto.cor"
+#CHAMP1="${CHAMP_PATH}champs/Mortel.cor"
 #CHAMP1="${CHAMP_PATH}champs/Octobre_rouge_V4.2.cor"
-
+#CHAMP1="${CHAMP_PATH}champs/car.cor"
+#CHAMP1="${CHAMP_PATH}champs/jumper.cor"
+#CHAMP1="${CHAMP_PATH}champs/slider2.cor"
+#CHAMP1="${CHAMP_PATH}champs/Toto.cor"
+#CHAMP1="${CHAMP_PATH}champs/examples/fluttershy.cor"
+#CHAMP1="${CHAMP_PATH}champs/championships/2018/bcozic/pai_mu_tan.cor"
+CHAMP1="${CHAMP_PATH}champs/championships/2014/gbir/_.cor"
 MY_ARGS=""
 I=0;
 
@@ -20,7 +26,7 @@ do
 done
 
 
-$VM_PATH $MY_ARGS $CHAMP1 $CHAMP1 > tmp_file1
-$MY_VM_PATH $MY_ARGS $CHAMP1 $CHAMP1 > tmp_file2
+$VM_PATH $MY_ARGS $CHAMP1 $CHAMP1 > zaz_file
+$MY_VM_PATH $MY_ARGS $CHAMP1 $CHAMP1 > my_file
 
-diff tmp_file1 tmp_file2
+diff zaz_file my_file

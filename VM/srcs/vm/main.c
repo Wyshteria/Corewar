@@ -6,7 +6,7 @@
 /*   By: toliver <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/19 18:19:18 by toliver           #+#    #+#             */
-/*   Updated: 2019/12/22 15:21:40 by toliver          ###   ########.fr       */
+/*   Updated: 2019/12/24 00:27:48 by toliver          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -190,9 +190,11 @@ void		ft_check_cycles(t_env *env)
 	t_process	*tmp;
 	int			should_reset;
 	int			lifetotal;
+	static int	test = 0; // VOIR SI CA MARCHE VRAIMENT
 
 	should_reset = 0;
 	lifetotal = 0;
+//	ft_printf("CHECK LIVES ! at cycle %d\n", env->arena.cycles);
 	if (env->arena.cycles_to_die <= 0)
 	{
 		while (env->arena.process)
@@ -203,6 +205,7 @@ void		ft_check_cycles(t_env *env)
 	{
 		if (ptr->live_number == 0)
 		{
+//			ft_printf("PROCESS GOT KILLED :'(\n");
 			if (ft_verbose_flag(VERBOSE_LIVES_FLAG))
 				ft_printf("Process %d hasn't lived for %d cycles (CTD %d)\n", ptr->pid, env->arena.cycles - ptr->last_live, env->arena.cycles_to_die);
 			tmp = ptr->next;
@@ -214,15 +217,25 @@ void		ft_check_cycles(t_env *env)
 		ptr->live_number = 0;
 		ptr = ptr->next;	
 	}
-	if (lifetotal > NBR_LIVE)
-		ft_decrease_cycle_to_die(&env->arena);
-	if (env->arena.check_number <= 0)
+	if (lifetotal >= NBR_LIVE) // re tester si je dois vraiment tester avec +test
 	{
+		ft_printf("caused by lifetotal\n");
+		ft_printf("life total = %d\n", lifetotal);
+		ft_decrease_cycle_to_die(&env->arena);
+		env->arena.check_number = MAX_CHECKS;
+		test++; // VOIR SI C VRAIMENT UTILE
+	}
+	else
+	{
+//		ft_printf("decrement check number\n");
+		env->arena.check_number--;
+	}
+	if (env->arena.check_number == 0)
+	{
+		ft_printf("caused by checknumber\n");
 		ft_decrease_cycle_to_die(&env->arena);
 		env->arena.check_number = MAX_CHECKS;
 	}
-	else
-		env->arena.check_number--;
 	env->arena.actual_cycles_to_die = env->arena.cycles_to_die;
 }
 
@@ -274,7 +287,7 @@ int			ft_run(t_env *env)
 		}
 		ft_increment_cycles(env);
 		ft_check_for_action(env);
-		if (env->arena.actual_cycles_to_die == 0)
+		if (env->arena.actual_cycles_to_die <= 0)
 			ft_check_cycles(env);
 		if (env->arena.process == NULL)
 		{
