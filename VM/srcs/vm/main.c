@@ -6,7 +6,7 @@
 /*   By: toliver <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/19 18:19:18 by toliver           #+#    #+#             */
-/*   Updated: 2019/12/27 20:38:40 by toliver          ###   ########.fr       */
+/*   Updated: 2019/12/27 20:44:10 by toliver          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -203,7 +203,7 @@ void		ft_check_cycles(t_env *env)
 		return ;
 	while (ptr)
 	{
-		if (ptr->live_number == 0 && ptr->last_live < env->arena.cycles - env->arena.cycles_to_die)
+		if (ptr->live_number == 0 && ptr->last_live <= env->arena.cycles - env->arena.cycles_to_die)
 		{
 			if (ft_verbose_flag(VERBOSE_LIVES_FLAG))
 				ft_printf("Process %d hasn't lived for %d cycles (CTD %d)\n", ptr->pid, env->arena.cycles - ptr->last_live, env->arena.cycles_to_die);
