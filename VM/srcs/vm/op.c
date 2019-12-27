@@ -6,7 +6,7 @@
 /*   By: zaz <marvin@42.fr>                         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2013/10/04 11:43:01 by zaz               #+#    #+#             */
-/*   Updated: 2019/12/28 00:15:26 by toliver          ###   ########.fr       */
+/*   Updated: 2019/12/28 00:51:10 by toliver          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -297,7 +297,7 @@ void		ft_ldi(t_opcode *op, t_process *process, t_arena *arena)
 	int32_t	value1;
 	int32_t	value2;
 	int32_t	value3;
-	int32_t	offest;
+	int32_t	offset;
 
 	value1 = ft_get_value_from(op, process, arena, 0);
 	value2 = ft_get_value_from(op, process, arena, 1);

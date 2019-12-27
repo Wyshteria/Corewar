@@ -6,7 +6,7 @@
 /*   By: toliver <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/05 23:58:23 by toliver           #+#    #+#             */
-/*   Updated: 2019/12/28 00:15:25 by toliver          ###   ########.fr       */
+/*   Updated: 2019/12/28 00:50:51 by toliver          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -140,8 +140,11 @@ int32_t		ft_get_value_from(t_opcode *op, t_process *process, t_arena *arena,
 		value = *(int32_t*)process->reg[op->params[num] - 1].mem;
 	else if (op->params_types[num] == T_DIR)
 		value = op->params[num];
-	else
+	else if (op->opcode == LLD || op->opcode == LLDI)
 		value = ft_get_value_from_address(arena, process->pos, op->params[num]);
+	else
+		value = ft_get_value_from_address(arena, process->pos,
+				((int32_t)((int16_t)op->params[num])) % IDX_MOD);
 	return (value);
 }
 
