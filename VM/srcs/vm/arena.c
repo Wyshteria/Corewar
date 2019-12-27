@@ -6,7 +6,7 @@
 /*   By: toliver <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/15 23:18:10 by toliver           #+#    #+#             */
-/*   Updated: 2019/12/27 20:28:56 by toliver          ###   ########.fr       */
+/*   Updated: 2019/12/27 22:19:40 by toliver          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,10 +24,11 @@ int			ft_arena_error(int error)
 	return (0);
 }
 
-void			ft_dump_arena(t_arena *arena)
+void		ft_dump_arena(t_arena *arena)
 {
 	int			i;
 	t_process	*ptr;
+
 	i = 0;
 	while (i < MEM_SIZE)
 	{
@@ -72,19 +73,27 @@ void		ft_fill_arena(t_arena *arena, t_champ *champ, int pos)
 int			ft_init_process(t_env *env, int space_between)
 {
 	t_champ	*ptr;
-	int				actualpos;
+	int		actualpos;
 
 	actualpos = 0;
 	ptr = env->champs;
 	while (ptr)
 	{
 		ft_fill_arena(&env->arena, ptr, actualpos);
-		if (!(ft_create_process(&env->arena, ptr->number ,actualpos)))
+		if (!(ft_create_process(&env->arena, ptr->number, actualpos)))
 			return (0);
 		actualpos += space_between;
 		ptr = ptr->next;
 	}
 	return (1);
+}
+
+void		ft_set_arena(t_env *env, int champ_number)
+{
+	env->arena.cycles_to_die = CYCLE_TO_DIE;
+	env->arena.actual_cycles_to_die = CYCLE_TO_DIE;
+	env->arena.check_number = MAX_CHECKS;
+	env->arena.last_live = -champ_number;
 }
 
 int			ft_init_arena(t_env *env)
@@ -106,14 +115,10 @@ int			ft_init_arena(t_env *env)
 	}
 	if (total_size >= MEM_SIZE)
 		return (ft_arena_error(NOT_ENOUGH_SPACE));
-   	if (champ_number == 0)
-		return (ft_arena_error(NO_CHAMPIONS));	
+	if (champ_number == 0)
+		return (ft_arena_error(NO_CHAMPIONS));
 	space_between = MEM_SIZE / champ_number;
-	ptr = env->champs;
-	env->arena.cycles_to_die = CYCLE_TO_DIE;
-	env->arena.actual_cycles_to_die = CYCLE_TO_DIE;
-	env->arena.check_number = MAX_CHECKS;
-	env->arena.last_live = -champ_number;
+	ft_set_arena(env, champ_number);
 	if (!ft_init_process(env, space_between))
 		return (0);
 	return (1);

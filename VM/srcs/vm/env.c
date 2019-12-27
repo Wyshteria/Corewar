@@ -6,7 +6,7 @@
 /*   By: toliver <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/06 00:04:12 by toliver           #+#    #+#             */
-/*   Updated: 2019/12/06 06:27:58 by toliver          ###   ########.fr       */
+/*   Updated: 2019/12/27 21:57:20 by toliver          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,19 +19,18 @@ static t_env		**ft_get_envptr(void)
 	return (&env);
 }
 
-t_env		*ft_get_env(void)
+t_env				*ft_get_env(void)
 {
 	return (*(ft_get_envptr()));
 }
 
-void		ft_set_env(t_env *env)
+void				ft_set_env(t_env *env)
 {
 	*(ft_get_envptr()) = env;
 }
 
-int			ft_env_init(t_env *env, char *progname, int ac)
+int					ft_env_init(t_env *env, char *progname, int ac)
 {
-
 	ft_bzero(env, sizeof(t_env));
 	env->prog_name = progname;
 	env->ac = ac;

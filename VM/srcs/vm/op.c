@@ -6,13 +6,13 @@
 /*   By: zaz <marvin@42.fr>                         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2013/10/04 11:43:01 by zaz               #+#    #+#             */
-/*   Updated: 2019/12/27 20:38:38 by toliver          ###   ########.fr       */
+/*   Updated: 2019/12/28 00:15:26 by toliver          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "vm.h"
 
-t_op    op_tab[17] =
+t_op	op_tab[17] =
 {
 	{0, 0, {0}, 0, 0, 0, 0, 0},
 	{"live", 1, {T_DIR}, 1, 10, "alive", 0, 0},
@@ -39,7 +39,7 @@ t_op    op_tab[17] =
 	{"aff", 1, {T_REG}, 16, 2, "aff", 1, 0},
 };
 
-void	(*op_func[17])(t_opcode*, t_process*, t_arena*) = 
+void	(*op_func[17])(t_opcode*, t_process*, t_arena*) =
 {
 	0,
 	&ft_live,
@@ -58,7 +58,6 @@ void	(*op_func[17])(t_opcode*, t_process*, t_arena*) =
 	&ft_lldi,
 	&ft_lfork,
 	&ft_aff,
-	// copier toutes les operations
 };
 
 t_champ		*ft_get_champ(int32_t num)
@@ -89,13 +88,13 @@ void		ft_verbose_params(t_opcode *op, t_process *proc, char r_display)
 	if (op->opcode == ZJMP)
 		ft_printf(" %s", proc->carry ? "OK" : "FAILED");
 	else if (op->opcode == LDI)
-		ft_printf("\n%8c -> load from %d + %d = %d (with pc and mod %d)", '|', op->params_parsed[0], op->params_parsed[1], op->params_parsed[0] + op->params_parsed[1], (proc->pos + (op->params_parsed[0] + op->params_parsed[1]) % IDX_MOD)); // deleted modulo mem size
+		ft_printf("\n%8c -> load from %d + %d = %d (with pc and mod %d)", '|', op->params_parsed[0], op->params_parsed[1], op->params_parsed[0] + op->params_parsed[1], (proc->pos + (op->params_parsed[0] + op->params_parsed[1]) % IDX_MOD));
 	else if (op->opcode == STI)
-		ft_printf("\n%8c -> store to %d + %d = %d (with pc and mod %d)", '|', op->params_parsed[1], op->params_parsed[2], op->params_parsed[1] + op->params_parsed[2], (proc->pos + (op->params_parsed[1] + op->params_parsed[2]) % IDX_MOD) ); // deleted modulo mem size
+		ft_printf("\n%8c -> store to %d + %d = %d (with pc and mod %d)", '|', op->params_parsed[1], op->params_parsed[2], op->params_parsed[1] + op->params_parsed[2], (proc->pos + (op->params_parsed[1] + op->params_parsed[2]) % IDX_MOD));
 	else if (op->opcode == FORK || op->opcode == LFORK)
 		ft_printf(" (%d)", (proc->pos + op->params_parsed[1]));
 	else if (op->opcode == LLDI)
-		ft_printf("\n%8c -> load from %d + %d = %d (with pc and mod %d)", '|', op->params_parsed[0], op->params_parsed[1], op->params_parsed[0] + op->params_parsed[1], (proc->pos + (op->params_parsed[0] + op->params_parsed[1]))); // deleted modulo mem size
+		ft_printf("\n%8c -> load from %d + %d = %d (with pc and mod %d)", '|', op->params_parsed[0], op->params_parsed[1], op->params_parsed[0] + op->params_parsed[1], (proc->pos + (op->params_parsed[0] + op->params_parsed[1])));
 	ft_printf("\n");
 }
 
@@ -112,15 +111,13 @@ void		ft_live(t_opcode *op, t_process *process, t_arena *arena)
 	}
 	if ((champ = ft_get_champ(value)))
 	{
-	//	if (value == *(int32_t*)process->reg[0].mem)
-	//	{
-			if (ft_verbose_flag(VERBOSE_LIVES_FLAG))
-				ft_printf("Player %d (%s) is said to be alive\n", -champ->number, champ->header.prog_name);
-			arena->last_live = value;
-	//	}
+		if (ft_verbose_flag(VERBOSE_LIVES_FLAG))
+			ft_printf("Player %d (%s) is said to be alive\n",
+					-champ->number, champ->header.prog_name);
+		arena->last_live = value;
 	}
 	process->live_number += 1;
-	process->last_live = arena->cycles; // voir si on doit compter ca aussi oupas
+	process->last_live = arena->cycles;
 	ft_move_process(op, process, arena);
 }
 
@@ -133,7 +130,8 @@ void		ft_ld(t_opcode *op, t_process *process, t_arena *arena)
 	if (op->params_types[0] == T_DIR)
 		value = ft_parse_value(arena, process->pos + 2, 4);
 	else
-		value = ft_parse_value(arena, process->pos + (int32_t)((int16_t)op->params[0]), 4);
+		value = ft_parse_value(arena, process->pos +
+				(int32_t)((int16_t)op->params[0]), 4);
 	op->params_parsed[0] = value;
 	op->params_parsed[1] = op->params[1];
 	*((uint32_t*)(process->reg[op->params[1] - 1].mem)) = value;
@@ -190,12 +188,13 @@ void		ft_add(t_opcode *op, t_process *process, t_arena *arena)
 	}
 	ft_move_process(op, process, arena);
 }
+
 void		ft_sub(t_opcode *op, t_process *process, t_arena *arena)
 {
 	int32_t		value1;
 	int32_t		value2;
 	int32_t		result;
-	
+
 	value1 = ft_get_value_from(op, process, arena, 0);
 	value2 = ft_get_value_from(op, process, arena, 1);
 	result = value1 - value2;
@@ -267,7 +266,6 @@ void		ft_xor(t_opcode *op, t_process *process, t_arena *arena)
 	op->params_parsed[0] = value1; // direct = mod
 	op->params_parsed[1] = value2; // direct = mod
 	op->params_parsed[2] = op->params[2];
-
 	if (ft_verbose_flag(VERBOSE_OPERATIONS_FLAG))
 	{
 		ft_verbose_params(op, process, 0b0010);
@@ -299,18 +297,18 @@ void		ft_ldi(t_opcode *op, t_process *process, t_arena *arena)
 	int32_t	value1;
 	int32_t	value2;
 	int32_t	value3;
+	int32_t	offest;
 
 	value1 = ft_get_value_from(op, process, arena, 0);
 	value2 = ft_get_value_from(op, process, arena, 1);
-
 	op->params_parsed[0] = value1;
 	op->params_parsed[1] = value2;
 	op->params_parsed[2] = op->params[2];
-	int32_t offset = (((value1 + value2) % IDX_MOD) + process->pos) % MEM_SIZE;
+	offset = (((value1 + value2) % IDX_MOD) + process->pos) % MEM_SIZE;
 	if (offset < 0)
 		offset = MEM_SIZE + offset;
 	value3 = ft_parse_value(arena, offset, 4);
-   	*(int32_t*)process->reg[op->params[2] - 1].mem = value3;
+	*(int32_t*)process->reg[op->params[2] - 1].mem = value3;
 	if (ft_verbose_flag(VERBOSE_OPERATIONS_FLAG))
 	{
 		ft_verbose_params(op, process, 0b0010);
@@ -330,7 +328,9 @@ void		ft_sti(t_opcode *op, t_process *process, t_arena *arena)
 	result = param1 + param2;
 	result = (result % IDX_MOD + process->pos) % MEM_SIZE;
 	result = (result < 0 ? MEM_SIZE + result : result);
-	ft_write_in_arena(arena, result, *(int32_t*)process->reg[op->params[0] - 1].mem, arena->arena[process->pos].writer);
+	ft_write_in_arena(arena, result,
+			*(int32_t*)process->reg[op->params[0] - 1].mem,
+			arena->arena[process->pos].writer);
 	op->params_parsed[0] = op->params[0];
 	op->params_parsed[1] = param1;
 	op->params_parsed[2] = param2;
@@ -339,7 +339,6 @@ void		ft_sti(t_opcode *op, t_process *process, t_arena *arena)
 		ft_verbose_params(op, process, 0b1000);
 	}
 	ft_move_process(op, process, arena);
-	// should be working
 }
 
 void		ft_fork(t_opcode *op, t_process *process, t_arena *arena)
@@ -357,6 +356,12 @@ void		ft_fork(t_opcode *op, t_process *process, t_arena *arena)
 	ft_move_process(op, process, arena);
 }
 
+/*
+** THIS FUNCTION IS INCORRECT
+** however, I tried to copy the behavior of the Zaz vm, so it only reads 2 bytes
+** instead of 4
+*/
+
 void		ft_lld(t_opcode *op, t_process *process, t_arena *arena)
 {
 	int		reg_number;
@@ -366,7 +371,7 @@ void		ft_lld(t_opcode *op, t_process *process, t_arena *arena)
 	if (op->params_types[0] == T_DIR)
 		value = ft_parse_value(arena, process->pos + 2, 4);
 	else
-		value = ft_parse_value(arena, process->pos + op->params[0], 2); // bug de la vraie vm normalement ca read 4
+		value = ft_parse_value(arena, process->pos + op->params[0], 2);
 	op->params_parsed[0] = value;
 	op->params_parsed[1] = op->params[1];
 	*((uint32_t*)(process->reg[op->params[1] - 1].mem)) = value;
@@ -386,18 +391,18 @@ void		ft_lldi(t_opcode *op, t_process *process, t_arena *arena)
 	int32_t	value1;
 	int32_t	value2;
 	int32_t	value3;
+	int32_t	offset;
 
 	value1 = ft_get_value_from(op, process, arena, 0);
 	value2 = ft_get_value_from(op, process, arena, 1);
-
 	op->params_parsed[0] = value1;
 	op->params_parsed[1] = value2;
 	op->params_parsed[2] = op->params[2];
-	int32_t offset = (((value1 + value2)) + process->pos) % MEM_SIZE;
+	offset = (((value1 + value2)) + process->pos) % MEM_SIZE;
 	if (offset < 0)
 		offset = MEM_SIZE + offset;
 	value3 = ft_parse_value(arena, offset, 4);
-   	*(int32_t*)process->reg[op->params[2] - 1].mem = value3;
+	*(int32_t*)process->reg[op->params[2] - 1].mem = value3;
 	if (ft_verbose_flag(VERBOSE_OPERATIONS_FLAG))
 	{
 		ft_verbose_params(op, process, 0b0010);
@@ -420,10 +425,9 @@ void		ft_lfork(t_opcode *op, t_process *process, t_arena *arena)
 void		ft_aff(t_opcode *op, t_process *process, t_arena *arena)
 {
 	char	value;
-	
+
 	value = ft_get_value_from(op, process, arena, 0);
 	if (ft_get_env()->flags & AFF_FLAG)
 		ft_printf("Aff: %c\n", value);
 	ft_move_process(op, process, arena);
 }
-

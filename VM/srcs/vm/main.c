@@ -6,7 +6,7 @@
 /*   By: toliver <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/19 18:19:18 by toliver           #+#    #+#             */
-/*   Updated: 2019/12/27 20:44:10 by toliver          ###   ########.fr       */
+/*   Updated: 2019/12/27 22:19:36 by toliver          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,8 @@ void		ft_parse_op_params(t_opcode *op, t_process *process, t_arena *arena)
 	while (i < op->params_number)
 	{
 		param_size = ft_get_real_size(op->params_types[i], op->dir_two_bytes);
-		op->params[i] = ft_parse_value(arena, (process->pos + op->size) % MEM_SIZE, param_size);
+		op->params[i] = ft_parse_value(arena,
+				(process->pos + op->size) % MEM_SIZE, param_size);
 		op->size += param_size;
 		i++;
 	}
@@ -83,7 +84,6 @@ void		ft_exec_op(t_opcode *op, t_process *process, t_arena *arena)
 			ft_verbose_op(arena, process, op);
 		op_func[op->opcode](op, process, arena);
 	}
-	// verifier si l'op est 0 si ca fait le move
 }
 
 void		ft_check_op_valid(t_opcode *op)
@@ -91,16 +91,17 @@ void		ft_check_op_valid(t_opcode *op)
 	int		i;
 
 	if (!op->is_valid)
-	   return;	
+		return ;
 	i = 0;
 	while (i < op_tab[op->opcode].params_number)
 	{
 		if ((op->params_types[i] == T_IND ||
-				(op->params_types[i] == T_DIR && op->dir_two_bytes)) 
+				(op->params_types[i] == T_DIR && op->dir_two_bytes))
 				&& op->params[i] & 0x8000)
 			op->params[i] = (int32_t)((int16_t)op->params[i]);
-		if (op->params_types[i] == T_REG && (op->params[i] > REG_NUMBER || op->params[i] == 0))
-			op->is_valid = 0; // NOT SURE ABOUT THAT
+		if (op->params_types[i] == T_REG &&
+				(op->params[i] > REG_NUMBER || op->params[i] == 0))
+			op->is_valid = 0;
 		i++;
 	}
 }
@@ -127,11 +128,10 @@ void		ft_parse_op(t_opcode *op, t_arena *arena, t_process *process)
 	ft_check_op_valid(op);
 }
 
-
 void		ft_try_op(t_env *env, t_process *process)
 {
 	t_opcode	opcode;
-	
+
 	ft_bzero(&opcode, sizeof(t_opcode));
 	ft_parse_op(&opcode, &env->arena, process);
 	if (opcode.is_valid)
@@ -139,20 +139,7 @@ void		ft_try_op(t_env *env, t_process *process)
 	else
 		ft_move_process(&opcode, process, &env->arena);
 }
-/*
-void		ft_check_for_action(t_env *env)
-{
-	t_process	*ptr;
-	
-	ptr = env->arena.process;
-	while (ptr)
-	{
-		if (ptr->cycles_to_exec == 0)
-			ft_try_op(env, ptr);
-		ptr = ptr->next;
-	}
-}
-*/
+
 void		ft_kill_process(t_arena *arena, t_process *process)
 {
 	t_process	*tmp;
@@ -178,16 +165,13 @@ void		ft_decrease_cycle_to_die(t_arena *arena)
 
 void		ft_check_cycles(t_env *env)
 {
-	// voir si on ne reset pas les lives des gens aussi
 	t_process	*ptr;
 	t_process	*tmp;
 	int			should_reset;
 	int			lifetotal;
-	static int	test = 0; // VOIR SI CA MARCHE VRAIMENT
 
 	should_reset = 0;
 	lifetotal = 0;
-
 	if (env->arena.cycles_to_die <= 0)
 	{
 		while (env->arena.process)
@@ -214,23 +198,17 @@ void		ft_check_cycles(t_env *env)
 		}
 		lifetotal += ptr->live_number;
 		ptr->live_number = 0;
-		ptr = ptr->next;	
+		ptr = ptr->next;
 	}
-	if (lifetotal >= NBR_LIVE) // re tester si je dois vraiment tester avec +test
+	if (lifetotal >= NBR_LIVE)
 	{
-//		ft_printf("caused by life total = %d\n", lifetotal);
 		ft_decrease_cycle_to_die(&env->arena);
 		env->arena.check_number = MAX_CHECKS;
-		test++; // VOIR SI C VRAIMENT UTILE
 	}
 	else
-	{
-//		ft_printf("decrement check number\n");
 		env->arena.check_number--;
-	}
 	if (env->arena.check_number == 0)
 	{
-//		ft_printf("caused by checknumber\n");
 		ft_decrease_cycle_to_die(&env->arena);
 		env->arena.check_number = MAX_CHECKS;
 	}
@@ -244,23 +222,7 @@ void		ft_check_for_winner(t_env *env)
 	highest = ft_get_champ(env->arena.last_live);
 	ft_printf("Contestant %d, \"%s\", has won !\n", -highest->number, highest->header.prog_name);
 }
-/*
-void		ft_check_refresh(t_env *env)
-{
-	t_process	*ptr;
 
-	ptr = env->arena.process;
-	while (ptr)
-	{
-		if (ptr->need_refresh == 1)
-		{
-			ft_get_process_infos(ptr, &env->arena);
-			ptr->need_refresh = 0;
-		}
-		ptr = ptr->next;
-	}
-}
-*/
 void		ft_routine(t_env *env)
 {
 	t_process	*ptr;
@@ -290,20 +252,17 @@ int			ft_run(t_env *env)
 		if ((env->flags & DUMP_FLAG) && env->dump_cycles == env->arena.cycles)
 		{
 			ft_verbose_dump_arena(&env->arena);
-			break;
+			break ;
 		}
-		ft_increment_cycles(env);						// faire tout ca en 1 fonction
+		ft_increment_cycles(env);
 		ft_routine(env);
-//		ft_check_refresh(env);
-//		ft_check_for_action(env);
 		if (env->arena.actual_cycles_to_die <= 0)
 			ft_check_cycles(env);
 		if (env->arena.process == NULL)
 		{
 			ft_check_for_winner(env);
-			break;
+			break ;
 		}
-		// check for winner if no more process
 	}
 	return (1);
 }
@@ -315,15 +274,13 @@ int			main(int ac, char **av)
 	ft_env_init(&env, av[0], ac - 1);
 	if (!ft_parse_params(&env, av + 1))
 		return (-1);
-	ft_parse_champs(&env);
-	// verifier qu'il y a bien un champion et qu'on en a pas trop
+	ft_parse_champs(&env); // verifier qu'il y a bien un champion et qu'on en a pas trop
 	if (!ft_init_arena(&env))
 	{
-		// voir si ca free
+		ft_free_env(&env);
 		return (-1);
 	}
 	ft_run(&env);
 	ft_free_env(&env);
 	return (0);
 }
-

@@ -6,7 +6,7 @@
 /*   By: toliver <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/06 06:20:18 by toliver           #+#    #+#             */
-/*   Updated: 2019/12/06 07:26:06 by toliver          ###   ########.fr       */
+/*   Updated: 2019/12/27 22:14:26 by toliver          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,14 +14,15 @@
 
 static void		ft_usage(t_env *env)
 {
-	ft_dprintf(2, "usage: %s [-a] [[-d N] [-s N] [-v N]] champion.cor ...\n", env->prog_name);
+	ft_dprintf(2, "usage: %s [-a] [[-d N] [-s N] [-v N]] champion.cor ...\n",
+			env->prog_name);
 	exit(-1);
 }
-
 
 static void		ft_add_champ(t_env *env, t_champ *champ)
 {
 	t_champ	*ptr;
+
 	if (env->champs == NULL)
 		env->champs = champ;
 	else
@@ -46,14 +47,14 @@ static void		ft_parse_files(t_env *env, char *filename)
 	ft_add_champ(env, node);
 }
 
-static int			ft_is_end_flag(char *flag)
+static int		ft_is_end_flag(char *flag)
 {
 	if (flag[0] == '-' && flag[1] == '-' && flag[2] == '\0')
 		return (1);
 	return (0);
 }
 
-static int			ft_is_flag(char *flag)
+static int		ft_is_flag(char *flag)
 {
 	if (flag[0] != '-')
 		return (0);
@@ -62,25 +63,25 @@ static int			ft_is_flag(char *flag)
 
 static void		ft_parsing_error(t_env *env, int error, char c)
 {
-	if (error == PARAM_FLAG_WRONG)	
+	if (error == PARAM_FLAG_WRONG)
 		ft_dprintf(2, "%s: Can't have a flag after the parameter needing flag : %c\n", env->prog_name, c);
 	else if (error == UNKNOWN_FLAG)
 		ft_dprintf(2, "%s: Illegal option -- %c\n", env->prog_name, c);
-	else if (error == PARAM_MISSING) 
+	else if (error == PARAM_MISSING)
 		ft_dprintf(2, "%s: missing argument after flag : %c\n", env->prog_name, c);
 	else if (error == PARAM_NEGATIVE)
 		ft_dprintf(2, "%s: Illegal negative argument with flag : %c\n", env->prog_name, c);
-
 	exit(-1);
 }
 
-static void		ft_parse_param_flag_parameter(t_env *env, char **av, int *i, char flag)
+static void		ft_parse_param_flag_parameter(t_env *env, char **av, int *i,
+		char flag)
 {
 	int		number;
 
 	if (*i >= env->ac)
 		ft_parsing_error(env, PARAM_MISSING, flag);
- 	if (ft_is_containing_other_than(av[*i], "+-0123456789"))
+	if (ft_is_containing_other_than(av[*i], "+-0123456789"))
 		ft_parsing_error(env, PARAM_MISSING, flag); // PENSER SI ON GERE LE NUMERO DU CHAMPION A LE PARSER ICI
 	number = ft_atoi(av[*i]);
 	if (number < 0)
@@ -89,12 +90,11 @@ static void		ft_parse_param_flag_parameter(t_env *env, char **av, int *i, char f
 		env->dump_cycles = number;
 	else if (flag == 's')
 		env->cycle_dump_cycles = number;
-	else if (flag== 'v')
+	else if (flag == 'v')
 		env->verbose_level |= number;
 }
 
-
-static int			ft_parse_flag(t_env *env, char **av, int *i)
+static int		ft_parse_flag(t_env *env, char **av, int *i)
 {
 	int		j;
 
@@ -124,7 +124,7 @@ static int			ft_parse_flag(t_env *env, char **av, int *i)
 	return (PARSE_FLAGS);
 }
 
-int			ft_parse_params(t_env *env, char **av)
+int				ft_parse_params(t_env *env, char **av)
 {
 	int		i;
 	int		mode;

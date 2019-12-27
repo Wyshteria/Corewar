@@ -6,7 +6,7 @@
 /*   By: toliver <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/07 22:34:31 by toliver           #+#    #+#             */
-/*   Updated: 2019/12/10 20:26:47 by toliver          ###   ########.fr       */
+/*   Updated: 2019/12/27 22:11:39 by toliver          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,11 +45,14 @@ int			ft_champ_error(t_env *env, int error, t_champ *champ)
 	else if (error == MAGIC_ERROR)
 		ft_dprintf(2, "File is not a core-war champion\n");
 	else if (error == NAME_TOO_LONG)
-		ft_dprintf(2, "Champ name is too long, max size : %d\n", PROG_NAME_LENGTH);
+		ft_dprintf(2, "Champ name is too long, max size : %d\n",
+				PROG_NAME_LENGTH);
 	else if (error == COMMENT_TOO_LONG)
-		ft_dprintf(2, "Champ comment is too long, max size : %d\n", COMMENT_LENGTH);
+		ft_dprintf(2, "Champ comment is too long, max size : %d\n",
+				COMMENT_LENGTH);
 	else if (error == SIZE_ERROR)
-		ft_dprintf(2, "Champ size do not match given size: %u\n", champ->header.prog_size);
+		ft_dprintf(2, "Champ size do not match given size: %u\n",
+				champ->header.prog_size);
 	return (0);
 }
 
@@ -66,13 +69,14 @@ int			ft_parse_magic(t_env *env, t_champ *champ)
 	if (champ->header.magic != COREWAR_EXEC_MAGIC)
 		return (ft_champ_error(env, MAGIC_ERROR, champ));
 	champ->offset = 4;
-	return (1);	
+	return (1);
 }
 
 int			ft_parse_name(t_env *env, t_champ *champ)
 {
 	int		retval;
 	int		i;
+	char	buffer[12];
 
 	retval = read(champ->fd, &(champ->header.prog_name), PROG_NAME_LENGTH + 1);
 	if (retval == -1)
@@ -85,15 +89,9 @@ int			ft_parse_name(t_env *env, t_champ *champ)
 		i++;
 	if (i == PROG_NAME_LENGTH + 1 && champ->header.prog_name[i])
 		return (ft_champ_error(env, NAME_TOO_LONG, champ));
-
-
-
 	if ((PROG_NAME_LENGTH + 1) & 3)
-	{
-		char buffer[12];
 		read(champ->fd, buffer, 4 - ((PROG_NAME_LENGTH + 1) & 3));
-	}
-	return (1);	
+	return (1);
 }
 
 int			ft_parse_size(t_env *env, t_champ *champ)
@@ -106,13 +104,14 @@ int			ft_parse_size(t_env *env, t_champ *champ)
 	else if (retval == 0)
 		return (ft_champ_error(env, TOO_SHORT, champ));
 	champ->header.prog_size = ft_swap(champ->header.prog_size);
-	return (1);	
+	return (1);
 }
 
 int			ft_parse_comment(t_env *env, t_champ *champ)
 {
 	int		retval;
 	int		i;
+	char	buffer[12];
 
 	retval = read(champ->fd, &(champ->header.comment), COMMENT_LENGTH + 1);
 	if (retval == -1)
@@ -125,21 +124,13 @@ int			ft_parse_comment(t_env *env, t_champ *champ)
 		i++;
 	if (i == COMMENT_LENGTH + 1 && champ->header.comment[i])
 		return (ft_champ_error(env, COMMENT_TOO_LONG, champ));
-
-
-
 	if ((COMMENT_LENGTH + 1) & 3)
-	{
-		char buffer[12];
 		read(champ->fd, buffer, 4 - ((COMMENT_LENGTH + 1) & 3));
-	}
-	return (1);	
+	return (1);
 }
-
 
 int			ft_parse_champ(t_env *env, t_champ *champ)
 {
-
 	if (champ->fd == -1)
 		return (ft_champ_error(env, READ_ERROR, champ));
 	if (!(ft_parse_magic(env, champ)))

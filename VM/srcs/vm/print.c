@@ -6,7 +6,7 @@
 /*   By: toliver <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/05 23:52:15 by toliver           #+#    #+#             */
-/*   Updated: 2019/12/27 03:34:52 by toliver          ###   ########.fr       */
+/*   Updated: 2019/12/27 22:13:34 by toliver          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,8 @@ void		ft_dump_process(t_process *process)
 	ft_printf("process lived : %d\n", process->live_number);
 	while (i < REG_NUMBER)
 	{
-		ft_printf("\tregister %d = %d\n", i, *((int32_t*)(process->reg[i].mem)));
+		ft_printf("\tregister %d = %d\n", i,
+				*((int32_t*)(process->reg[i].mem)));
 		i++;
 	}
 }
@@ -43,12 +44,16 @@ void		ft_dump_all_process(t_arena *arena)
 void		ft_dump_op(t_opcode *op)
 {
 	ft_printf("==============================================\n");
-	ft_printf("op opcode : %.2x | op name %s | op param number %d\n", op->opcode, op->opcode_name, op->params_number);
-	ft_printf("op need an encoding byte : %s", op->need_encoding_byte ? "yes": "no\n");
+	ft_printf("op opcode : %.2x | op name %s | op param number %d\n",
+			op->opcode, op->opcode_name, op->params_number);
+	ft_printf("op need an encoding byte : %s",
+			op->need_encoding_byte ? "yes" : "no\n");
 	if (op->need_encoding_byte)
 		ft_printf(" | encoding byte : %hhb\n", op->encoding_byte);
-	ft_printf("params types: %d %d %d %d\n", op->params_types[0], op->params_types[1], op->params_types[2], op->params_types[3]);
-	ft_printf("params : %d %d %d %d\n", op->params[0], op->params[1], op->params[2], op->params[3]);
+	ft_printf("params types: %d %d %d %d\n", op->params_types[0],
+			op->params_types[1], op->params_types[2], op->params_types[3]);
+	ft_printf("params : %d %d %d %d\n", op->params[0], op->params[1],
+			op->params[2], op->params[3]);
 	ft_printf("is a valid operation ? %s | ", op->is_valid ? "yes" : "no");
 	ft_printf("its size is : %d\n", op->size);
 	ft_printf("==============================================\n");
@@ -79,9 +84,11 @@ void		ft_dump_flags(t_env *env)
 	if (env->flags & AFF_FLAG)
 		ft_printf("\tPrint output from 'aff'\n");
 	if (env->flags & DUMP_FLAG)
-		ft_printf("\tDump memory after %zu cycles then exit\n", env->dump_cycles);
-	if (env->flags & CYCLE_DUMP_FLAG)	
-		ft_printf("\tDump memory every %zu cycles\n", env->cycle_dump_cycles);
+		ft_printf("\tDump memory after %zu cycles then exit\n",
+				env->dump_cycles);
+	if (env->flags & CYCLE_DUMP_FLAG)
+		ft_printf("\tDump memory every %zu cycles\n",
+				env->cycle_dump_cycles);
 	if (env->flags & VERBOSE_FLAG)
 	{
 		ft_printf("\tVerbose is activated with ");
@@ -91,7 +98,7 @@ void		ft_dump_flags(t_env *env)
 
 void		ft_dump_header(t_header *header)
 {
-	ft_printf("\t\t\tmagic number : %#06x\n", header->magic);	
+	ft_printf("\t\t\tmagic number : %#06x\n", header->magic);
 	ft_printf("\t\t\tname : %s\n", header->prog_name);
 	ft_printf("\t\t\tprog size = %u\n", header->prog_size);
 	ft_printf("\t\t\tcomment = %s\n", header->comment);

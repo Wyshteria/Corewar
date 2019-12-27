@@ -6,7 +6,7 @@
 /*   By: toliver <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/06 06:27:16 by toliver           #+#    #+#             */
-/*   Updated: 2019/12/22 07:07:46 by toliver          ###   ########.fr       */
+/*   Updated: 2019/12/27 21:59:09 by toliver          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,10 +48,9 @@ void		ft_free_champs(t_env *env)
 	{
 		tmp = ptr->next;
 		ft_free_champ(ptr);
-		ptr = tmp;;
+		ptr = tmp;
 	}
 	env->champs = NULL;
-	// penser a free tous les process
 }
 
 void		ft_free_process(t_process *process)
