@@ -6,7 +6,7 @@
 /*   By: toliver <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/15 23:18:10 by toliver           #+#    #+#             */
-/*   Updated: 2019/12/23 17:07:56 by toliver          ###   ########.fr       */
+/*   Updated: 2019/12/27 20:28:56 by toliver          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -113,6 +113,7 @@ int			ft_init_arena(t_env *env)
 	env->arena.cycles_to_die = CYCLE_TO_DIE;
 	env->arena.actual_cycles_to_die = CYCLE_TO_DIE;
 	env->arena.check_number = MAX_CHECKS;
+	env->arena.last_live = -champ_number;
 	if (!ft_init_process(env, space_between))
 		return (0);
 	return (1);

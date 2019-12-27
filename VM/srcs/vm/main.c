@@ -6,7 +6,7 @@
 /*   By: toliver <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/19 18:19:18 by toliver           #+#    #+#             */
-/*   Updated: 2019/12/27 19:53:33 by toliver          ###   ########.fr       */
+/*   Updated: 2019/12/27 20:38:40 by toliver          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,19 +15,12 @@
 void		ft_increment_cycles(t_env *env)
 {
 	t_arena		*arena;
-	t_process	*ptr;
 
 	arena = &(env->arena);
 	arena->cycles++;
 	arena->actual_cycles_to_die--;
 	if (ft_verbose_flag(VERBOSE_CYCLES_FLAG))
 		ft_verbose_cycles(env);
-	ptr = arena->process;
-	while (ptr)
-	{
-		ptr->cycles_to_exec--;
-		ptr = ptr->next;
-	}
 }
 
 int			ft_get_real_size(int type, int dir_two_bytes)
@@ -146,7 +139,7 @@ void		ft_try_op(t_env *env, t_process *process)
 	else
 		ft_move_process(&opcode, process, &env->arena);
 }
-
+/*
 void		ft_check_for_action(t_env *env)
 {
 	t_process	*ptr;
@@ -159,7 +152,7 @@ void		ft_check_for_action(t_env *env)
 		ptr = ptr->next;
 	}
 }
-
+*/
 void		ft_kill_process(t_arena *arena, t_process *process)
 {
 	t_process	*tmp;
@@ -195,18 +188,23 @@ void		ft_check_cycles(t_env *env)
 	should_reset = 0;
 	lifetotal = 0;
 
-//	ft_printf("CHECK LIVES ! at cycle %d\n", env->arena.cycles);
 	if (env->arena.cycles_to_die <= 0)
 	{
 		while (env->arena.process)
+		{
+			ptr = env->arena.process;
+			if (ft_verbose_flag(VERBOSE_LIVES_FLAG))
+				ft_printf("Process %d hasn't lived for %d cycles (CTD %d)\n", ptr->pid, env->arena.cycles - ptr->last_live, env->arena.cycles_to_die);
 			ft_kill_process(&env->arena, env->arena.process);
+		}
 	}
 	ptr = env->arena.process;
+	if (ptr == NULL)
+		return ;
 	while (ptr)
 	{
-		if (ptr->live_number == 0)
+		if (ptr->live_number == 0 && ptr->last_live < env->arena.cycles - env->arena.cycles_to_die)
 		{
-//			ft_printf("PROCESS GOT KILLED :'(\n");
 			if (ft_verbose_flag(VERBOSE_LIVES_FLAG))
 				ft_printf("Process %d hasn't lived for %d cycles (CTD %d)\n", ptr->pid, env->arena.cycles - ptr->last_live, env->arena.cycles_to_die);
 			tmp = ptr->next;
@@ -241,21 +239,12 @@ void		ft_check_cycles(t_env *env)
 
 void		ft_check_for_winner(t_env *env)
 {
-	t_champ	*ptr;
 	t_champ	*highest;
 
-	highest = env->champs;
-
-	ptr = env->champs;
-	while (ptr)
-	{
-		if (ptr->live >= highest->live)
-			highest = ptr;
-		ptr = ptr->next;
-	}
+	highest = ft_get_champ(env->arena.last_live);
 	ft_printf("Contestant %d, \"%s\", has won !\n", -highest->number, highest->header.prog_name);
 }
-
+/*
 void		ft_check_refresh(t_env *env)
 {
 	t_process	*ptr;
@@ -268,6 +257,25 @@ void		ft_check_refresh(t_env *env)
 			ft_get_process_infos(ptr, &env->arena);
 			ptr->need_refresh = 0;
 		}
+		ptr = ptr->next;
+	}
+}
+*/
+void		ft_routine(t_env *env)
+{
+	t_process	*ptr;
+
+	ptr = env->arena.process;
+	while (ptr)
+	{
+		if (ptr->need_refresh == 1)
+		{
+			ft_get_process_infos(ptr, &env->arena);
+			ptr->need_refresh = 0;
+		}
+		ptr->cycles_to_exec--;
+		if (ptr->cycles_to_exec <= 0)
+			ft_try_op(env, ptr);
 		ptr = ptr->next;
 	}
 }
@@ -284,9 +292,10 @@ int			ft_run(t_env *env)
 			ft_verbose_dump_arena(&env->arena);
 			break;
 		}
-		ft_check_refresh(env);
 		ft_increment_cycles(env);						// faire tout ca en 1 fonction
-		ft_check_for_action(env);
+		ft_routine(env);
+//		ft_check_refresh(env);
+//		ft_check_for_action(env);
 		if (env->arena.actual_cycles_to_die <= 0)
 			ft_check_cycles(env);
 		if (env->arena.process == NULL)

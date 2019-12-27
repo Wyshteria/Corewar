@@ -6,7 +6,7 @@
 /*   By: toliver <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/04 01:38:07 by toliver           #+#    #+#             */
-/*   Updated: 2019/12/27 03:25:40 by toliver          ###   ########.fr       */
+/*   Updated: 2019/12/27 20:38:40 by toliver          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -104,7 +104,7 @@ typedef struct		s_champ
 	int				offset;
 	char			*filename;
 	char			*content;
-	int				live;
+//	int				live;
 	struct s_champ	*next;
 }					t_champ;
 
@@ -168,6 +168,7 @@ typedef struct		s_arena
 	int				actual_cycles_to_die;
 	int				cycles_to_die;
 	int				check_number;
+	int				last_live;
 }					t_arena;
 
 typedef struct		s_env
@@ -207,7 +208,7 @@ int			ft_pow2(int pow);
 int			ft_strchr_pos(char *str, int c);
 int			ft_is_one_of(char c, char *lookfor);
 void		*ft_malloc(size_t size);
-
+t_champ		*ft_get_champ(int champnumber);
 /*
 ** ENV FUNCTIONS
 */

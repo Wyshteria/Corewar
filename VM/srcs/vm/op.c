@@ -6,7 +6,7 @@
 /*   By: zaz <marvin@42.fr>                         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2013/10/04 11:43:01 by zaz               #+#    #+#             */
-/*   Updated: 2019/12/27 03:34:56 by toliver          ###   ########.fr       */
+/*   Updated: 2019/12/27 20:38:38 by toliver          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -93,7 +93,7 @@ void		ft_verbose_params(t_opcode *op, t_process *proc, char r_display)
 	else if (op->opcode == STI)
 		ft_printf("\n%8c -> store to %d + %d = %d (with pc and mod %d)", '|', op->params_parsed[1], op->params_parsed[2], op->params_parsed[1] + op->params_parsed[2], (proc->pos + (op->params_parsed[1] + op->params_parsed[2]) % IDX_MOD) ); // deleted modulo mem size
 	else if (op->opcode == FORK || op->opcode == LFORK)
-		ft_printf(" (%d)", (proc->pos + op->params_parsed[0]));
+		ft_printf(" (%d)", (proc->pos + op->params_parsed[1]));
 	else if (op->opcode == LLDI)
 		ft_printf("\n%8c -> load from %d + %d = %d (with pc and mod %d)", '|', op->params_parsed[0], op->params_parsed[1], op->params_parsed[0] + op->params_parsed[1], (proc->pos + (op->params_parsed[0] + op->params_parsed[1]))); // deleted modulo mem size
 	ft_printf("\n");
@@ -112,12 +112,12 @@ void		ft_live(t_opcode *op, t_process *process, t_arena *arena)
 	}
 	if ((champ = ft_get_champ(value)))
 	{
-		if (value == *(int32_t*)process->reg[0].mem)
-		{
-			champ->live++; // verifier si ca corrige bien mes soucis
+	//	if (value == *(int32_t*)process->reg[0].mem)
+	//	{
 			if (ft_verbose_flag(VERBOSE_LIVES_FLAG))
 				ft_printf("Player %d (%s) is said to be alive\n", -champ->number, champ->header.prog_name);
-		}
+			arena->last_live = value;
+	//	}
 	}
 	process->live_number += 1;
 	process->last_live = arena->cycles; // voir si on doit compter ca aussi oupas
@@ -348,7 +348,8 @@ void		ft_fork(t_opcode *op, t_process *process, t_arena *arena)
 
 	pos = ((int16_t)op->params[0]) % IDX_MOD;
 	ft_clone_process(arena, process, pos);
-	op->params_parsed[0] = pos;
+	op->params_parsed[0] = ((int16_t)op->params[0]);
+	op->params_parsed[1] = op->params_parsed[0] % IDX_MOD;
 	if (ft_verbose_flag(VERBOSE_OPERATIONS_FLAG))
 	{
 		ft_verbose_params(op, process, 0);
@@ -408,6 +409,7 @@ void		ft_lfork(t_opcode *op, t_process *process, t_arena *arena)
 {
 	ft_clone_process(arena, process, op->params[0]);
 	op->params_parsed[0] = op->params[0];
+	op->params_parsed[1] = op->params[0];
 	if (ft_verbose_flag(VERBOSE_OPERATIONS_FLAG))
 	{
 		ft_verbose_params(op, process, 0);

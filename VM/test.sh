@@ -3,13 +3,14 @@ MY_VM_PATH=./vm
 
 CHAMP_PATH=../vm_champs/
 
-#CHAMP1="${CHAMP_PATH}champs/maxidef.cor"
-CHAMP1="${CHAMP_PATH}champs/Mortel.cor"
-#CHAMP1="${CHAMP_PATH}champs/Octobre_rouge_V4.2.cor"
-#CHAMP1="${CHAMP_PATH}champs/car.cor"
 #CHAMP1="${CHAMP_PATH}champs/jumper.cor"
-#CHAMP1="${CHAMP_PATH}champs/slider2.cor"
+#CHAMP1="${CHAMP_PATH}champs/Mortel.cor"
+#CHAMP1="${CHAMP_PATH}champs/Octobre_rouge_V4.2.cor"
 #CHAMP1="${CHAMP_PATH}champs/Toto.cor"
+#CHAMP1="${CHAMP_PATH}champs/slider2.cor"
+
+CHAMP1="${CHAMP_PATH}champs/car.cor"
+#CHAMP1="${CHAMP_PATH}champs/maxidef.cor"
 #CHAMP1="${CHAMP_PATH}champs/examples/fluttershy.cor"
 #CHAMP1="${CHAMP_PATH}champs/championships/2018/bcozic/pai_mu_tan.cor"
 #CHAMP1="${CHAMP_PATH}champs/championships/2014/gbir/_.cor"
