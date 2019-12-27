@@ -6,7 +6,7 @@
 /*   By: toliver <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/05 23:52:15 by toliver           #+#    #+#             */
-/*   Updated: 2019/12/22 07:38:24 by toliver          ###   ########.fr       */
+/*   Updated: 2019/12/27 03:34:52 by toliver          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,10 +20,23 @@ void		ft_dump_process(t_process *process)
 	ft_printf("== DUMPING PROCESS %d ==\n", process->pid);
 	ft_printf("actual_pos = %d\n", process->pos);
 	ft_printf("dumping process register :\n");
+	ft_printf("process lived : %d\n", process->live_number);
 	while (i < REG_NUMBER)
 	{
 		ft_printf("\tregister %d = %d\n", i, *((int32_t*)(process->reg[i].mem)));
 		i++;
+	}
+}
+
+void		ft_dump_all_process(t_arena *arena)
+{
+	t_process	*process;
+
+	process = arena->process;
+	while (process)
+	{
+		ft_dump_process(process);
+		process = process->next;
 	}
 }
 

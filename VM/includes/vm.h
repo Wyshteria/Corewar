@@ -6,7 +6,7 @@
 /*   By: toliver <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/04 01:38:07 by toliver           #+#    #+#             */
-/*   Updated: 2019/12/22 15:21:42 by toliver          ###   ########.fr       */
+/*   Updated: 2019/12/27 03:25:40 by toliver          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -148,6 +148,7 @@ typedef struct		s_opcode
 	int32_t			params_parsed[REG_NUMBER];
 	int				size;
 	int				is_valid;
+	int				flag;
 //	int				pos;
 }					t_opcode;
 
@@ -195,6 +196,7 @@ void		ft_dump_arena(t_arena *arena);
 void		ft_dump_process(t_process *process);
 void		ft_dump_op(t_opcode *op);
 void		ft_dump_process(t_process *process);
+void		ft_dump_all_process(t_arena *arena);
 /*
 ** UTILS FUNCTIONS
 */

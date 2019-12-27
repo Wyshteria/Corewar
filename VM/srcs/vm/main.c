@@ -6,7 +6,7 @@
 /*   By: toliver <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/19 18:19:18 by toliver           #+#    #+#             */
-/*   Updated: 2019/12/24 00:27:48 by toliver          ###   ########.fr       */
+/*   Updated: 2019/12/27 19:53:33 by toliver          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,8 +86,8 @@ void		ft_exec_op(t_opcode *op, t_process *process, t_arena *arena)
 		ft_printf("(ne devrait pas arriver sauf sur 0)");
 	else
 	{
-//		if (ft_verbose_flag(VERBOSE_OPERATIONS_FLAG))
-//			ft_verbose_op(ft_get_env(), process, op);
+		if (ft_verbose_flag(VERBOSE_OPERATIONS_FLAG) && op->opcode != AFF)
+			ft_verbose_op(arena, process, op);
 		op_func[op->opcode](op, process, arena);
 	}
 	// verifier si l'op est 0 si ca fait le move
@@ -194,6 +194,7 @@ void		ft_check_cycles(t_env *env)
 
 	should_reset = 0;
 	lifetotal = 0;
+
 //	ft_printf("CHECK LIVES ! at cycle %d\n", env->arena.cycles);
 	if (env->arena.cycles_to_die <= 0)
 	{
@@ -219,8 +220,7 @@ void		ft_check_cycles(t_env *env)
 	}
 	if (lifetotal >= NBR_LIVE) // re tester si je dois vraiment tester avec +test
 	{
-		ft_printf("caused by lifetotal\n");
-		ft_printf("life total = %d\n", lifetotal);
+//		ft_printf("caused by life total = %d\n", lifetotal);
 		ft_decrease_cycle_to_die(&env->arena);
 		env->arena.check_number = MAX_CHECKS;
 		test++; // VOIR SI C VRAIMENT UTILE
@@ -232,7 +232,7 @@ void		ft_check_cycles(t_env *env)
 	}
 	if (env->arena.check_number == 0)
 	{
-		ft_printf("caused by checknumber\n");
+//		ft_printf("caused by checknumber\n");
 		ft_decrease_cycle_to_die(&env->arena);
 		env->arena.check_number = MAX_CHECKS;
 	}
@@ -277,7 +277,6 @@ int			ft_run(t_env *env)
 	ft_intro(env);
 	while (1)
 	{
-		ft_check_refresh(env);
 		if ((env->flags & CYCLE_DUMP_FLAG) && env->arena.cycles % env->cycle_dump_cycles == 0)
 			ft_verbose_dump_arena(&env->arena);
 		if ((env->flags & DUMP_FLAG) && env->dump_cycles == env->arena.cycles)
@@ -285,7 +284,8 @@ int			ft_run(t_env *env)
 			ft_verbose_dump_arena(&env->arena);
 			break;
 		}
-		ft_increment_cycles(env);
+		ft_check_refresh(env);
+		ft_increment_cycles(env);						// faire tout ca en 1 fonction
 		ft_check_for_action(env);
 		if (env->arena.actual_cycles_to_die <= 0)
 			ft_check_cycles(env);

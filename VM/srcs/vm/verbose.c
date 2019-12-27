@@ -6,7 +6,7 @@
 /*   By: toliver <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/22 02:50:34 by toliver           #+#    #+#             */
-/*   Updated: 2019/12/23 23:50:58 by toliver          ###   ########.fr       */
+/*   Updated: 2019/12/27 05:41:14 by toliver          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,7 @@ int			ft_verbose_flag(int flag)
 	return (0);	
 }
 
+/*
 void		ft_verbose_op_params(t_arena *arena, t_process *process, t_opcode *op, int as_is_flag)
 {
 	int		i;
@@ -115,12 +116,13 @@ void		ft_tmp_verboseparam(t_arena *arena, t_process *process, t_opcode *op)
 	}
 	ft_verbose_op_params(arena, process, op, as_is);
 }
-
+*/
 void		ft_verbose_op(t_arena *arena, t_process *process, t_opcode *op)
 {
-
+	(void)arena;
+	(void)op;
 	ft_printf("P %4d | %s", process->pid, op_tab[process->opcode_value].opcode);
-	ft_tmp_verboseparam(arena, process, op);
+//	ft_tmp_verboseparam(arena, process, op);
 }
 
 

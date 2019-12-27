@@ -6,7 +6,7 @@
 /*   By: toliver <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/05 23:58:23 by toliver           #+#    #+#             */
-/*   Updated: 2019/12/24 00:27:47 by toliver          ###   ########.fr       */
+/*   Updated: 2019/12/27 03:58:54 by toliver          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,6 +55,7 @@ int			ft_clone_process(t_arena *arena, t_process *to_clone, int pos)
 	if (process->pos < 0)
 		process->pos = MEM_SIZE + process->pos;
 	process->pid = arena->pid;
+	process->live_number = 0;
 	arena->pid += 1;
 	process->next = arena->process;
 	arena->process = process;
@@ -100,7 +101,11 @@ int32_t			ft_parse_value(t_arena *arena, int pos, int size)
 	int					i;
 
 	i = 0;
-	value.real_value = 0;
+	value.value[0] = 0;
+	value.value[1] = 0;
+	value.value[2] = 0;
+	value.value[3] = 0;
+	//value.real_value = 0;
 	if (pos < 0)
 		pos = MEM_SIZE + pos;
 	while (i < size)
@@ -120,8 +125,7 @@ int32_t			ft_parse_value(t_arena *arena, int pos, int size)
 	return (value.real_value);	
 }
 
-
-int32_t		ft_get_value_from_address(t_arena *arena, int pos, int offset)
+int32_t		ft_get_value_from_address(t_arena *arena, int pos, int32_t offset)
 {
 	int					realpos;
 	int32_t				value;
@@ -129,7 +133,7 @@ int32_t		ft_get_value_from_address(t_arena *arena, int pos, int offset)
 	realpos = (pos + offset) % MEM_SIZE;
 	if (realpos < 0)
 		realpos = MEM_SIZE + realpos;
-	value = ft_parse_value(arena, pos, REG_SIZE);
+	value = ft_parse_value(arena, realpos, REG_SIZE);
 	return (value);
 }
 
