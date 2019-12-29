@@ -94,7 +94,7 @@ void		ft_verbose_params(t_opcode *op, t_process *proc, char r_display)
 	else if (op->opcode == FORK || op->opcode == LFORK)
 		ft_printf(" (%d)", (proc->pos + op->params_parsed[1]));
 	else if (op->opcode == LLDI)
-		ft_printf("\n%8c -> load from %d + %d = %d (with pc and mod %d)", '|', op->params_parsed[0], op->params_parsed[1], op->params_parsed[0] + op->params_parsed[1], (proc->pos + (op->params_parsed[0] + op->params_parsed[1])));
+		ft_printf("\n%8c -> load from %d + %d = %d (with pc %d)", '|', op->params_parsed[0], op->params_parsed[1], op->params_parsed[0] + op->params_parsed[1], (proc->pos + (op->params_parsed[0] + op->params_parsed[1])));
 	ft_printf("\n");
 }
 
