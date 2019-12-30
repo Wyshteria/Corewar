@@ -6,7 +6,7 @@
 /*   By: toliver <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/04 01:38:07 by toliver           #+#    #+#             */
-/*   Updated: 2019/12/27 20:38:40 by toliver          ###   ########.fr       */
+/*   Updated: 2019/12/30 07:12:35 by toliver          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,13 +21,16 @@
 #include <stdint.h>
 #include "display.h"
 
+/*
 #define CONCATABLE_FLAGS "a"
 #define PARAMS_FLAGS "dsv"
-
+*/
 #define AFF_FLAG 0x1 // a
 #define DUMP_FLAG 0x2 // d
 #define CYCLE_DUMP_FLAG 0x4 // s
 #define VERBOSE_FLAG 0x8 // v
+#define NCURSES_FLAG 0x10 // nc
+#define FORBIDDEN_NC_FLAGS 0xE
 
 #define VERBOSE_LIVES_FLAG 0x1
 #define VERBOSE_CYCLES_FLAG 0x2
@@ -35,17 +38,25 @@
 #define VERBOSE_DEATH_FLAG 0x8
 #define VERBOSE_PC_MOVEMENT_FLAG 0x16
 
+typedef struct				s_params_list
+{
+	char					*param;
+	struct s_params_list	*next;
+}							t_params_list;
+
 enum				e_parsing_modes
 {
-	PARSE_FLAGS,
-	PARSE_FILES,
-	PARSE_ERROR,
-	PARSE_CRASH
+	PARSING_RUNNING,
+	PARSING_ERROR,
+	PARSING_CRASH,
+	PARSING_DONE,
 };
 
 enum				e_parsing_errors
 {
 	UNKNOWN_FLAG,
+	FLAG_WITH_NC_ERROR,
+	NC_WITH_FLAGS_ERROR,
 	PARAM_FLAG_WRONG,
 	PARAM_MISSING,
 	PARAM_NEGATIVE,
@@ -98,6 +109,7 @@ union				u_converter
 
 typedef struct		s_champ
 {
+	int				hasnumber;
 	int				number;
 	t_header		header;
 	int				fd;
@@ -175,7 +187,7 @@ typedef struct		s_env
 {
 	char			*prog_name;
 	int				ac;
-	int				flags;
+	unsigned int	flags;
 	size_t			dump_cycles;
 	size_t			cycle_dump_cycles;
 	int				verbose_level;

@@ -6,7 +6,7 @@
 /*   By: toliver <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/19 18:19:18 by toliver           #+#    #+#             */
-/*   Updated: 2019/12/27 22:19:36 by toliver          ###   ########.fr       */
+/*   Updated: 2019/12/30 04:16:34 by toliver          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -274,6 +274,9 @@ int			main(int ac, char **av)
 	ft_env_init(&env, av[0], ac - 1);
 	if (!ft_parse_params(&env, av + 1))
 		return (-1);
+
+
+/*
 	ft_parse_champs(&env); // verifier qu'il y a bien un champion et qu'on en a pas trop
 	if (!ft_init_arena(&env))
 	{
@@ -282,5 +285,6 @@ int			main(int ac, char **av)
 	}
 	ft_run(&env);
 	ft_free_env(&env);
+*/
 	return (0);
 }

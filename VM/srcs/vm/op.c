@@ -6,7 +6,7 @@
 /*   By: zaz <marvin@42.fr>                         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2013/10/04 11:43:01 by zaz               #+#    #+#             */
-/*   Updated: 2019/12/28 00:51:10 by toliver          ###   ########.fr       */
+/*   Updated: 2019/12/30 03:18:04 by toliver          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -96,29 +96,6 @@ void		ft_verbose_params(t_opcode *op, t_process *proc, char r_display)
 	else if (op->opcode == LLDI)
 		ft_printf("\n%8c -> load from %d + %d = %d (with pc %d)", '|', op->params_parsed[0], op->params_parsed[1], op->params_parsed[0] + op->params_parsed[1], (proc->pos + (op->params_parsed[0] + op->params_parsed[1])));
 	ft_printf("\n");
-}
-
-void		ft_live(t_opcode *op, t_process *process, t_arena *arena)
-{
-	int32_t	value;
-	t_champ	*champ;
-
-	value = ft_parse_value(arena, (process->pos + 1) % MEM_SIZE, 4);
-	op->params_parsed[0] = value;
-	if (ft_verbose_flag(VERBOSE_LIVES_FLAG))
-	{
-		ft_verbose_params(op, process, 0);
-	}
-	if ((champ = ft_get_champ(value)))
-	{
-		if (ft_verbose_flag(VERBOSE_LIVES_FLAG))
-			ft_printf("Player %d (%s) is said to be alive\n",
-					-champ->number, champ->header.prog_name);
-		arena->last_live = value;
-	}
-	process->live_number += 1;
-	process->last_live = arena->cycles;
-	ft_move_process(op, process, arena);
 }
 
 void		ft_ld(t_opcode *op, t_process *process, t_arena *arena)
@@ -356,36 +333,6 @@ void		ft_fork(t_opcode *op, t_process *process, t_arena *arena)
 	ft_move_process(op, process, arena);
 }
 
-/*
-** THIS FUNCTION IS INCORRECT
-** however, I tried to copy the behavior of the Zaz vm, so it only reads 2 bytes
-** instead of 4
-*/
-
-void		ft_lld(t_opcode *op, t_process *process, t_arena *arena)
-{
-	int		reg_number;
-	int32_t	value;
-
-	reg_number = op->params[1];
-	if (op->params_types[0] == T_DIR)
-		value = ft_parse_value(arena, process->pos + 2, 4);
-	else
-		value = ft_parse_value(arena, process->pos + op->params[0], 2);
-	op->params_parsed[0] = value;
-	op->params_parsed[1] = op->params[1];
-	*((uint32_t*)(process->reg[op->params[1] - 1].mem)) = value;
-	if (value == 0)
-		process->carry = 1;
-	else
-		process->carry = 0;
-	if (ft_verbose_flag(VERBOSE_OPERATIONS_FLAG))
-	{
-		ft_verbose_params(op, process, 0b0100);
-	}
-	ft_move_process(op, process, arena);
-}
-
 void		ft_lldi(t_opcode *op, t_process *process, t_arena *arena)
 {
 	int32_t	value1;
@@ -431,3 +378,60 @@ void		ft_aff(t_opcode *op, t_process *process, t_arena *arena)
 		ft_printf("Aff: %c\n", value);
 	ft_move_process(op, process, arena);
 }
+
+
+
+void		ft_live(t_opcode *op, t_process *process, t_arena *arena)
+{
+	int32_t	value;
+	t_champ	*champ;
+
+	value = ft_parse_value(arena, (process->pos + 1) % MEM_SIZE, 4);
+	op->params_parsed[0] = value;
+	if (ft_verbose_flag(VERBOSE_LIVES_FLAG))
+	{
+		ft_verbose_params(op, process, 0);
+	}
+	if ((champ = ft_get_champ(value)))
+	{
+		if (ft_verbose_flag(VERBOSE_LIVES_FLAG))
+			ft_printf("Player %d (%s) is said to be alive\n",
+					-champ->number, champ->header.prog_name);
+		arena->last_live = value;
+	}
+	process->live_number += 1;
+	process->last_live = arena->cycles;
+	ft_move_process(op, process, arena);
+}
+
+/*
+** THIS FUNCTION IS INCORRECT
+** however, I tried to copy the behavior of the Zaz vm, so it only reads 2 bytes
+** instead of 4
+*/
+
+void		ft_lld(t_opcode *op, t_process *process, t_arena *arena)
+{
+	int		reg_number;
+	int32_t	value;
+
+	reg_number = op->params[1];
+	if (op->params_types[0] == T_DIR)
+		value = ft_parse_value(arena, process->pos + 2, 4);
+	else
+		value = ft_parse_value(arena, process->pos + op->params[0], 2);
+	op->params_parsed[0] = value;
+	op->params_parsed[1] = op->params[1];
+	*((uint32_t*)(process->reg[op->params[1] - 1].mem)) = value;
+	if (value == 0)
+		process->carry = 1;
+	else
+		process->carry = 0;
+	if (ft_verbose_flag(VERBOSE_OPERATIONS_FLAG))
+	{
+		ft_verbose_params(op, process, 0b0100);
+	}
+	ft_move_process(op, process, arena);
+}
+
+
