@@ -14,7 +14,7 @@ CHAMP_PATH=../vm_champs/
 #CHAMP1="${CHAMP_PATH}champs/championships/2018/mkamel/le_pet_de_nonne.cor"
 
 #CHAMP1="${CHAMP_PATH}champs/car.cor"
-CHAMP1="${CHAMP_PATH}champs/maxidef.cor"
+#CHAMP1="${CHAMP_PATH}champs_tests/jinx.cor"
 
 #CHAMP1="${CHAMP_PATH}champs_tests/test.cor"
 

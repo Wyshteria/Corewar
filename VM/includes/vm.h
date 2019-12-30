@@ -6,7 +6,7 @@
 /*   By: toliver <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/04 01:38:07 by toliver           #+#    #+#             */
-/*   Updated: 2019/12/30 07:12:35 by toliver          ###   ########.fr       */
+/*   Updated: 2019/12/30 09:31:06 by toliver          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,7 +59,9 @@ enum				e_parsing_errors
 	NC_WITH_FLAGS_ERROR,
 	PARAM_FLAG_WRONG,
 	PARAM_MISSING,
+	CHAMP_MISSING,
 	PARAM_NEGATIVE,
+	PARSING_OVERFLOW,
 };
 
 enum				e_champ_error
@@ -116,7 +118,6 @@ typedef struct		s_champ
 	int				offset;
 	char			*filename;
 	char			*content;
-//	int				live;
 	struct s_champ	*next;
 }					t_champ;
 

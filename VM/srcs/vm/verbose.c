@@ -6,7 +6,7 @@
 /*   By: toliver <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/22 02:50:34 by toliver           #+#    #+#             */
-/*   Updated: 2019/12/27 22:21:41 by toliver          ###   ########.fr       */
+/*   Updated: 2019/12/30 09:30:13 by toliver          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,8 +39,8 @@ void		ft_intro(t_env *env)
 	ptr = env->champs;
 	while (ptr)
 	{
-		ft_printf("* Player %d, weighing %u bytes, \"%s\" (\"%s\") !\n", i,
-				ptr->header.prog_size, ptr->header.prog_name,
+		ft_printf("* Player %d, weighing %u bytes, \"%s\" (\"%s\") !\n",
+				-ptr->number, ptr->header.prog_size, ptr->header.prog_name,
 				ptr->header.comment);
 		i++;
 		ptr = ptr->next;

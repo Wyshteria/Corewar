@@ -6,7 +6,7 @@
 /*   By: zaz <marvin@42.fr>                         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2013/10/04 11:43:01 by zaz               #+#    #+#             */
-/*   Updated: 2019/12/30 03:18:04 by toliver          ###   ########.fr       */
+/*   Updated: 2019/12/30 09:15:26 by toliver          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,18 +59,6 @@ void	(*op_func[17])(t_opcode*, t_process*, t_arena*) =
 	&ft_lfork,
 	&ft_aff,
 };
-
-t_champ		*ft_get_champ(int32_t num)
-{
-	t_env	*env;
-	t_champ	*ptr;
-
-	env = ft_get_env();
-	ptr = env->champs;
-	while (ptr && ptr->number != num)
-		ptr = ptr->next;
-	return (ptr);
-}
 
 void		ft_verbose_params(t_opcode *op, t_process *proc, char r_display)
 {

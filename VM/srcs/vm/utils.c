@@ -6,11 +6,23 @@
 /*   By: toliver <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/05 23:58:23 by toliver           #+#    #+#             */
-/*   Updated: 2019/12/30 05:03:16 by toliver          ###   ########.fr       */
+/*   Updated: 2019/12/30 09:31:05 by toliver          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "vm.h"
+
+t_champ		*ft_get_champ(int32_t num)
+{
+	t_env	*env;
+	t_champ	*ptr;
+
+	env = ft_get_env();
+	ptr = env->champs;
+	while (ptr && ptr->number != num)
+		ptr = ptr->next;
+	return (ptr);
+}
 
 void		ft_get_process_infos(t_process *process, t_arena *arena)
 {

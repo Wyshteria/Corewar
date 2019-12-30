@@ -6,7 +6,7 @@
 #    By: toliver <marvin@42.fr>                     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/09/20 19:50:33 by toliver           #+#    #+#              #
-#    Updated: 2019/12/27 21:50:38 by toliver          ###   ########.fr        #
+#    Updated: 2019/12/30 05:11:30 by toliver          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -20,7 +20,7 @@ INCLUDES = -I includes\
 LIBS =	./libs/libft/libft.a\
 		./libs/ftprintf/libftprintf.a\
 
-FLAGS = -Wall -Wextra -Werror -g3
+FLAGS = -Wall -Wextra -Werror -g3 -fsanitize=address
 
 OBJS = $(addprefix objs/, $(addsuffix .o, \
 			$(addprefix vm/, \
