@@ -6,7 +6,7 @@
 /*   By: zaz <marvin@42.fr>                         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2013/10/04 11:43:01 by zaz               #+#    #+#             */
-/*   Updated: 2019/12/30 09:15:26 by toliver          ###   ########.fr       */
+/*   Updated: 2019/12/30 09:46:28 by toliver          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -368,6 +368,10 @@ void		ft_aff(t_opcode *op, t_process *process, t_arena *arena)
 }
 
 
+
+
+
+// changer le verbose de cette fonction selon qu'on fasse la correc ou la vm de zaz
 
 void		ft_live(t_opcode *op, t_process *process, t_arena *arena)
 {
