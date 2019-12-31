@@ -67,6 +67,18 @@ void		ft_dump_tokens(t_file *file)
 	}
 }
 
+void		ft_dump_label(t_file *file)
+{
+	t_label *label;
+
+	label = file->label;
+	while (label)
+	{
+		ft_printf("\t\t[%s]\n", label->value);
+		label = label->next;
+	}
+}
+
 void		ft_dump_file(t_file *file)
 {
 	ft_printf("\tfile name = %s\n", file->filename);
@@ -74,6 +86,8 @@ void		ft_dump_file(t_file *file)
 	ft_printf("\tline:col [%d:%d]\n", file->line, file->col);
 	ft_printf("\tfile offset = %zu\n", file->offset);
 	ft_printf("\tfile mode = %d\n", file->mode);
+	ft_printf("\tLabels :\n");
+	ft_dump_label(file);
 	ft_printf("\tHeader\n\t\tmagic = %u\n", file->header.magic);
 	ft_printf("\t\tprog_name = %.*s\n", PROG_NAME_LENGTH + 1, file->header.prog_name);
 	ft_printf("\t\tcomment = %.*s\n", COMMENT_LENGTH + 1, file->header.comment);

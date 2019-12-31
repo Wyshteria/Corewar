@@ -42,21 +42,13 @@ void		ft_delete_file(t_env *env, t_file *file)
 	ft_free_file(file);
 }
 
-// int			ft_parse_operations(t_env *env, t_file *file)
-// {
-// 	file->mode = PARSING;
-// 	while (file->mode != DONE && file->mode != CRASH && file->mode != CONTAIN_ERRORS)
-// 	{
-// 		ft_skip_spaces(env, file);
-// 		ft_parse_token(env, file);
-// 	}
-// 	if (file->mode == CRASH)
-// 		ft_crash(MALLOC_FAIL);
-// 	else if (file->mode == CONTAIN_ERRORS)
-// 		return (0);
-// 	return (1);
+int			ft_parse_operations(t_env *env, t_file *file)
+{
+	(void)env;
+	(void)file;
+	return (1);
 
-// }
+}
 
 int			ft_parse_file(t_env *env, t_file *file)
 {
@@ -66,19 +58,27 @@ int			ft_parse_file(t_env *env, t_file *file)
 		ft_parse_token(env, file);
 	}
 	ft_dump_tokens(file);
-	if (file->mode == DONE && (!file->header.prog_name[0]
-	|| !file->header.comment[0]))
-		return (ft_syntax_error(file, ft_last_token(file)));
-	// else if (file->mode == DONE)
-	// 	return (ft_parse_operations(env, file));
+	// if (file->mode == DONE && (!file->header.prog_name[0]
+	// || !file->header.comment[0]))
+	// 	return (ft_syntax_error(file, ft_last_token(file)));
+	/*else*/ if (file->mode == DONE)
+		return (ft_parse_operations(env, file));
 	else if (file->mode == CONTAIN_ERRORS)
+	{
+		// ft_dump_tokens(file);
 		return (0);
+	}
 	return (1);
 }
 
 int			ft_write_file(t_env *env, t_file *file)
 {
 	ft_printf("writing file !\n");
+	if (!ft_init_prog(env, file))
+	{
+		ft_dump_tokens(file);
+	}
+		return (0);
 	ft_dump_tokens(file);
 	ft_dump_env(env);
 	return (1);

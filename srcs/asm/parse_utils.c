@@ -12,6 +12,29 @@
 
 #include "asm.h"
 
+int		ft_add_label(t_file *file, char *label)
+{
+	t_label **tmp;
+
+	tmp = &(file->label);
+	while (*tmp)
+	{
+		if (!ft_strnequ(label, (*tmp)->value, ft_strlen(label) + 1))
+			tmp = &((*tmp)->next);
+		else
+		{
+			ft_printf("label %s already used\n", label);
+			file->mode = CONTAIN_ERRORS;
+			return (0);
+		}
+	}
+	if (!(*tmp = (t_label*)malloc(sizeof(t_label))))
+		ft_crash(MALLOC_FAIL);
+	(*tmp)->value = label;
+	(*tmp)->next = NULL;
+	return (1);
+}
+
 t_token		*ft_last_token(t_file *file)
 {
 	t_token *token;

@@ -47,11 +47,14 @@ enum e_type
 	OPERATION,
 	PARAM,
 	NEWLINE,
+	INDIRECT,
+	INDIRECT_LABEL,
 	DIRECT,
 	DIRECT_LABEL,
 	SEPARATOR,
 	REGISTER,
 	NUMBER,
+	INSTRUCTION,
 	UNKNOWN,
 };
 // parse par token puis parse les tokens
@@ -75,6 +78,12 @@ enum e_fileparsing_mode
 	CONTAIN_ERRORS,
 };
 
+typedef struct		s_label
+{
+	char			*value; // ne pas free, assigne token->value
+	struct s_label	*next;
+}					t_label;
+
 typedef struct		s_file
 {
 	char			*filename; // ne pas free, assigne le av[i] correspondant;
@@ -84,6 +93,7 @@ typedef struct		s_file
 	off_t			offset;
 	int				mode;
 	t_token			*tokens;
+	t_label			*label;
 	header_t		header;
 	struct s_file	*next;
 }					t_file;
@@ -99,8 +109,8 @@ typedef struct		s_program
 {
 	int			fd;
 	char			*filename;
-	char			*name;
-	char			*comment;
+	// char			*name;
+	// char			*comment;
 //	t_operation		*operations;
 }					t_program;
 
@@ -136,6 +146,16 @@ typedef struct		s_program
 	t_operation		*operations;
 }					t_program;
 */
+
+/*
+** WRITING FUNC
+*/
+
+int		ft_init_prog(t_env *env, t_file *file);
+int		ft_add_label(t_file *file, char *label);
+int		ft_check_labels(t_file *file, t_token *token);
+t_token	*ft_check_header(t_file *file);
+int		ft_pass_newline(t_file *file, t_token **token);
 
 /*
 ** PARSING FUNC
@@ -189,6 +209,7 @@ int					ft_parse_until(t_file *file, char *limit, char **line, int skipping);
 void				ft_skip_spaces(t_env *env, t_file *file);
 int					ft_offset_lines(t_env *env, t_file *file, char *str);
 int					ft_offset_head(t_env *env, t_file *file, size_t size);
+size_t				ft_strspn(const char *s, const char *charset);
 
 /*
 ** TOKEN FUNC

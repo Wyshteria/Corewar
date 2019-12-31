@@ -20,10 +20,10 @@ size_t	ft_strspn(const char *s, const char *charset)
 	i = 0;
 	while (*s)
 	{
-		while (*charset && (*s == *charset))
+		while (*charset && (*s != *charset))
 			charset++;
-		if (*s != *charset)
-			return (++i);
+		if (*s != *charset && !*charset)
+			return (i);
 		else
 			charset = accept;
 		s++;
@@ -49,7 +49,7 @@ int		ft_syntax_error(t_file *file, t_token *tok)
 
 	if (!tok)
 		ft_printf("%s[%03d:%03d] END \"(null)\"\n",\
-	syntax, file->line, file->col + 1);
+	syntax, file->line, file->col);
 	else if (tok->type == NEWLINE)
 		ft_printf("%s[%03d:%03d] ENDLINE\n",\
 	syntax, tok->line, tok->col);
