@@ -6,12 +6,12 @@
 /*   By: toliver <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/09 04:40:19 by toliver           #+#    #+#             */
-/*   Updated: 2020/01/02 03:43:55 by toliver          ###   ########.fr       */
+/*   Updated: 2020/01/02 08:19:43 by toliver          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "vm.h"
-
+/*
 static void		ft_fill_process(t_arena *arena, WINDOW *main)
 {
 	t_process	*ptr;
@@ -149,17 +149,19 @@ void		ft_ncurses_init(t_arena *arena)
 	
 	if (first_run == 0)
 	{
-	initscr();
-	arena->mode = RUNNING;
-	if (has_colors() == FALSE)
-	{
-		endwin();
-		ft_printf("Your terminal does not support color\n");
-		arena->mode = ENDED;
-		return ;
+		initscr();
+		arena->mode = RUNNING;
+		if (has_colors() == FALSE)
+		{
+			endwin();
+			ft_printf("Your terminal does not support color\n");
+			arena->mode = ENDED;
+			return ;
+		}
+		ft_ncurses_init_colors();
+		ft_ncurses_init_params();
+		first_run = 1;
 	}
-	ft_ncurses_init_colors();
-	ft_ncurses_init_params();
 	ft_ncurses_get_size(arena);
 	refresh();
 	if (arena->mode == RUNNING)
@@ -167,10 +169,6 @@ void		ft_ncurses_init(t_arena *arena)
 	else if (arena->mode == TOO_SMALL)
 		mvprintw(arena->maxy / 2, (arena->maxx - ft_strlen(SMALL_SCREEN)) / 2,
 				SMALL_SCREEN);
-		first_run = 1;
-	}
-	else
-		ft_fill_main_window(arena, arena->main);
 }
 
 void		ft_ncurses_input(t_arena *arena)
@@ -182,9 +180,9 @@ void		ft_ncurses_input(t_arena *arena)
 		arena->mode = ENDED;
 }
 
-void		ft_destroy_windows(t_arena *arena)
+void		ft_destroy_windows(t_arena *arena, int destroymain)
 {
-	if (arena->main)
+	if (arena->main && destroymain)
 	{
 		delwin(arena->main);
 		arena->main = NULL;
@@ -207,10 +205,10 @@ void		ft_check_resize(int signal)
 		refresh();
 		arena = &(ft_get_env()->arena);
 		ft_ncurses_get_size(arena);
-		resizeterm(arena->maxy, arena->maxx);
+//		resizeterm(arena->maxy, arena->maxx);
 		if (arena->mode == TOO_SMALL)
 		{
-			ft_destroy_windows(arena);
+			ft_destroy_windows(arena, 0);
 			clear();
 			refresh();
 			mvprintw(arena->maxy / 2,
@@ -237,6 +235,7 @@ void		ft_test(t_arena *arena)
 	}
 }
 
+
 void		ft_visu(t_env *env)
 {
 	t_arena	*arena;
@@ -247,10 +246,63 @@ void		ft_visu(t_env *env)
 	{
 		signal(SIGWINCH, ft_check_resize);
 		ft_ncurses_input(arena);
-		refresh();
-		wrefresh(arena->main);
+		if (arena->mode != TOO_SMALL)
+		{
+			refresh();
+			wrefresh(arena->main);
+		}
 		ft_run_once(env);
 		ft_ncurses_init(arena);
 	}
 	endwin();
+}
+
+
+*/
+#include <SDL2/SDL.h>
+#include <SDL2/SDL_ttf.h>
+
+void		ft_visu(t_env *env)
+{
+	(void)env;
+	SDL_Event		e;
+    if(SDL_Init(SDL_INIT_VIDEO) != 0) {
+        fprintf(stderr, "Could not init SDL: %s\n", SDL_GetError());
+        return ;
+    }
+	while (SDL_PollEvent(&e))
+	{
+	}
+    SDL_Window *screen = SDL_CreateWindow("My application",
+            SDL_WINDOWPOS_UNDEFINED,
+            SDL_WINDOWPOS_UNDEFINED,
+            1600, 1200,
+            0);
+    if(!screen) {
+        fprintf(stderr, "Could not create window\n");
+        return ;
+    }
+    SDL_Renderer *renderer = SDL_CreateRenderer(screen, -1, SDL_RENDERER_SOFTWARE);
+    if(!renderer) {
+        fprintf(stderr, "Could not create renderer\n");
+        return ;
+    }
+
+    SDL_SetRenderDrawColor(renderer, 0, 20, 0, 255);
+    SDL_RenderClear(renderer);
+    SDL_RenderPresent(renderer);
+
+	int		running = 1;
+	while(running)
+	{	
+		while (SDL_PollEvent(&e))
+		{
+			if (e.type == SDL_QUIT || (e.type == SDL_KEYDOWN && \
+						e.key.keysym.sym == SDLK_ESCAPE))
+				running = 0;
+		}
+	}
+    SDL_DestroyWindow(screen);
+    SDL_Quit();
+    return ;
 }
