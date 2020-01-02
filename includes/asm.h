@@ -80,12 +80,14 @@ enum e_fileparsing_mode
 
 typedef struct		s_label
 {
-	char			*value; // ne pas free, assigne token->value
 	struct s_label	*next;
+	char			*value; // ne pas free, assigne token->value
+	int				memory;
 }					t_label;
 
 typedef struct		s_file
 {
+	struct s_file	*next;
 	char			*filename; // ne pas free, assigne le av[i] correspondant;
 	int				fd;
 	int				line;
@@ -95,7 +97,6 @@ typedef struct		s_file
 	t_token			*tokens;
 	t_label			*label;
 	header_t		header;
-	struct s_file	*next;
 }					t_file;
 
 typedef struct		s_env
@@ -105,13 +106,34 @@ typedef struct		s_env
 	t_file			*files;
 }					t_env;
 
+typedef struct		s_param
+{
+	int				type;
+	int				value_type;
+	char			*value;
+	int				int_value;
+}					t_param;
+
+typedef struct		s_operation
+{
+	struct s_operation	*next;
+	struct s_operation	*prev;
+	char				opc;
+	t_param				params[3];
+	int					p_num;
+	int					memory;
+	int					len;
+	// unsigned char	len_direct;
+}					t_operation;
+
 typedef struct		s_program
 {
-	int			fd;
+	int				fd;
 	char			*filename;
+	int				len;
 	// char			*name;
 	// char			*comment;
-//	t_operation		*operations;
+	t_operation		*operations;
 }					t_program;
 
 /*
@@ -162,6 +184,7 @@ int		ft_pass_newline(t_file *file, t_token **token);
 */
 
 void				ft_parse_args(int ac, char **av, t_env *env);
+t_op				*ft_fetch_op(char *str);
 
 /*
 ** ERROR FUNC

@@ -92,12 +92,10 @@ int		ft_check_comment(t_file *file)
 	return (0);
 }
 
-int ft_check_label(t_file *file)
-{
-
-}
 
 int ft_check_op(t_file *file)
 {
+	t_op *op;
 
+	
 }

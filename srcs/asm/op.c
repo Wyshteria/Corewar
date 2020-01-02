@@ -44,6 +44,8 @@ t_op	*ft_fetch_op(char *str)
 {
 	int		i;
 
+	if (!str)
+		return (NULL);
 	i = 1;
 	while (i < 16)
 	{
