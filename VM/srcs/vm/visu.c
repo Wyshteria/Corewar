@@ -6,82 +6,82 @@
 /*   By: toliver <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/09 04:40:19 by toliver           #+#    #+#             */
-/*   Updated: 2020/01/02 08:19:43 by toliver          ###   ########.fr       */
+/*   Updated: 2020/01/02 20:21:08 by toliver          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "vm.h"
 /*
-static void		ft_fill_process(t_arena *arena, WINDOW *main)
-{
-	t_process	*ptr;
-	int			x;
-	int			y;
+   static void		ft_fill_process(t_arena *arena, WINDOW *main)
+   {
+   t_process	*ptr;
+   int			x;
+   int			y;
 
-	ptr = arena->process;
-	while (ptr)
-	{
-		if (arena->arena[ptr->pos].writer != 0)
-		{
-			wattron(main,
-					COLOR_PAIR(-arena->arena[ptr->pos].writer) | A_REVERSE);
-			if (ptr->opcode_value == LIVE && ptr->cycles_to_exec == 0)
-			{
-				wattron(main, A_BOLD);
-				wattron(main,
-					COLOR_PAIR(-arena->arena[ptr->pos].writer + 4) | A_REVERSE);
-			}
-		}
-		else
-			wattron(main, COLOR_PAIR(STANDARD_COLOR) | A_REVERSE);
-		y = ptr->pos / arena->op_per_line;
-		x = (ptr->pos - (y * arena->op_per_line)) * 3;
-		mvwprintw(main, y + 1, x + 2, "%hh.2x", arena->arena[ptr->pos].value);
-		if (arena->arena[ptr->pos].writer != 0)
-		{
-			wattroff(main,
-					COLOR_PAIR(-(arena->arena[ptr->pos].writer)) | A_REVERSE);
-			if (ptr->opcode_value == LIVE && ptr->cycles_to_exec == 0)
-			{
-				wattroff(main, A_BOLD);
-				wattroff(main,
-					COLOR_PAIR(-arena->arena[ptr->pos].writer + 4) | A_REVERSE);
-			}
-		}
-		else
-			wattroff(main, COLOR_PAIR(STANDARD_COLOR) | A_REVERSE);
-		ptr = ptr->next;
-	}
-}
+   ptr = arena->process;
+   while (ptr)
+   {
+   if (arena->arena[ptr->pos].writer != 0)
+   {
+   wattron(main,
+   COLOR_PAIR(-arena->arena[ptr->pos].writer) | A_REVERSE);
+   if (ptr->opcode_value == LIVE && ptr->cycles_to_exec == 0)
+   {
+   wattron(main, A_BOLD);
+   wattron(main,
+   COLOR_PAIR(-arena->arena[ptr->pos].writer + 4) | A_REVERSE);
+   }
+   }
+   else
+   wattron(main, COLOR_PAIR(STANDARD_COLOR) | A_REVERSE);
+   y = ptr->pos / arena->op_per_line;
+   x = (ptr->pos - (y * arena->op_per_line)) * 3;
+   mvwprintw(main, y + 1, x + 2, "%hh.2x", arena->arena[ptr->pos].value);
+   if (arena->arena[ptr->pos].writer != 0)
+   {
+   wattroff(main,
+   COLOR_PAIR(-(arena->arena[ptr->pos].writer)) | A_REVERSE);
+   if (ptr->opcode_value == LIVE && ptr->cycles_to_exec == 0)
+   {
+   wattroff(main, A_BOLD);
+   wattroff(main,
+   COLOR_PAIR(-arena->arena[ptr->pos].writer + 4) | A_REVERSE);
+   }
+   }
+   else
+   wattroff(main, COLOR_PAIR(STANDARD_COLOR) | A_REVERSE);
+   ptr = ptr->next;
+   }
+   }
 
-static void		ft_fill_arena(t_arena *arena, WINDOW *main) // attention meme nom !
-{
-	int		x;
-	int		y;
-	int		i;
+   static void		ft_fill_arena(t_arena *arena, WINDOW *main) // attention meme nom !
+   {
+   int		x;
+   int		y;
+   int		i;
 
-	y = 0;
-	i = 0;
-	wattron(main, COLOR_PAIR(STANDARD_COLOR));
-	while (y < arena->line_number)
-	{
-		x = 0;
-		while (x < arena->op_per_line)
-		{
-			if (arena->arena[i].writer != 0)
-				wattron(main, COLOR_PAIR(-arena->arena[i].writer));
-			else
-				wattron(main, COLOR_PAIR(STANDARD_COLOR));
-			mvwprintw(main, y + 1, x * 3 + 2, "%hh.2x", arena->arena[i].value);
-			if (arena->arena[i].writer != 0)
-				wattroff(main, COLOR_PAIR(-arena->arena[i].writer));
-			else
-				wattroff(main, COLOR_PAIR(STANDARD_COLOR));
-			x++;
-			i++;
-		}
-		y++;
-	}
+   y = 0;
+   i = 0;
+   wattron(main, COLOR_PAIR(STANDARD_COLOR));
+   while (y < arena->line_number)
+   {
+   x = 0;
+   while (x < arena->op_per_line)
+   {
+   if (arena->arena[i].writer != 0)
+   wattron(main, COLOR_PAIR(-arena->arena[i].writer));
+   else
+   wattron(main, COLOR_PAIR(STANDARD_COLOR));
+   mvwprintw(main, y + 1, x * 3 + 2, "%hh.2x", arena->arena[i].value);
+   if (arena->arena[i].writer != 0)
+   wattroff(main, COLOR_PAIR(-arena->arena[i].writer));
+   else
+   wattroff(main, COLOR_PAIR(STANDARD_COLOR));
+   x++;
+   i++;
+   }
+   y++;
+   }
 }
 
 void		ft_ncurses_get_size(t_arena *arena)
@@ -146,7 +146,7 @@ void		ft_ncurses_create_windows(t_arena *arena)
 void		ft_ncurses_init(t_arena *arena)
 {
 	static int	first_run = 0;
-	
+
 	if (first_run == 0)
 	{
 		initscr();
@@ -205,7 +205,7 @@ void		ft_check_resize(int signal)
 		refresh();
 		arena = &(ft_get_env()->arena);
 		ft_ncurses_get_size(arena);
-//		resizeterm(arena->maxy, arena->maxx);
+		//		resizeterm(arena->maxy, arena->maxx);
 		if (arena->mode == TOO_SMALL)
 		{
 			ft_destroy_windows(arena, 0);
@@ -266,31 +266,109 @@ void		ft_visu(t_env *env)
 {
 	(void)env;
 	SDL_Event		e;
-    if(SDL_Init(SDL_INIT_VIDEO) != 0) {
-        fprintf(stderr, "Could not init SDL: %s\n", SDL_GetError());
-        return ;
-    }
+	if(SDL_Init(SDL_INIT_VIDEO) != 0) {
+		fprintf(stderr, "Could not init SDL: %s\n", SDL_GetError());
+		return ;
+	}
+	if(TTF_Init() == -1) 
+	{
+		fprintf(stderr, "Could not init TTF: %s\n", TTF_GetError());
+		return ;
+	}
 	while (SDL_PollEvent(&e))
 	{
 	}
-    SDL_Window *screen = SDL_CreateWindow("My application",
-            SDL_WINDOWPOS_UNDEFINED,
-            SDL_WINDOWPOS_UNDEFINED,
-            1600, 1200,
-            0);
-    if(!screen) {
-        fprintf(stderr, "Could not create window\n");
-        return ;
-    }
-    SDL_Renderer *renderer = SDL_CreateRenderer(screen, -1, SDL_RENDERER_SOFTWARE);
-    if(!renderer) {
-        fprintf(stderr, "Could not create renderer\n");
-        return ;
-    }
+	SDL_Window *screen = SDL_CreateWindow("My application",
+			SDL_WINDOWPOS_UNDEFINED,
+			SDL_WINDOWPOS_UNDEFINED,
+			1600, 1200,
+			0);
+	if(!screen) {
+		fprintf(stderr, "Could not create window\n");
+		return ;
+	}
+	SDL_Renderer *renderer = SDL_CreateRenderer(screen, -1, SDL_RENDERER_SOFTWARE);
+	if(!renderer) {
+		fprintf(stderr, "Could not create renderer\n");
+		return ;
+	}
 
-    SDL_SetRenderDrawColor(renderer, 0, 20, 0, 255);
-    SDL_RenderClear(renderer);
-    SDL_RenderPresent(renderer);
+	// draw part
+
+	SDL_SetRenderDrawColor(renderer, 0, 43, 54, 255);
+	SDL_RenderClear(renderer);
+	SDL_SetRenderDrawColor(renderer, 7, 54, 66, 255);
+
+	SDL_Rect rect = {13,13,1174,1174};
+	SDL_RenderFillRect(renderer, &rect);
+
+	rect = (SDL_Rect){1198, 13, 390, 1174};
+	SDL_RenderFillRect(renderer, &rect);
+
+//	rect = (SDL_Rect){1225, 50, 16, 16};
+//	SDL_RenderDrawRect(renderer, &rect);
+	// FONT PART
+
+	TTF_Font *police;
+	SDL_Surface* texte;
+	SDL_Texture* message; 
+
+	police = TTF_OpenFont("ressources/UbuntuMono-R.ttf", 14);
+	if (police)
+	{
+		texte = TTF_RenderText_Blended(police, "Wesh", (SDL_Color){0, 43, 54, 255});
+		message = SDL_CreateTextureFromSurface(renderer, texte);
+		TTF_SizeText(police, "Wesh", &rect.w, &rect.h);
+		rect.x = 1226;
+		rect.y = 50;
+
+		SDL_RenderCopy(renderer, message, NULL, &rect);
+
+		texte = TTF_RenderText_Blended(police, "11450 cycles", (SDL_Color){0, 43, 54, 255});
+		message = SDL_CreateTextureFromSurface(renderer, texte);
+		TTF_SizeText(police, "11450 cycles", &rect.w, &rect.h);
+		rect.x = 1300;
+		rect.y = 50;
+
+		SDL_RenderCopy(renderer, message, NULL, &rect);
+	}// penser a free la surface et la texture
+	else
+	{
+		fprintf(stderr, "Could not create police\n");
+	}
+	// fill arena
+
+	int		x;
+	int		y;
+	int		i;
+
+	y = 0;
+	i = 0;
+
+	SDL_SetRenderDrawColor(renderer, 50, 50, 50, 255);
+	while (y < 64)
+	{
+		x = 0;
+		while (x < 64)
+		{
+			rect = (SDL_Rect){25 + x * 18, 25 + y * 18 ,16,16};
+		//	SDL_RenderDrawRect(renderer, &rect);
+	//		texte = TTF_RenderText_Blended(police, "0c", (SDL_Color){0, 43, 54, 255});
+			texte = TTF_RenderText_Blended(police, "0c", (SDL_Color){255, 255, 255, 255});
+			message = SDL_CreateTextureFromSurface(renderer, texte);
+			TTF_SizeText(police, "0c", &rect.w, &rect.h);
+			rect.x += 1;
+			SDL_RenderCopy(renderer, message, NULL, &rect);
+
+			x++;
+			i++;
+		}
+		y++;
+	}
+
+
+	//
+	SDL_RenderPresent(renderer);
 
 	int		running = 1;
 	while(running)
@@ -302,7 +380,13 @@ void		ft_visu(t_env *env)
 				running = 0;
 		}
 	}
-    SDL_DestroyWindow(screen);
-    SDL_Quit();
-    return ;
+
+	// ttf clean
+	TTF_CloseFont(police);
+	TTF_Quit();
+
+	// sdl clean
+	SDL_DestroyWindow(screen);
+	SDL_Quit();
+	return ;
 }

@@ -6,7 +6,7 @@
 #    By: toliver <marvin@42.fr>                     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/09/20 19:50:33 by toliver           #+#    #+#              #
-#    Updated: 2020/01/02 08:19:12 by toliver          ###   ########.fr        #
+#    Updated: 2020/01/02 08:45:21 by toliver          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -21,7 +21,7 @@ INCLUDES = -I includes\
 LIBS =	./libs/libft/libft.a\
 		./libs/ftprintf/libftprintf.a\
 
-FLAGS = -Wall -Wextra -Werror
+FLAGS = -Wall -Wextra -Werror -g3
 
 OBJS = $(addprefix objs/, $(addsuffix .o, \
 			$(addprefix vm/, \
