@@ -1,5 +1,5 @@
 VM_PATH=../vm_champs/corewar
-MY_VM_PATH=./vm
+MY_VM_PATH=./corewar
 
 CHAMP_PATH=../vm_champs/
 
@@ -14,7 +14,7 @@ CHAMP_PATH=../vm_champs/
 #CHAMP1="${CHAMP_PATH}champs/championships/2018/mkamel/le_pet_de_nonne.cor"
 
 #CHAMP1="${CHAMP_PATH}champs/car.cor"
-#CHAMP1="${CHAMP_PATH}champs_tests/jinx.cor"
+CHAMP1="${CHAMP_PATH}champs_tests/jinx.cor"
 
 #CHAMP1="${CHAMP_PATH}champs_tests/test.cor"
 

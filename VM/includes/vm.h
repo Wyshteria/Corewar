@@ -6,7 +6,7 @@
 /*   By: toliver <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/04 01:38:07 by toliver           #+#    #+#             */
-/*   Updated: 2019/12/30 09:31:06 by toliver          ###   ########.fr       */
+/*   Updated: 2020/01/02 03:43:56 by toliver          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -255,7 +255,7 @@ void		ft_free_process(t_process *process);
 */
 
 void		ft_visu(t_env *env);
-
+void		ft_run_once(t_env *env);
 /*
 ** ARENA FUNC
 */

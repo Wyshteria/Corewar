@@ -6,12 +6,12 @@
 #    By: toliver <marvin@42.fr>                     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/09/20 19:50:33 by toliver           #+#    #+#              #
-#    Updated: 2019/12/30 05:11:30 by toliver          ###   ########.fr        #
+#    Updated: 2020/01/02 01:07:42 by toliver          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 
-NAME = vm
+NAME = corewar
 
 INCLUDES = -I includes\
 		   -I ./libs/libft/includes\
@@ -20,7 +20,7 @@ INCLUDES = -I includes\
 LIBS =	./libs/libft/libft.a\
 		./libs/ftprintf/libftprintf.a\
 
-FLAGS = -Wall -Wextra -Werror -g3 -fsanitize=address
+FLAGS = -Wall -Wextra -Werror
 
 OBJS = $(addprefix objs/, $(addsuffix .o, \
 			$(addprefix vm/, \

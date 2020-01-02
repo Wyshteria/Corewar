@@ -6,7 +6,7 @@
 /*   By: toliver <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/09 04:40:19 by toliver           #+#    #+#             */
-/*   Updated: 2019/12/28 00:19:00 by toliver          ###   ########.fr       */
+/*   Updated: 2020/01/02 03:43:55 by toliver          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,16 +22,32 @@ static void		ft_fill_process(t_arena *arena, WINDOW *main)
 	while (ptr)
 	{
 		if (arena->arena[ptr->pos].writer != 0)
+		{
 			wattron(main,
 					COLOR_PAIR(-arena->arena[ptr->pos].writer) | A_REVERSE);
+			if (ptr->opcode_value == LIVE && ptr->cycles_to_exec == 0)
+			{
+				wattron(main, A_BOLD);
+				wattron(main,
+					COLOR_PAIR(-arena->arena[ptr->pos].writer + 4) | A_REVERSE);
+			}
+		}
 		else
 			wattron(main, COLOR_PAIR(STANDARD_COLOR) | A_REVERSE);
 		y = ptr->pos / arena->op_per_line;
 		x = (ptr->pos - (y * arena->op_per_line)) * 3;
 		mvwprintw(main, y + 1, x + 2, "%hh.2x", arena->arena[ptr->pos].value);
 		if (arena->arena[ptr->pos].writer != 0)
+		{
 			wattroff(main,
 					COLOR_PAIR(-(arena->arena[ptr->pos].writer)) | A_REVERSE);
+			if (ptr->opcode_value == LIVE && ptr->cycles_to_exec == 0)
+			{
+				wattroff(main, A_BOLD);
+				wattroff(main,
+					COLOR_PAIR(-arena->arena[ptr->pos].writer + 4) | A_REVERSE);
+			}
+		}
 		else
 			wattroff(main, COLOR_PAIR(STANDARD_COLOR) | A_REVERSE);
 		ptr = ptr->next;
@@ -95,6 +111,11 @@ void		ft_ncurses_init_colors(void)
 	init_pair(2, COLOR_BLUE, COLOR_BLACK);
 	init_pair(3, COLOR_RED, COLOR_BLACK);
 	init_pair(4, COLOR_CYAN, COLOR_BLACK);
+	init_pair(5, COLOR_GREEN, COLOR_WHITE);
+	init_pair(6, COLOR_BLUE, COLOR_WHITE);
+	init_pair(7, COLOR_RED, COLOR_WHITE);
+	init_pair(8, COLOR_CYAN, COLOR_WHITE);
+
 }
 
 void		ft_ncurses_init_params(void)
@@ -124,6 +145,10 @@ void		ft_ncurses_create_windows(t_arena *arena)
 
 void		ft_ncurses_init(t_arena *arena)
 {
+	static int	first_run = 0;
+	
+	if (first_run == 0)
+	{
 	initscr();
 	arena->mode = RUNNING;
 	if (has_colors() == FALSE)
@@ -142,6 +167,10 @@ void		ft_ncurses_init(t_arena *arena)
 	else if (arena->mode == TOO_SMALL)
 		mvprintw(arena->maxy / 2, (arena->maxx - ft_strlen(SMALL_SCREEN)) / 2,
 				SMALL_SCREEN);
+		first_run = 1;
+	}
+	else
+		ft_fill_main_window(arena, arena->main);
 }
 
 void		ft_ncurses_input(t_arena *arena)
@@ -218,9 +247,10 @@ void		ft_visu(t_env *env)
 	{
 		signal(SIGWINCH, ft_check_resize);
 		ft_ncurses_input(arena);
-		usleep(10000);
 		refresh();
 		wrefresh(arena->main);
+		ft_run_once(env);
+		ft_ncurses_init(arena);
 	}
 	endwin();
 }

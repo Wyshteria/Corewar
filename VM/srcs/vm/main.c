@@ -6,7 +6,7 @@
 /*   By: toliver <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/19 18:19:18 by toliver           #+#    #+#             */
-/*   Updated: 2019/12/30 09:11:25 by toliver          ###   ########.fr       */
+/*   Updated: 2020/01/02 02:53:42 by toliver          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -183,8 +183,8 @@ void		ft_check_cycles(t_env *env)
 		}
 	}
 	ptr = env->arena.process;
-	if (ptr == NULL)
-		return ;
+//	if (ptr == NULL)
+//		return ;
 	while (ptr)
 	{
 		if (ptr->live_number == 0 && ptr->last_live <= env->arena.cycles - env->arena.cycles_to_die)
@@ -220,7 +220,13 @@ void		ft_check_for_winner(t_env *env)
 	t_champ	*highest;
 
 	highest = ft_get_champ(env->arena.last_live);
-	ft_printf("Contestant %d, \"%s\", has won !\n", -highest->number, highest->header.prog_name);
+
+	if (!(env->flags & NCURSES_FLAG))
+		ft_printf("Contestant %d, \"%s\", has won !\n", -highest->number, highest->header.prog_name);
+	else
+	{
+		// faire qqch dans la vm ffs !
+	}
 }
 
 void		ft_routine(t_env *env)
@@ -267,6 +273,16 @@ int			ft_run(t_env *env)
 	return (1);
 }
 
+void		ft_run_once(t_env *env)
+{
+	ft_increment_cycles(env);
+	ft_routine(env);
+	if (env->arena.actual_cycles_to_die <= 0)
+		ft_check_cycles(env);
+	if (env->arena.process == NULL)
+		ft_check_for_winner(env);
+}
+
 int			main(int ac, char **av)
 {
 	t_env	env;
@@ -280,7 +296,10 @@ int			main(int ac, char **av)
 		ft_free_env(&env);
 		return (-1);
 	}
-	ft_run(&env);
+	if (env.flags & NCURSES_FLAG)
+		ft_visu(&env);
+	else	
+		ft_run(&env);
 	ft_free_env(&env);
 	return (0);
 }
