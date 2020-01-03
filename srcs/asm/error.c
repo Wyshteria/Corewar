@@ -26,13 +26,16 @@ void		ft_wrong_flag(t_env *env, char c)
 
 void		ft_crash(int error)
 {
-	t_env	*env;
+	t_env		*env;
+	t_program	*prog;
 
 	env = ft_get_env();
+	prog = ft_get_prog();
 	ft_dprintf(2, "%s: ", env->prog_name);
 	if (error == MALLOC_FAIL)
 		ft_dprintf(2, "malloc failed: %s\n", strerror(errno));
 	ft_free_env(env);
+	ft_free_prog(prog);
 	exit(0);
 }
 

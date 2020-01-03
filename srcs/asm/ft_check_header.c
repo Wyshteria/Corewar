@@ -1,15 +1,3 @@
-/* ************************************************************************** */
-/*                                                                            */
-/*                                                        :::      ::::::::   */
-/*   parse_operations.c                                 :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: jates- <jates-@student.42.fr>              +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/12/30 12:23:55 by jates-            #+#    #+#             */
-/*   Updated: 2019/12/30 12:23:56 by jates-           ###   ########.fr       */
-/*                                                                            */
-/* ************************************************************************** */
-
 #include "asm.h"
 
 static int		ft_check_str(t_file *file, t_token *tmp, int status)
@@ -41,7 +29,7 @@ static int		ft_check_str(t_file *file, t_token *tmp, int status)
 	}
 }
 
-int			ft_check_name(t_file *file)
+static int		ft_check_name(t_file *file, t_program *prog)
 {
 	t_token		*tmp;
 	static int	status = 0;
@@ -51,12 +39,12 @@ int			ft_check_name(t_file *file)
 	if (tmp->type == COMMAND && ft_strnequ(tmp->value, NAME_CMD_STRING,\
 	ft_strlen(NAME_CMD_STRING) + 1) && ft_check_str(file, tmp->next, status))
 	{
-		ft_memccpy(file->header.prog_name, tmp->next->value, '\0',\
+		ft_memccpy(prog->header.prog_name, tmp->next->value, '\0',\
 			PROG_NAME_LENGTH + 1);
 		free(tmp->next->next);
 		free(tmp->next);
 		free(tmp);
-		if (file->header.prog_name[PROG_NAME_LENGTH])
+		if (prog->header.prog_name[PROG_NAME_LENGTH])
 		{
 			ft_printf("name too long\n");
 			file->mode = CONTAIN_ERRORS;
@@ -67,7 +55,7 @@ int			ft_check_name(t_file *file)
 	return (0);
 }
 
-int		ft_check_comment(t_file *file)
+static int		ft_check_comment(t_file *file, t_program *prog)
 {
 	t_token		*tmp;
 	static int	status = 0;
@@ -77,12 +65,12 @@ int		ft_check_comment(t_file *file)
 	if (tmp->type == COMMAND && ft_strnequ(tmp->value, COMMENT_CMD_STRING,\
 	ft_strlen(COMMENT_CMD_STRING) + 1)&& ft_check_str(file, tmp->next, status))
 	{
-		ft_memccpy(file->header.comment, tmp->next->value, '\0',\
+		ft_memccpy(prog->header.comment, tmp->next->value, '\0',\
 				COMMENT_LENGTH + 1);
 		free(tmp->next->next);
 		free(tmp->next);
 		free(tmp);
-		if (file->header.comment[COMMENT_LENGTH])
+		if (prog->header.comment[COMMENT_LENGTH])
 		{
 			ft_printf("comment too long\n");
 			file->mode = CONTAIN_ERRORS;
@@ -93,3 +81,30 @@ int		ft_check_comment(t_file *file)
 	return (0);
 }
 
+int			ft_check_header(t_file *file, t_program *prog)
+{
+	t_token		*tmp;
+	int			cmd;
+
+	cmd = 0;
+	while (cmd != 2)
+	{
+		tmp = file->tokens;
+		if (!ft_pass_newline(file, &tmp))
+			return (0);
+		if (tmp && tmp->prev)
+		{
+			tmp->prev->next = NULL;
+			ft_free_file(file);
+			tmp->prev = NULL;
+			file->tokens = tmp;
+		}
+		if (ft_check_comment(file, prog))
+			cmd++;
+		else if (ft_check_name(file, prog))
+			cmd++;
+		else
+			return (0);
+	}
+	return (1);
+}

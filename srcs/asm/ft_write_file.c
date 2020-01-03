@@ -52,12 +52,12 @@ void	write_hexlen(int fd, size_t size, int len)
 	ft_memdel((void**)&tmp);
 }
 
-void	ft_write_head(t_file *file, t_program *prog)
+void	ft_write_head(t_program *prog)
 {
 	write_hexlen(prog->fd, COREWAR_EXEC_MAGIC, 4);
-	write(prog->fd, file->header.prog_name, PROG_NAME_LENGTH);
-	write_hexlen(prog->fd, file->header.prog_size, 8);
-	write(prog->fd, file->header.comment, COMMENT_LENGTH);
+	write(prog->fd, prog->header.prog_name, PROG_NAME_LENGTH);
+	write_hexlen(prog->fd, prog->header.prog_size, 8);
+	write(prog->fd, prog->header.comment, COMMENT_LENGTH);
 	write(prog->fd, "\0\0\0\0", 4);
 }
 
@@ -126,7 +126,7 @@ int	ft_init_prog(t_env *env, t_file *file)
 	ft_bzero(&champ, sizeof(t_program));
 	ret = 0;
 	if (!(champ.filename = ft_cor_filename(file)) || !ft_check_header(file)\
-		|| !ft_check_operation(file, &champ) || !ft_check_labels(file, file->tokens))
+		|| !ft_check_body(file, &champ) || !ft_check_labels(file, &champ, file->tokens))
 	{
 		free(champ.filename);
 		return (0);

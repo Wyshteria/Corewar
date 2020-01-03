@@ -95,8 +95,6 @@ typedef struct		s_file
 	off_t			offset;
 	int				mode;
 	t_token			*tokens;
-	t_label			*label;
-	header_t		header;
 }					t_file;
 
 typedef struct		s_env
@@ -131,10 +129,9 @@ typedef struct		s_program
 {
 	int				fd;
 	char			*filename;
-	int				len;
-	// char			*name;
-	// char			*comment;
 	t_operation		*operations;
+	t_label			*label;
+	header_t		header;
 }					t_program;
 
 /*
@@ -171,37 +168,52 @@ typedef struct		s_program
 */
 
 /*
-** WRITING FUNC
+** CHAMPION PROGRAM FUNC
 */
 
-int		ft_init_prog(t_env *env, t_file *file);
-int		ft_add_label(t_file *file, t_program *prog, char *label);
-int		ft_check_labels(t_file *file, t_token *token);
-int		ft_check_header(t_file *file);
-int		ft_pass_newline(t_file *file, t_token **token);
-int		ft_check_name(t_file *file);
-int		ft_check_comment(t_file *file);
-int		ft_check_operation(t_file *file, t_program *prog);
+t_program			*ft_get_prog(void);
+void				ft_set_prog(t_program *prog);
+void				ft_init_prog(t_program *prog);
+void				ft_free_prog(t_program *prog);
 
 /*
-** PARSING FUNC
+** LABEL FUNC
 */
 
-int	ft_pass_comm(t_file *file, t_token **token);
-int	ft_pass_newline_comm(t_file *file, t_token **token);
-void				ft_parse_args(int ac, char **av, t_env *env);
-t_label				*ft_is_in_label(t_file *file, char *label);
+int					ft_check_labels(t_file *file, t_program *prog, t_token *token);
+void				ft_free_label(t_program *prog);
 
 /*
 ** OPERATION FUNC
 */
 
-t_operation	*ft_operation_init(t_program *prog, t_op *op);
-int		ft_check_params_types(t_file *file, t_operation *operation, t_op *op);
-int		ft_create_param(t_file *file, t_operation *operation, t_token **token, t_op *op);
 t_op				*ft_fetch_op(char *str);
 void				ft_free_op(t_program *prog);
-void		ft_dump_op(t_program *prog);
+int					ft_check_op(t_file *file, t_program *prog, t_token **token);
+
+/*
+** PARAMS FUNC
+*/
+
+int					ft_create_param(t_file *file, t_operation *operation, t_token **token, t_op *op);
+int					ft_check_params_types(t_file *file, t_operation *operation, t_op *op);
+
+/*
+** WRITING FUNC
+*/
+
+
+int		ft_pass_newline(t_file *file, t_token **token);
+int		ft_check_body(t_file *file, t_program *prog);
+int		ft_check_header(t_file *file);
+
+/*
+** PARSING FUNC
+*/
+
+int		ft_pass_comm(t_file *file, t_token **token);
+int		ft_pass_newline_comm(t_file *file, t_token **token);
+void	ft_parse_args(int ac, char **av, t_env *env);
 
 /*
 ** ERROR FUNC
@@ -235,6 +247,7 @@ void				ft_free_files(t_env *env);
 ** UTILS FUNC
 */
 
+size_t				ft_strspn(const char *s, const char *charset);;
 void				*ft_malloc(size_t size);
 int					ft_pow2(int pow);
 int					ft_strchr_pos(char *str, int c);
@@ -249,7 +262,7 @@ int					ft_parse_until(t_file *file, char *limit, char **line, int skipping);
 void				ft_skip_spaces(t_env *env, t_file *file);
 int					ft_offset_lines(t_env *env, t_file *file, char *str);
 int					ft_offset_head(t_env *env, t_file *file, size_t size);
-size_t				ft_strspn(const char *s, const char *charset);
+
 
 /*
 ** TOKEN FUNC
@@ -262,9 +275,11 @@ t_token				*ft_last_token(t_file *file);
 ** PRINTING FUNC
 */
 
+char				*ft_type_param(t_param *param);
 char				*ft_tokentype_string(int type);
 void				ft_dump_tokens(t_file *file);
 void				ft_dump_env(t_env *env);
 void				ft_dump_files(t_file *files);
+void				ft_dump_op(t_program *prog);
 
 #endif

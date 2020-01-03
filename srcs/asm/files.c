@@ -12,20 +12,6 @@
 
 #include "asm.h"
 
-void		ft_free_label(t_file *file)
-{
-	t_label	*ptr;
-	t_label	*tmp;
-
-	ptr = file->label;
-	while (ptr)
-	{
-		tmp = ptr->next;
-		free(ptr);
-		ptr = tmp;
-	}
-}
-
 void		ft_free_file(t_file *file)
 {
 	t_token	*ptr;
