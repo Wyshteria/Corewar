@@ -57,15 +57,12 @@ int			ft_parse_file(t_env *env, t_file *file)
 		ft_skip_spaces(env, file);
 		ft_parse_token(env, file);
 	}
-	ft_dump_tokens(file);
-	// if (file->mode == DONE && (!file->header.prog_name[0]
-	// || !file->header.comment[0]))
-	// 	return (ft_syntax_error(file, ft_last_token(file)));
-	/*else*/ if (file->mode == DONE)
+	// ft_dump_tokens(file);
+	if (file->mode == DONE)
 		return (ft_parse_operations(env, file));
 	else if (file->mode == CONTAIN_ERRORS)
 	{
-		// ft_dump_tokens(file);
+		ft_dump_tokens(file);
 		return (0);
 	}
 	return (1);

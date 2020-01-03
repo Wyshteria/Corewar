@@ -286,16 +286,26 @@ void		ft_parse_instruction_direct (t_file *file, t_token *token, t_token *last, 
 	}
 }
 
-void		ft_parse_operation(t_file *file, t_token *token)
+void		ft_parse_register(t_file *file, t_token *token, size_t ret)
 {
-	t_op	*ret;
+	char			*line;
+	const int		diff = ft_strlen(token->value) - ret;
 
-	ret = ft_fetch_op(token->value);
-	if (ret)
+	line = token->value;
+	if (!(token->value = ft_strsub(line, 1, ret)))
+		ft_crash(MALLOC_FAIL);
+	token->int_value = ft_atoi(token->value);
+	file->col = token->col;
+	file->line = token->line;
+	ft_offset_lines(ft_get_env(), file, token->value);
+	if (diff)
 	{
-		token->type = OPERATION;
-		ft_parse_instruction2(file, token, ft_strlen(ret->opcode));
+		ft_add_token(file, token);
+		ft_token_init(token, UNKNOWN, file->col, file->line);
+		if (!(token->value = ft_strsub(line, ret, diff)))
+			ft_crash(MALLOC_FAIL);
 	}
+	free(line);
 }
 
 void		ft_parse_instruction(t_file *file)
@@ -327,10 +337,10 @@ void		ft_parse_instruction(t_file *file)
 		token.type = REGISTER;
 		if ((ret = ft_strspn(&(token.value[1]), "0123456789")) > 2)
 			ret = 2;
-		ft_parse_instruction2(file, &token, ret + 1);
+		ft_parse_register(file, &token, ret + 1);
 	}
-	else
-		ft_parse_operation(file, &token);
+	else if (ft_fetch_op(token.value))
+		token.type = OPERATION;
 	ft_add_token(file, &token);
 }
 

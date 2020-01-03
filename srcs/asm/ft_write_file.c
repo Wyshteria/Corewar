@@ -52,13 +52,13 @@ void	write_hexlen(int fd, size_t size, int len)
 	ft_memdel((void**)&tmp);
 }
 
-void	ft_write_head(t_file *file, t_program *champ)
+void	ft_write_head(t_file *file, t_program *prog)
 {
-	write_hexlen(champ->fd, COREWAR_EXEC_MAGIC, 4);
-	write(champ->fd, file->header.prog_name, ft_strlen(file->header.prog_name));
-	write_hexlen(champ->fd, file->header.prog_size, 8);
-	write(champ->fd, file->header.comment, ft_strlen(file->header.comment));
-	write(champ->fd, "\0\0\0\0", 4);
+	write_hexlen(prog->fd, COREWAR_EXEC_MAGIC, 4);
+	write(prog->fd, file->header.prog_name, PROG_NAME_LENGTH);
+	write_hexlen(prog->fd, file->header.prog_size, 8);
+	write(prog->fd, file->header.comment, COMMENT_LENGTH);
+	write(prog->fd, "\0\0\0\0", 4);
 }
 
 int	ft_pass_newline(t_file *file, t_token **token)
@@ -80,6 +80,44 @@ int	ft_pass_newline(t_file *file, t_token **token)
 	return (0);
 }
 
+int	ft_pass_comm(t_file *file, t_token **token)
+{
+	t_token		*tmp;
+
+	if (!*token)
+		return(ft_syntax_error(file, *token));
+	if ((*token)->type != COMMENT)
+		return (1);
+	tmp = (*token)->next;
+	while (tmp)
+	{
+		*token = tmp;
+		if (tmp->type != COMMENT)
+			return (1);
+		tmp = tmp->next;
+	}
+	return (0);
+}
+
+int	ft_pass_newline_comm(t_file *file, t_token **token)
+{
+	t_token		*tmp;
+
+	if (!*token)
+		return(ft_syntax_error(file, *token));
+	if ((*token)->type != NEWLINE && (*token)->type != COMMENT)
+		return (1);
+	tmp = (*token)->next;
+	while (tmp)
+	{
+		*token = tmp;
+		if (tmp->type != NEWLINE && tmp->type != COMMENT)
+			return (1);
+		tmp = tmp->next;
+	}
+	return (0);
+}
+
 int	ft_init_prog(t_env *env, t_file *file)
 {
 	t_program	champ;
@@ -88,7 +126,7 @@ int	ft_init_prog(t_env *env, t_file *file)
 	ft_bzero(&champ, sizeof(t_program));
 	ret = 0;
 	if (!(champ.filename = ft_cor_filename(file)) || !ft_check_header(file)\
-		|| !ft_check_labels(file, file->tokens))
+		|| !ft_check_operation(file, &champ) || !ft_check_labels(file, file->tokens))
 	{
 		free(champ.filename);
 		return (0);

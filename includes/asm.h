@@ -38,7 +38,7 @@ enum e_error
 
 enum e_type
 {
-	COMMAND,
+	COMMAND = 1,
 	COMMAND_NAME,
 	COMMAND_COMMENT,
 	STRING,
@@ -82,7 +82,7 @@ typedef struct		s_label
 {
 	struct s_label	*next;
 	char			*value; // ne pas free, assigne token->value
-	int				memory;
+	int				mem; 
 }					t_label;
 
 typedef struct		s_file
@@ -119,9 +119,10 @@ typedef struct		s_operation
 	struct s_operation	*next;
 	struct s_operation	*prev;
 	char				opc;
+	char				*name; // ne pas free, assigne g_op_opcode
 	t_param				params[3];
 	int					p_num;
-	int					memory;
+	int					mem;
 	int					len;
 	// unsigned char	len_direct;
 }					t_operation;
@@ -174,17 +175,33 @@ typedef struct		s_program
 */
 
 int		ft_init_prog(t_env *env, t_file *file);
-int		ft_add_label(t_file *file, char *label);
+int		ft_add_label(t_file *file, t_program *prog, char *label);
 int		ft_check_labels(t_file *file, t_token *token);
-t_token	*ft_check_header(t_file *file);
+int		ft_check_header(t_file *file);
 int		ft_pass_newline(t_file *file, t_token **token);
+int		ft_check_name(t_file *file);
+int		ft_check_comment(t_file *file);
+int		ft_check_operation(t_file *file, t_program *prog);
 
 /*
 ** PARSING FUNC
 */
 
+int	ft_pass_comm(t_file *file, t_token **token);
+int	ft_pass_newline_comm(t_file *file, t_token **token);
 void				ft_parse_args(int ac, char **av, t_env *env);
+t_label				*ft_is_in_label(t_file *file, char *label);
+
+/*
+** OPERATION FUNC
+*/
+
+t_operation	*ft_operation_init(t_program *prog, t_op *op);
+int		ft_check_params_types(t_file *file, t_operation *operation, t_op *op);
+int		ft_create_param(t_file *file, t_operation *operation, t_token **token, t_op *op);
 t_op				*ft_fetch_op(char *str);
+void				ft_free_op(t_program *prog);
+void		ft_dump_op(t_program *prog);
 
 /*
 ** ERROR FUNC

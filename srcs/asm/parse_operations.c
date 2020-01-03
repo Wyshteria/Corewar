@@ -12,18 +12,18 @@
 
 #include "asm.h"
 
-int		ft_check_str(t_file *file, t_token *tmp, int status)
+static int		ft_check_str(t_file *file, t_token *tmp, int status)
 {
 	if (!tmp || tmp->type != STRING)
 	{
 		file->mode = CONTAIN_ERRORS;
-		ft_printf("pas de string\n");
+		ft_printf("no string\n");
 		return (0);
 	}
 	else if (status)
 	{
 		file->mode = CONTAIN_ERRORS;
-		ft_printf("commande deja have\n");
+		ft_printf("commande already have\n");
 		return (0);
 	}
 	else if (!tmp->next || tmp->next->type != NEWLINE)
@@ -34,12 +34,14 @@ int		ft_check_str(t_file *file, t_token *tmp, int status)
 	}
 	else
 	{
-		file->tokens = tmp->next->next->next;
+		file->tokens = tmp->next->next;
+		if (file->tokens)
+			file->tokens->prev = NULL;
 		return (1);
 	}
 }
 
-int		ft_check_name(t_file *file)
+int			ft_check_name(t_file *file)
 {
 	t_token		*tmp;
 	static int	status = 0;
@@ -75,13 +77,12 @@ int		ft_check_comment(t_file *file)
 	if (tmp->type == COMMAND && ft_strnequ(tmp->value, COMMENT_CMD_STRING,\
 	ft_strlen(COMMENT_CMD_STRING) + 1)&& ft_check_str(file, tmp->next, status))
 	{
-		ft_memccpy(file->header.prog_name, tmp->next->value, '\0',\
+		ft_memccpy(file->header.comment, tmp->next->value, '\0',\
 				COMMENT_LENGTH + 1);
-		file->tokens = tmp->next->next->next;
 		free(tmp->next->next);
 		free(tmp->next);
 		free(tmp);
-		if (file->header.prog_name[COMMENT_LENGTH])
+		if (file->header.comment[COMMENT_LENGTH])
 		{
 			ft_printf("comment too long\n");
 			file->mode = CONTAIN_ERRORS;
@@ -92,10 +93,3 @@ int		ft_check_comment(t_file *file)
 	return (0);
 }
 
-
-int ft_check_op(t_file *file)
-{
-	t_op *op;
-
-	
-}
