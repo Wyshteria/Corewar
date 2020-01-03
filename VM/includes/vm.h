@@ -6,7 +6,7 @@
 /*   By: toliver <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/04 01:38:07 by toliver           #+#    #+#             */
-/*   Updated: 2020/01/02 03:43:56 by toliver          ###   ########.fr       */
+/*   Updated: 2020/01/03 16:28:50 by toliver          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -174,8 +174,6 @@ typedef struct		s_arena
 	int				line_number;
 	t_byte			arena[MEM_SIZE];
 	t_process		*process;
-	WINDOW			*main;
-	WINDOW			*infos;
 	size_t			cycles;
 	int				mode;
 	int				actual_cycles_to_die;

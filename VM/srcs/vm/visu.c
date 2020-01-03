@@ -6,7 +6,7 @@
 /*   By: toliver <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/09 04:40:19 by toliver           #+#    #+#             */
-/*   Updated: 2020/01/02 20:21:08 by toliver          ###   ########.fr       */
+/*   Updated: 2020/01/03 16:40:22 by toliver          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -259,60 +259,85 @@ void		ft_visu(t_env *env)
 
 
 */
-#include <SDL2/SDL.h>
-#include <SDL2/SDL_ttf.h>
 
-void		ft_visu(t_env *env)
+int			ft_visu_env_init(t_visu_env *visu_env)
 {
-	(void)env;
-	SDL_Event		e;
-	if(SDL_Init(SDL_INIT_VIDEO) != 0) {
-		fprintf(stderr, "Could not init SDL: %s\n", SDL_GetError());
-		return ;
+	ft_bzero(visu_env, sizeof(t_visu_env));
+	if(SDL_Init(SDL_INIT_VIDEO) != 0)
+	{
+		ft_dprintf(2, "Could not init SDL: %s\n", SDL_GetError());
+		return (0);
 	}
 	if(TTF_Init() == -1) 
 	{
-		fprintf(stderr, "Could not init TTF: %s\n", TTF_GetError());
-		return ;
+		ft_dprintf(2, "Could not init TTF: %s\n", TTF_GetError());
+		return (0);
 	}
-	while (SDL_PollEvent(&e))
+	return (1);	
+}
+
+int			ft_visu_win_init(t_visu_env *visu_env)
+{
+	if (!(visu_env->win = SDL_CreateWindow("Corewar", SDL_WINDOWPOS_UNDEFINED,
+			SDL_WINDOWPOS_UNDEFINED, 1600, 1200, 0)))
 	{
+		ft_dprintf(2, "Could not create window\n");
+		return (0);
 	}
-	SDL_Window *screen = SDL_CreateWindow("My application",
-			SDL_WINDOWPOS_UNDEFINED,
-			SDL_WINDOWPOS_UNDEFINED,
-			1600, 1200,
-			0);
-	if(!screen) {
-		fprintf(stderr, "Could not create window\n");
-		return ;
+	if (!(visu_env->renderer = SDL_CreateRenderer(visu_env->win, -1,
+					SDL_RENDERER_SOFTWARE)))
+	{
+		ft_dprintf(2, "Could not create renderer\n");
+		return (0);
 	}
-	SDL_Renderer *renderer = SDL_CreateRenderer(screen, -1, SDL_RENDERER_SOFTWARE);
-	if(!renderer) {
-		fprintf(stderr, "Could not create renderer\n");
-		return ;
-	}
+	return (1);
+}
 
-	// draw part
-
-	SDL_SetRenderDrawColor(renderer, 0, 43, 54, 255);
-	SDL_RenderClear(renderer);
-	SDL_SetRenderDrawColor(renderer, 7, 54, 66, 255);
-
-	SDL_Rect rect = {13,13,1174,1174};
-	SDL_RenderFillRect(renderer, &rect);
-
+void		ft_visu_draw_arena(t_visu_env *venv, t_env *env)
+{
+	(void)env;
+	SDL_Rect rect;
+   
+	rect = (SDL_Rect){13,13,1174,1174};
+	SDL_SetRenderDrawColor(venv->renderer, 0, 43, 54, 255);
+	SDL_RenderClear(venv->renderer);
+	SDL_SetRenderDrawColor(venv->renderer, 7, 54, 66, 255);
+	SDL_RenderFillRect(venv->renderer, &rect);
 	rect = (SDL_Rect){1198, 13, 390, 1174};
-	SDL_RenderFillRect(renderer, &rect);
+	SDL_RenderFillRect(venv->renderer, &rect);
+}
+
+void		ft_visu_color_init(t_visu_env *venv)
+{
+	(void)venv;
+}
+
+void		ft_visu(t_env *env)
+{
+	t_visu_env		visu_env;
+
+	if (!(ft_visu_env_init(&visu_env)))
+		return ;
+	if (!(ft_visu_win_init(&visu_env)))
+		return ;
+	ft_visu_color_init(&visu_env);
+	ft_visu_draw_arena(&visu_env, env);
+	SDL_Event		e;
+
+	
+//	draw part
+
 
 //	rect = (SDL_Rect){1225, 50, 16, 16};
 //	SDL_RenderDrawRect(renderer, &rect);
-	// FONT PART
+//	FONT PART
 
+	SDL_Rect rect;
 	TTF_Font *police;
 	SDL_Surface* texte;
 	SDL_Texture* message; 
-
+	SDL_Renderer *renderer = visu_env.renderer;
+	SDL_Window *screen = visu_env.win;
 	police = TTF_OpenFont("ressources/UbuntuMono-R.ttf", 14);
 	if (police)
 	{
