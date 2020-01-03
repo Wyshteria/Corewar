@@ -6,7 +6,7 @@
 /*   By: toliver <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/08 23:56:03 by toliver           #+#    #+#             */
-/*   Updated: 2020/01/03 16:40:19 by toliver          ###   ########.fr       */
+/*   Updated: 2020/01/03 22:22:24 by toliver          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,10 +15,6 @@
 
 #include <SDL2/SDL.h>
 #include <SDL2/SDL_ttf.h>
-
-//#include <ncurses.h>
-//#define BRIGHT	0x8
-//#define SMALL_SCREEN "screen is too small"
 
 #define WINX	1600
 #define WINY	1200
@@ -56,14 +52,28 @@ enum			e_colors
 	CYAN,
 	BRIGHT_CYAN,
 	WHITE,
-	BRIGHT_WHITE
-}
+	BRIGHT_WHITE,
+	COLORLIMIT
+};
+
+enum			e_police
+{
+	NORMAL,
+	BOLD,
+	ITALIC,
+	BOLD_ITALIC,
+	POLICELIMIT
+};
 
 typedef struct		s_visu_env
 {
 	int				running;
 	SDL_Window		*win;
 	SDL_Renderer	*renderer;
+	SDL_Color		color[16];
+	TTF_Font		*font[4];
+	SDL_Rect		*instructions_rect;
+	char			**instructions;
 }					t_visu_env;
 
 #endif

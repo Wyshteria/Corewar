@@ -6,7 +6,7 @@
 /*   By: toliver <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/19 18:19:18 by toliver           #+#    #+#             */
-/*   Updated: 2020/01/02 08:17:46 by toliver          ###   ########.fr       */
+/*   Updated: 2020/01/03 22:27:12 by toliver          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -183,8 +183,6 @@ void		ft_check_cycles(t_env *env)
 		}
 	}
 	ptr = env->arena.process;
-//	if (ptr == NULL)
-//		return ;
 	while (ptr)
 	{
 		if (ptr->live_number == 0 && ptr->last_live <= env->arena.cycles - env->arena.cycles_to_die)
