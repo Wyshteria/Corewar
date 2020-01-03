@@ -12,28 +12,7 @@
 
 #include "asm.h"
 
-static char	*ft_cor_filename(t_file *file)
-{
-	const int	len = ft_strlen(file->filename);
-	char		*corname;
 
-	corname = NULL;
-	if (len > 2 && file->filename[len - 2] == '.'
-	&& file->filename[len - 1] == 's' && file->filename[len] == 0)
-	{
-		if ((corname = ft_strnew(len + 2)) 
-		&& ft_strncpy(corname, file->filename, len - 1))
-			return(ft_strcat(corname, "cor"));
-	}
-	else
-	{
-		if ((corname = ft_strnew(len + 4)) 
-		&& ft_strncpy(corname, file->filename, len))
-			return (ft_strcat(corname, ".cor"));
-	}
-	ft_crash(MALLOC_FAIL);
-	return (corname);
-}
 
 void	write_hexlen(int fd, size_t size, int len)
 {
@@ -61,83 +40,14 @@ void	ft_write_head(t_program *prog)
 	write(prog->fd, "\0\0\0\0", 4);
 }
 
-int	ft_pass_newline(t_file *file, t_token **token)
+int	ft_open_cor_file(t_program *prog, t_env *env, t_file *file)
 {
-	t_token		*tmp;
-
-	if (!*token)
-		return(ft_syntax_error(file, *token));
-	if ((*token)->type != NEWLINE)
-		return (1);
-	tmp = (*token)->next;
-	while (tmp)
-	{
-		*token = tmp;
-		if (tmp->type != NEWLINE)
-			return (1);
-		tmp = tmp->next;
-	}
-	return (0);
-}
-
-int	ft_pass_comm(t_file *file, t_token **token)
-{
-	t_token		*tmp;
-
-	if (!*token)
-		return(ft_syntax_error(file, *token));
-	if ((*token)->type != COMMENT)
-		return (1);
-	tmp = (*token)->next;
-	while (tmp)
-	{
-		*token = tmp;
-		if (tmp->type != COMMENT)
-			return (1);
-		tmp = tmp->next;
-	}
-	return (0);
-}
-
-int	ft_pass_newline_comm(t_file *file, t_token **token)
-{
-	t_token		*tmp;
-
-	if (!*token)
-		return(ft_syntax_error(file, *token));
-	if ((*token)->type != NEWLINE && (*token)->type != COMMENT)
-		return (1);
-	tmp = (*token)->next;
-	while (tmp)
-	{
-		*token = tmp;
-		if (tmp->type != NEWLINE && tmp->type != COMMENT)
-			return (1);
-		tmp = tmp->next;
-	}
-	return (0);
-}
-
-int	ft_init_prog(t_env *env, t_file *file)
-{
-	t_program	champ;
-	int		ret;
-
-	ft_bzero(&champ, sizeof(t_program));
-	ret = 0;
-	if (!(champ.filename = ft_cor_filename(file)) || !ft_check_header(file)\
-		|| !ft_check_body(file, &champ) || !ft_check_labels(file, &champ, file->tokens))
-	{
-		free(champ.filename);
-		return (0);
-	}
-	return (0); //stop for now
-	if ((champ.fd = open(champ.filename, O_WRONLY | O_CREAT, 0755) < 0))
+	if ((prog->fd = open(prog->filename, O_WRONLY | O_CREAT, 0755) < 0))
 	{	
-		free(champ.filename);
+		ft_clear_prog(prog);
 		return (ft_error(env, file, OPEN_ERROR));
 	}
-	close(champ.fd);
+	close(prog->fd);
 	return (1);
 }
 

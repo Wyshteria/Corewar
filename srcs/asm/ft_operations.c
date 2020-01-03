@@ -30,15 +30,37 @@ int		ft_check_op(t_file *file, t_program *prog, t_token **token)
 	t_op		*const op = ft_fetch_op((*token)->value);
 	t_operation	*operation;
 
-	operation = ft_operation_init(prog, op);
+	operation = ft_op_init(prog, op);
+	// if (*token)
+	// 	{
+	// 		ft_printf("token of type : %s\n", ft_tokentype_string((*token)->type));
+	// 		ft_printf("\tits value is : %s\n", (*token)->value);
+	// 		ft_printf("\tits converted value is : %d\n", (*token)->int_value);
+	// 		ft_printf("\tat pos [%d:%d]\n", (*token)->line, (*token)->col);
+	// 	}
 	if (!ft_create_param(file, operation, token, op))
 		return (0);
-	if (!ft_pass_comm(file, token) || !*token || (*token)->type != NEWLINE)
+	ft_pass_comm(file, token);
+	// if (*token)
+	// 	{
+	// 		ft_printf("token of type : %s\n", ft_tokentype_string((*token)->type));
+	// 		ft_printf("\tits value is : %s\n", (*token)->value);
+	// 		ft_printf("\tits converted value is : %d\n", (*token)->int_value);
+	// 		ft_printf("\tat pos [%d:%d]\n", (*token)->line, (*token)->col);
+	// 	}
+	if (!*token || (*token)->type != NEWLINE)
 	{
-		ft_printf("operation does not end with a newline\n");
-		file->mode = CONTAIN_ERRORS;
+		ft_printf("operation does not end with a newline %s\n", operation->name);
+		if (*token)
+		{
+			ft_printf("token of type : %s\n", ft_tokentype_string((*token)->type));
+			ft_printf("\tits value is : %s\n", (*token)->value);
+			ft_printf("\tits converted value is : %d\n", (*token)->int_value);
+			ft_printf("\tat pos [%d:%d]\n", (*token)->line, (*token)->col);
+		}
 		return (0);
 	}
+	ft_dump_op(prog);
 	if (!ft_check_params_types(file, operation, op))
 		return (0);
 	return (1);

@@ -37,7 +37,7 @@ int			ft_create_param(t_file *file, t_operation *operation, t_token **token, t_o
 	int nbr_param;
 
 	nbr_param = 0;
-	token = &((*token)->next);
+	*token = (*token)->next;
 	while (*token)
 	{
 		if ((*token)->type == REGISTER || (*token)->type == DIRECT\
@@ -46,10 +46,10 @@ int			ft_create_param(t_file *file, t_operation *operation, t_token **token, t_o
 			ft_param_init(*token, &(operation->params[nbr_param]));
 		else
 			break;
-		token = &((*token)->next);
+		*token = (*token)->next;
 		if (*token && (*token)->type == SEPARATOR)
 		{
-			token = &((*token)->next);
+			*token = (*token)->next;
 			if (++nbr_param == op->params_number)
 			{
 				ft_printf("too much param or separator\n");

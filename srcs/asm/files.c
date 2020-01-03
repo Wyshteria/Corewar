@@ -37,7 +37,6 @@ void		ft_free_files(t_env *env)
 	while (ptr)
 	{
 		tmp = ptr->next;
-		ft_free_label(ptr);
 		ft_free_file(ptr);
 		free(ptr);
 		ptr = tmp;

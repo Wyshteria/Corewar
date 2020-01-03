@@ -97,13 +97,6 @@ typedef struct		s_file
 	t_token			*tokens;
 }					t_file;
 
-typedef struct		s_env
-{
-	char			*prog_name; // ne pas free, assigne av[0]
-	int				flags;
-	t_file			*files;
-}					t_env;
-
 typedef struct		s_param
 {
 	int				type;
@@ -133,6 +126,14 @@ typedef struct		s_program
 	t_label			*label;
 	header_t		header;
 }					t_program;
+
+typedef struct		s_env
+{
+	char			*prog_name; // ne pas free, assigne av[0]
+	int				flags;
+	t_file			*files;
+	t_program		prog;
+}					t_env;
 
 /*
 	STRUCTURES POUR LA CONVERSION EN OPERATIONS
@@ -171,10 +172,8 @@ typedef struct		s_program
 ** CHAMPION PROGRAM FUNC
 */
 
-t_program			*ft_get_prog(void);
-void				ft_set_prog(t_program *prog);
-void				ft_init_prog(t_program *prog);
-void				ft_free_prog(t_program *prog);
+int					ft_init_prog(t_env *env, t_file *file);
+void				ft_clear_prog(t_program *prog);
 
 /*
 ** LABEL FUNC
@@ -182,6 +181,7 @@ void				ft_free_prog(t_program *prog);
 
 int					ft_check_labels(t_file *file, t_program *prog, t_token *token);
 void				ft_free_label(t_program *prog);
+int					ft_add_label(t_file *file, t_program *prog, char *label);
 
 /*
 ** OPERATION FUNC
@@ -202,18 +202,16 @@ int					ft_check_params_types(t_file *file, t_operation *operation, t_op *op);
 ** WRITING FUNC
 */
 
-
-int		ft_pass_newline(t_file *file, t_token **token);
-int		ft_check_body(t_file *file, t_program *prog);
-int		ft_check_header(t_file *file);
+int					ft_check_header(t_file *file, t_program *prog);
 
 /*
-** PARSING FUNC
+** PARSING OPERATION FUNC UTILS
 */
 
-int		ft_pass_comm(t_file *file, t_token **token);
-int		ft_pass_newline_comm(t_file *file, t_token **token);
-void	ft_parse_args(int ac, char **av, t_env *env);
+int					ft_pass_newline(t_file *file, t_token **token);
+int					ft_pass_comm(t_file *file, t_token **token);
+int					ft_pass_newline_comm(t_file *file, t_token **token);
+void				ft_parse_args(int ac, char **av, t_env *env);
 
 /*
 ** ERROR FUNC

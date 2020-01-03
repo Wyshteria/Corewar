@@ -41,8 +41,6 @@ static void		ft_parse_files(t_env *env, char *file)
 
 	ptr = (t_file*)ft_malloc(sizeof(t_file));
 	ft_bzero(ptr, sizeof(t_file));
-	ft_bzero(ptr->header.prog_name, PROG_NAME_LENGTH + 1);
-	ft_bzero(ptr->header.comment, COMMENT_LENGTH + 1);
 	ptr->line++;
 	ptr->col++;
 	ptr->filename = file;

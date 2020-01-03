@@ -95,6 +95,7 @@ int			ft_parse_while(t_file *file, char *containing, char **line)
 	while ((retval = read(file->fd, buf, 50)) > 0)
 	{
 		i = 0;
+		buf[retval] = '\0';
 		while(buf[i] && ft_is_one_of(buf[i], containing))
 			i++;
 		size += i;
@@ -134,6 +135,7 @@ int			ft_parse_until(t_file *file, char *limit, char **line, int skipping)
 	while ((retval = read(file->fd, buf, 50)) > 0)
 	{
 		i = 0;
+		buf[retval] = '\0';
 		while(buf[i] && !(end = ft_is_one_of(buf[i], limit)))
 			i++;
 		size += i;

@@ -1,1 +1,2 @@
-.name %:name
+.name "blah"
+.comment "lol" %:name

@@ -76,7 +76,7 @@ void		ft_parse_string(t_file *file)
 
 	ft_token_init(&token, STRING, file->col, file->line);
 	ft_offset_lines(ft_get_env(), file, ((char[]){STRING_CHAR, '\0'}));
-	ft_parse_until(file, ((char[]){STRING_CHAR, '\0'}), &(token.value), 1);
+	ft_parse_until(file, (char[]){STRING_CHAR, '\0'}, &(token.value), 1);
 	ft_add_token(file, &token);
 	//check what happens if string_char not terminated
 }
@@ -317,7 +317,7 @@ void		ft_parse_instruction(t_file *file)
 	ret = 0;
 	ft_token_init(&token, UNKNOWN, file->col, file->line);
 	ft_parse_while(file, LABEL_CHARS, &(token.value));
-	if (ft_is_label(file) && ft_add_label(file, token.value) && (file->col++))
+	if (ft_is_label(file) && (file->col++))
 		token.type = LABEL;
 	else if (ft_is_one_of(token.value[0], "0123456789"))
 	{

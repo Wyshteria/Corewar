@@ -38,4 +38,7 @@ void		ft_init_env(t_env *env, char *prog_name)
 void		ft_free_env(t_env *env)
 {
 	ft_free_files(env);
+	ft_free_op(&env->prog);
+	ft_free_label(&env->prog);
+	free(env->prog.filename);
 }

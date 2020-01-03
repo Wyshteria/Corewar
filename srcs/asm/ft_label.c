@@ -29,7 +29,7 @@ static t_label		*ft_is_in_label(t_program *prog, char *label)
 	return (NULL);
 }
 
-static int			ft_add_label(t_file *file, t_program *prog, char *label)
+int			ft_add_label(t_file *file, t_program *prog, char *label)
 {
 	t_label **tmp;
 
@@ -53,7 +53,7 @@ static int			ft_add_label(t_file *file, t_program *prog, char *label)
 	return (1);
 }
 
-static void			ft_update_param_labels(t_file *file, t_program *prog)
+static void			ft_update_param_labels(t_program *prog)
 {
 	t_operation		*tmp;
 	int				i;
@@ -66,7 +66,7 @@ static void			ft_update_param_labels(t_file *file, t_program *prog)
 		{
 			if (tmp->params[i].value_type == LABEL)
 			{
-				tmp->params[i].int_value = ft_is_in_label(file, tmp->params[i].value)->mem;
+				tmp->params[i].int_value = ft_is_in_label(prog, tmp->params[i].value)->mem;
 			}
 		}
 		tmp = tmp->next;
@@ -78,7 +78,7 @@ int					ft_check_labels(t_file *file, t_program *prog, t_token *token)
 	while (token)
 	{
 		if ((token->type == DIRECT_LABEL || token->type == INDIRECT_LABEL) 
-			&& !ft_is_in_label(file, token->value))
+			&& !ft_is_in_label(prog, token->value))
 			{
 				ft_printf("label is not referenced\n");
 				ft_syntax_error(file, token);
@@ -86,6 +86,6 @@ int					ft_check_labels(t_file *file, t_program *prog, t_token *token)
 			}
 		token = token->next;
 	}
-	ft_update_param_labels(file, prog);
+	ft_update_param_labels(prog);
 	return (1);
 }

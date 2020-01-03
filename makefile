@@ -27,13 +27,21 @@ OBJS = $(addprefix objs/, $(addsuffix .o, \
 				main \
 				env \
 				error \
+				asm_error \
 				files \
 				parse_args \
 				utils \
 				parse_utils \
 				print \
 				token \
+				ft_write_file \
 				op \
+				ft_operations \
+				ft_params \
+				ft_label \
+				ft_check_header \
+				ft_parse_op_utils \
+				ft_program \
 				) \
 		)) 
 
