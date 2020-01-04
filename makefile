@@ -6,7 +6,7 @@
 #    By: lboukrou <lboukrou@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/09/20 19:50:33 by toliver           #+#    #+#              #
-#    Updated: 2020/01/04 21:49:59 by lboukrou         ###   ########.fr        #
+#    Updated: 2020/01/04 22:07:25 by lboukrou         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -27,6 +27,9 @@ LIBS =	./libs/libft/libft.a\
 		./libs/ftprintf/libftprintf.a\
 
 FLAGS = -Wall -Wextra -Werror -g3
+
+# INC_ASM_NAME	= $(addprefix includes/, asm.h)
+# INC_VM_NAME		= $(addprefix includes/, vm.h)
 
 OBJS_ASM = $(addprefix objs/, $(addsuffix .o, \
 			$(addprefix asm/, \
