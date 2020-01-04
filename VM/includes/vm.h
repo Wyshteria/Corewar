@@ -6,7 +6,7 @@
 /*   By: toliver <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/04 01:38:07 by toliver           #+#    #+#             */
-/*   Updated: 2020/01/04 05:06:05 by toliver          ###   ########.fr       */
+/*   Updated: 2020/01/04 09:47:29 by toliver          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -304,7 +304,6 @@ void						ft_free_process(t_process *process);
 **	VISU FUNC
 */
 
-void						ft_visu(t_env *env);
 void						ft_run_once(t_env *env);
 
 /*
