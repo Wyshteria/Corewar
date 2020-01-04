@@ -6,7 +6,7 @@
 /*   By: toliver <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/04 09:42:13 by toliver           #+#    #+#             */
-/*   Updated: 2020/01/04 09:50:41 by toliver          ###   ########.fr       */
+/*   Updated: 2020/01/04 23:50:40 by toliver          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ void		ft_free_instructions(t_visu_env *venv)
 	int		i;
 
 	i = 0;
-	while (i < MEM_SIZE && venv->instructions[i])
+	while (venv->instructions && i < MEM_SIZE && venv->instructions[i])
 	{
 		free(venv->instructions[i]);
 		i++;
@@ -34,10 +34,8 @@ void		ft_close_ttf(t_visu_env *venv)
 	while (i < 4)
 	{
 		if (venv->font[i])
-		{
 			TTF_CloseFont(venv->font[i]);
-			i++;
-		}
+		i++;
 	}
 	TTF_Quit();
 }
