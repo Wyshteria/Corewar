@@ -185,21 +185,7 @@ $(LIBS):
 .PHONY: clean_zaz
 clean_zaz:
 	@printf  "\033[1:32mCleaning object files -> \033[91m$(NAME_ZAZ)\033[0m\033[1:32m:	\033[0m%-16s\033[32m[✔]\033[0m\n"
-	for f in $(OBJS_ZAZ); \
-	do \
-		if [ -f $$f ]; \
-		then \
-			rm "$$f"; \
-		fi; \
-	done;
-	@for d in objs/vm objs ; \
-	do \
-		if [ -d $$d ]; \
-		then \
-			rmdir --ignore-fail-on-non-empty "$$d"; \
-			echo "toto"; \
-		fi; \
-	done;
+	@rm -f $(OBJS_ZAZ)
 
 .PHONY: fclean_zaz
 fclean_zaz: clean_zaz
