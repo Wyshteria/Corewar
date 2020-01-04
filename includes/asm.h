@@ -83,6 +83,8 @@ typedef struct		s_label
 	struct s_label	*next;
 	char			*value; // ne pas free, assigne token->value
 	int				mem; 
+	int				col;
+	int				line;
 }					t_label;
 
 typedef struct		s_file
@@ -184,7 +186,7 @@ void				ft_clear_prog(t_program *prog);
 
 int					ft_check_labels(t_file *file, t_program *prog, t_token *token);
 void				ft_free_label(t_program *prog);
-int					ft_add_label(t_file *file, t_program *prog, char *label);
+int					ft_add_label(t_file *file, t_program *prog, char *label, t_token *token);
 
 /*
 ** OPERATION FUNC

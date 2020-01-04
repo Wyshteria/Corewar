@@ -41,7 +41,7 @@ static t_label		*ft_is_in_label(t_program *prog, char *label)
 	return (NULL);
 }
 
-int					ft_add_label(t_file *file, t_program *prog, char *label)
+int					ft_add_label(t_file *file, t_program *prog, char *label, t_token *token)
 {
 	t_label **tmp;
 
@@ -52,15 +52,17 @@ int					ft_add_label(t_file *file, t_program *prog, char *label)
 			tmp = &((*tmp)->next);
 		else
 		{
-			ft_printf("label %s already used\n", label);
+			ft_printf("label %s already used at [%d:%d]\n", label, (*tmp)->line, (*tmp)->col);
 			file->mode = CONTAIN_ERRORS;
 			return (0);
 		}
 	}
 	if (!(*tmp = (t_label*)malloc(sizeof(t_label))))
 		ft_crash(MALLOC_FAIL);
+	ft_bzero(*tmp, sizeof(t_label));
 	(*tmp)->value = label;
-	(*tmp)->next = NULL;
+	(*tmp)->col = token->col;
+	(*tmp)->line = token->line;
 	(*tmp)->mem = prog->header.prog_size;
 	return (1);
 }

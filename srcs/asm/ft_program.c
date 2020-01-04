@@ -50,7 +50,7 @@ static int			ft_check_body(t_file *file, t_program *prog)
 			return (ft_syntax_error(file, tmp));
 		else if (tmp->type == LABEL)
 		{
-			if (!ft_add_label(file, prog, tmp->value))
+			if (!ft_add_label(file, prog, tmp->value, tmp))
 				return (0);
 		}
 		else if (tmp->type == OPERATION)

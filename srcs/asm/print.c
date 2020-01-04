@@ -35,6 +35,7 @@ void		ft_dump_label(t_program *prog)
 	while (label)
 	{
 		ft_printf("\t\t[%s]\tmem >%d<\n", label->value, label->mem);
+		ft_printf("\t\t\t\tDefined at [%d:%d]\n", label->line, label->col);
 		label = label->next;
 	}
 }
