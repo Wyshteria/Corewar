@@ -25,28 +25,23 @@ static void		ft_free_head_token(t_file *file, t_token *tmp)
 
 static int		ft_check_str(t_file *file, t_token *tmp, int status)
 {
-	if (!tmp || tmp->type != STRING)
+	if (!tmp->next || tmp->next->type != STRING)
 	{
-		file->mode = CONTAIN_ERRORS;
-		ft_printf("no string\n");
-		return (0);
+		ft_printf("no string for %s\n", tmp->value);
+		return (ft_syntax_error(file, tmp));
 	}
 	else if (status)
 	{
-		file->mode = CONTAIN_ERRORS;
-		ft_printf("commande already have\n");
-		return (0);
+		ft_printf("command %s already have\n", tmp->value);
+		return (ft_syntax_error(file, tmp));
 	}
-	else if (!tmp->next || tmp->next->type != NEWLINE)
+	else if (!tmp->next->next || tmp->next->next->type != NEWLINE)
 	{
-		file->mode = CONTAIN_ERRORS;
 		ft_printf("problem syntax no newline\n");
-		return (0);
+		return (ft_syntax_error(file, tmp->next->next));
 	}
 	else
-	{
 		return (1);
-	}
 }
 
 static int		ft_check_name(t_file *file, t_program *prog)
@@ -57,16 +52,15 @@ static int		ft_check_name(t_file *file, t_program *prog)
 	if (!(tmp = file->tokens))
 		return (0);
 	if (tmp->type == COMMAND && ft_strnequ(tmp->value, NAME_CMD_STRING,\
-	ft_strlen(NAME_CMD_STRING) + 1) && ft_check_str(file, tmp->next, status))
+	ft_strlen(NAME_CMD_STRING) + 1) && ft_check_str(file, tmp, status))
 	{
 		ft_memccpy(prog->header.prog_name, tmp->next->value, '\0',\
 			PROG_NAME_LENGTH + 1);
 		ft_free_head_token(file, tmp->next->next);
 		if (prog->header.prog_name[PROG_NAME_LENGTH])
 		{
-			ft_printf("name too long\n");
-			file->mode = CONTAIN_ERRORS;
-			return (0);
+			ft_printf("Name too long\n");
+			return (ft_lexical_error(file, tmp));
 		}
 		return (++status);
 	}
@@ -81,16 +75,15 @@ static int		ft_check_comment(t_file *file, t_program *prog)
 	if (!(tmp = file->tokens))
 		return (0);
 	if (tmp->type == COMMAND && ft_strnequ(tmp->value, COMMENT_CMD_STRING,\
-	ft_strlen(COMMENT_CMD_STRING) + 1) && ft_check_str(file, tmp->next, status))
+	ft_strlen(COMMENT_CMD_STRING) + 1) && ft_check_str(file, tmp, status))
 	{
 		ft_memccpy(prog->header.comment, tmp->next->value, '\0',\
 				COMMENT_LENGTH + 1);
 		ft_free_head_token(file, tmp->next->next);
 		if (prog->header.comment[COMMENT_LENGTH])
 		{
-			ft_printf("comment too long\n");
-			file->mode = CONTAIN_ERRORS;
-			return (0);
+			ft_printf("Comment too long\n");
+			return (ft_lexical_error(file, tmp));
 		}
 		return (++status);
 	}
@@ -115,7 +108,7 @@ int				ft_check_header(t_file *file, t_program *prog)
 			cmd++;
 		else
 		{
-			ft_printf("header wrong\n");
+			ft_printf("The header wrong\n");
 			return (ft_syntax_error(file, file->tokens));
 		}
 	}

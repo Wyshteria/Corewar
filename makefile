@@ -6,7 +6,7 @@
 #    By: lboukrou <lboukrou@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/09/20 19:50:33 by toliver           #+#    #+#              #
-#    Updated: 2020/01/04 22:21:36 by lboukrou         ###   ########.fr        #
+#    Updated: 2020/01/04 22:28:11 by lboukrou         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -41,6 +41,11 @@ OBJS_ASM = $(addprefix objs/, $(addsuffix .o, \
 				print \
 				print2 \
 				token \
+				token_init \
+				token_parse \
+				token_parse_identifier \
+				token_parse_utils \
+				token_parse_instruction \
 				ft_write_file \
 				op \
 				ft_operations \
