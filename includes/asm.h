@@ -120,7 +120,8 @@ typedef struct		s_operation
 	int					len;
 	int					encoding;
 	int					is_encoding_needed;
-	// unsigned char	len_direct;
+	int					line;
+	int					col;
 }					t_operation;
 
 typedef struct		s_program

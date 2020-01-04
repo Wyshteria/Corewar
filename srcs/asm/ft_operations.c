@@ -12,20 +12,19 @@
 
 #include "asm.h"
 
-static t_operation	*ft_op_init(t_program *prog, t_op const *op)
+static t_operation	*ft_op_init(t_program *prog, t_op const *op, t_token *token)
 {
 	t_operation *tmp;
 	t_operation *ptr;
 
 	if (!(tmp = (t_operation*)malloc(sizeof(t_operation))))
 		ft_crash(MALLOC_FAIL);
-	ft_bzero(tmp, sizeof(t_operation));
-	tmp->mem = prog->header.prog_size;
-	tmp->opc = op->opcode_value;
-	tmp->name = op->opcode;
-	tmp->p_num = op->params_number;
-	tmp->len = op->need_encoding_byte + 1;
-	tmp->is_encoding_needed = op->need_encoding_byte;
+	*tmp = (t_operation) {.mem = prog->header.prog_size, \
+	.opc = op->opcode_value, .name = op->opcode, .encoding = 0, \
+	.prev = NULL, .next = NULL, \
+	.p_num = op->params_number, .line = token->line,\
+	.len = op->need_encoding_byte + 1, .col = token->line, \
+	.is_encoding_needed = op->need_encoding_byte, .params = {0}};
 	if (prog->operations == NULL)
 		prog->operations = tmp;
 	else
@@ -43,12 +42,13 @@ int					ft_check_op(t_file *file, t_program *prog, t_token **token)
 	t_op *const	op = ft_fetch_op((*token)->value);
 	t_operation	*operation;
 
-	operation = ft_op_init(prog, op);
+	operation = ft_op_init(prog, op, *token);
 	if (!ft_create_param(file, operation, token, op))
 		return (0);
 	ft_pass_comm(file, token);
 	if (!*token || (*token)->type != NEWLINE)
 	{
+		ft_printf("At [%d:%d] the ", operation->line, operation->col);
 		ft_printf("operation does not end with a newline\n");
 		return (ft_syntax_error(file, *token));
 	}
