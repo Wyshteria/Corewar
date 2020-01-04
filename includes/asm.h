@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   asm.h                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: toliver <marvin@42.fr>                     +#+  +:+       +#+        */
+/*   By: lboukrou <lboukrou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/19 18:18:38 by toliver           #+#    #+#             */
-/*   Updated: 2019/12/17 06:38:37 by jates-           ###   ########.fr       */
+/*   Updated: 2020/01/04 21:50:55 by lboukrou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -275,6 +275,57 @@ int					ft_offset_head(t_env *env, t_file *file, size_t size);
 
 void				ft_parse_token(t_env *env, t_file *file);
 t_token				*ft_last_token(t_file *file);
+void				ft_parse_unknown(t_file *file);
+
+
+
+/*
+** TOKEN INIT FUNC
+*/
+
+void				ft_add_token(t_file *file, t_token *token);
+void				ft_token_init(t_token *token, int type, int col, int line);
+
+
+/*
+** TOKEN PARSE FUNC
+*/
+
+void				ft_parse_indirect_label(t_file *file);
+void				ft_parse_direct(t_file *file);
+void				ft_parse_indirect(t_file *file);
+void				ft_parse_register(t_file *file, t_token *token, size_t ret);
+int					ft_parse_number(t_file *file, t_token *token);
+
+
+/*
+** TOKEN PARSE IDENTIFIER FUNC
+*/
+
+int					ft_is_number(t_token *token);
+int					ft_is_label(t_file *file);
+int					ft_is_reg(char *str);
+
+
+/*
+** TOKEN PARSE INSTRUCTIONS FUNC
+*/
+
+void				ft_parse_instruction(t_file *file);
+void				ft_parse_instruction_direct(t_file *file, t_token *token,
+										t_token *last, size_t ret);
+
+
+/*
+** TOKEN TYPE FUNC
+*/
+
+void				ft_parse_comment(t_file *file);
+void				ft_parse_cmd(t_file *file);
+void				ft_parse_string(t_file *file);
+void				ft_parse_newline(t_file *file);
+void				ft_parse_separator(t_file *file);
+
 
 /*
 ** PRINTING FUNC
