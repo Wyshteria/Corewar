@@ -3,18 +3,18 @@
 /*                                                        :::      ::::::::   */
 /*   asm_error.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jates- <jates-@student.42.fr>              +#+  +:+       +#+        */
+/*   By: lboukrou <lboukrou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/18 00:52:11 by jates-            #+#    #+#             */
-/*   Updated: 2019/12/19 03:09:31 by jates-           ###   ########.fr       */
+/*   Updated: 2020/01/05 00:00:22 by lboukrou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "asm.h"
 
-size_t	ft_strspn(const char *s, const char *charset)
+size_t		ft_strspn(const char *s, const char *charset)
 {
-	size_t			i;
+	size_t				i;
 	const char *const	accept = charset;
 
 	i = 0;
@@ -32,7 +32,7 @@ size_t	ft_strspn(const char *s, const char *charset)
 	return (i);
 }
 
-int		ft_lexical_error(t_file *file, t_token *token)
+int			ft_lexical_error(t_file *file, t_token *token)
 {
 	if (!token)
 		ft_printf("Lexical error at [%d:%d]\n", file->line, file->col);
@@ -42,10 +42,8 @@ int		ft_lexical_error(t_file *file, t_token *token)
 	return (0);
 }
 
-int		ft_syntax_error(t_file *file, t_token *tok)
+static int	ft_syntax_error_3(t_file *file, t_token *tok, char const *syntax)
 {
-	char const	syntax[] = "Syntax error at token [TOKEN]";
-
 	if (!tok)
 		ft_printf("%s[%03d:%03d] END \"(null)\"\n",\
 	syntax, file->line, file->col);
@@ -62,6 +60,15 @@ int		ft_syntax_error(t_file *file, t_token *tok)
 	else if (tok->type == LABEL)
 		ft_printf("%s[%03d:%03d] LABEL \"%s%C\"\n", \
 	syntax, tok->line, tok->col, tok->value, LABEL_CHAR);
+	else
+		return (0);
+	return (1);
+}
+
+static int	ft_syntax_error_2(t_file *file, t_token *tok, char const *syntax)
+{
+	if (ft_syntax_error_3(file, tok, syntax))
+		;
 	else if (tok->type == INDIRECT_LABEL)
 		ft_printf("%s[%03d:%03d] INDIRECT_LABEL \"%C%s\"\n", \
 	syntax, tok->line, tok->col, LABEL_CHAR, tok->value);
@@ -79,13 +86,25 @@ int		ft_syntax_error(t_file *file, t_token *tok)
 	else if (tok->type == INDIRECT)
 		ft_printf("%s[%03d:%03d] INDIRECT \"%s\" int value >%d<\n", \
 	syntax, tok->line, tok->col, tok->value, tok->int_value);
+	else
+		return (0);
+	return (1);
+}
+
+int			ft_syntax_error(t_file *file, t_token *tok)
+{
+	char const	syntax[] = "Syntax error at token [TOKEN]";
+
+	if (ft_syntax_error_2(file, tok, syntax))
+		;
 	else if (tok->type == REGISTER)
 		ft_printf("%s[%03d:%03d] REGISTER \"r%s\" int value >%d<\n", \
 	syntax, tok->line, tok->col, tok->value, tok->int_value);
 	else if (tok->type == NUMBER)
 		ft_printf("%s[%03d:%03d] NUMBER \"%s\" int value >%d<\n", \
 	syntax, tok->line, tok->col, tok->value, tok->int_value);
-	else if (tok->type == COMMENT || tok->type == INSTRUCTION || tok->type == OPERATION)
+	else if (tok->type == COMMENT || tok->type == INSTRUCTION ||
+									tok->type == OPERATION)
 		ft_printf("%s[%03d:%03d] %s \"%s\"\n",\
 	syntax, tok->line, tok->col, ft_tokentype_string(tok->type), tok->value);
 	else
@@ -93,5 +112,4 @@ int		ft_syntax_error(t_file *file, t_token *tok)
 	syntax, tok->line, tok->col, ft_tokentype_string(tok->type), tok->value);
 	file->mode = CONTAIN_ERRORS;
 	return (0);
-
 }
