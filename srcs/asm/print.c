@@ -124,7 +124,6 @@ void		ft_dump_op(t_program *prog)
 		ft_printf("\t\topc = %d\n", ptr->opc);
 		ft_printf("\t\tmemory address = %d\n", ptr->mem);
 		ft_printf("\t\tlength = %d\n", ptr->len);
-		ft_printf("\t\tnext >>%#x<<", ptr->next);
 		ft_printf("\t\tparam_number [%d]\n", ptr->p_num);
 		i = -1;
 		while (++i < 3)

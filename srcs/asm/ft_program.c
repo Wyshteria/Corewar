@@ -30,19 +30,11 @@ static int	ft_check_body(t_file *file, t_program *prog)
 	t_token			*tmp;
 	
 	tmp = file->tokens;
-	ft_printf("check the body\n");
+	// ft_printf("check the body\n");
 	while (tmp)
 	{
 		if (!ft_pass_newline_comm(file, &tmp))
 			return (0);
-		if (tmp)
-			{
-				ft_printf("in printf de check_body\n");
-				ft_printf("token of type : %s\n", ft_tokentype_string((tmp)->type));
-				ft_printf("\tits value is : %s\n", (tmp)->value);
-				ft_printf("\tits converted value is : %d\n", (tmp)->int_value);
-				ft_printf("\tat pos [%d:%d]\n", (tmp)->line, (tmp)->col);
-			}
 		if (tmp->type == LABEL && (!tmp->next || (tmp->next->type != NEWLINE \
 		&& tmp->next->type != OPERATION && tmp->next->type != COMMENT)))
 			return (ft_syntax_error(file, tmp));
@@ -73,8 +65,8 @@ int					ft_init_prog(t_env *env, t_file *file)
 	ft_clear_prog(&env->prog);
 	if (!(env->prog.filename = ft_cor_filename(file)))
 		return (0);
-	ft_printf("got the name\n");
-	ft_dump_tokens(file);
+	// ft_printf("got the name\n");
+	// ft_dump_tokens(file);
 	if (!ft_check_header(file, &env->prog) || !ft_check_body(file,&env->prog) \
 	|| !ft_check_labels(file, &env->prog, file->tokens))
 	{

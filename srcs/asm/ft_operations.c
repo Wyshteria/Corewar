@@ -64,6 +64,7 @@ int		ft_check_op(t_file *file, t_program *prog, t_token **token)
 	// ft_dump_tokens(file);
 	if (!ft_check_params_types(file, operation, op))
 		return (0);
+	prog->header.prog_size += operation->len;
 	return (1);
 }
 
