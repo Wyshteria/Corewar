@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_write_file.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jates- <jates-@student.42.fr>              +#+  +:+       +#+        */
+/*   By: lboukrou <lboukrou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/17 03:10:28 by jates-            #+#    #+#             */
-/*   Updated: 2020/01/04 09:21:00 by jates-           ###   ########.fr       */
+/*   Updated: 2020/01/05 00:39:34 by lboukrou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,7 @@ void	ft_write_body(t_program *prog, t_operation *op)
 {
 	int			i;
 
-	ft_dump_op(prog);
+	// ft_dump_op(prog);
 	while (op)
 	{
 		write_hexlen(prog->fd, op->opc, 1);
@@ -69,8 +69,8 @@ int		ft_open_cor_file(t_program *prog, t_env *env, t_file *file)
 		ft_clear_prog(prog);
 		return (ft_error(env, file, OPEN_ERROR));
 	}
-	else
-		ft_dump_prog(&env->prog);
+	// else
+	// 	ft_dump_prog(&env->prog);
 	ft_write_head(prog);
 	ft_write_body(prog, prog->operations);
 	close(prog->fd);
