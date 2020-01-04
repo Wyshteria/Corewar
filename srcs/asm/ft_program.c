@@ -44,7 +44,7 @@ static int			ft_check_body(t_file *file, t_program *prog)
 	while (tmp)
 	{
 		if (!ft_pass_newline_comm(file, &tmp))
-			return (0);
+			return (file->mode != CONTAIN_ERRORS);
 		if (tmp->type == LABEL && (!tmp->next || (tmp->next->type != NEWLINE \
 		&& tmp->next->type != OPERATION && tmp->next->type != COMMENT)))
 			return (ft_syntax_error(file, tmp));
