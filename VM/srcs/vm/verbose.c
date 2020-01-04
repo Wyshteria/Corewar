@@ -6,27 +6,18 @@
 /*   By: toliver <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/22 02:50:34 by toliver           #+#    #+#             */
-/*   Updated: 2019/12/30 09:30:13 by toliver          ###   ########.fr       */
+/*   Updated: 2020/01/03 22:35:14 by toliver          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "vm.h"
 
-int			ft_verbose_flag(int flag)
-{
-	t_env	*env;
-
-	env = ft_get_env();
-	if ((env->flags & VERBOSE_FLAG) && (env->verbose_level & flag))
-		return (1);
-	return (0);
-}
-
 void		ft_verbose_op(t_arena *arena, t_process *process, t_opcode *op)
 {
 	(void)arena;
 	(void)op;
-	ft_printf("P %4d | %s", process->pid, op_tab[process->opcode_value].opcode);
+	ft_printf("P %4d | %s", process->pid,
+			g_op_tab[process->opcode_value].opcode);
 }
 
 void		ft_intro(t_env *env)

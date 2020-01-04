@@ -1,34 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   verbose1.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: toliver <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/11/19 18:19:18 by toliver           #+#    #+#             */
-/*   Updated: 2020/01/04 05:02:28 by toliver          ###   ########.fr       */
+/*   Created: 2020/01/03 22:34:54 by toliver           #+#    #+#             */
+/*   Updated: 2020/01/03 22:41:05 by toliver          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "vm.h"
 
-int			main(int ac, char **av)
+int			ft_verbose_flag(int flag)
 {
-	t_env	env;
+	t_env	*env;
 
-	ft_env_init(&env, av[0], ac - 1);
-	if (!ft_parse_params(&env, av + 1))
-		return (-1);
-	ft_parse_champs(&env);
-	if (!ft_check_champs(&env) || !ft_init_arena(&env))
-	{
-		ft_free_env(&env);
-		return (-1);
-	}
-	if (env.flags & NCURSES_FLAG)
-		ft_visu(&env);
-	else
-		ft_run(&env);
-	ft_free_env(&env);
+	env = ft_get_env();
+	if ((env->flags & VERBOSE_FLAG) && (env->verbose_level & flag))
+		return (1);
 	return (0);
 }

@@ -6,18 +6,18 @@
 /*   By: toliver <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/08 23:56:03 by toliver           #+#    #+#             */
-/*   Updated: 2020/01/03 22:22:24 by toliver          ###   ########.fr       */
+/*   Updated: 2020/01/04 05:19:10 by toliver          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef DISPLAY_H
-#define DISPLAY_H
+# define DISPLAY_H
 
-#include <SDL2/SDL.h>
-#include <SDL2/SDL_ttf.h>
+# include <SDL2/SDL.h>
+# include <SDL2/SDL_ttf.h>
 
-#define WINX	1600
-#define WINY	1200
+# define WINX	1600
+# define WINY	1200
 
 enum			e_color_type
 {
