@@ -1,5 +1,5 @@
 VM_PATH=../vm_champs/corewar
-MY_VM_PATH=./corewar
+MY_VM_PATH=../corewar
 
 CHAMP_PATH=../vm_champs/
 

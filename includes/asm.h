@@ -127,7 +127,7 @@ typedef struct		s_program
 	char			*filename;
 	t_operation		*operations;
 	t_label			*label;
-	header_t		header;
+	t_header		header;
 }					t_program;
 
 typedef struct		s_env
