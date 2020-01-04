@@ -33,7 +33,7 @@ rm -f "$path_to_testko"*.diff
 #echo "\033[0;32m==Building $tester==\033[0m"	| tee	-a	$launcher_log
 #make -C $path_to_test							>>			$launcher_log
 echo "\n\033[0;32m==Building $ft_asm==\033[0m"	| tee	-a	$launcher_log
-make -C $path_to_ft_asm							>>			$launcher_log
+make -C $path_to_ft_asm asm						>>			$launcher_log
 #if [ -x $tester ]
 #then
 	if [ -x $asm ]
@@ -56,12 +56,12 @@ make -C $path_to_ft_asm							>>			$launcher_log
 			else
 				$asm "$path_to_testko$file" > "$path_to_testko$cor.txt"
 				$ft_asm "$path_to_testko$file" >> $launcher_log
+				$ft_asm "$path_to_testko$file" > "$path_to_testko$cor.my.txt"
 				if [ -f "$path_to_testko$cor.cor" ]
 				then
 					let "fail = $fail + 1"
 					hexdump -vC "$path_to_testko$cor.cor" > "$path_to_testko$cor.log"
 				else
-					$ft_asm "$path_to_testko$file" > "$path_to_testko$cor.my.txt"
 					diff "$path_to_testko$cor.txt" "$path_to_testko$cor.my.txt" > "$path_to_testko$cor.diff"
 					if [ -s "$path_to_testko$cor.diff" ]
 					then

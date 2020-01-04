@@ -52,6 +52,7 @@ int					ft_add_label(t_file *file, t_program *prog, char *label, t_token *token)
 			tmp = &((*tmp)->next);
 		else
 		{
+			ft_printf("At [%d:%d] ", token->line, token->col);
 			ft_printf("label %s already used at [%d:%d]\n", label, (*tmp)->line, (*tmp)->col);
 			file->mode = CONTAIN_ERRORS;
 			return (0);
