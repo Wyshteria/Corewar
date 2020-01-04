@@ -1,12 +1,12 @@
 # **************************************************************************** #
 #                                                                              #
 #                                                         :::      ::::::::    #
-#    Makefile                                           :+:      :+:    :+:    #
+#    makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: toliver <marvin@42.fr>                     +#+  +:+       +#+         #
+#    By: lboukrou <lboukrou@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/09/20 19:50:33 by toliver           #+#    #+#              #
-#    Updated: 2019/12/07 20:36:28 by toliver          ###   ########.fr        #
+#    Updated: 2020/01/04 22:21:36 by lboukrou         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -49,6 +49,7 @@ OBJS_ASM = $(addprefix objs/, $(addsuffix .o, \
 				ft_check_header \
 				ft_parse_op_utils \
 				ft_program \
+				offset \
 				) \
 		)) 
 
