@@ -58,8 +58,10 @@ char		*ft_tokentype_string(int type)
 		return (ft_tokentype_string2(type));
 }
 
-void		ft_dump_param(t_operation *op)
+void		ft_dump_param(t_operation *ptr)
 {
+	int			i;
+
 	i = -1;
 	while (++i < 3)
 	{
@@ -75,7 +77,6 @@ void		ft_dump_param(t_operation *op)
 void		ft_dump_op(t_program *prog)
 {
 	t_operation	*ptr;
-	int			i;
 
 	ptr = prog->operations;
 	while (ptr)
