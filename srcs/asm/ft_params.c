@@ -63,6 +63,8 @@ static void	ft_param_init(t_token *token, int nbr_param, \
 	else
 		operation->params[nbr_param].value_type = token->type;
 	ft_param_len(nbr_param, operation, op);
+	operation->params[nbr_param].line = token->line;
+	operation->params[nbr_param].col = token->col;
 }
 
 int			ft_create_param(t_file *file, t_operation *operation, \

@@ -12,13 +12,12 @@
 
 #include "asm.h"
 
-static t_operation	*ft_op_init(t_program *prog, t_op const *op)
+static t_operation	*ft_op_init(t_program *prog, t_op const *op, t_token *token)
 {
 	t_operation *tmp;
 	t_operation *ptr;
 
-	if (!(tmp = (t_operation*)malloc(sizeof(t_operation))))
-		ft_crash(MALLOC_FAIL);
+	tmp = ft_malloc(sizeof(t_operation));
 	ft_bzero(tmp, sizeof(t_operation));
 	tmp->mem = prog->header.prog_size;
 	tmp->opc = op->opcode_value;
@@ -26,6 +25,8 @@ static t_operation	*ft_op_init(t_program *prog, t_op const *op)
 	tmp->p_num = op->params_number;
 	tmp->len = op->need_encoding_byte + 1;
 	tmp->is_encoding_needed = op->need_encoding_byte;
+	tmp->line = token->line;
+	tmp->col = token->col;
 	if (prog->operations == NULL)
 		prog->operations = tmp;
 	else
@@ -43,7 +44,7 @@ int					ft_check_op(t_file *file, t_program *prog, t_token **token)
 	t_op *const	op = ft_fetch_op((*token)->value);
 	t_operation	*operation;
 
-	operation = ft_op_init(prog, op);
+	operation = ft_op_init(prog, op, *token);
 	if (!ft_create_param(file, operation, token, op))
 		return (0);
 	ft_pass_comm(file, token);

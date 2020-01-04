@@ -44,13 +44,13 @@ static int			ft_check_body(t_file *file, t_program *prog)
 	while (tmp)
 	{
 		if (!ft_pass_newline_comm(file, &tmp))
-			return (0);
+			return (file->mode != CONTAIN_ERRORS);
 		if (tmp->type == LABEL && (!tmp->next || (tmp->next->type != NEWLINE \
 		&& tmp->next->type != OPERATION && tmp->next->type != COMMENT)))
 			return (ft_syntax_error(file, tmp));
 		else if (tmp->type == LABEL)
 		{
-			if (!ft_add_label(file, prog, tmp->value))
+			if (!ft_add_label(file, prog, tmp))
 				return (0);
 		}
 		else if (tmp->type == OPERATION)
@@ -61,6 +61,8 @@ static int			ft_check_body(t_file *file, t_program *prog)
 		else
 			return (ft_syntax_error(file, tmp));
 		tmp = tmp->next;
+		// ft_printf("checking the token made\n");
+		// ft_dump_prog(prog);
 	}
 	return (1);
 }
@@ -78,6 +80,7 @@ int					ft_init_prog(t_env *env, t_file *file)
 		ft_clear_prog(&env->prog);
 		return (0);
 	}
+	ft_dump_prog(&env->prog);
 	return (1);
 }
 

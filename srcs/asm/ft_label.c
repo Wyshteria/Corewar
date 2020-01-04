@@ -41,26 +41,26 @@ static t_label		*ft_is_in_label(t_program *prog, char *label)
 	return (NULL);
 }
 
-int					ft_add_label(t_file *file, t_program *prog, char *label)
+int					ft_add_label(t_file *file, t_program *prog, t_token *label)
 {
 	t_label **tmp;
 
 	tmp = &(prog->label);
 	while (*tmp)
 	{
-		if (!ft_strnequ(label, (*tmp)->value, ft_strlen(label) + 1))
+		if (!ft_strnequ(label->value, (*tmp)->value, ft_strlen(label->value) + 1))
 			tmp = &((*tmp)->next);
 		else
 		{
-			ft_printf("label %s already used\n", label);
-			file->mode = CONTAIN_ERRORS;
-			return (0);
+			ft_printf("label already used at [%d:%d]\n", (*tmp)->line, (*tmp)->col);
+			return (ft_syntax_error(file, label));
 		}
 	}
-	if (!(*tmp = (t_label*)malloc(sizeof(t_label))))
-		ft_crash(MALLOC_FAIL);
-	(*tmp)->value = label;
-	(*tmp)->next = NULL;
+	*tmp = (t_label*)ft_malloc(sizeof(t_label));
+	ft_bzero(*tmp, sizeof(t_label));
+	(*tmp)->col = label->col;
+	(*tmp)->line = label->line;
+	(*tmp)->value = label->value;
 	(*tmp)->mem = prog->header.prog_size;
 	return (1);
 }

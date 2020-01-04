@@ -47,7 +47,7 @@ t_op const	*ft_fetch_op(char *str)
 	if (!str)
 		return (NULL);
 	i = 1;
-	while (i < 16)
+	while (i < 17)
 	{
 		if (!ft_strncmp(str, g_op_tab[i].opcode,\
 			ft_strlen(g_op_tab[i].opcode) + 1))

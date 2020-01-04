@@ -81,8 +81,10 @@ enum e_fileparsing_mode
 typedef struct		s_label
 {
 	struct s_label	*next;
-	char			*value; // ne pas free, assigne token->value
-	int				mem; 
+	int				mem;
+	char			*value; // ne pas free
+	int				line;
+	int				col;
 }					t_label;
 
 typedef struct		s_file
@@ -104,6 +106,8 @@ typedef struct		s_param
 	char			*value;
 	int				int_value;
 	int				len;
+	int				line;
+	int				col;
 }					t_param;
 
 typedef struct		s_operation
@@ -118,7 +122,8 @@ typedef struct		s_operation
 	int					len;
 	int					encoding;
 	int					is_encoding_needed;
-	// unsigned char	len_direct;
+	int					line;
+	int					col;
 }					t_operation;
 
 typedef struct		s_program
@@ -139,39 +144,6 @@ typedef struct		s_env
 }					t_env;
 
 /*
-	STRUCTURES POUR LA CONVERSION EN OPERATIONS
-
-typedef struct		s_param
-{
-	int				type;
-	int				value_type;
-	char			*value;
-	int				int_value;
-}					t_param;
-
-typedef struct		s_label
-{
-	char			*value;
-	struct s_label	*next;
-}					t_label;
-
-typedef struct		s_operation
-{
-	t_label			*labels;
-	unsigned		op_code;
-	t_param			params[3];	
-}					t_operation;
-
-typedef struct		s_program
-{
-	char			*filename;
-	char			*name;
-	char			*comment;
-	t_operation		*operations;
-}					t_program;
-*/
-
-/*
 ** CHAMPION PROGRAM FUNC
 */
 
@@ -184,7 +156,7 @@ void				ft_clear_prog(t_program *prog);
 
 int					ft_check_labels(t_file *file, t_program *prog, t_token *token);
 void				ft_free_label(t_program *prog);
-int					ft_add_label(t_file *file, t_program *prog, char *label);
+int					ft_add_label(t_file *file, t_program *prog, t_token *label);
 
 /*
 ** OPERATION FUNC

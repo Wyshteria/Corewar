@@ -65,10 +65,11 @@ void		ft_dump_param(t_operation *ptr)
 	i = -1;
 	while (++i < 3)
 	{
-		ft_printf("\t\t\t\tparam[%d] = %s\n", i + 1, ptr->params[i].value);
+		ft_printf("\t\t\t\t[%d:%d] ", ptr->params[i].line, ptr->params[i].col);
+		ft_printf("param[%d] = %s\n", i + 1, ptr->params[i].value);
 		ft_printf("\t\t\t\t\ttype = %s\n", ft_type_param(&ptr->params[i]));
 		ft_printf("\t\t\t\t\tint_val %d\n", ptr->params[i].int_value);
-		ft_printf("\t\t\t\t\tvalue_type %s\n\n", \
+		ft_printf("\t\t\t\t\tvalue_type %s\n", \
 			ft_tokentype_string(ptr->params[i].value_type));
 		ft_printf("\t\t\t\t\tlength %d\n", ptr->params[i].len);
 	}
@@ -81,7 +82,8 @@ void		ft_dump_op(t_program *prog)
 	ptr = prog->operations;
 	while (ptr)
 	{
-		ft_printf("\t\toperation name = %s\n", ptr->name);
+		ft_printf("\t\t[%d:%d] ", ptr->line, ptr->col);
+		ft_printf("operation name = %s\n", ptr->name);
 		ft_printf("\t\t\topc = %d\n", ptr->opc);
 		ft_printf("\t\t\tmemory address = %d\n", ptr->mem);
 		ft_printf("\t\t\tlength = %d\n", ptr->len);

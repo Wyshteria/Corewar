@@ -374,12 +374,13 @@ void		ft_parse_token(t_env *env, t_file *file)
 {
 	char	buf[51];
 	int		retval;
+	// t_token	*token;
 	
 	(void)env;
 	if ((retval = read(file->fd, buf, 50)) > 0)
 	{
 		buf[retval] = 0;
-		// ft_printf("nous sommes at [%d:%d]\n", file->line, file->col);
+		// ft_printf("nous sommes at [%d:%d]\n", file->line, file->col); //
 		if ((buf[0] == COMMENT_CHAR || buf[0] == ALT_COMMENT_CHAR) && ft_offset_head(env, file, 1) && (file->col += 1))
 			ft_parse_comment(file);
 		else if (buf[0] == CMD_CHAR && ft_offset_head(env, file, 1))
@@ -405,7 +406,15 @@ void		ft_parse_token(t_env *env, t_file *file)
 		}
 		if (file->mode == PARSING || file->mode == DONE)
 			ft_check_direct_token(file);
-		// ft_printf("End at [%d:%d]\n", file->line, file->col);
+		// token = ft_last_token(file);
+		// if (token)
+		// {
+		// ft_printf("token of type : %s\n", ft_tokentype_string(token->type));
+		// ft_printf("\tits value is : %s\n", token->value);
+		// ft_printf("\tits converted value is : %d\n", token->int_value);
+		// ft_printf("\tat pos [%d:%d]\n", token->line, token->col);
+		// }
+		// ft_printf("End at [%d:%d]\n", file->line, file->col); //
 	}
 	else if (retval == -1)
 		ft_error(env, file, READ_ERROR);
