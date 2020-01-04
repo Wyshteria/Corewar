@@ -1,0 +1,10317 @@
+==7034== Memcheck, a memory error detector
+==7034== Copyright (C) 2002-2017, and GNU GPL'd, by Julian Seward et al.
+==7034== Using Valgrind-3.16.0.GIT and LibVEX; rerun with -h for copyright info
+==7034== Command: ../asm srcsok/42.s
+==7034== 
+--7034-- run: /usr/bin/dsymutil "../asm"
+parsing operations !
+got the name
+pour segfault 42
+pour segfault 0
+pour segfault 5
+pour segfault 0
+pour segfault 5
+pour segfault bite
+pour segfault 1
+pour segfault tirb
+pour segfault 1
+pour segfault 2304
+pour segfault 10
+pour segfault 1
+pour segfault 5
+pour segfault 0
+pour segfault 11
+pour segfault 4
+pour segfault 3
+pour segfault 42
+pour segfault tirop
+pour segfault 742
+pour segfault 3
+pour segfault 5
+pour segfault 3
+pour segfault top
+pour segfault 0
+pour segfault 11
+pour segfault tirvd
+pour segfault 42
+pour segfault 10
+pour segfault -510
+pour segfault 0
+pour segfault 10
+pour segfault -404
+pour segfault 0
+pour segfault 10
+pour segfault -303
+pour segfault 0
+pour segfault 10
+pour segfault -202
+pour segfault 0
+pour segfault 0
+pour segfault 11
+pour segfault tirf
+pour segfault 368
+pour segfault 2
+pour segfault 0
+pour segfault 3
+pour segfault 4
+pour segfault 4
+pour segfault 1
+pour segfault 10
+pour segfault -510
+pour segfault 2
+pour segfault 10
+pour segfault -510
+pour segfault 3
+pour segfault 4
+pour segfault 5
+pour segfault 4
+pour segfault 3
+pour segfault 4
+pour segfault 3
+pour segfault 2
+pour segfault 4
+pour segfault 2
+pour segfault tirop
+pour segfault 0
+pour segfault 11
+pour segfault tirb
+pour segfault infi
+pour segfault 0
+pour segfault 0
+pour segfault 0
+pour segfault 0
+pour segfault 0
+pour segfault 0
+pour segfault 0
+pour segfault 0
+pour segfault 0
+pour segfault 0
+pour segfault 0
+pour segfault 0
+pour segfault 0
+pour segfault 0
+pour segfault 0
+pour segfault 0
+pour segfault 0
+pour segfault 0
+pour segfault 6
+pour segfault 4
+pour segfault 6
+pour segfault 6
+pour segfault 6
+pour segfault 11
+pour segfault p32deb
+pour segfault 6
+pour segfault 7
+pour segfault 7
+pour segfault -510
+pour segfault 11
+pour segfault 1
+pour segfault 0
+pour segfault 10
+pour segfault 7
+pour segfault -250
+pour segfault 6
+pour segfault -192
+pour segfault tirvd2
+pour segfault 1
+pour segfault copie
+pour segfault 2
+pour segfault copie
+pour segfault 3
+pour segfault 2
+pour segfault 2
+pour segfault entree
+pour segfault -4
+pour segfault copie
+pour segfault -1
+pour segfault 2
+pour segfault 2
+pour segfault entree
+pour segfault -8
+pour segfault 1
+pour segfault p32li
+pour segfault 1
+pour segfault 1
+pour segfault b0
+pour segfault 1
+pour segfault 0
+pour segfault 2
+pour segfault 8
+pour segfault 3
+pour segfault 1
+pour segfault 4
+pour segfault 0
+pour segfault 6
+pour segfault 1
+pour segfault 3
+pour segfault 4
+pour segfault 3
+pour segfault tart
+pour segfault b1
+pour segfault 5
+pour segfault 2
+pour segfault 10
+pour segfault 10
+pour segfault 10
+pour segfault 10
+pour segfault 10
+pour segfault 10
+pour segfault 6
+pour segfault 6
+pour segfault 6
+pour segfault 0
+pour segfault 10
+pour segfault b0
+pour segfault 2
+pour segfault 4
+pour segfault 2
+pour segfault 6
+pour segfault 6
+pour segfault 6
+pour segfault 6
+pour segfault 4
+pour segfault 6
+pour segfault 0
+pour segfault 10
+pour segfault b0
+pour segfault 42
+pour segfault 9
+pour segfault 3
+pour segfault 3
+pour segfault p32deb
+pour segfault -6
+pour segfault 2
+pour segfault 3
+pour segfault 3
+pour segfault p32deb
+pour segfault -16
+pour segfault 0
+pour segfault 3
+pour segfault topd
+pour segfault 1
+pour segfault l0
+pour segfault 1
+pour segfault 1
+pour segfault l1
+pour segfault 1
+pour segfault 1
+pour segfault l2
+pour segfault 1
+pour segfault 1
+pour segfault l3
+pour segfault 1
+pour segfault 1
+pour segfault l4
+pour segfault 1
+pour segfault 1
+pour segfault l5
+pour segfault 1
+pour segfault 1
+pour segfault l6
+pour segfault 1
+pour segfault 1
+pour segfault l7
+pour segfault 1
+pour segfault 1
+pour segfault l8
+pour segfault 1
+pour segfault 1
+pour segfault l9
+pour segfault 1
+pour segfault 1
+pour segfault l10
+pour segfault 1
+pour segfault 1
+pour segfault 1
+pour segfault 1
+pour segfault 1
+pour segfault 1
+pour segfault 1
+pour segfault 1
+pour segfault 1
+pour segfault 1
+pour segfault 1
+pour segfault 1
+pour segfault l0
+pour segfault infi
+pour segfault 0
+pour segfault 1
+pour segfault 1
+pour segfault 1
+pour segfault p64li
+pour segfault 1
+pour segfault 2
+pour segfault 2
+pour segfault 2
+pour segfault p64
+pour segfault 2
+pour segfault 4
+pour segfault 2
+pour segfault p32
+pour segfault 0
+pour segfault 2
+pour segfault infi
+pour segfault tirdow
+pour segfault 9
+pour segfault 3
+pour segfault 3
+pour segfault fin
+pour segfault -6
+pour segfault 2
+pour segfault 3
+pour segfault 3
+pour segfault fin
+pour segfault -16
+pour segfault 0
+pour segfault 3
+pour segfault infi
+pour segfault 0
+pour segfault 0
+pour segfault 0
+pour segfault 0
+pour segfault 0
+pour segfault 0
+pour segfault 0
+pour segfault 0
+pour segfault 0
+pour segfault 0
+pour segfault 0
+pour segfault 0
+pour segfault 0
+pour segfault 0
+pour segfault 0
+pour segfault 0
+pour segfault 0
+pour segfault 0
+pour segfault 0
+pour segfault 0
+pour segfault 0
+pour segfault 0
+pour segfault 0
+pour segfault 0
+pour segfault 0
+pour segfault 0
+pour segfault 0
+pour segfault 0
+pour segfault 0
+pour segfault 0
+pour segfault 0
+pour segfault 0
+pour segfault 0
+pour segfault 0
+pour segfault 0
+pour segfault 0
+pour segfault 0
+pour segfault 0
+pour segfault 0
+pour segfault 0
+pour segfault 10
+pour segfault 8
+pour segfault 6
+pour segfault 8
+pour segfault 6
+pour segfault 6
+pour segfault 2147483648
+pour segfault 8
+pour segfault cont
+pour segfault 118
+pour segfault 8
+pour segfault 6
+pour segfault 8
+pour segfault 6
+pour segfault 6
+pour segfault 6
+pour segfault 6
+pour segfault 272
+pour segfault 8
+pour segfault 29
+pour segfault 9
+pour segfault p64deb
+pour segfault 6
+pour segfault 7
+pour segfault 7
+pour segfault 8
+pour segfault 6
+pour segfault 7
+pour segfault 9
+pour segfault 6
+pour segfault 1
+pour segfault 0
+pour segfault 10
+pour segfault 186
+pour segfault 425
+pour segfault 2
+pour segfault 0
+pour segfault 3
+pour segfault 4
+pour segfault 4
+pour segfault 42
+pour segfault 10
+pour segfault fin
+pour segfault 2
+pour segfault 10
+pour segfault fin
+pour segfault 3
+pour segfault 4
+pour segfault 5
+pour segfault 4
+pour segfault 3
+pour segfault 4
+pour segfault 3
+pour segfault 2
+pour segfault 4
+pour segfault 2
+pour segfault tirdow
+pour segfault 0
+pour segfault 11
+pour segfault tird
+pour segfault p1
+pour segfault 633
+writing file !
+file name : srcsok/42.cor
+	Header
+		magic = 15369203
+		prog_name = 42
+		comment = Just a basic Winner Program
+		prog_size = 993
+
+	fd [5]
+	Labels :
+		[entree]	mem >0<
+				Defined at [4:1]
+		[tir]	mem >22<
+				Defined at [9:1]
+		[tirf]	mem >57<
+				Defined at [15:1]
+		[tirop]	mem >131<
+				Defined at [30:1]
+		[tirb]	mem >152<
+				Defined at [34:1]
+		[p32deb]	mem >200<
+				Defined at [45:1]
+		[p32]	mem >254<
+				Defined at [65:1]
+		[p32li]	mem >276<
+				Defined at [69:1]
+		[tirvd]	mem >297<
+				Defined at [74:1]
+		[bite]	mem >300<
+				Defined at [76:1]
+		[b0]	mem >377<
+				Defined at [90:1]
+		[b1]	mem >422<
+				Defined at [100:1]
+		[top]	mem >447<
+				Defined at [107:1]
+		[infi]	mem >490<
+				Defined at [116:1]
+		[l0]	mem >567<
+				Defined at [128:1]
+		[l1]	mem >572<
+				Defined at [129:1]
+		[l2]	mem >577<
+				Defined at [130:1]
+		[l3]	mem >582<
+				Defined at [131:1]
+		[l4]	mem >587<
+				Defined at [132:1]
+		[l5]	mem >592<
+				Defined at [133:1]
+		[l6]	mem >597<
+				Defined at [134:1]
+		[l7]	mem >602<
+				Defined at [135:1]
+		[l8]	mem >607<
+				Defined at [136:1]
+		[l9]	mem >612<
+				Defined at [137:1]
+		[l10]	mem >617<
+				Defined at [138:1]
+		[p1]	mem >625<
+				Defined at [142:1]
+		[copie]	mem >633<
+				Defined at [145:1]
+		[tart]	mem >640<
+				Defined at [148:1]
+		[tirvd2]	mem >673<
+				Defined at [157:1]
+		[topd]	mem >676<
+				Defined at [159:1]
+		[p64deb]	mem >714<
+				Defined at [166:1]
+		[p64]	mem >834<
+				Defined at [210:1]
+		[cont]	mem >869<
+				Defined at [216:1]
+		[p64li]	mem >904<
+				Defined at [222:1]
+		[tirdow]	mem >919<
+				Defined at [226:1]
+		[tird]	mem >940<
+				Defined at [230:1]
+		[fin]	mem >988<
+				Defined at [241:1]
+	Operations :
+		operation name = live
+			opc = 1
+			memory address = 0
+			length = 5
+			0 encoding [0x80]
+			param_number [1]
+				param[1] = 42
+					type = T_DIR
+					int_val 42
+					value_type NUMBER
+
+					length 4
+				param[2] = (null)
+					type = UNKNOWN
+					int_val 0
+					value_type UNKNOWN
+
+					length 0
+				param[3] = (null)
+					type = UNKNOWN
+					int_val 0
+					value_type UNKNOWN
+
+					length 0
+		operation name = ld
+			opc = 2
+			memory address = 5
+			length = 7
+			1 encoding [0x90]
+			param_number [2]
+				param[1] = 0
+					type = T_DIR
+					int_val 0
+					value_type NUMBER
+
+					length 4
+				param[2] = 5
+					type = T_REG
+					int_val 5
+					value_type REGISTER
+
+					length 1
+				param[3] = (null)
+					type = UNKNOWN
+					int_val 0
+					value_type UNKNOWN
+
+					length 0
+		operation name = ld
+			opc = 2
+			memory address = 12
+			length = 7
+			1 encoding [0x90]
+			param_number [2]
+				param[1] = 0
+					type = T_DIR
+					int_val 0
+					value_type NUMBER
+
+					length 4
+				param[2] = 5
+					type = T_REG
+					int_val 5
+					value_type REGISTER
+
+					length 1
+				param[3] = (null)
+					type = UNKNOWN
+					int_val 0
+					value_type UNKNOWN
+
+					length 0
+		operation name = zjmp
+			opc = 9
+			memory address = 19
+			length = 3
+			0 encoding [0x80]
+			param_number [1]
+				param[1] = bite
+					type = T_DIR
+					int_val 281
+					value_type LABEL
+
+					length 2
+				param[2] = (null)
+					type = UNKNOWN
+					int_val 0
+					value_type UNKNOWN
+
+					length 0
+				param[3] = (null)
+					type = UNKNOWN
+					int_val 0
+					value_type UNKNOWN
+
+					length 0
+		operation name = sti
+			opc = 11
+			memory address = 22
+			length = 7
+			1 encoding [0x68]
+			param_number [3]
+				param[1] = 1
+					type = T_REG
+					int_val 1
+					value_type REGISTER
+
+					length 1
+				param[2] = tirb
+					type = T_DIR
+					int_val 130
+					value_type LABEL
+
+					length 2
+				param[3] = 1
+					type = T_DIR
+					int_val 1
+					value_type NUMBER
+
+					length 2
+		operation name = ld
+			opc = 2
+			memory address = 29
+			length = 7
+			1 encoding [0x90]
+			param_number [2]
+				param[1] = 2304
+					type = T_DIR
+					int_val 2304
+					value_type NUMBER
+
+					length 4
+				param[2] = 10
+					type = T_REG
+					int_val 10
+					value_type REGISTER
+
+					length 1
+				param[3] = (null)
+					type = UNKNOWN
+					int_val 0
+					value_type UNKNOWN
+
+					length 0
+		operation name = ld
+			opc = 2
+			memory address = 36
+			length = 7
+			1 encoding [0x90]
+			param_number [2]
+				param[1] = 1
+					type = T_DIR
+					int_val 1
+					value_type NUMBER
+
+					length 4
+				param[2] = 5
+					type = T_REG
+					int_val 5
+					value_type REGISTER
+
+					length 1
+				param[3] = (null)
+					type = UNKNOWN
+					int_val 0
+					value_type UNKNOWN
+
+					length 0
+		operation name = ld
+			opc = 2
+			memory address = 43
+			length = 7
+			1 encoding [0x90]
+			param_number [2]
+				param[1] = 0
+					type = T_DIR
+					int_val 0
+					value_type NUMBER
+
+					length 4
+				param[2] = 11
+					type = T_REG
+					int_val 11
+					value_type REGISTER
+
+					length 1
+				param[3] = (null)
+					type = UNKNOWN
+					int_val 0
+					value_type UNKNOWN
+
+					length 0
+		operation name = ld
+			opc = 2
+			memory address = 50
+			length = 7
+			1 encoding [0x90]
+			param_number [2]
+				param[1] = 4
+					type = T_DIR
+					int_val 4
+					value_type NUMBER
+
+					length 4
+				param[2] = 3
+					type = T_REG
+					int_val 3
+					value_type REGISTER
+
+					length 1
+				param[3] = (null)
+					type = UNKNOWN
+					int_val 0
+					value_type UNKNOWN
+
+					length 0
+		operation name = live
+			opc = 1
+			memory address = 57
+			length = 5
+			0 encoding [0x80]
+			param_number [1]
+				param[1] = 42
+					type = T_DIR
+					int_val 42
+					value_type NUMBER
+
+					length 4
+				param[2] = (null)
+					type = UNKNOWN
+					int_val 0
+					value_type UNKNOWN
+
+					length 0
+				param[3] = (null)
+					type = UNKNOWN
+					int_val 0
+					value_type UNKNOWN
+
+					length 0
+		operation name = fork
+			opc = 12
+			memory address = 62
+			length = 3
+			0 encoding [0x80]
+			param_number [1]
+				param[1] = tirop
+					type = T_DIR
+					int_val 69
+					value_type LABEL
+
+					length 2
+				param[2] = (null)
+					type = UNKNOWN
+					int_val 0
+					value_type UNKNOWN
+
+					length 0
+				param[3] = (null)
+					type = UNKNOWN
+					int_val 0
+					value_type UNKNOWN
+
+					length 0
+		operation name = live
+			opc = 1
+			memory address = 65
+			length = 5
+			0 encoding [0x80]
+			param_number [1]
+				param[1] = 742
+					type = T_DIR
+					int_val 742
+					value_type NUMBER
+
+					length 4
+				param[2] = (null)
+					type = UNKNOWN
+					int_val 0
+					value_type UNKNOWN
+
+					length 0
+				param[3] = (null)
+					type = UNKNOWN
+					int_val 0
+					value_type UNKNOWN
+
+					length 0
+		operation name = sub
+			opc = 5
+			memory address = 70
+			length = 5
+			1 encoding [0x54]
+			param_number [3]
+				param[1] = 3
+					type = T_REG
+					int_val 3
+					value_type REGISTER
+
+					length 1
+				param[2] = 5
+					type = T_REG
+					int_val 5
+					value_type REGISTER
+
+					length 1
+				param[3] = 3
+					type = T_REG
+					int_val 3
+					value_type REGISTER
+
+					length 1
+		operation name = zjmp
+			opc = 9
+			memory address = 75
+			length = 3
+			0 encoding [0x80]
+			param_number [1]
+				param[1] = top
+					type = T_DIR
+					int_val 372
+					value_type LABEL
+
+					length 2
+				param[2] = (null)
+					type = UNKNOWN
+					int_val 0
+					value_type UNKNOWN
+
+					length 0
+				param[3] = (null)
+					type = UNKNOWN
+					int_val 0
+					value_type UNKNOWN
+
+					length 0
+		operation name = ld
+			opc = 2
+			memory address = 78
+			length = 7
+			1 encoding [0x90]
+			param_number [2]
+				param[1] = 0
+					type = T_DIR
+					int_val 0
+					value_type NUMBER
+
+					length 4
+				param[2] = 11
+					type = T_REG
+					int_val 11
+					value_type REGISTER
+
+					length 1
+				param[3] = (null)
+					type = UNKNOWN
+					int_val 0
+					value_type UNKNOWN
+
+					length 0
+		operation name = fork
+			opc = 12
+			memory address = 85
+			length = 3
+			0 encoding [0x80]
+			param_number [1]
+				param[1] = tirvd
+					type = T_DIR
+					int_val 212
+					value_type LABEL
+
+					length 2
+				param[2] = (null)
+					type = UNKNOWN
+					int_val 0
+					value_type UNKNOWN
+
+					length 0
+				param[3] = (null)
+					type = UNKNOWN
+					int_val 0
+					value_type UNKNOWN
+
+					length 0
+		operation name = live
+			opc = 1
+			memory address = 88
+			length = 5
+			0 encoding [0x80]
+			param_number [1]
+				param[1] = 42
+					type = T_DIR
+					int_val 42
+					value_type NUMBER
+
+					length 4
+				param[2] = (null)
+					type = UNKNOWN
+					int_val 0
+					value_type UNKNOWN
+
+					length 0
+				param[3] = (null)
+					type = UNKNOWN
+					int_val 0
+					value_type UNKNOWN
+
+					length 0
+		operation name = sti
+			opc = 11
+			memory address = 93
+			length = 7
+			1 encoding [0x68]
+			param_number [3]
+				param[1] = 10
+					type = T_REG
+					int_val 10
+					value_type REGISTER
+
+					length 1
+				param[2] = -510
+					type = T_DIR
+					int_val -510
+					value_type NUMBER
+
+					length 2
+				param[3] = 0
+					type = T_DIR
+					int_val 0
+					value_type NUMBER
+
+					length 2
+		operation name = sti
+			opc = 11
+			memory address = 100
+			length = 7
+			1 encoding [0x68]
+			param_number [3]
+				param[1] = 10
+					type = T_REG
+					int_val 10
+					value_type REGISTER
+
+					length 1
+				param[2] = -404
+					type = T_DIR
+					int_val -404
+					value_type NUMBER
+
+					length 2
+				param[3] = 0
+					type = T_DIR
+					int_val 0
+					value_type NUMBER
+
+					length 2
+		operation name = sti
+			opc = 11
+			memory address = 107
+			length = 7
+			1 encoding [0x68]
+			param_number [3]
+				param[1] = 10
+					type = T_REG
+					int_val 10
+					value_type REGISTER
+
+					length 1
+				param[2] = -303
+					type = T_DIR
+					int_val -303
+					value_type NUMBER
+
+					length 2
+				param[3] = 0
+					type = T_DIR
+					int_val 0
+					value_type NUMBER
+
+					length 2
+		operation name = sti
+			opc = 11
+			memory address = 114
+			length = 7
+			1 encoding [0x68]
+			param_number [3]
+				param[1] = 10
+					type = T_REG
+					int_val 10
+					value_type REGISTER
+
+					length 1
+				param[2] = -202
+					type = T_DIR
+					int_val -202
+					value_type NUMBER
+
+					length 2
+				param[3] = 0
+					type = T_DIR
+					int_val 0
+					value_type NUMBER
+
+					length 2
+		operation name = ld
+			opc = 2
+			memory address = 121
+			length = 7
+			1 encoding [0x90]
+			param_number [2]
+				param[1] = 0
+					type = T_DIR
+					int_val 0
+					value_type NUMBER
+
+					length 4
+				param[2] = 11
+					type = T_REG
+					int_val 11
+					value_type REGISTER
+
+					length 1
+				param[3] = (null)
+					type = UNKNOWN
+					int_val 0
+					value_type UNKNOWN
+
+					length 0
+		operation name = zjmp
+			opc = 9
+			memory address = 128
+			length = 3
+			0 encoding [0x80]
+			param_number [1]
+				param[1] = tirf
+					type = T_DIR
+					int_val -71
+					value_type LABEL
+
+					length 2
+				param[2] = (null)
+					type = UNKNOWN
+					int_val 0
+					value_type UNKNOWN
+
+					length 0
+				param[3] = (null)
+					type = UNKNOWN
+					int_val 0
+					value_type UNKNOWN
+
+					length 0
+		operation name = ld
+			opc = 2
+			memory address = 131
+			length = 7
+			1 encoding [0x90]
+			param_number [2]
+				param[1] = 368
+					type = T_DIR
+					int_val 368
+					value_type NUMBER
+
+					length 4
+				param[2] = 2
+					type = T_REG
+					int_val 2
+					value_type REGISTER
+
+					length 1
+				param[3] = (null)
+					type = UNKNOWN
+					int_val 0
+					value_type UNKNOWN
+
+					length 0
+		operation name = ld
+			opc = 2
+			memory address = 138
+			length = 7
+			1 encoding [0x90]
+			param_number [2]
+				param[1] = 0
+					type = T_DIR
+					int_val 0
+					value_type NUMBER
+
+					length 4
+				param[2] = 3
+					type = T_REG
+					int_val 3
+					value_type REGISTER
+
+					length 1
+				param[3] = (null)
+					type = UNKNOWN
+					int_val 0
+					value_type UNKNOWN
+
+					length 0
+		operation name = ld
+			opc = 2
+			memory address = 145
+			length = 7
+			1 encoding [0x90]
+			param_number [2]
+				param[1] = 4
+					type = T_DIR
+					int_val 4
+					value_type NUMBER
+
+					length 4
+				param[2] = 4
+					type = T_REG
+					int_val 4
+					value_type REGISTER
+
+					length 1
+				param[3] = (null)
+					type = UNKNOWN
+					int_val 0
+					value_type UNKNOWN
+
+					length 0
+		operation name = live
+			opc = 1
+			memory address = 152
+			length = 5
+			0 encoding [0x80]
+			param_number [1]
+				param[1] = 1
+					type = T_DIR
+					int_val 1
+					value_type NUMBER
+
+					length 4
+				param[2] = (null)
+					type = UNKNOWN
+					int_val 0
+					value_type UNKNOWN
+
+					length 0
+				param[3] = (null)
+					type = UNKNOWN
+					int_val 0
+					value_type UNKNOWN
+
+					length 0
+		operation name = sti
+			opc = 11
+			memory address = 157
+			length = 6
+			1 encoding [0x64]
+			param_number [3]
+				param[1] = 10
+					type = T_REG
+					int_val 10
+					value_type REGISTER
+
+					length 1
+				param[2] = -510
+					type = T_DIR
+					int_val -510
+					value_type NUMBER
+
+					length 2
+				param[3] = 2
+					type = T_REG
+					int_val 2
+					value_type REGISTER
+
+					length 1
+		operation name = sti
+			opc = 11
+			memory address = 163
+			length = 6
+			1 encoding [0x64]
+			param_number [3]
+				param[1] = 10
+					type = T_REG
+					int_val 10
+					value_type REGISTER
+
+					length 1
+				param[2] = -510
+					type = T_DIR
+					int_val -510
+					value_type NUMBER
+
+					length 2
+				param[3] = 3
+					type = T_REG
+					int_val 3
+					value_type REGISTER
+
+					length 1
+		operation name = add
+			opc = 4
+			memory address = 169
+			length = 5
+			1 encoding [0x54]
+			param_number [3]
+				param[1] = 4
+					type = T_REG
+					int_val 4
+					value_type REGISTER
+
+					length 1
+				param[2] = 5
+					type = T_REG
+					int_val 5
+					value_type REGISTER
+
+					length 1
+				param[3] = 4
+					type = T_REG
+					int_val 4
+					value_type REGISTER
+
+					length 1
+		operation name = add
+			opc = 4
+			memory address = 174
+			length = 5
+			1 encoding [0x54]
+			param_number [3]
+				param[1] = 3
+					type = T_REG
+					int_val 3
+					value_type REGISTER
+
+					length 1
+				param[2] = 4
+					type = T_REG
+					int_val 4
+					value_type REGISTER
+
+					length 1
+				param[3] = 3
+					type = T_REG
+					int_val 3
+					value_type REGISTER
+
+					length 1
+		operation name = sub
+			opc = 5
+			memory address = 179
+			length = 5
+			1 encoding [0x54]
+			param_number [3]
+				param[1] = 2
+					type = T_REG
+					int_val 2
+					value_type REGISTER
+
+					length 1
+				param[2] = 4
+					type = T_REG
+					int_val 4
+					value_type REGISTER
+
+					length 1
+				param[3] = 2
+					type = T_REG
+					int_val 2
+					value_type REGISTER
+
+					length 1
+		operation name = zjmp
+			opc = 9
+			memory address = 184
+			length = 3
+			0 encoding [0x80]
+			param_number [1]
+				param[1] = tirop
+					type = T_DIR
+					int_val -53
+					value_type LABEL
+
+					length 2
+				param[2] = (null)
+					type = UNKNOWN
+					int_val 0
+					value_type UNKNOWN
+
+					length 0
+				param[3] = (null)
+					type = UNKNOWN
+					int_val 0
+					value_type UNKNOWN
+
+					length 0
+		operation name = ld
+			opc = 2
+			memory address = 187
+			length = 7
+			1 encoding [0x90]
+			param_number [2]
+				param[1] = 0
+					type = T_DIR
+					int_val 0
+					value_type NUMBER
+
+					length 4
+				param[2] = 11
+					type = T_REG
+					int_val 11
+					value_type REGISTER
+
+					length 1
+				param[3] = (null)
+					type = UNKNOWN
+					int_val 0
+					value_type UNKNOWN
+
+					length 0
+		operation name = zjmp
+			opc = 9
+			memory address = 194
+			length = 3
+			0 encoding [0x80]
+			param_number [1]
+				param[1] = tirb
+					type = T_DIR
+					int_val -42
+					value_type LABEL
+
+					length 2
+				param[2] = (null)
+					type = UNKNOWN
+					int_val 0
+					value_type UNKNOWN
+
+					length 0
+				param[3] = (null)
+					type = UNKNOWN
+					int_val 0
+					value_type UNKNOWN
+
+					length 0
+		operation name = zjmp
+			opc = 9
+			memory address = 197
+			length = 3
+			0 encoding [0x80]
+			param_number [1]
+				param[1] = infi
+					type = T_DIR
+					int_val 293
+					value_type LABEL
+
+					length 2
+				param[2] = (null)
+					type = UNKNOWN
+					int_val 0
+					value_type UNKNOWN
+
+					length 0
+				param[3] = (null)
+					type = UNKNOWN
+					int_val 0
+					value_type UNKNOWN
+
+					length 0
+		operation name = zjmp
+			opc = 9
+			memory address = 200
+			length = 3
+			0 encoding [0x80]
+			param_number [1]
+				param[1] = 0
+					type = T_DIR
+					int_val 0
+					value_type NUMBER
+
+					length 2
+				param[2] = (null)
+					type = UNKNOWN
+					int_val 0
+					value_type UNKNOWN
+
+					length 0
+				param[3] = (null)
+					type = UNKNOWN
+					int_val 0
+					value_type UNKNOWN
+
+					length 0
+		operation name = zjmp
+			opc = 9
+			memory address = 203
+			length = 3
+			0 encoding [0x80]
+			param_number [1]
+				param[1] = 0
+					type = T_DIR
+					int_val 0
+					value_type NUMBER
+
+					length 2
+				param[2] = (null)
+					type = UNKNOWN
+					int_val 0
+					value_type UNKNOWN
+
+					length 0
+				param[3] = (null)
+					type = UNKNOWN
+					int_val 0
+					value_type UNKNOWN
+
+					length 0
+		operation name = zjmp
+			opc = 9
+			memory address = 206
+			length = 3
+			0 encoding [0x80]
+			param_number [1]
+				param[1] = 0
+					type = T_DIR
+					int_val 0
+					value_type NUMBER
+
+					length 2
+				param[2] = (null)
+					type = UNKNOWN
+					int_val 0
+					value_type UNKNOWN
+
+					length 0
+				param[3] = (null)
+					type = UNKNOWN
+					int_val 0
+					value_type UNKNOWN
+
+					length 0
+		operation name = zjmp
+			opc = 9
+			memory address = 209
+			length = 3
+			0 encoding [0x80]
+			param_number [1]
+				param[1] = 0
+					type = T_DIR
+					int_val 0
+					value_type NUMBER
+
+					length 2
+				param[2] = (null)
+					type = UNKNOWN
+					int_val 0
+					value_type UNKNOWN
+
+					length 0
+				param[3] = (null)
+					type = UNKNOWN
+					int_val 0
+					value_type UNKNOWN
+
+					length 0
+		operation name = zjmp
+			opc = 9
+			memory address = 212
+			length = 3
+			0 encoding [0x80]
+			param_number [1]
+				param[1] = 0
+					type = T_DIR
+					int_val 0
+					value_type NUMBER
+
+					length 2
+				param[2] = (null)
+					type = UNKNOWN
+					int_val 0
+					value_type UNKNOWN
+
+					length 0
+				param[3] = (null)
+					type = UNKNOWN
+					int_val 0
+					value_type UNKNOWN
+
+					length 0
+		operation name = zjmp
+			opc = 9
+			memory address = 215
+			length = 3
+			0 encoding [0x80]
+			param_number [1]
+				param[1] = 0
+					type = T_DIR
+					int_val 0
+					value_type NUMBER
+
+					length 2
+				param[2] = (null)
+					type = UNKNOWN
+					int_val 0
+					value_type UNKNOWN
+
+					length 0
+				param[3] = (null)
+					type = UNKNOWN
+					int_val 0
+					value_type UNKNOWN
+
+					length 0
+		operation name = zjmp
+			opc = 9
+			memory address = 218
+			length = 3
+			0 encoding [0x80]
+			param_number [1]
+				param[1] = 0
+					type = T_DIR
+					int_val 0
+					value_type NUMBER
+
+					length 2
+				param[2] = (null)
+					type = UNKNOWN
+					int_val 0
+					value_type UNKNOWN
+
+					length 0
+				param[3] = (null)
+					type = UNKNOWN
+					int_val 0
+					value_type UNKNOWN
+
+					length 0
+		operation name = zjmp
+			opc = 9
+			memory address = 221
+			length = 3
+			0 encoding [0x80]
+			param_number [1]
+				param[1] = 0
+					type = T_DIR
+					int_val 0
+					value_type NUMBER
+
+					length 2
+				param[2] = (null)
+					type = UNKNOWN
+					int_val 0
+					value_type UNKNOWN
+
+					length 0
+				param[3] = (null)
+					type = UNKNOWN
+					int_val 0
+					value_type UNKNOWN
+
+					length 0
+		operation name = zjmp
+			opc = 9
+			memory address = 224
+			length = 3
+			0 encoding [0x80]
+			param_number [1]
+				param[1] = 0
+					type = T_DIR
+					int_val 0
+					value_type NUMBER
+
+					length 2
+				param[2] = (null)
+					type = UNKNOWN
+					int_val 0
+					value_type UNKNOWN
+
+					length 0
+				param[3] = (null)
+					type = UNKNOWN
+					int_val 0
+					value_type UNKNOWN
+
+					length 0
+		operation name = zjmp
+			opc = 9
+			memory address = 227
+			length = 3
+			0 encoding [0x80]
+			param_number [1]
+				param[1] = 0
+					type = T_DIR
+					int_val 0
+					value_type NUMBER
+
+					length 2
+				param[2] = (null)
+					type = UNKNOWN
+					int_val 0
+					value_type UNKNOWN
+
+					length 0
+				param[3] = (null)
+					type = UNKNOWN
+					int_val 0
+					value_type UNKNOWN
+
+					length 0
+		operation name = zjmp
+			opc = 9
+			memory address = 230
+			length = 3
+			0 encoding [0x80]
+			param_number [1]
+				param[1] = 0
+					type = T_DIR
+					int_val 0
+					value_type NUMBER
+
+					length 2
+				param[2] = (null)
+					type = UNKNOWN
+					int_val 0
+					value_type UNKNOWN
+
+					length 0
+				param[3] = (null)
+					type = UNKNOWN
+					int_val 0
+					value_type UNKNOWN
+
+					length 0
+		operation name = zjmp
+			opc = 9
+			memory address = 233
+			length = 3
+			0 encoding [0x80]
+			param_number [1]
+				param[1] = 0
+					type = T_DIR
+					int_val 0
+					value_type NUMBER
+
+					length 2
+				param[2] = (null)
+					type = UNKNOWN
+					int_val 0
+					value_type UNKNOWN
+
+					length 0
+				param[3] = (null)
+					type = UNKNOWN
+					int_val 0
+					value_type UNKNOWN
+
+					length 0
+		operation name = zjmp
+			opc = 9
+			memory address = 236
+			length = 3
+			0 encoding [0x80]
+			param_number [1]
+				param[1] = 0
+					type = T_DIR
+					int_val 0
+					value_type NUMBER
+
+					length 2
+				param[2] = (null)
+					type = UNKNOWN
+					int_val 0
+					value_type UNKNOWN
+
+					length 0
+				param[3] = (null)
+					type = UNKNOWN
+					int_val 0
+					value_type UNKNOWN
+
+					length 0
+		operation name = zjmp
+			opc = 9
+			memory address = 239
+			length = 3
+			0 encoding [0x80]
+			param_number [1]
+				param[1] = 0
+					type = T_DIR
+					int_val 0
+					value_type NUMBER
+
+					length 2
+				param[2] = (null)
+					type = UNKNOWN
+					int_val 0
+					value_type UNKNOWN
+
+					length 0
+				param[3] = (null)
+					type = UNKNOWN
+					int_val 0
+					value_type UNKNOWN
+
+					length 0
+		operation name = zjmp
+			opc = 9
+			memory address = 242
+			length = 3
+			0 encoding [0x80]
+			param_number [1]
+				param[1] = 0
+					type = T_DIR
+					int_val 0
+					value_type NUMBER
+
+					length 2
+				param[2] = (null)
+					type = UNKNOWN
+					int_val 0
+					value_type UNKNOWN
+
+					length 0
+				param[3] = (null)
+					type = UNKNOWN
+					int_val 0
+					value_type UNKNOWN
+
+					length 0
+		operation name = zjmp
+			opc = 9
+			memory address = 245
+			length = 3
+			0 encoding [0x80]
+			param_number [1]
+				param[1] = 0
+					type = T_DIR
+					int_val 0
+					value_type NUMBER
+
+					length 2
+				param[2] = (null)
+					type = UNKNOWN
+					int_val 0
+					value_type UNKNOWN
+
+					length 0
+				param[3] = (null)
+					type = UNKNOWN
+					int_val 0
+					value_type UNKNOWN
+
+					length 0
+		operation name = zjmp
+			opc = 9
+			memory address = 248
+			length = 3
+			0 encoding [0x80]
+			param_number [1]
+				param[1] = 0
+					type = T_DIR
+					int_val 0
+					value_type NUMBER
+
+					length 2
+				param[2] = (null)
+					type = UNKNOWN
+					int_val 0
+					value_type UNKNOWN
+
+					length 0
+				param[3] = (null)
+					type = UNKNOWN
+					int_val 0
+					value_type UNKNOWN
+
+					length 0
+		operation name = zjmp
+			opc = 9
+			memory address = 251
+			length = 3
+			0 encoding [0x80]
+			param_number [1]
+				param[1] = 0
+					type = T_DIR
+					int_val 0
+					value_type NUMBER
+
+					length 2
+				param[2] = (null)
+					type = UNKNOWN
+					int_val 0
+					value_type UNKNOWN
+
+					length 0
+				param[3] = (null)
+					type = UNKNOWN
+					int_val 0
+					value_type UNKNOWN
+
+					length 0
+		operation name = sub
+			opc = 5
+			memory address = 254
+			length = 5
+			1 encoding [0x54]
+			param_number [3]
+				param[1] = 6
+					type = T_REG
+					int_val 6
+					value_type REGISTER
+
+					length 1
+				param[2] = 4
+					type = T_REG
+					int_val 4
+					value_type REGISTER
+
+					length 1
+				param[3] = 6
+					type = T_REG
+					int_val 6
+					value_type REGISTER
+
+					length 1
+		operation name = add
+			opc = 4
+			memory address = 259
+			length = 5
+			1 encoding [0x54]
+			param_number [3]
+				param[1] = 6
+					type = T_REG
+					int_val 6
+					value_type REGISTER
+
+					length 1
+				param[2] = 6
+					type = T_REG
+					int_val 6
+					value_type REGISTER
+
+					length 1
+				param[3] = 11
+					type = T_REG
+					int_val 11
+					value_type REGISTER
+
+					length 1
+		operation name = ldi
+			opc = 10
+			memory address = 264
+			length = 6
+			1 encoding [0x94]
+			param_number [3]
+				param[1] = p32deb
+					type = T_DIR
+					int_val -64
+					value_type LABEL
+
+					length 2
+				param[2] = 6
+					type = T_REG
+					int_val 6
+					value_type REGISTER
+
+					length 1
+				param[3] = 7
+					type = T_REG
+					int_val 7
+					value_type REGISTER
+
+					length 1
+		operation name = sti
+			opc = 11
+			memory address = 270
+			length = 6
+			1 encoding [0x64]
+			param_number [3]
+				param[1] = 7
+					type = T_REG
+					int_val 7
+					value_type REGISTER
+
+					length 1
+				param[2] = -510
+					type = T_DIR
+					int_val -510
+					value_type NUMBER
+
+					length 2
+				param[3] = 11
+					type = T_REG
+					int_val 11
+					value_type REGISTER
+
+					length 1
+		operation name = live
+			opc = 1
+			memory address = 276
+			length = 5
+			0 encoding [0x80]
+			param_number [1]
+				param[1] = 1
+					type = T_DIR
+					int_val 1
+					value_type NUMBER
+
+					length 4
+				param[2] = (null)
+					type = UNKNOWN
+					int_val 0
+					value_type UNKNOWN
+
+					length 0
+				param[3] = (null)
+					type = UNKNOWN
+					int_val 0
+					value_type UNKNOWN
+
+					length 0
+		operation name = ld
+			opc = 2
+			memory address = 281
+			length = 7
+			1 encoding [0x90]
+			param_number [2]
+				param[1] = 0
+					type = T_DIR
+					int_val 0
+					value_type NUMBER
+
+					length 4
+				param[2] = 10
+					type = T_REG
+					int_val 10
+					value_type REGISTER
+
+					length 1
+				param[3] = (null)
+					type = UNKNOWN
+					int_val 0
+					value_type UNKNOWN
+
+					length 0
+		operation name = sti
+			opc = 11
+			memory address = 288
+			length = 6
+			1 encoding [0x64]
+			param_number [3]
+				param[1] = 7
+					type = T_REG
+					int_val 7
+					value_type REGISTER
+
+					length 1
+				param[2] = -250
+					type = T_DIR
+					int_val -250
+					value_type NUMBER
+
+					length 2
+				param[3] = 6
+					type = T_REG
+					int_val 6
+					value_type REGISTER
+
+					length 1
+		operation name = zjmp
+			opc = 9
+			memory address = 294
+			length = 3
+			0 encoding [0x80]
+			param_number [1]
+				param[1] = -192
+					type = T_DIR
+					int_val -192
+					value_type NUMBER
+
+					length 2
+				param[2] = (null)
+					type = UNKNOWN
+					int_val 0
+					value_type UNKNOWN
+
+					length 0
+				param[3] = (null)
+					type = UNKNOWN
+					int_val 0
+					value_type UNKNOWN
+
+					length 0
+		operation name = zjmp
+			opc = 9
+			memory address = 297
+			length = 3
+			0 encoding [0x80]
+			param_number [1]
+				param[1] = tirvd2
+					type = T_DIR
+					int_val 376
+					value_type LABEL
+
+					length 2
+				param[2] = (null)
+					type = UNKNOWN
+					int_val 0
+					value_type UNKNOWN
+
+					length 0
+				param[3] = (null)
+					type = UNKNOWN
+					int_val 0
+					value_type UNKNOWN
+
+					length 0
+		operation name = sti
+			opc = 11
+			memory address = 300
+			length = 7
+			1 encoding [0x68]
+			param_number [3]
+				param[1] = 1
+					type = T_REG
+					int_val 1
+					value_type REGISTER
+
+					length 1
+				param[2] = copie
+					type = T_DIR
+					int_val 333
+					value_type LABEL
+
+					length 2
+				param[3] = 2
+					type = T_DIR
+					int_val 2
+					value_type NUMBER
+
+					length 2
+		operation name = ldi
+			opc = 10
+			memory address = 307
+			length = 7
+			1 encoding [0xa4]
+			param_number [3]
+				param[1] = copie
+					type = T_DIR
+					int_val 326
+					value_type LABEL
+
+					length 2
+				param[2] = 3
+					type = T_DIR
+					int_val 3
+					value_type NUMBER
+
+					length 2
+				param[3] = 2
+					type = T_REG
+					int_val 2
+					value_type REGISTER
+
+					length 1
+		operation name = sti
+			opc = 11
+			memory address = 314
+			length = 7
+			1 encoding [0x68]
+			param_number [3]
+				param[1] = 2
+					type = T_REG
+					int_val 2
+					value_type REGISTER
+
+					length 1
+				param[2] = entree
+					type = T_DIR
+					int_val -314
+					value_type LABEL
+
+					length 2
+				param[3] = -4
+					type = T_DIR
+					int_val -4
+					value_type NUMBER
+
+					length 2
+		operation name = ldi
+			opc = 10
+			memory address = 321
+			length = 7
+			1 encoding [0xa4]
+			param_number [3]
+				param[1] = copie
+					type = T_DIR
+					int_val 312
+					value_type LABEL
+
+					length 2
+				param[2] = -1
+					type = T_DIR
+					int_val -1
+					value_type NUMBER
+
+					length 2
+				param[3] = 2
+					type = T_REG
+					int_val 2
+					value_type REGISTER
+
+					length 1
+		operation name = sti
+			opc = 11
+			memory address = 328
+			length = 7
+			1 encoding [0x68]
+			param_number [3]
+				param[1] = 2
+					type = T_REG
+					int_val 2
+					value_type REGISTER
+
+					length 1
+				param[2] = entree
+					type = T_DIR
+					int_val -328
+					value_type LABEL
+
+					length 2
+				param[3] = -8
+					type = T_DIR
+					int_val -8
+					value_type NUMBER
+
+					length 2
+		operation name = sti
+			opc = 11
+			memory address = 335
+			length = 7
+			1 encoding [0x68]
+			param_number [3]
+				param[1] = 1
+					type = T_REG
+					int_val 1
+					value_type REGISTER
+
+					length 1
+				param[2] = p32li
+					type = T_DIR
+					int_val -59
+					value_type LABEL
+
+					length 2
+				param[3] = 1
+					type = T_DIR
+					int_val 1
+					value_type NUMBER
+
+					length 2
+		operation name = sti
+			opc = 11
+			memory address = 342
+			length = 7
+			1 encoding [0x68]
+			param_number [3]
+				param[1] = 1
+					type = T_REG
+					int_val 1
+					value_type REGISTER
+
+					length 1
+				param[2] = b0
+					type = T_DIR
+					int_val 35
+					value_type LABEL
+
+					length 2
+				param[3] = 1
+					type = T_DIR
+					int_val 1
+					value_type NUMBER
+
+					length 2
+		operation name = ld
+			opc = 2
+			memory address = 349
+			length = 7
+			1 encoding [0x90]
+			param_number [2]
+				param[1] = 0
+					type = T_DIR
+					int_val 0
+					value_type NUMBER
+
+					length 4
+				param[2] = 2
+					type = T_REG
+					int_val 2
+					value_type REGISTER
+
+					length 1
+				param[3] = (null)
+					type = UNKNOWN
+					int_val 0
+					value_type UNKNOWN
+
+					length 0
+		operation name = ld
+			opc = 2
+			memory address = 356
+			length = 7
+			1 encoding [0x90]
+			param_number [2]
+				param[1] = 8
+					type = T_DIR
+					int_val 8
+					value_type NUMBER
+
+					length 4
+				param[2] = 3
+					type = T_REG
+					int_val 3
+					value_type REGISTER
+
+					length 1
+				param[3] = (null)
+					type = UNKNOWN
+					int_val 0
+					value_type UNKNOWN
+
+					length 0
+		operation name = ld
+			opc = 2
+			memory address = 363
+			length = 7
+			1 encoding [0x90]
+			param_number [2]
+				param[1] = 1
+					type = T_DIR
+					int_val 1
+					value_type NUMBER
+
+					length 4
+				param[2] = 4
+					type = T_REG
+					int_val 4
+					value_type REGISTER
+
+					length 1
+				param[3] = (null)
+					type = UNKNOWN
+					int_val 0
+					value_type UNKNOWN
+
+					length 0
+		operation name = ld
+			opc = 2
+			memory address = 370
+			length = 7
+			1 encoding [0x90]
+			param_number [2]
+				param[1] = 0
+					type = T_DIR
+					int_val 0
+					value_type NUMBER
+
+					length 4
+				param[2] = 6
+					type = T_REG
+					int_val 6
+					value_type REGISTER
+
+					length 1
+				param[3] = (null)
+					type = UNKNOWN
+					int_val 0
+					value_type UNKNOWN
+
+					length 0
+		operation name = live
+			opc = 1
+			memory address = 377
+			length = 5
+			0 encoding [0x80]
+			param_number [1]
+				param[1] = 1
+					type = T_DIR
+					int_val 1
+					value_type NUMBER
+
+					length 4
+				param[2] = (null)
+					type = UNKNOWN
+					int_val 0
+					value_type UNKNOWN
+
+					length 0
+				param[3] = (null)
+					type = UNKNOWN
+					int_val 0
+					value_type UNKNOWN
+
+					length 0
+		operation name = sub
+			opc = 5
+			memory address = 382
+			length = 5
+			1 encoding [0x54]
+			param_number [3]
+				param[1] = 3
+					type = T_REG
+					int_val 3
+					value_type REGISTER
+
+					length 1
+				param[2] = 4
+					type = T_REG
+					int_val 4
+					value_type REGISTER
+
+					length 1
+				param[3] = 3
+					type = T_REG
+					int_val 3
+					value_type REGISTER
+
+					length 1
+		operation name = zjmp
+			opc = 9
+			memory address = 387
+			length = 3
+			0 encoding [0x80]
+			param_number [1]
+				param[1] = tart
+					type = T_DIR
+					int_val 253
+					value_type LABEL
+
+					length 2
+				param[2] = (null)
+					type = UNKNOWN
+					int_val 0
+					value_type UNKNOWN
+
+					length 0
+				param[3] = (null)
+					type = UNKNOWN
+					int_val 0
+					value_type UNKNOWN
+
+					length 0
+		operation name = fork
+			opc = 12
+			memory address = 390
+			length = 3
+			0 encoding [0x80]
+			param_number [1]
+				param[1] = b1
+					type = T_DIR
+					int_val 32
+					value_type LABEL
+
+					length 2
+				param[2] = (null)
+					type = UNKNOWN
+					int_val 0
+					value_type UNKNOWN
+
+					length 0
+				param[3] = (null)
+					type = UNKNOWN
+					int_val 0
+					value_type UNKNOWN
+
+					length 0
+		operation name = st
+			opc = 3
+			memory address = 393
+			length = 4
+			1 encoding [0x50]
+			param_number [2]
+				param[1] = 5
+					type = T_REG
+					int_val 5
+					value_type REGISTER
+
+					length 1
+				param[2] = 2
+					type = T_REG
+					int_val 2
+					value_type REGISTER
+
+					length 1
+				param[3] = (null)
+					type = UNKNOWN
+					int_val 0
+					value_type UNKNOWN
+
+					length 0
+		operation name = xor
+			opc = 8
+			memory address = 397
+			length = 5
+			1 encoding [0x54]
+			param_number [3]
+				param[1] = 10
+					type = T_REG
+					int_val 10
+					value_type REGISTER
+
+					length 1
+				param[2] = 10
+					type = T_REG
+					int_val 10
+					value_type REGISTER
+
+					length 1
+				param[3] = 10
+					type = T_REG
+					int_val 10
+					value_type REGISTER
+
+					length 1
+		operation name = add
+			opc = 4
+			memory address = 402
+			length = 5
+			1 encoding [0x54]
+			param_number [3]
+				param[1] = 10
+					type = T_REG
+					int_val 10
+					value_type REGISTER
+
+					length 1
+				param[2] = 10
+					type = T_REG
+					int_val 10
+					value_type REGISTER
+
+					length 1
+				param[3] = 10
+					type = T_REG
+					int_val 10
+					value_type REGISTER
+
+					length 1
+		operation name = add
+			opc = 4
+			memory address = 407
+			length = 5
+			1 encoding [0x54]
+			param_number [3]
+				param[1] = 6
+					type = T_REG
+					int_val 6
+					value_type REGISTER
+
+					length 1
+				param[2] = 6
+					type = T_REG
+					int_val 6
+					value_type REGISTER
+
+					length 1
+				param[3] = 6
+					type = T_REG
+					int_val 6
+					value_type REGISTER
+
+					length 1
+		operation name = ld
+			opc = 2
+			memory address = 412
+			length = 7
+			1 encoding [0x90]
+			param_number [2]
+				param[1] = 0
+					type = T_DIR
+					int_val 0
+					value_type NUMBER
+
+					length 4
+				param[2] = 10
+					type = T_REG
+					int_val 10
+					value_type REGISTER
+
+					length 1
+				param[3] = (null)
+					type = UNKNOWN
+					int_val 0
+					value_type UNKNOWN
+
+					length 0
+		operation name = zjmp
+			opc = 9
+			memory address = 419
+			length = 3
+			0 encoding [0x80]
+			param_number [1]
+				param[1] = b0
+					type = T_DIR
+					int_val -42
+					value_type LABEL
+
+					length 2
+				param[2] = (null)
+					type = UNKNOWN
+					int_val 0
+					value_type UNKNOWN
+
+					length 0
+				param[3] = (null)
+					type = UNKNOWN
+					int_val 0
+					value_type UNKNOWN
+
+					length 0
+		operation name = add
+			opc = 4
+			memory address = 422
+			length = 5
+			1 encoding [0x54]
+			param_number [3]
+				param[1] = 2
+					type = T_REG
+					int_val 2
+					value_type REGISTER
+
+					length 1
+				param[2] = 4
+					type = T_REG
+					int_val 4
+					value_type REGISTER
+
+					length 1
+				param[3] = 2
+					type = T_REG
+					int_val 2
+					value_type REGISTER
+
+					length 1
+		operation name = add
+			opc = 4
+			memory address = 427
+			length = 5
+			1 encoding [0x54]
+			param_number [3]
+				param[1] = 6
+					type = T_REG
+					int_val 6
+					value_type REGISTER
+
+					length 1
+				param[2] = 6
+					type = T_REG
+					int_val 6
+					value_type REGISTER
+
+					length 1
+				param[3] = 6
+					type = T_REG
+					int_val 6
+					value_type REGISTER
+
+					length 1
+		operation name = add
+			opc = 4
+			memory address = 432
+			length = 5
+			1 encoding [0x54]
+			param_number [3]
+				param[1] = 6
+					type = T_REG
+					int_val 6
+					value_type REGISTER
+
+					length 1
+				param[2] = 4
+					type = T_REG
+					int_val 4
+					value_type REGISTER
+
+					length 1
+				param[3] = 6
+					type = T_REG
+					int_val 6
+					value_type REGISTER
+
+					length 1
+		operation name = ld
+			opc = 2
+			memory address = 437
+			length = 7
+			1 encoding [0x90]
+			param_number [2]
+				param[1] = 0
+					type = T_DIR
+					int_val 0
+					value_type NUMBER
+
+					length 4
+				param[2] = 10
+					type = T_REG
+					int_val 10
+					value_type REGISTER
+
+					length 1
+				param[3] = (null)
+					type = UNKNOWN
+					int_val 0
+					value_type UNKNOWN
+
+					length 0
+		operation name = zjmp
+			opc = 9
+			memory address = 444
+			length = 3
+			0 encoding [0x80]
+			param_number [1]
+				param[1] = b0
+					type = T_DIR
+					int_val -67
+					value_type LABEL
+
+					length 2
+				param[2] = (null)
+					type = UNKNOWN
+					int_val 0
+					value_type UNKNOWN
+
+					length 0
+				param[3] = (null)
+					type = UNKNOWN
+					int_val 0
+					value_type UNKNOWN
+
+					length 0
+		operation name = live
+			opc = 1
+			memory address = 447
+			length = 5
+			0 encoding [0x80]
+			param_number [1]
+				param[1] = 42
+					type = T_DIR
+					int_val 42
+					value_type NUMBER
+
+					length 4
+				param[2] = (null)
+					type = UNKNOWN
+					int_val 0
+					value_type UNKNOWN
+
+					length 0
+				param[3] = (null)
+					type = UNKNOWN
+					int_val 0
+					value_type UNKNOWN
+
+					length 0
+		operation name = ld
+			opc = 2
+			memory address = 452
+			length = 7
+			1 encoding [0x90]
+			param_number [2]
+				param[1] = 9
+					type = T_DIR
+					int_val 9
+					value_type NUMBER
+
+					length 4
+				param[2] = 3
+					type = T_REG
+					int_val 3
+					value_type REGISTER
+
+					length 1
+				param[3] = (null)
+					type = UNKNOWN
+					int_val 0
+					value_type UNKNOWN
+
+					length 0
+		operation name = sti
+			opc = 11
+			memory address = 459
+			length = 7
+			1 encoding [0x68]
+			param_number [3]
+				param[1] = 3
+					type = T_REG
+					int_val 3
+					value_type REGISTER
+
+					length 1
+				param[2] = p32deb
+					type = T_DIR
+					int_val -259
+					value_type LABEL
+
+					length 2
+				param[3] = -6
+					type = T_DIR
+					int_val -6
+					value_type NUMBER
+
+					length 2
+		operation name = ld
+			opc = 2
+			memory address = 466
+			length = 7
+			1 encoding [0x90]
+			param_number [2]
+				param[1] = 2
+					type = T_DIR
+					int_val 2
+					value_type NUMBER
+
+					length 4
+				param[2] = 3
+					type = T_REG
+					int_val 3
+					value_type REGISTER
+
+					length 1
+				param[3] = (null)
+					type = UNKNOWN
+					int_val 0
+					value_type UNKNOWN
+
+					length 0
+		operation name = sti
+			opc = 11
+			memory address = 473
+			length = 7
+			1 encoding [0x68]
+			param_number [3]
+				param[1] = 3
+					type = T_REG
+					int_val 3
+					value_type REGISTER
+
+					length 1
+				param[2] = p32deb
+					type = T_DIR
+					int_val -273
+					value_type LABEL
+
+					length 2
+				param[3] = -16
+					type = T_DIR
+					int_val -16
+					value_type NUMBER
+
+					length 2
+		operation name = ld
+			opc = 2
+			memory address = 480
+			length = 7
+			1 encoding [0x90]
+			param_number [2]
+				param[1] = 0
+					type = T_DIR
+					int_val 0
+					value_type NUMBER
+
+					length 4
+				param[2] = 3
+					type = T_REG
+					int_val 3
+					value_type REGISTER
+
+					length 1
+				param[3] = (null)
+					type = UNKNOWN
+					int_val 0
+					value_type UNKNOWN
+
+					length 0
+		operation name = zjmp
+			opc = 9
+			memory address = 487
+			length = 3
+			0 encoding [0x80]
+			param_number [1]
+				param[1] = topd
+					type = T_DIR
+					int_val 189
+					value_type LABEL
+
+					length 2
+				param[2] = (null)
+					type = UNKNOWN
+					int_val 0
+					value_type UNKNOWN
+
+					length 0
+				param[3] = (null)
+					type = UNKNOWN
+					int_val 0
+					value_type UNKNOWN
+
+					length 0
+		operation name = sti
+			opc = 11
+			memory address = 490
+			length = 7
+			1 encoding [0x68]
+			param_number [3]
+				param[1] = 1
+					type = T_REG
+					int_val 1
+					value_type REGISTER
+
+					length 1
+				param[2] = l0
+					type = T_DIR
+					int_val 77
+					value_type LABEL
+
+					length 2
+				param[3] = 1
+					type = T_DIR
+					int_val 1
+					value_type NUMBER
+
+					length 2
+		operation name = sti
+			opc = 11
+			memory address = 497
+			length = 7
+			1 encoding [0x68]
+			param_number [3]
+				param[1] = 1
+					type = T_REG
+					int_val 1
+					value_type REGISTER
+
+					length 1
+				param[2] = l1
+					type = T_DIR
+					int_val 75
+					value_type LABEL
+
+					length 2
+				param[3] = 1
+					type = T_DIR
+					int_val 1
+					value_type NUMBER
+
+					length 2
+		operation name = sti
+			opc = 11
+			memory address = 504
+			length = 7
+			1 encoding [0x68]
+			param_number [3]
+				param[1] = 1
+					type = T_REG
+					int_val 1
+					value_type REGISTER
+
+					length 1
+				param[2] = l2
+					type = T_DIR
+					int_val 73
+					value_type LABEL
+
+					length 2
+				param[3] = 1
+					type = T_DIR
+					int_val 1
+					value_type NUMBER
+
+					length 2
+		operation name = sti
+			opc = 11
+			memory address = 511
+			length = 7
+			1 encoding [0x68]
+			param_number [3]
+				param[1] = 1
+					type = T_REG
+					int_val 1
+					value_type REGISTER
+
+					length 1
+				param[2] = l3
+					type = T_DIR
+					int_val 71
+					value_type LABEL
+
+					length 2
+				param[3] = 1
+					type = T_DIR
+					int_val 1
+					value_type NUMBER
+
+					length 2
+		operation name = sti
+			opc = 11
+			memory address = 518
+			length = 7
+			1 encoding [0x68]
+			param_number [3]
+				param[1] = 1
+					type = T_REG
+					int_val 1
+					value_type REGISTER
+
+					length 1
+				param[2] = l4
+					type = T_DIR
+					int_val 69
+					value_type LABEL
+
+					length 2
+				param[3] = 1
+					type = T_DIR
+					int_val 1
+					value_type NUMBER
+
+					length 2
+		operation name = sti
+			opc = 11
+			memory address = 525
+			length = 7
+			1 encoding [0x68]
+			param_number [3]
+				param[1] = 1
+					type = T_REG
+					int_val 1
+					value_type REGISTER
+
+					length 1
+				param[2] = l5
+					type = T_DIR
+					int_val 67
+					value_type LABEL
+
+					length 2
+				param[3] = 1
+					type = T_DIR
+					int_val 1
+					value_type NUMBER
+
+					length 2
+		operation name = sti
+			opc = 11
+			memory address = 532
+			length = 7
+			1 encoding [0x68]
+			param_number [3]
+				param[1] = 1
+					type = T_REG
+					int_val 1
+					value_type REGISTER
+
+					length 1
+				param[2] = l6
+					type = T_DIR
+					int_val 65
+					value_type LABEL
+
+					length 2
+				param[3] = 1
+					type = T_DIR
+					int_val 1
+					value_type NUMBER
+
+					length 2
+		operation name = sti
+			opc = 11
+			memory address = 539
+			length = 7
+			1 encoding [0x68]
+			param_number [3]
+				param[1] = 1
+					type = T_REG
+					int_val 1
+					value_type REGISTER
+
+					length 1
+				param[2] = l7
+					type = T_DIR
+					int_val 63
+					value_type LABEL
+
+					length 2
+				param[3] = 1
+					type = T_DIR
+					int_val 1
+					value_type NUMBER
+
+					length 2
+		operation name = sti
+			opc = 11
+			memory address = 546
+			length = 7
+			1 encoding [0x68]
+			param_number [3]
+				param[1] = 1
+					type = T_REG
+					int_val 1
+					value_type REGISTER
+
+					length 1
+				param[2] = l8
+					type = T_DIR
+					int_val 61
+					value_type LABEL
+
+					length 2
+				param[3] = 1
+					type = T_DIR
+					int_val 1
+					value_type NUMBER
+
+					length 2
+		operation name = sti
+			opc = 11
+			memory address = 553
+			length = 7
+			1 encoding [0x68]
+			param_number [3]
+				param[1] = 1
+					type = T_REG
+					int_val 1
+					value_type REGISTER
+
+					length 1
+				param[2] = l9
+					type = T_DIR
+					int_val 59
+					value_type LABEL
+
+					length 2
+				param[3] = 1
+					type = T_DIR
+					int_val 1
+					value_type NUMBER
+
+					length 2
+		operation name = sti
+			opc = 11
+			memory address = 560
+			length = 7
+			1 encoding [0x68]
+			param_number [3]
+				param[1] = 1
+					type = T_REG
+					int_val 1
+					value_type REGISTER
+
+					length 1
+				param[2] = l10
+					type = T_DIR
+					int_val 57
+					value_type LABEL
+
+					length 2
+				param[3] = 1
+					type = T_DIR
+					int_val 1
+					value_type NUMBER
+
+					length 2
+		operation name = live
+			opc = 1
+			memory address = 567
+			length = 5
+			0 encoding [0x80]
+			param_number [1]
+				param[1] = 1
+					type = T_DIR
+					int_val 1
+					value_type NUMBER
+
+					length 4
+				param[2] = (null)
+					type = UNKNOWN
+					int_val 0
+					value_type UNKNOWN
+
+					length 0
+				param[3] = (null)
+					type = UNKNOWN
+					int_val 0
+					value_type UNKNOWN
+
+					length 0
+		operation name = live
+			opc = 1
+			memory address = 572
+			length = 5
+			0 encoding [0x80]
+			param_number [1]
+				param[1] = 1
+					type = T_DIR
+					int_val 1
+					value_type NUMBER
+
+					length 4
+				param[2] = (null)
+					type = UNKNOWN
+					int_val 0
+					value_type UNKNOWN
+
+					length 0
+				param[3] = (null)
+					type = UNKNOWN
+					int_val 0
+					value_type UNKNOWN
+
+					length 0
+		operation name = live
+			opc = 1
+			memory address = 577
+			length = 5
+			0 encoding [0x80]
+			param_number [1]
+				param[1] = 1
+					type = T_DIR
+					int_val 1
+					value_type NUMBER
+
+					length 4
+				param[2] = (null)
+					type = UNKNOWN
+					int_val 0
+					value_type UNKNOWN
+
+					length 0
+				param[3] = (null)
+					type = UNKNOWN
+					int_val 0
+					value_type UNKNOWN
+
+					length 0
+		operation name = live
+			opc = 1
+			memory address = 582
+			length = 5
+			0 encoding [0x80]
+			param_number [1]
+				param[1] = 1
+					type = T_DIR
+					int_val 1
+					value_type NUMBER
+
+					length 4
+				param[2] = (null)
+					type = UNKNOWN
+					int_val 0
+					value_type UNKNOWN
+
+					length 0
+				param[3] = (null)
+					type = UNKNOWN
+					int_val 0
+					value_type UNKNOWN
+
+					length 0
+		operation name = live
+			opc = 1
+			memory address = 587
+			length = 5
+			0 encoding [0x80]
+			param_number [1]
+				param[1] = 1
+					type = T_DIR
+					int_val 1
+					value_type NUMBER
+
+					length 4
+				param[2] = (null)
+					type = UNKNOWN
+					int_val 0
+					value_type UNKNOWN
+
+					length 0
+				param[3] = (null)
+					type = UNKNOWN
+					int_val 0
+					value_type UNKNOWN
+
+					length 0
+		operation name = live
+			opc = 1
+			memory address = 592
+			length = 5
+			0 encoding [0x80]
+			param_number [1]
+				param[1] = 1
+					type = T_DIR
+					int_val 1
+					value_type NUMBER
+
+					length 4
+				param[2] = (null)
+					type = UNKNOWN
+					int_val 0
+					value_type UNKNOWN
+
+					length 0
+				param[3] = (null)
+					type = UNKNOWN
+					int_val 0
+					value_type UNKNOWN
+
+					length 0
+		operation name = live
+			opc = 1
+			memory address = 597
+			length = 5
+			0 encoding [0x80]
+			param_number [1]
+				param[1] = 1
+					type = T_DIR
+					int_val 1
+					value_type NUMBER
+
+					length 4
+				param[2] = (null)
+					type = UNKNOWN
+					int_val 0
+					value_type UNKNOWN
+
+					length 0
+				param[3] = (null)
+					type = UNKNOWN
+					int_val 0
+					value_type UNKNOWN
+
+					length 0
+		operation name = live
+			opc = 1
+			memory address = 602
+			length = 5
+			0 encoding [0x80]
+			param_number [1]
+				param[1] = 1
+					type = T_DIR
+					int_val 1
+					value_type NUMBER
+
+					length 4
+				param[2] = (null)
+					type = UNKNOWN
+					int_val 0
+					value_type UNKNOWN
+
+					length 0
+				param[3] = (null)
+					type = UNKNOWN
+					int_val 0
+					value_type UNKNOWN
+
+					length 0
+		operation name = live
+			opc = 1
+			memory address = 607
+			length = 5
+			0 encoding [0x80]
+			param_number [1]
+				param[1] = 1
+					type = T_DIR
+					int_val 1
+					value_type NUMBER
+
+					length 4
+				param[2] = (null)
+					type = UNKNOWN
+					int_val 0
+					value_type UNKNOWN
+
+					length 0
+				param[3] = (null)
+					type = UNKNOWN
+					int_val 0
+					value_type UNKNOWN
+
+					length 0
+		operation name = live
+			opc = 1
+			memory address = 612
+			length = 5
+			0 encoding [0x80]
+			param_number [1]
+				param[1] = 1
+					type = T_DIR
+					int_val 1
+					value_type NUMBER
+
+					length 4
+				param[2] = (null)
+					type = UNKNOWN
+					int_val 0
+					value_type UNKNOWN
+
+					length 0
+				param[3] = (null)
+					type = UNKNOWN
+					int_val 0
+					value_type UNKNOWN
+
+					length 0
+		operation name = live
+			opc = 1
+			memory address = 617
+			length = 5
+			0 encoding [0x80]
+			param_number [1]
+				param[1] = 1
+					type = T_DIR
+					int_val 1
+					value_type NUMBER
+
+					length 4
+				param[2] = (null)
+					type = UNKNOWN
+					int_val 0
+					value_type UNKNOWN
+
+					length 0
+				param[3] = (null)
+					type = UNKNOWN
+					int_val 0
+					value_type UNKNOWN
+
+					length 0
+		operation name = zjmp
+			opc = 9
+			memory address = 622
+			length = 3
+			0 encoding [0x80]
+			param_number [1]
+				param[1] = l0
+					type = T_DIR
+					int_val -55
+					value_type LABEL
+
+					length 2
+				param[2] = (null)
+					type = UNKNOWN
+					int_val 0
+					value_type UNKNOWN
+
+					length 0
+				param[3] = (null)
+					type = UNKNOWN
+					int_val 0
+					value_type UNKNOWN
+
+					length 0
+		operation name = zjmp
+			opc = 9
+			memory address = 625
+			length = 3
+			0 encoding [0x80]
+			param_number [1]
+				param[1] = infi
+					type = T_DIR
+					int_val -135
+					value_type LABEL
+
+					length 2
+				param[2] = (null)
+					type = UNKNOWN
+					int_val 0
+					value_type UNKNOWN
+
+					length 0
+				param[3] = (null)
+					type = UNKNOWN
+					int_val 0
+					value_type UNKNOWN
+
+					length 0
+		operation name = live
+			opc = 1
+			memory address = 628
+			length = 5
+			0 encoding [0x80]
+			param_number [1]
+				param[1] = 0
+					type = T_DIR
+					int_val 0
+					value_type NUMBER
+
+					length 4
+				param[2] = (null)
+					type = UNKNOWN
+					int_val 0
+					value_type UNKNOWN
+
+					length 0
+				param[3] = (null)
+					type = UNKNOWN
+					int_val 0
+					value_type UNKNOWN
+
+					length 0
+		operation name = ld
+			opc = 2
+			memory address = 633
+			length = 7
+			1 encoding [0x90]
+			param_number [2]
+				param[1] = 1
+					type = T_DIR
+					int_val 1
+					value_type NUMBER
+
+					length 4
+				param[2] = 1
+					type = T_REG
+					int_val 1
+					value_type REGISTER
+
+					length 1
+				param[3] = (null)
+					type = UNKNOWN
+					int_val 0
+					value_type UNKNOWN
+
+					length 0
+		operation name = sti
+			opc = 11
+			memory address = 640
+			length = 7
+			1 encoding [0x68]
+			param_number [3]
+				param[1] = 1
+					type = T_REG
+					int_val 1
+					value_type REGISTER
+
+					length 1
+				param[2] = p64li
+					type = T_DIR
+					int_val 264
+					value_type LABEL
+
+					length 2
+				param[3] = 1
+					type = T_DIR
+					int_val 1
+					value_type NUMBER
+
+					length 2
+		operation name = or
+			opc = 7
+			memory address = 647
+			length = 5
+			1 encoding [0x54]
+			param_number [3]
+				param[1] = 2
+					type = T_REG
+					int_val 2
+					value_type REGISTER
+
+					length 1
+				param[2] = 2
+					type = T_REG
+					int_val 2
+					value_type REGISTER
+
+					length 1
+				param[3] = 2
+					type = T_REG
+					int_val 2
+					value_type REGISTER
+
+					length 1
+		operation name = zjmp
+			opc = 9
+			memory address = 652
+			length = 3
+			0 encoding [0x80]
+			param_number [1]
+				param[1] = p64
+					type = T_DIR
+					int_val 182
+					value_type LABEL
+
+					length 2
+				param[2] = (null)
+					type = UNKNOWN
+					int_val 0
+					value_type UNKNOWN
+
+					length 0
+				param[3] = (null)
+					type = UNKNOWN
+					int_val 0
+					value_type UNKNOWN
+
+					length 0
+		operation name = sub
+			opc = 5
+			memory address = 655
+			length = 5
+			1 encoding [0x54]
+			param_number [3]
+				param[1] = 2
+					type = T_REG
+					int_val 2
+					value_type REGISTER
+
+					length 1
+				param[2] = 4
+					type = T_REG
+					int_val 4
+					value_type REGISTER
+
+					length 1
+				param[3] = 2
+					type = T_REG
+					int_val 2
+					value_type REGISTER
+
+					length 1
+		operation name = zjmp
+			opc = 9
+			memory address = 660
+			length = 3
+			0 encoding [0x80]
+			param_number [1]
+				param[1] = p32
+					type = T_DIR
+					int_val -406
+					value_type LABEL
+
+					length 2
+				param[2] = (null)
+					type = UNKNOWN
+					int_val 0
+					value_type UNKNOWN
+
+					length 0
+				param[3] = (null)
+					type = UNKNOWN
+					int_val 0
+					value_type UNKNOWN
+
+					length 0
+		operation name = ld
+			opc = 2
+			memory address = 663
+			length = 7
+			1 encoding [0x90]
+			param_number [2]
+				param[1] = 0
+					type = T_DIR
+					int_val 0
+					value_type NUMBER
+
+					length 4
+				param[2] = 2
+					type = T_REG
+					int_val 2
+					value_type REGISTER
+
+					length 1
+				param[3] = (null)
+					type = UNKNOWN
+					int_val 0
+					value_type UNKNOWN
+
+					length 0
+		operation name = zjmp
+			opc = 9
+			memory address = 670
+			length = 3
+			0 encoding [0x80]
+			param_number [1]
+				param[1] = infi
+					type = T_DIR
+					int_val -180
+					value_type LABEL
+
+					length 2
+				param[2] = (null)
+					type = UNKNOWN
+					int_val 0
+					value_type UNKNOWN
+
+					length 0
+				param[3] = (null)
+					type = UNKNOWN
+					int_val 0
+					value_type UNKNOWN
+
+					length 0
+		operation name = zjmp
+			opc = 9
+			memory address = 673
+			length = 3
+			0 encoding [0x80]
+			param_number [1]
+				param[1] = tirdow
+					type = T_DIR
+					int_val 246
+					value_type LABEL
+
+					length 2
+				param[2] = (null)
+					type = UNKNOWN
+					int_val 0
+					value_type UNKNOWN
+
+					length 0
+				param[3] = (null)
+					type = UNKNOWN
+					int_val 0
+					value_type UNKNOWN
+
+					length 0
+		operation name = ld
+			opc = 2
+			memory address = 676
+			length = 7
+			1 encoding [0x90]
+			param_number [2]
+				param[1] = 9
+					type = T_DIR
+					int_val 9
+					value_type NUMBER
+
+					length 4
+				param[2] = 3
+					type = T_REG
+					int_val 3
+					value_type REGISTER
+
+					length 1
+				param[3] = (null)
+					type = UNKNOWN
+					int_val 0
+					value_type UNKNOWN
+
+					length 0
+		operation name = sti
+			opc = 11
+			memory address = 683
+			length = 7
+			1 encoding [0x68]
+			param_number [3]
+				param[1] = 3
+					type = T_REG
+					int_val 3
+					value_type REGISTER
+
+					length 1
+				param[2] = fin
+					type = T_DIR
+					int_val 305
+					value_type LABEL
+
+					length 2
+				param[3] = -6
+					type = T_DIR
+					int_val -6
+					value_type NUMBER
+
+					length 2
+		operation name = ld
+			opc = 2
+			memory address = 690
+			length = 7
+			1 encoding [0x90]
+			param_number [2]
+				param[1] = 2
+					type = T_DIR
+					int_val 2
+					value_type NUMBER
+
+					length 4
+				param[2] = 3
+					type = T_REG
+					int_val 3
+					value_type REGISTER
+
+					length 1
+				param[3] = (null)
+					type = UNKNOWN
+					int_val 0
+					value_type UNKNOWN
+
+					length 0
+		operation name = sti
+			opc = 11
+			memory address = 697
+			length = 7
+			1 encoding [0x68]
+			param_number [3]
+				param[1] = 3
+					type = T_REG
+					int_val 3
+					value_type REGISTER
+
+					length 1
+				param[2] = fin
+					type = T_DIR
+					int_val 291
+					value_type LABEL
+
+					length 2
+				param[3] = -16
+					type = T_DIR
+					int_val -16
+					value_type NUMBER
+
+					length 2
+		operation name = ld
+			opc = 2
+			memory address = 704
+			length = 7
+			1 encoding [0x90]
+			param_number [2]
+				param[1] = 0
+					type = T_DIR
+					int_val 0
+					value_type NUMBER
+
+					length 4
+				param[2] = 3
+					type = T_REG
+					int_val 3
+					value_type REGISTER
+
+					length 1
+				param[3] = (null)
+					type = UNKNOWN
+					int_val 0
+					value_type UNKNOWN
+
+					length 0
+		operation name = zjmp
+			opc = 9
+			memory address = 711
+			length = 3
+			0 encoding [0x80]
+			param_number [1]
+				param[1] = infi
+					type = T_DIR
+					int_val -221
+					value_type LABEL
+
+					length 2
+				param[2] = (null)
+					type = UNKNOWN
+					int_val 0
+					value_type UNKNOWN
+
+					length 0
+				param[3] = (null)
+					type = UNKNOWN
+					int_val 0
+					value_type UNKNOWN
+
+					length 0
+		operation name = zjmp
+			opc = 9
+			memory address = 714
+			length = 3
+			0 encoding [0x80]
+			param_number [1]
+				param[1] = 0
+					type = T_DIR
+					int_val 0
+					value_type NUMBER
+
+					length 2
+				param[2] = (null)
+					type = UNKNOWN
+					int_val 0
+					value_type UNKNOWN
+
+					length 0
+				param[3] = (null)
+					type = UNKNOWN
+					int_val 0
+					value_type UNKNOWN
+
+					length 0
+		operation name = zjmp
+			opc = 9
+			memory address = 717
+			length = 3
+			0 encoding [0x80]
+			param_number [1]
+				param[1] = 0
+					type = T_DIR
+					int_val 0
+					value_type NUMBER
+
+					length 2
+				param[2] = (null)
+					type = UNKNOWN
+					int_val 0
+					value_type UNKNOWN
+
+					length 0
+				param[3] = (null)
+					type = UNKNOWN
+					int_val 0
+					value_type UNKNOWN
+
+					length 0
+		operation name = zjmp
+			opc = 9
+			memory address = 720
+			length = 3
+			0 encoding [0x80]
+			param_number [1]
+				param[1] = 0
+					type = T_DIR
+					int_val 0
+					value_type NUMBER
+
+					length 2
+				param[2] = (null)
+					type = UNKNOWN
+					int_val 0
+					value_type UNKNOWN
+
+					length 0
+				param[3] = (null)
+					type = UNKNOWN
+					int_val 0
+					value_type UNKNOWN
+
+					length 0
+		operation name = zjmp
+			opc = 9
+			memory address = 723
+			length = 3
+			0 encoding [0x80]
+			param_number [1]
+				param[1] = 0
+					type = T_DIR
+					int_val 0
+					value_type NUMBER
+
+					length 2
+				param[2] = (null)
+					type = UNKNOWN
+					int_val 0
+					value_type UNKNOWN
+
+					length 0
+				param[3] = (null)
+					type = UNKNOWN
+					int_val 0
+					value_type UNKNOWN
+
+					length 0
+		operation name = zjmp
+			opc = 9
+			memory address = 726
+			length = 3
+			0 encoding [0x80]
+			param_number [1]
+				param[1] = 0
+					type = T_DIR
+					int_val 0
+					value_type NUMBER
+
+					length 2
+				param[2] = (null)
+					type = UNKNOWN
+					int_val 0
+					value_type UNKNOWN
+
+					length 0
+				param[3] = (null)
+					type = UNKNOWN
+					int_val 0
+					value_type UNKNOWN
+
+					length 0
+		operation name = zjmp
+			opc = 9
+			memory address = 729
+			length = 3
+			0 encoding [0x80]
+			param_number [1]
+				param[1] = 0
+					type = T_DIR
+					int_val 0
+					value_type NUMBER
+
+					length 2
+				param[2] = (null)
+					type = UNKNOWN
+					int_val 0
+					value_type UNKNOWN
+
+					length 0
+				param[3] = (null)
+					type = UNKNOWN
+					int_val 0
+					value_type UNKNOWN
+
+					length 0
+		operation name = zjmp
+			opc = 9
+			memory address = 732
+			length = 3
+			0 encoding [0x80]
+			param_number [1]
+				param[1] = 0
+					type = T_DIR
+					int_val 0
+					value_type NUMBER
+
+					length 2
+				param[2] = (null)
+					type = UNKNOWN
+					int_val 0
+					value_type UNKNOWN
+
+					length 0
+				param[3] = (null)
+					type = UNKNOWN
+					int_val 0
+					value_type UNKNOWN
+
+					length 0
+		operation name = zjmp
+			opc = 9
+			memory address = 735
+			length = 3
+			0 encoding [0x80]
+			param_number [1]
+				param[1] = 0
+					type = T_DIR
+					int_val 0
+					value_type NUMBER
+
+					length 2
+				param[2] = (null)
+					type = UNKNOWN
+					int_val 0
+					value_type UNKNOWN
+
+					length 0
+				param[3] = (null)
+					type = UNKNOWN
+					int_val 0
+					value_type UNKNOWN
+
+					length 0
+		operation name = zjmp
+			opc = 9
+			memory address = 738
+			length = 3
+			0 encoding [0x80]
+			param_number [1]
+				param[1] = 0
+					type = T_DIR
+					int_val 0
+					value_type NUMBER
+
+					length 2
+				param[2] = (null)
+					type = UNKNOWN
+					int_val 0
+					value_type UNKNOWN
+
+					length 0
+				param[3] = (null)
+					type = UNKNOWN
+					int_val 0
+					value_type UNKNOWN
+
+					length 0
+		operation name = zjmp
+			opc = 9
+			memory address = 741
+			length = 3
+			0 encoding [0x80]
+			param_number [1]
+				param[1] = 0
+					type = T_DIR
+					int_val 0
+					value_type NUMBER
+
+					length 2
+				param[2] = (null)
+					type = UNKNOWN
+					int_val 0
+					value_type UNKNOWN
+
+					length 0
+				param[3] = (null)
+					type = UNKNOWN
+					int_val 0
+					value_type UNKNOWN
+
+					length 0
+		operation name = zjmp
+			opc = 9
+			memory address = 744
+			length = 3
+			0 encoding [0x80]
+			param_number [1]
+				param[1] = 0
+					type = T_DIR
+					int_val 0
+					value_type NUMBER
+
+					length 2
+				param[2] = (null)
+					type = UNKNOWN
+					int_val 0
+					value_type UNKNOWN
+
+					length 0
+				param[3] = (null)
+					type = UNKNOWN
+					int_val 0
+					value_type UNKNOWN
+
+					length 0
+		operation name = zjmp
+			opc = 9
+			memory address = 747
+			length = 3
+			0 encoding [0x80]
+			param_number [1]
+				param[1] = 0
+					type = T_DIR
+					int_val 0
+					value_type NUMBER
+
+					length 2
+				param[2] = (null)
+					type = UNKNOWN
+					int_val 0
+					value_type UNKNOWN
+
+					length 0
+				param[3] = (null)
+					type = UNKNOWN
+					int_val 0
+					value_type UNKNOWN
+
+					length 0
+		operation name = zjmp
+			opc = 9
+			memory address = 750
+			length = 3
+			0 encoding [0x80]
+			param_number [1]
+				param[1] = 0
+					type = T_DIR
+					int_val 0
+					value_type NUMBER
+
+					length 2
+				param[2] = (null)
+					type = UNKNOWN
+					int_val 0
+					value_type UNKNOWN
+
+					length 0
+				param[3] = (null)
+					type = UNKNOWN
+					int_val 0
+					value_type UNKNOWN
+
+					length 0
+		operation name = zjmp
+			opc = 9
+			memory address = 753
+			length = 3
+			0 encoding [0x80]
+			param_number [1]
+				param[1] = 0
+					type = T_DIR
+					int_val 0
+					value_type NUMBER
+
+					length 2
+				param[2] = (null)
+					type = UNKNOWN
+					int_val 0
+					value_type UNKNOWN
+
+					length 0
+				param[3] = (null)
+					type = UNKNOWN
+					int_val 0
+					value_type UNKNOWN
+
+					length 0
+		operation name = zjmp
+			opc = 9
+			memory address = 756
+			length = 3
+			0 encoding [0x80]
+			param_number [1]
+				param[1] = 0
+					type = T_DIR
+					int_val 0
+					value_type NUMBER
+
+					length 2
+				param[2] = (null)
+					type = UNKNOWN
+					int_val 0
+					value_type UNKNOWN
+
+					length 0
+				param[3] = (null)
+					type = UNKNOWN
+					int_val 0
+					value_type UNKNOWN
+
+					length 0
+		operation name = zjmp
+			opc = 9
+			memory address = 759
+			length = 3
+			0 encoding [0x80]
+			param_number [1]
+				param[1] = 0
+					type = T_DIR
+					int_val 0
+					value_type NUMBER
+
+					length 2
+				param[2] = (null)
+					type = UNKNOWN
+					int_val 0
+					value_type UNKNOWN
+
+					length 0
+				param[3] = (null)
+					type = UNKNOWN
+					int_val 0
+					value_type UNKNOWN
+
+					length 0
+		operation name = zjmp
+			opc = 9
+			memory address = 762
+			length = 3
+			0 encoding [0x80]
+			param_number [1]
+				param[1] = 0
+					type = T_DIR
+					int_val 0
+					value_type NUMBER
+
+					length 2
+				param[2] = (null)
+					type = UNKNOWN
+					int_val 0
+					value_type UNKNOWN
+
+					length 0
+				param[3] = (null)
+					type = UNKNOWN
+					int_val 0
+					value_type UNKNOWN
+
+					length 0
+		operation name = zjmp
+			opc = 9
+			memory address = 765
+			length = 3
+			0 encoding [0x80]
+			param_number [1]
+				param[1] = 0
+					type = T_DIR
+					int_val 0
+					value_type NUMBER
+
+					length 2
+				param[2] = (null)
+					type = UNKNOWN
+					int_val 0
+					value_type UNKNOWN
+
+					length 0
+				param[3] = (null)
+					type = UNKNOWN
+					int_val 0
+					value_type UNKNOWN
+
+					length 0
+		operation name = zjmp
+			opc = 9
+			memory address = 768
+			length = 3
+			0 encoding [0x80]
+			param_number [1]
+				param[1] = 0
+					type = T_DIR
+					int_val 0
+					value_type NUMBER
+
+					length 2
+				param[2] = (null)
+					type = UNKNOWN
+					int_val 0
+					value_type UNKNOWN
+
+					length 0
+				param[3] = (null)
+					type = UNKNOWN
+					int_val 0
+					value_type UNKNOWN
+
+					length 0
+		operation name = zjmp
+			opc = 9
+			memory address = 771
+			length = 3
+			0 encoding [0x80]
+			param_number [1]
+				param[1] = 0
+					type = T_DIR
+					int_val 0
+					value_type NUMBER
+
+					length 2
+				param[2] = (null)
+					type = UNKNOWN
+					int_val 0
+					value_type UNKNOWN
+
+					length 0
+				param[3] = (null)
+					type = UNKNOWN
+					int_val 0
+					value_type UNKNOWN
+
+					length 0
+		operation name = zjmp
+			opc = 9
+			memory address = 774
+			length = 3
+			0 encoding [0x80]
+			param_number [1]
+				param[1] = 0
+					type = T_DIR
+					int_val 0
+					value_type NUMBER
+
+					length 2
+				param[2] = (null)
+					type = UNKNOWN
+					int_val 0
+					value_type UNKNOWN
+
+					length 0
+				param[3] = (null)
+					type = UNKNOWN
+					int_val 0
+					value_type UNKNOWN
+
+					length 0
+		operation name = zjmp
+			opc = 9
+			memory address = 777
+			length = 3
+			0 encoding [0x80]
+			param_number [1]
+				param[1] = 0
+					type = T_DIR
+					int_val 0
+					value_type NUMBER
+
+					length 2
+				param[2] = (null)
+					type = UNKNOWN
+					int_val 0
+					value_type UNKNOWN
+
+					length 0
+				param[3] = (null)
+					type = UNKNOWN
+					int_val 0
+					value_type UNKNOWN
+
+					length 0
+		operation name = zjmp
+			opc = 9
+			memory address = 780
+			length = 3
+			0 encoding [0x80]
+			param_number [1]
+				param[1] = 0
+					type = T_DIR
+					int_val 0
+					value_type NUMBER
+
+					length 2
+				param[2] = (null)
+					type = UNKNOWN
+					int_val 0
+					value_type UNKNOWN
+
+					length 0
+				param[3] = (null)
+					type = UNKNOWN
+					int_val 0
+					value_type UNKNOWN
+
+					length 0
+		operation name = zjmp
+			opc = 9
+			memory address = 783
+			length = 3
+			0 encoding [0x80]
+			param_number [1]
+				param[1] = 0
+					type = T_DIR
+					int_val 0
+					value_type NUMBER
+
+					length 2
+				param[2] = (null)
+					type = UNKNOWN
+					int_val 0
+					value_type UNKNOWN
+
+					length 0
+				param[3] = (null)
+					type = UNKNOWN
+					int_val 0
+					value_type UNKNOWN
+
+					length 0
+		operation name = zjmp
+			opc = 9
+			memory address = 786
+			length = 3
+			0 encoding [0x80]
+			param_number [1]
+				param[1] = 0
+					type = T_DIR
+					int_val 0
+					value_type NUMBER
+
+					length 2
+				param[2] = (null)
+					type = UNKNOWN
+					int_val 0
+					value_type UNKNOWN
+
+					length 0
+				param[3] = (null)
+					type = UNKNOWN
+					int_val 0
+					value_type UNKNOWN
+
+					length 0
+		operation name = zjmp
+			opc = 9
+			memory address = 789
+			length = 3
+			0 encoding [0x80]
+			param_number [1]
+				param[1] = 0
+					type = T_DIR
+					int_val 0
+					value_type NUMBER
+
+					length 2
+				param[2] = (null)
+					type = UNKNOWN
+					int_val 0
+					value_type UNKNOWN
+
+					length 0
+				param[3] = (null)
+					type = UNKNOWN
+					int_val 0
+					value_type UNKNOWN
+
+					length 0
+		operation name = zjmp
+			opc = 9
+			memory address = 792
+			length = 3
+			0 encoding [0x80]
+			param_number [1]
+				param[1] = 0
+					type = T_DIR
+					int_val 0
+					value_type NUMBER
+
+					length 2
+				param[2] = (null)
+					type = UNKNOWN
+					int_val 0
+					value_type UNKNOWN
+
+					length 0
+				param[3] = (null)
+					type = UNKNOWN
+					int_val 0
+					value_type UNKNOWN
+
+					length 0
+		operation name = zjmp
+			opc = 9
+			memory address = 795
+			length = 3
+			0 encoding [0x80]
+			param_number [1]
+				param[1] = 0
+					type = T_DIR
+					int_val 0
+					value_type NUMBER
+
+					length 2
+				param[2] = (null)
+					type = UNKNOWN
+					int_val 0
+					value_type UNKNOWN
+
+					length 0
+				param[3] = (null)
+					type = UNKNOWN
+					int_val 0
+					value_type UNKNOWN
+
+					length 0
+		operation name = zjmp
+			opc = 9
+			memory address = 798
+			length = 3
+			0 encoding [0x80]
+			param_number [1]
+				param[1] = 0
+					type = T_DIR
+					int_val 0
+					value_type NUMBER
+
+					length 2
+				param[2] = (null)
+					type = UNKNOWN
+					int_val 0
+					value_type UNKNOWN
+
+					length 0
+				param[3] = (null)
+					type = UNKNOWN
+					int_val 0
+					value_type UNKNOWN
+
+					length 0
+		operation name = zjmp
+			opc = 9
+			memory address = 801
+			length = 3
+			0 encoding [0x80]
+			param_number [1]
+				param[1] = 0
+					type = T_DIR
+					int_val 0
+					value_type NUMBER
+
+					length 2
+				param[2] = (null)
+					type = UNKNOWN
+					int_val 0
+					value_type UNKNOWN
+
+					length 0
+				param[3] = (null)
+					type = UNKNOWN
+					int_val 0
+					value_type UNKNOWN
+
+					length 0
+		operation name = zjmp
+			opc = 9
+			memory address = 804
+			length = 3
+			0 encoding [0x80]
+			param_number [1]
+				param[1] = 0
+					type = T_DIR
+					int_val 0
+					value_type NUMBER
+
+					length 2
+				param[2] = (null)
+					type = UNKNOWN
+					int_val 0
+					value_type UNKNOWN
+
+					length 0
+				param[3] = (null)
+					type = UNKNOWN
+					int_val 0
+					value_type UNKNOWN
+
+					length 0
+		operation name = zjmp
+			opc = 9
+			memory address = 807
+			length = 3
+			0 encoding [0x80]
+			param_number [1]
+				param[1] = 0
+					type = T_DIR
+					int_val 0
+					value_type NUMBER
+
+					length 2
+				param[2] = (null)
+					type = UNKNOWN
+					int_val 0
+					value_type UNKNOWN
+
+					length 0
+				param[3] = (null)
+					type = UNKNOWN
+					int_val 0
+					value_type UNKNOWN
+
+					length 0
+		operation name = zjmp
+			opc = 9
+			memory address = 810
+			length = 3
+			0 encoding [0x80]
+			param_number [1]
+				param[1] = 0
+					type = T_DIR
+					int_val 0
+					value_type NUMBER
+
+					length 2
+				param[2] = (null)
+					type = UNKNOWN
+					int_val 0
+					value_type UNKNOWN
+
+					length 0
+				param[3] = (null)
+					type = UNKNOWN
+					int_val 0
+					value_type UNKNOWN
+
+					length 0
+		operation name = zjmp
+			opc = 9
+			memory address = 813
+			length = 3
+			0 encoding [0x80]
+			param_number [1]
+				param[1] = 0
+					type = T_DIR
+					int_val 0
+					value_type NUMBER
+
+					length 2
+				param[2] = (null)
+					type = UNKNOWN
+					int_val 0
+					value_type UNKNOWN
+
+					length 0
+				param[3] = (null)
+					type = UNKNOWN
+					int_val 0
+					value_type UNKNOWN
+
+					length 0
+		operation name = zjmp
+			opc = 9
+			memory address = 816
+			length = 3
+			0 encoding [0x80]
+			param_number [1]
+				param[1] = 0
+					type = T_DIR
+					int_val 0
+					value_type NUMBER
+
+					length 2
+				param[2] = (null)
+					type = UNKNOWN
+					int_val 0
+					value_type UNKNOWN
+
+					length 0
+				param[3] = (null)
+					type = UNKNOWN
+					int_val 0
+					value_type UNKNOWN
+
+					length 0
+		operation name = zjmp
+			opc = 9
+			memory address = 819
+			length = 3
+			0 encoding [0x80]
+			param_number [1]
+				param[1] = 0
+					type = T_DIR
+					int_val 0
+					value_type NUMBER
+
+					length 2
+				param[2] = (null)
+					type = UNKNOWN
+					int_val 0
+					value_type UNKNOWN
+
+					length 0
+				param[3] = (null)
+					type = UNKNOWN
+					int_val 0
+					value_type UNKNOWN
+
+					length 0
+		operation name = zjmp
+			opc = 9
+			memory address = 822
+			length = 3
+			0 encoding [0x80]
+			param_number [1]
+				param[1] = 0
+					type = T_DIR
+					int_val 0
+					value_type NUMBER
+
+					length 2
+				param[2] = (null)
+					type = UNKNOWN
+					int_val 0
+					value_type UNKNOWN
+
+					length 0
+				param[3] = (null)
+					type = UNKNOWN
+					int_val 0
+					value_type UNKNOWN
+
+					length 0
+		operation name = zjmp
+			opc = 9
+			memory address = 825
+			length = 3
+			0 encoding [0x80]
+			param_number [1]
+				param[1] = 0
+					type = T_DIR
+					int_val 0
+					value_type NUMBER
+
+					length 2
+				param[2] = (null)
+					type = UNKNOWN
+					int_val 0
+					value_type UNKNOWN
+
+					length 0
+				param[3] = (null)
+					type = UNKNOWN
+					int_val 0
+					value_type UNKNOWN
+
+					length 0
+		operation name = zjmp
+			opc = 9
+			memory address = 828
+			length = 3
+			0 encoding [0x80]
+			param_number [1]
+				param[1] = 0
+					type = T_DIR
+					int_val 0
+					value_type NUMBER
+
+					length 2
+				param[2] = (null)
+					type = UNKNOWN
+					int_val 0
+					value_type UNKNOWN
+
+					length 0
+				param[3] = (null)
+					type = UNKNOWN
+					int_val 0
+					value_type UNKNOWN
+
+					length 0
+		operation name = zjmp
+			opc = 9
+			memory address = 831
+			length = 3
+			0 encoding [0x80]
+			param_number [1]
+				param[1] = 0
+					type = T_DIR
+					int_val 0
+					value_type NUMBER
+
+					length 2
+				param[2] = (null)
+					type = UNKNOWN
+					int_val 0
+					value_type UNKNOWN
+
+					length 0
+				param[3] = (null)
+					type = UNKNOWN
+					int_val 0
+					value_type UNKNOWN
+
+					length 0
+		operation name = ld
+			opc = 2
+			memory address = 834
+			length = 7
+			1 encoding [0x90]
+			param_number [2]
+				param[1] = 10
+					type = T_DIR
+					int_val 10
+					value_type NUMBER
+
+					length 4
+				param[2] = 8
+					type = T_REG
+					int_val 8
+					value_type REGISTER
+
+					length 1
+				param[3] = (null)
+					type = UNKNOWN
+					int_val 0
+					value_type UNKNOWN
+
+					length 0
+		operation name = sub
+			opc = 5
+			memory address = 841
+			length = 5
+			1 encoding [0x54]
+			param_number [3]
+				param[1] = 6
+					type = T_REG
+					int_val 6
+					value_type REGISTER
+
+					length 1
+				param[2] = 8
+					type = T_REG
+					int_val 8
+					value_type REGISTER
+
+					length 1
+				param[3] = 6
+					type = T_REG
+					int_val 6
+					value_type REGISTER
+
+					length 1
+		operation name = and
+			opc = 6
+			memory address = 846
+			length = 8
+			1 encoding [0x64]
+			param_number [3]
+				param[1] = 6
+					type = T_REG
+					int_val 6
+					value_type REGISTER
+
+					length 1
+				param[2] = 2147483648
+					type = T_DIR
+					int_val -2147483648
+					value_type NUMBER
+
+					length 4
+				param[3] = 8
+					type = T_REG
+					int_val 8
+					value_type REGISTER
+
+					length 1
+		operation name = zjmp
+			opc = 9
+			memory address = 854
+			length = 3
+			0 encoding [0x80]
+			param_number [1]
+				param[1] = cont
+					type = T_DIR
+					int_val 15
+					value_type LABEL
+
+					length 2
+				param[2] = (null)
+					type = UNKNOWN
+					int_val 0
+					value_type UNKNOWN
+
+					length 0
+				param[3] = (null)
+					type = UNKNOWN
+					int_val 0
+					value_type UNKNOWN
+
+					length 0
+		operation name = ld
+			opc = 2
+			memory address = 857
+			length = 7
+			1 encoding [0x90]
+			param_number [2]
+				param[1] = 118
+					type = T_DIR
+					int_val 118
+					value_type NUMBER
+
+					length 4
+				param[2] = 8
+					type = T_REG
+					int_val 8
+					value_type REGISTER
+
+					length 1
+				param[3] = (null)
+					type = UNKNOWN
+					int_val 0
+					value_type UNKNOWN
+
+					length 0
+		operation name = add
+			opc = 4
+			memory address = 864
+			length = 5
+			1 encoding [0x54]
+			param_number [3]
+				param[1] = 6
+					type = T_REG
+					int_val 6
+					value_type REGISTER
+
+					length 1
+				param[2] = 8
+					type = T_REG
+					int_val 8
+					value_type REGISTER
+
+					length 1
+				param[3] = 6
+					type = T_REG
+					int_val 6
+					value_type REGISTER
+
+					length 1
+		operation name = add
+			opc = 4
+			memory address = 869
+			length = 5
+			1 encoding [0x54]
+			param_number [3]
+				param[1] = 6
+					type = T_REG
+					int_val 6
+					value_type REGISTER
+
+					length 1
+				param[2] = 6
+					type = T_REG
+					int_val 6
+					value_type REGISTER
+
+					length 1
+				param[3] = 6
+					type = T_REG
+					int_val 6
+					value_type REGISTER
+
+					length 1
+		operation name = ld
+			opc = 2
+			memory address = 874
+			length = 7
+			1 encoding [0x90]
+			param_number [2]
+				param[1] = 272
+					type = T_DIR
+					int_val 272
+					value_type NUMBER
+
+					length 4
+				param[2] = 8
+					type = T_REG
+					int_val 8
+					value_type REGISTER
+
+					length 1
+				param[3] = (null)
+					type = UNKNOWN
+					int_val 0
+					value_type UNKNOWN
+
+					length 0
+		operation name = ld
+			opc = 2
+			memory address = 881
+			length = 7
+			1 encoding [0x90]
+			param_number [2]
+				param[1] = 29
+					type = T_DIR
+					int_val 29
+					value_type NUMBER
+
+					length 4
+				param[2] = 9
+					type = T_REG
+					int_val 9
+					value_type REGISTER
+
+					length 1
+				param[3] = (null)
+					type = UNKNOWN
+					int_val 0
+					value_type UNKNOWN
+
+					length 0
+		operation name = ldi
+			opc = 10
+			memory address = 888
+			length = 6
+			1 encoding [0x94]
+			param_number [3]
+				param[1] = p64deb
+					type = T_DIR
+					int_val -174
+					value_type LABEL
+
+					length 2
+				param[2] = 6
+					type = T_REG
+					int_val 6
+					value_type REGISTER
+
+					length 1
+				param[3] = 7
+					type = T_REG
+					int_val 7
+					value_type REGISTER
+
+					length 1
+		operation name = sti
+			opc = 11
+			memory address = 894
+			length = 5
+			1 encoding [0x54]
+			param_number [3]
+				param[1] = 7
+					type = T_REG
+					int_val 7
+					value_type REGISTER
+
+					length 1
+				param[2] = 8
+					type = T_REG
+					int_val 8
+					value_type REGISTER
+
+					length 1
+				param[3] = 6
+					type = T_REG
+					int_val 6
+					value_type REGISTER
+
+					length 1
+		operation name = sti
+			opc = 11
+			memory address = 899
+			length = 5
+			1 encoding [0x54]
+			param_number [3]
+				param[1] = 7
+					type = T_REG
+					int_val 7
+					value_type REGISTER
+
+					length 1
+				param[2] = 9
+					type = T_REG
+					int_val 9
+					value_type REGISTER
+
+					length 1
+				param[3] = 6
+					type = T_REG
+					int_val 6
+					value_type REGISTER
+
+					length 1
+		operation name = live
+			opc = 1
+			memory address = 904
+			length = 5
+			0 encoding [0x80]
+			param_number [1]
+				param[1] = 1
+					type = T_DIR
+					int_val 1
+					value_type NUMBER
+
+					length 4
+				param[2] = (null)
+					type = UNKNOWN
+					int_val 0
+					value_type UNKNOWN
+
+					length 0
+				param[3] = (null)
+					type = UNKNOWN
+					int_val 0
+					value_type UNKNOWN
+
+					length 0
+		operation name = ld
+			opc = 2
+			memory address = 909
+			length = 7
+			1 encoding [0x90]
+			param_number [2]
+				param[1] = 0
+					type = T_DIR
+					int_val 0
+					value_type NUMBER
+
+					length 4
+				param[2] = 10
+					type = T_REG
+					int_val 10
+					value_type REGISTER
+
+					length 1
+				param[3] = (null)
+					type = UNKNOWN
+					int_val 0
+					value_type UNKNOWN
+
+					length 0
+		operation name = zjmp
+			opc = 9
+			memory address = 916
+			length = 3
+			0 encoding [0x80]
+			param_number [1]
+				param[1] = 186
+					type = T_DIR
+					int_val 186
+					value_type NUMBER
+
+					length 2
+				param[2] = (null)
+					type = UNKNOWN
+					int_val 0
+					value_type UNKNOWN
+
+					length 0
+				param[3] = (null)
+					type = UNKNOWN
+					int_val 0
+					value_type UNKNOWN
+
+					length 0
+		operation name = ld
+			opc = 2
+			memory address = 919
+			length = 7
+			1 encoding [0x90]
+			param_number [2]
+				param[1] = 425
+					type = T_DIR
+					int_val 425
+					value_type NUMBER
+
+					length 4
+				param[2] = 2
+					type = T_REG
+					int_val 2
+					value_type REGISTER
+
+					length 1
+				param[3] = (null)
+					type = UNKNOWN
+					int_val 0
+					value_type UNKNOWN
+
+					length 0
+		operation name = ld
+			opc = 2
+			memory address = 926
+			length = 7
+			1 encoding [0x90]
+			param_number [2]
+				param[1] = 0
+					type = T_DIR
+					int_val 0
+					value_type NUMBER
+
+					length 4
+				param[2] = 3
+					type = T_REG
+					int_val 3
+					value_type REGISTER
+
+					length 1
+				param[3] = (null)
+					type = UNKNOWN
+					int_val 0
+					value_type UNKNOWN
+
+					length 0
+		operation name = ld
+			opc = 2
+			memory address = 933
+			length = 7
+			1 encoding [0x90]
+			param_number [2]
+				param[1] = 4
+					type = T_DIR
+					int_val 4
+					value_type NUMBER
+
+					length 4
+				param[2] = 4
+					type = T_REG
+					int_val 4
+					value_type REGISTER
+
+					length 1
+				param[3] = (null)
+					type = UNKNOWN
+					int_val 0
+					value_type UNKNOWN
+
+					length 0
+		operation name = live
+			opc = 1
+			memory address = 940
+			length = 5
+			0 encoding [0x80]
+			param_number [1]
+				param[1] = 42
+					type = T_DIR
+					int_val 42
+					value_type NUMBER
+
+					length 4
+				param[2] = (null)
+					type = UNKNOWN
+					int_val 0
+					value_type UNKNOWN
+
+					length 0
+				param[3] = (null)
+					type = UNKNOWN
+					int_val 0
+					value_type UNKNOWN
+
+					length 0
+		operation name = sti
+			opc = 11
+			memory address = 945
+			length = 6
+			1 encoding [0x64]
+			param_number [3]
+				param[1] = 10
+					type = T_REG
+					int_val 10
+					value_type REGISTER
+
+					length 1
+				param[2] = fin
+					type = T_DIR
+					int_val 43
+					value_type LABEL
+
+					length 2
+				param[3] = 2
+					type = T_REG
+					int_val 2
+					value_type REGISTER
+
+					length 1
+		operation name = sti
+			opc = 11
+			memory address = 951
+			length = 6
+			1 encoding [0x64]
+			param_number [3]
+				param[1] = 10
+					type = T_REG
+					int_val 10
+					value_type REGISTER
+
+					length 1
+				param[2] = fin
+					type = T_DIR
+					int_val 37
+					value_type LABEL
+
+					length 2
+				param[3] = 3
+					type = T_REG
+					int_val 3
+					value_type REGISTER
+
+					length 1
+		operation name = add
+			opc = 4
+			memory address = 957
+			length = 5
+			1 encoding [0x54]
+			param_number [3]
+				param[1] = 4
+					type = T_REG
+					int_val 4
+					value_type REGISTER
+
+					length 1
+				param[2] = 5
+					type = T_REG
+					int_val 5
+					value_type REGISTER
+
+					length 1
+				param[3] = 4
+					type = T_REG
+					int_val 4
+					value_type REGISTER
+
+					length 1
+		operation name = add
+			opc = 4
+			memory address = 962
+			length = 5
+			1 encoding [0x54]
+			param_number [3]
+				param[1] = 3
+					type = T_REG
+					int_val 3
+					value_type REGISTER
+
+					length 1
+				param[2] = 4
+					type = T_REG
+					int_val 4
+					value_type REGISTER
+
+					length 1
+				param[3] = 3
+					type = T_REG
+					int_val 3
+					value_type REGISTER
+
+					length 1
+		operation name = sub
+			opc = 5
+			memory address = 967
+			length = 5
+			1 encoding [0x54]
+			param_number [3]
+				param[1] = 2
+					type = T_REG
+					int_val 2
+					value_type REGISTER
+
+					length 1
+				param[2] = 4
+					type = T_REG
+					int_val 4
+					value_type REGISTER
+
+					length 1
+				param[3] = 2
+					type = T_REG
+					int_val 2
+					value_type REGISTER
+
+					length 1
+		operation name = zjmp
+			opc = 9
+			memory address = 972
+			length = 3
+			0 encoding [0x80]
+			param_number [1]
+				param[1] = tirdow
+					type = T_DIR
+					int_val -53
+					value_type LABEL
+
+					length 2
+				param[2] = (null)
+					type = UNKNOWN
+					int_val 0
+					value_type UNKNOWN
+
+					length 0
+				param[3] = (null)
+					type = UNKNOWN
+					int_val 0
+					value_type UNKNOWN
+
+					length 0
+		operation name = ld
+			opc = 2
+			memory address = 975
+			length = 7
+			1 encoding [0x90]
+			param_number [2]
+				param[1] = 0
+					type = T_DIR
+					int_val 0
+					value_type NUMBER
+
+					length 4
+				param[2] = 11
+					type = T_REG
+					int_val 11
+					value_type REGISTER
+
+					length 1
+				param[3] = (null)
+					type = UNKNOWN
+					int_val 0
+					value_type UNKNOWN
+
+					length 0
+		operation name = zjmp
+			opc = 9
+			memory address = 982
+			length = 3
+			0 encoding [0x80]
+			param_number [1]
+				param[1] = tird
+					type = T_DIR
+					int_val -42
+					value_type LABEL
+
+					length 2
+				param[2] = (null)
+					type = UNKNOWN
+					int_val 0
+					value_type UNKNOWN
+
+					length 0
+				param[3] = (null)
+					type = UNKNOWN
+					int_val 0
+					value_type UNKNOWN
+
+					length 0
+		operation name = zjmp
+			opc = 9
+			memory address = 985
+			length = 3
+			0 encoding [0x80]
+			param_number [1]
+				param[1] = p1
+					type = T_DIR
+					int_val -360
+					value_type LABEL
+
+					length 2
+				param[2] = (null)
+					type = UNKNOWN
+					int_val 0
+					value_type UNKNOWN
+
+					length 0
+				param[3] = (null)
+					type = UNKNOWN
+					int_val 0
+					value_type UNKNOWN
+
+					length 0
+		operation name = live
+			opc = 1
+			memory address = 988
+			length = 5
+			0 encoding [0x80]
+			param_number [1]
+				param[1] = 633
+					type = T_DIR
+					int_val 633
+					value_type NUMBER
+
+					length 4
+				param[2] = (null)
+					type = UNKNOWN
+					int_val 0
+					value_type UNKNOWN
+
+					length 0
+				param[3] = (null)
+					type = UNKNOWN
+					int_val 0
+					value_type UNKNOWN
+
+					length 0
+		operation name = live
+			opc = 1
+			memory address = 0
+			length = 5
+			0 encoding [0x80]
+			param_number [1]
+				param[1] = 42
+					type = T_DIR
+					int_val 42
+					value_type NUMBER
+
+					length 4
+				param[2] = (null)
+					type = UNKNOWN
+					int_val 0
+					value_type UNKNOWN
+
+					length 0
+				param[3] = (null)
+					type = UNKNOWN
+					int_val 0
+					value_type UNKNOWN
+
+					length 0
+		operation name = ld
+			opc = 2
+			memory address = 5
+			length = 7
+			1 encoding [0x90]
+			param_number [2]
+				param[1] = 0
+					type = T_DIR
+					int_val 0
+					value_type NUMBER
+
+					length 4
+				param[2] = 5
+					type = T_REG
+					int_val 5
+					value_type REGISTER
+
+					length 1
+				param[3] = (null)
+					type = UNKNOWN
+					int_val 0
+					value_type UNKNOWN
+
+					length 0
+		operation name = ld
+			opc = 2
+			memory address = 12
+			length = 7
+			1 encoding [0x90]
+			param_number [2]
+				param[1] = 0
+					type = T_DIR
+					int_val 0
+					value_type NUMBER
+
+					length 4
+				param[2] = 5
+					type = T_REG
+					int_val 5
+					value_type REGISTER
+
+					length 1
+				param[3] = (null)
+					type = UNKNOWN
+					int_val 0
+					value_type UNKNOWN
+
+					length 0
+		operation name = zjmp
+			opc = 9
+			memory address = 19
+			length = 3
+			0 encoding [0x80]
+			param_number [1]
+				param[1] = bite
+					type = T_DIR
+					int_val 281
+					value_type LABEL
+
+					length 2
+				param[2] = (null)
+					type = UNKNOWN
+					int_val 0
+					value_type UNKNOWN
+
+					length 0
+				param[3] = (null)
+					type = UNKNOWN
+					int_val 0
+					value_type UNKNOWN
+
+					length 0
+		operation name = sti
+			opc = 11
+			memory address = 22
+			length = 7
+			1 encoding [0x68]
+			param_number [3]
+				param[1] = 1
+					type = T_REG
+					int_val 1
+					value_type REGISTER
+
+					length 1
+				param[2] = tirb
+					type = T_DIR
+					int_val 130
+					value_type LABEL
+
+					length 2
+				param[3] = 1
+					type = T_DIR
+					int_val 1
+					value_type NUMBER
+
+					length 2
+		operation name = ld
+			opc = 2
+			memory address = 29
+			length = 7
+			1 encoding [0x90]
+			param_number [2]
+				param[1] = 2304
+					type = T_DIR
+					int_val 2304
+					value_type NUMBER
+
+					length 4
+				param[2] = 10
+					type = T_REG
+					int_val 10
+					value_type REGISTER
+
+					length 1
+				param[3] = (null)
+					type = UNKNOWN
+					int_val 0
+					value_type UNKNOWN
+
+					length 0
+		operation name = ld
+			opc = 2
+			memory address = 36
+			length = 7
+			1 encoding [0x90]
+			param_number [2]
+				param[1] = 1
+					type = T_DIR
+					int_val 1
+					value_type NUMBER
+
+					length 4
+				param[2] = 5
+					type = T_REG
+					int_val 5
+					value_type REGISTER
+
+					length 1
+				param[3] = (null)
+					type = UNKNOWN
+					int_val 0
+					value_type UNKNOWN
+
+					length 0
+		operation name = ld
+			opc = 2
+			memory address = 43
+			length = 7
+			1 encoding [0x90]
+			param_number [2]
+				param[1] = 0
+					type = T_DIR
+					int_val 0
+					value_type NUMBER
+
+					length 4
+				param[2] = 11
+					type = T_REG
+					int_val 11
+					value_type REGISTER
+
+					length 1
+				param[3] = (null)
+					type = UNKNOWN
+					int_val 0
+					value_type UNKNOWN
+
+					length 0
+		operation name = ld
+			opc = 2
+			memory address = 50
+			length = 7
+			1 encoding [0x90]
+			param_number [2]
+				param[1] = 4
+					type = T_DIR
+					int_val 4
+					value_type NUMBER
+
+					length 4
+				param[2] = 3
+					type = T_REG
+					int_val 3
+					value_type REGISTER
+
+					length 1
+				param[3] = (null)
+					type = UNKNOWN
+					int_val 0
+					value_type UNKNOWN
+
+					length 0
+		operation name = live
+			opc = 1
+			memory address = 57
+			length = 5
+			0 encoding [0x80]
+			param_number [1]
+				param[1] = 42
+					type = T_DIR
+					int_val 42
+					value_type NUMBER
+
+					length 4
+				param[2] = (null)
+					type = UNKNOWN
+					int_val 0
+					value_type UNKNOWN
+
+					length 0
+				param[3] = (null)
+					type = UNKNOWN
+					int_val 0
+					value_type UNKNOWN
+
+					length 0
+		operation name = fork
+			opc = 12
+			memory address = 62
+			length = 3
+			0 encoding [0x80]
+			param_number [1]
+				param[1] = tirop
+					type = T_DIR
+					int_val 69
+					value_type LABEL
+
+					length 2
+				param[2] = (null)
+					type = UNKNOWN
+					int_val 0
+					value_type UNKNOWN
+
+					length 0
+				param[3] = (null)
+					type = UNKNOWN
+					int_val 0
+					value_type UNKNOWN
+
+					length 0
+		operation name = live
+			opc = 1
+			memory address = 65
+			length = 5
+			0 encoding [0x80]
+			param_number [1]
+				param[1] = 742
+					type = T_DIR
+					int_val 742
+					value_type NUMBER
+
+					length 4
+				param[2] = (null)
+					type = UNKNOWN
+					int_val 0
+					value_type UNKNOWN
+
+					length 0
+				param[3] = (null)
+					type = UNKNOWN
+					int_val 0
+					value_type UNKNOWN
+
+					length 0
+		operation name = sub
+			opc = 5
+			memory address = 70
+			length = 5
+			1 encoding [0x54]
+			param_number [3]
+				param[1] = 3
+					type = T_REG
+					int_val 3
+					value_type REGISTER
+
+					length 1
+				param[2] = 5
+					type = T_REG
+					int_val 5
+					value_type REGISTER
+
+					length 1
+				param[3] = 3
+					type = T_REG
+					int_val 3
+					value_type REGISTER
+
+					length 1
+		operation name = zjmp
+			opc = 9
+			memory address = 75
+			length = 3
+			0 encoding [0x80]
+			param_number [1]
+				param[1] = top
+					type = T_DIR
+					int_val 372
+					value_type LABEL
+
+					length 2
+				param[2] = (null)
+					type = UNKNOWN
+					int_val 0
+					value_type UNKNOWN
+
+					length 0
+				param[3] = (null)
+					type = UNKNOWN
+					int_val 0
+					value_type UNKNOWN
+
+					length 0
+		operation name = ld
+			opc = 2
+			memory address = 78
+			length = 7
+			1 encoding [0x90]
+			param_number [2]
+				param[1] = 0
+					type = T_DIR
+					int_val 0
+					value_type NUMBER
+
+					length 4
+				param[2] = 11
+					type = T_REG
+					int_val 11
+					value_type REGISTER
+
+					length 1
+				param[3] = (null)
+					type = UNKNOWN
+					int_val 0
+					value_type UNKNOWN
+
+					length 0
+		operation name = fork
+			opc = 12
+			memory address = 85
+			length = 3
+			0 encoding [0x80]
+			param_number [1]
+				param[1] = tirvd
+					type = T_DIR
+					int_val 212
+					value_type LABEL
+
+					length 2
+				param[2] = (null)
+					type = UNKNOWN
+					int_val 0
+					value_type UNKNOWN
+
+					length 0
+				param[3] = (null)
+					type = UNKNOWN
+					int_val 0
+					value_type UNKNOWN
+
+					length 0
+		operation name = live
+			opc = 1
+			memory address = 88
+			length = 5
+			0 encoding [0x80]
+			param_number [1]
+				param[1] = 42
+					type = T_DIR
+					int_val 42
+					value_type NUMBER
+
+					length 4
+				param[2] = (null)
+					type = UNKNOWN
+					int_val 0
+					value_type UNKNOWN
+
+					length 0
+				param[3] = (null)
+					type = UNKNOWN
+					int_val 0
+					value_type UNKNOWN
+
+					length 0
+		operation name = sti
+			opc = 11
+			memory address = 93
+			length = 7
+			1 encoding [0x68]
+			param_number [3]
+				param[1] = 10
+					type = T_REG
+					int_val 10
+					value_type REGISTER
+
+					length 1
+				param[2] = -510
+					type = T_DIR
+					int_val -510
+					value_type NUMBER
+
+					length 2
+				param[3] = 0
+					type = T_DIR
+					int_val 0
+					value_type NUMBER
+
+					length 2
+		operation name = sti
+			opc = 11
+			memory address = 100
+			length = 7
+			1 encoding [0x68]
+			param_number [3]
+				param[1] = 10
+					type = T_REG
+					int_val 10
+					value_type REGISTER
+
+					length 1
+				param[2] = -404
+					type = T_DIR
+					int_val -404
+					value_type NUMBER
+
+					length 2
+				param[3] = 0
+					type = T_DIR
+					int_val 0
+					value_type NUMBER
+
+					length 2
+		operation name = sti
+			opc = 11
+			memory address = 107
+			length = 7
+			1 encoding [0x68]
+			param_number [3]
+				param[1] = 10
+					type = T_REG
+					int_val 10
+					value_type REGISTER
+
+					length 1
+				param[2] = -303
+					type = T_DIR
+					int_val -303
+					value_type NUMBER
+
+					length 2
+				param[3] = 0
+					type = T_DIR
+					int_val 0
+					value_type NUMBER
+
+					length 2
+		operation name = sti
+			opc = 11
+			memory address = 114
+			length = 7
+			1 encoding [0x68]
+			param_number [3]
+				param[1] = 10
+					type = T_REG
+					int_val 10
+					value_type REGISTER
+
+					length 1
+				param[2] = -202
+					type = T_DIR
+					int_val -202
+					value_type NUMBER
+
+					length 2
+				param[3] = 0
+					type = T_DIR
+					int_val 0
+					value_type NUMBER
+
+					length 2
+		operation name = ld
+			opc = 2
+			memory address = 121
+			length = 7
+			1 encoding [0x90]
+			param_number [2]
+				param[1] = 0
+					type = T_DIR
+					int_val 0
+					value_type NUMBER
+
+					length 4
+				param[2] = 11
+					type = T_REG
+					int_val 11
+					value_type REGISTER
+
+					length 1
+				param[3] = (null)
+					type = UNKNOWN
+					int_val 0
+					value_type UNKNOWN
+
+					length 0
+		operation name = zjmp
+			opc = 9
+			memory address = 128
+			length = 3
+			0 encoding [0x80]
+			param_number [1]
+				param[1] = tirf
+					type = T_DIR
+					int_val -71
+					value_type LABEL
+
+					length 2
+				param[2] = (null)
+					type = UNKNOWN
+					int_val 0
+					value_type UNKNOWN
+
+					length 0
+				param[3] = (null)
+					type = UNKNOWN
+					int_val 0
+					value_type UNKNOWN
+
+					length 0
+		operation name = ld
+			opc = 2
+			memory address = 131
+			length = 7
+			1 encoding [0x90]
+			param_number [2]
+				param[1] = 368
+					type = T_DIR
+					int_val 368
+					value_type NUMBER
+
+					length 4
+				param[2] = 2
+					type = T_REG
+					int_val 2
+					value_type REGISTER
+
+					length 1
+				param[3] = (null)
+					type = UNKNOWN
+					int_val 0
+					value_type UNKNOWN
+
+					length 0
+		operation name = ld
+			opc = 2
+			memory address = 138
+			length = 7
+			1 encoding [0x90]
+			param_number [2]
+				param[1] = 0
+					type = T_DIR
+					int_val 0
+					value_type NUMBER
+
+					length 4
+				param[2] = 3
+					type = T_REG
+					int_val 3
+					value_type REGISTER
+
+					length 1
+				param[3] = (null)
+					type = UNKNOWN
+					int_val 0
+					value_type UNKNOWN
+
+					length 0
+		operation name = ld
+			opc = 2
+			memory address = 145
+			length = 7
+			1 encoding [0x90]
+			param_number [2]
+				param[1] = 4
+					type = T_DIR
+					int_val 4
+					value_type NUMBER
+
+					length 4
+				param[2] = 4
+					type = T_REG
+					int_val 4
+					value_type REGISTER
+
+					length 1
+				param[3] = (null)
+					type = UNKNOWN
+					int_val 0
+					value_type UNKNOWN
+
+					length 0
+		operation name = live
+			opc = 1
+			memory address = 152
+			length = 5
+			0 encoding [0x80]
+			param_number [1]
+				param[1] = 1
+					type = T_DIR
+					int_val 1
+					value_type NUMBER
+
+					length 4
+				param[2] = (null)
+					type = UNKNOWN
+					int_val 0
+					value_type UNKNOWN
+
+					length 0
+				param[3] = (null)
+					type = UNKNOWN
+					int_val 0
+					value_type UNKNOWN
+
+					length 0
+		operation name = sti
+			opc = 11
+			memory address = 157
+			length = 6
+			1 encoding [0x64]
+			param_number [3]
+				param[1] = 10
+					type = T_REG
+					int_val 10
+					value_type REGISTER
+
+					length 1
+				param[2] = -510
+					type = T_DIR
+					int_val -510
+					value_type NUMBER
+
+					length 2
+				param[3] = 2
+					type = T_REG
+					int_val 2
+					value_type REGISTER
+
+					length 1
+		operation name = sti
+			opc = 11
+			memory address = 163
+			length = 6
+			1 encoding [0x64]
+			param_number [3]
+				param[1] = 10
+					type = T_REG
+					int_val 10
+					value_type REGISTER
+
+					length 1
+				param[2] = -510
+					type = T_DIR
+					int_val -510
+					value_type NUMBER
+
+					length 2
+				param[3] = 3
+					type = T_REG
+					int_val 3
+					value_type REGISTER
+
+					length 1
+		operation name = add
+			opc = 4
+			memory address = 169
+			length = 5
+			1 encoding [0x54]
+			param_number [3]
+				param[1] = 4
+					type = T_REG
+					int_val 4
+					value_type REGISTER
+
+					length 1
+				param[2] = 5
+					type = T_REG
+					int_val 5
+					value_type REGISTER
+
+					length 1
+				param[3] = 4
+					type = T_REG
+					int_val 4
+					value_type REGISTER
+
+					length 1
+		operation name = add
+			opc = 4
+			memory address = 174
+			length = 5
+			1 encoding [0x54]
+			param_number [3]
+				param[1] = 3
+					type = T_REG
+					int_val 3
+					value_type REGISTER
+
+					length 1
+				param[2] = 4
+					type = T_REG
+					int_val 4
+					value_type REGISTER
+
+					length 1
+				param[3] = 3
+					type = T_REG
+					int_val 3
+					value_type REGISTER
+
+					length 1
+		operation name = sub
+			opc = 5
+			memory address = 179
+			length = 5
+			1 encoding [0x54]
+			param_number [3]
+				param[1] = 2
+					type = T_REG
+					int_val 2
+					value_type REGISTER
+
+					length 1
+				param[2] = 4
+					type = T_REG
+					int_val 4
+					value_type REGISTER
+
+					length 1
+				param[3] = 2
+					type = T_REG
+					int_val 2
+					value_type REGISTER
+
+					length 1
+		operation name = zjmp
+			opc = 9
+			memory address = 184
+			length = 3
+			0 encoding [0x80]
+			param_number [1]
+				param[1] = tirop
+					type = T_DIR
+					int_val -53
+					value_type LABEL
+
+					length 2
+				param[2] = (null)
+					type = UNKNOWN
+					int_val 0
+					value_type UNKNOWN
+
+					length 0
+				param[3] = (null)
+					type = UNKNOWN
+					int_val 0
+					value_type UNKNOWN
+
+					length 0
+		operation name = ld
+			opc = 2
+			memory address = 187
+			length = 7
+			1 encoding [0x90]
+			param_number [2]
+				param[1] = 0
+					type = T_DIR
+					int_val 0
+					value_type NUMBER
+
+					length 4
+				param[2] = 11
+					type = T_REG
+					int_val 11
+					value_type REGISTER
+
+					length 1
+				param[3] = (null)
+					type = UNKNOWN
+					int_val 0
+					value_type UNKNOWN
+
+					length 0
+		operation name = zjmp
+			opc = 9
+			memory address = 194
+			length = 3
+			0 encoding [0x80]
+			param_number [1]
+				param[1] = tirb
+					type = T_DIR
+					int_val -42
+					value_type LABEL
+
+					length 2
+				param[2] = (null)
+					type = UNKNOWN
+					int_val 0
+					value_type UNKNOWN
+
+					length 0
+				param[3] = (null)
+					type = UNKNOWN
+					int_val 0
+					value_type UNKNOWN
+
+					length 0
+		operation name = zjmp
+			opc = 9
+			memory address = 197
+			length = 3
+			0 encoding [0x80]
+			param_number [1]
+				param[1] = infi
+					type = T_DIR
+					int_val 293
+					value_type LABEL
+
+					length 2
+				param[2] = (null)
+					type = UNKNOWN
+					int_val 0
+					value_type UNKNOWN
+
+					length 0
+				param[3] = (null)
+					type = UNKNOWN
+					int_val 0
+					value_type UNKNOWN
+
+					length 0
+		operation name = zjmp
+			opc = 9
+			memory address = 200
+			length = 3
+			0 encoding [0x80]
+			param_number [1]
+				param[1] = 0
+					type = T_DIR
+					int_val 0
+					value_type NUMBER
+
+					length 2
+				param[2] = (null)
+					type = UNKNOWN
+					int_val 0
+					value_type UNKNOWN
+
+					length 0
+				param[3] = (null)
+					type = UNKNOWN
+					int_val 0
+					value_type UNKNOWN
+
+					length 0
+		operation name = zjmp
+			opc = 9
+			memory address = 203
+			length = 3
+			0 encoding [0x80]
+			param_number [1]
+				param[1] = 0
+					type = T_DIR
+					int_val 0
+					value_type NUMBER
+
+					length 2
+				param[2] = (null)
+					type = UNKNOWN
+					int_val 0
+					value_type UNKNOWN
+
+					length 0
+				param[3] = (null)
+					type = UNKNOWN
+					int_val 0
+					value_type UNKNOWN
+
+					length 0
+		operation name = zjmp
+			opc = 9
+			memory address = 206
+			length = 3
+			0 encoding [0x80]
+			param_number [1]
+				param[1] = 0
+					type = T_DIR
+					int_val 0
+					value_type NUMBER
+
+					length 2
+				param[2] = (null)
+					type = UNKNOWN
+					int_val 0
+					value_type UNKNOWN
+
+					length 0
+				param[3] = (null)
+					type = UNKNOWN
+					int_val 0
+					value_type UNKNOWN
+
+					length 0
+		operation name = zjmp
+			opc = 9
+			memory address = 209
+			length = 3
+			0 encoding [0x80]
+			param_number [1]
+				param[1] = 0
+					type = T_DIR
+					int_val 0
+					value_type NUMBER
+
+					length 2
+				param[2] = (null)
+					type = UNKNOWN
+					int_val 0
+					value_type UNKNOWN
+
+					length 0
+				param[3] = (null)
+					type = UNKNOWN
+					int_val 0
+					value_type UNKNOWN
+
+					length 0
+		operation name = zjmp
+			opc = 9
+			memory address = 212
+			length = 3
+			0 encoding [0x80]
+			param_number [1]
+				param[1] = 0
+					type = T_DIR
+					int_val 0
+					value_type NUMBER
+
+					length 2
+				param[2] = (null)
+					type = UNKNOWN
+					int_val 0
+					value_type UNKNOWN
+
+					length 0
+				param[3] = (null)
+					type = UNKNOWN
+					int_val 0
+					value_type UNKNOWN
+
+					length 0
+		operation name = zjmp
+			opc = 9
+			memory address = 215
+			length = 3
+			0 encoding [0x80]
+			param_number [1]
+				param[1] = 0
+					type = T_DIR
+					int_val 0
+					value_type NUMBER
+
+					length 2
+				param[2] = (null)
+					type = UNKNOWN
+					int_val 0
+					value_type UNKNOWN
+
+					length 0
+				param[3] = (null)
+					type = UNKNOWN
+					int_val 0
+					value_type UNKNOWN
+
+					length 0
+		operation name = zjmp
+			opc = 9
+			memory address = 218
+			length = 3
+			0 encoding [0x80]
+			param_number [1]
+				param[1] = 0
+					type = T_DIR
+					int_val 0
+					value_type NUMBER
+
+					length 2
+				param[2] = (null)
+					type = UNKNOWN
+					int_val 0
+					value_type UNKNOWN
+
+					length 0
+				param[3] = (null)
+					type = UNKNOWN
+					int_val 0
+					value_type UNKNOWN
+
+					length 0
+		operation name = zjmp
+			opc = 9
+			memory address = 221
+			length = 3
+			0 encoding [0x80]
+			param_number [1]
+				param[1] = 0
+					type = T_DIR
+					int_val 0
+					value_type NUMBER
+
+					length 2
+				param[2] = (null)
+					type = UNKNOWN
+					int_val 0
+					value_type UNKNOWN
+
+					length 0
+				param[3] = (null)
+					type = UNKNOWN
+					int_val 0
+					value_type UNKNOWN
+
+					length 0
+		operation name = zjmp
+			opc = 9
+			memory address = 224
+			length = 3
+			0 encoding [0x80]
+			param_number [1]
+				param[1] = 0
+					type = T_DIR
+					int_val 0
+					value_type NUMBER
+
+					length 2
+				param[2] = (null)
+					type = UNKNOWN
+					int_val 0
+					value_type UNKNOWN
+
+					length 0
+				param[3] = (null)
+					type = UNKNOWN
+					int_val 0
+					value_type UNKNOWN
+
+					length 0
+		operation name = zjmp
+			opc = 9
+			memory address = 227
+			length = 3
+			0 encoding [0x80]
+			param_number [1]
+				param[1] = 0
+					type = T_DIR
+					int_val 0
+					value_type NUMBER
+
+					length 2
+				param[2] = (null)
+					type = UNKNOWN
+					int_val 0
+					value_type UNKNOWN
+
+					length 0
+				param[3] = (null)
+					type = UNKNOWN
+					int_val 0
+					value_type UNKNOWN
+
+					length 0
+		operation name = zjmp
+			opc = 9
+			memory address = 230
+			length = 3
+			0 encoding [0x80]
+			param_number [1]
+				param[1] = 0
+					type = T_DIR
+					int_val 0
+					value_type NUMBER
+
+					length 2
+				param[2] = (null)
+					type = UNKNOWN
+					int_val 0
+					value_type UNKNOWN
+
+					length 0
+				param[3] = (null)
+					type = UNKNOWN
+					int_val 0
+					value_type UNKNOWN
+
+					length 0
+		operation name = zjmp
+			opc = 9
+			memory address = 233
+			length = 3
+			0 encoding [0x80]
+			param_number [1]
+				param[1] = 0
+					type = T_DIR
+					int_val 0
+					value_type NUMBER
+
+					length 2
+				param[2] = (null)
+					type = UNKNOWN
+					int_val 0
+					value_type UNKNOWN
+
+					length 0
+				param[3] = (null)
+					type = UNKNOWN
+					int_val 0
+					value_type UNKNOWN
+
+					length 0
+		operation name = zjmp
+			opc = 9
+			memory address = 236
+			length = 3
+			0 encoding [0x80]
+			param_number [1]
+				param[1] = 0
+					type = T_DIR
+					int_val 0
+					value_type NUMBER
+
+					length 2
+				param[2] = (null)
+					type = UNKNOWN
+					int_val 0
+					value_type UNKNOWN
+
+					length 0
+				param[3] = (null)
+					type = UNKNOWN
+					int_val 0
+					value_type UNKNOWN
+
+					length 0
+		operation name = zjmp
+			opc = 9
+			memory address = 239
+			length = 3
+			0 encoding [0x80]
+			param_number [1]
+				param[1] = 0
+					type = T_DIR
+					int_val 0
+					value_type NUMBER
+
+					length 2
+				param[2] = (null)
+					type = UNKNOWN
+					int_val 0
+					value_type UNKNOWN
+
+					length 0
+				param[3] = (null)
+					type = UNKNOWN
+					int_val 0
+					value_type UNKNOWN
+
+					length 0
+		operation name = zjmp
+			opc = 9
+			memory address = 242
+			length = 3
+			0 encoding [0x80]
+			param_number [1]
+				param[1] = 0
+					type = T_DIR
+					int_val 0
+					value_type NUMBER
+
+					length 2
+				param[2] = (null)
+					type = UNKNOWN
+					int_val 0
+					value_type UNKNOWN
+
+					length 0
+				param[3] = (null)
+					type = UNKNOWN
+					int_val 0
+					value_type UNKNOWN
+
+					length 0
+		operation name = zjmp
+			opc = 9
+			memory address = 245
+			length = 3
+			0 encoding [0x80]
+			param_number [1]
+				param[1] = 0
+					type = T_DIR
+					int_val 0
+					value_type NUMBER
+
+					length 2
+				param[2] = (null)
+					type = UNKNOWN
+					int_val 0
+					value_type UNKNOWN
+
+					length 0
+				param[3] = (null)
+					type = UNKNOWN
+					int_val 0
+					value_type UNKNOWN
+
+					length 0
+		operation name = zjmp
+			opc = 9
+			memory address = 248
+			length = 3
+			0 encoding [0x80]
+			param_number [1]
+				param[1] = 0
+					type = T_DIR
+					int_val 0
+					value_type NUMBER
+
+					length 2
+				param[2] = (null)
+					type = UNKNOWN
+					int_val 0
+					value_type UNKNOWN
+
+					length 0
+				param[3] = (null)
+					type = UNKNOWN
+					int_val 0
+					value_type UNKNOWN
+
+					length 0
+		operation name = zjmp
+			opc = 9
+			memory address = 251
+			length = 3
+			0 encoding [0x80]
+			param_number [1]
+				param[1] = 0
+					type = T_DIR
+					int_val 0
+					value_type NUMBER
+
+					length 2
+				param[2] = (null)
+					type = UNKNOWN
+					int_val 0
+					value_type UNKNOWN
+
+					length 0
+				param[3] = (null)
+					type = UNKNOWN
+					int_val 0
+					value_type UNKNOWN
+
+					length 0
+		operation name = sub
+			opc = 5
+			memory address = 254
+			length = 5
+			1 encoding [0x54]
+			param_number [3]
+				param[1] = 6
+					type = T_REG
+					int_val 6
+					value_type REGISTER
+
+					length 1
+				param[2] = 4
+					type = T_REG
+					int_val 4
+					value_type REGISTER
+
+					length 1
+				param[3] = 6
+					type = T_REG
+					int_val 6
+					value_type REGISTER
+
+					length 1
+		operation name = add
+			opc = 4
+			memory address = 259
+			length = 5
+			1 encoding [0x54]
+			param_number [3]
+				param[1] = 6
+					type = T_REG
+					int_val 6
+					value_type REGISTER
+
+					length 1
+				param[2] = 6
+					type = T_REG
+					int_val 6
+					value_type REGISTER
+
+					length 1
+				param[3] = 11
+					type = T_REG
+					int_val 11
+					value_type REGISTER
+
+					length 1
+		operation name = ldi
+			opc = 10
+			memory address = 264
+			length = 6
+			1 encoding [0x94]
+			param_number [3]
+				param[1] = p32deb
+					type = T_DIR
+					int_val -64
+					value_type LABEL
+
+					length 2
+				param[2] = 6
+					type = T_REG
+					int_val 6
+					value_type REGISTER
+
+					length 1
+				param[3] = 7
+					type = T_REG
+					int_val 7
+					value_type REGISTER
+
+					length 1
+		operation name = sti
+			opc = 11
+			memory address = 270
+			length = 6
+			1 encoding [0x64]
+			param_number [3]
+				param[1] = 7
+					type = T_REG
+					int_val 7
+					value_type REGISTER
+
+					length 1
+				param[2] = -510
+					type = T_DIR
+					int_val -510
+					value_type NUMBER
+
+					length 2
+				param[3] = 11
+					type = T_REG
+					int_val 11
+					value_type REGISTER
+
+					length 1
+		operation name = live
+			opc = 1
+			memory address = 276
+			length = 5
+			0 encoding [0x80]
+			param_number [1]
+				param[1] = 1
+					type = T_DIR
+					int_val 1
+					value_type NUMBER
+
+					length 4
+				param[2] = (null)
+					type = UNKNOWN
+					int_val 0
+					value_type UNKNOWN
+
+					length 0
+				param[3] = (null)
+					type = UNKNOWN
+					int_val 0
+					value_type UNKNOWN
+
+					length 0
+		operation name = ld
+			opc = 2
+			memory address = 281
+			length = 7
+			1 encoding [0x90]
+			param_number [2]
+				param[1] = 0
+					type = T_DIR
+					int_val 0
+					value_type NUMBER
+
+					length 4
+				param[2] = 10
+					type = T_REG
+					int_val 10
+					value_type REGISTER
+
+					length 1
+				param[3] = (null)
+					type = UNKNOWN
+					int_val 0
+					value_type UNKNOWN
+
+					length 0
+		operation name = sti
+			opc = 11
+			memory address = 288
+			length = 6
+			1 encoding [0x64]
+			param_number [3]
+				param[1] = 7
+					type = T_REG
+					int_val 7
+					value_type REGISTER
+
+					length 1
+				param[2] = -250
+					type = T_DIR
+					int_val -250
+					value_type NUMBER
+
+					length 2
+				param[3] = 6
+					type = T_REG
+					int_val 6
+					value_type REGISTER
+
+					length 1
+		operation name = zjmp
+			opc = 9
+			memory address = 294
+			length = 3
+			0 encoding [0x80]
+			param_number [1]
+				param[1] = -192
+					type = T_DIR
+					int_val -192
+					value_type NUMBER
+
+					length 2
+				param[2] = (null)
+					type = UNKNOWN
+					int_val 0
+					value_type UNKNOWN
+
+					length 0
+				param[3] = (null)
+					type = UNKNOWN
+					int_val 0
+					value_type UNKNOWN
+
+					length 0
+		operation name = zjmp
+			opc = 9
+			memory address = 297
+			length = 3
+			0 encoding [0x80]
+			param_number [1]
+				param[1] = tirvd2
+					type = T_DIR
+					int_val 376
+					value_type LABEL
+
+					length 2
+				param[2] = (null)
+					type = UNKNOWN
+					int_val 0
+					value_type UNKNOWN
+
+					length 0
+				param[3] = (null)
+					type = UNKNOWN
+					int_val 0
+					value_type UNKNOWN
+
+					length 0
+		operation name = sti
+			opc = 11
+			memory address = 300
+			length = 7
+			1 encoding [0x68]
+			param_number [3]
+				param[1] = 1
+					type = T_REG
+					int_val 1
+					value_type REGISTER
+
+					length 1
+				param[2] = copie
+					type = T_DIR
+					int_val 333
+					value_type LABEL
+
+					length 2
+				param[3] = 2
+					type = T_DIR
+					int_val 2
+					value_type NUMBER
+
+					length 2
+		operation name = ldi
+			opc = 10
+			memory address = 307
+			length = 7
+			1 encoding [0xa4]
+			param_number [3]
+				param[1] = copie
+					type = T_DIR
+					int_val 326
+					value_type LABEL
+
+					length 2
+				param[2] = 3
+					type = T_DIR
+					int_val 3
+					value_type NUMBER
+
+					length 2
+				param[3] = 2
+					type = T_REG
+					int_val 2
+					value_type REGISTER
+
+					length 1
+		operation name = sti
+			opc = 11
+			memory address = 314
+			length = 7
+			1 encoding [0x68]
+			param_number [3]
+				param[1] = 2
+					type = T_REG
+					int_val 2
+					value_type REGISTER
+
+					length 1
+				param[2] = entree
+					type = T_DIR
+					int_val -314
+					value_type LABEL
+
+					length 2
+				param[3] = -4
+					type = T_DIR
+					int_val -4
+					value_type NUMBER
+
+					length 2
+		operation name = ldi
+			opc = 10
+			memory address = 321
+			length = 7
+			1 encoding [0xa4]
+			param_number [3]
+				param[1] = copie
+					type = T_DIR
+					int_val 312
+					value_type LABEL
+
+					length 2
+				param[2] = -1
+					type = T_DIR
+					int_val -1
+					value_type NUMBER
+
+					length 2
+				param[3] = 2
+					type = T_REG
+					int_val 2
+					value_type REGISTER
+
+					length 1
+		operation name = sti
+			opc = 11
+			memory address = 328
+			length = 7
+			1 encoding [0x68]
+			param_number [3]
+				param[1] = 2
+					type = T_REG
+					int_val 2
+					value_type REGISTER
+
+					length 1
+				param[2] = entree
+					type = T_DIR
+					int_val -328
+					value_type LABEL
+
+					length 2
+				param[3] = -8
+					type = T_DIR
+					int_val -8
+					value_type NUMBER
+
+					length 2
+		operation name = sti
+			opc = 11
+			memory address = 335
+			length = 7
+			1 encoding [0x68]
+			param_number [3]
+				param[1] = 1
+					type = T_REG
+					int_val 1
+					value_type REGISTER
+
+					length 1
+				param[2] = p32li
+					type = T_DIR
+					int_val -59
+					value_type LABEL
+
+					length 2
+				param[3] = 1
+					type = T_DIR
+					int_val 1
+					value_type NUMBER
+
+					length 2
+		operation name = sti
+			opc = 11
+			memory address = 342
+			length = 7
+			1 encoding [0x68]
+			param_number [3]
+				param[1] = 1
+					type = T_REG
+					int_val 1
+					value_type REGISTER
+
+					length 1
+				param[2] = b0
+					type = T_DIR
+					int_val 35
+					value_type LABEL
+
+					length 2
+				param[3] = 1
+					type = T_DIR
+					int_val 1
+					value_type NUMBER
+
+					length 2
+		operation name = ld
+			opc = 2
+			memory address = 349
+			length = 7
+			1 encoding [0x90]
+			param_number [2]
+				param[1] = 0
+					type = T_DIR
+					int_val 0
+					value_type NUMBER
+
+					length 4
+				param[2] = 2
+					type = T_REG
+					int_val 2
+					value_type REGISTER
+
+					length 1
+				param[3] = (null)
+					type = UNKNOWN
+					int_val 0
+					value_type UNKNOWN
+
+					length 0
+		operation name = ld
+			opc = 2
+			memory address = 356
+			length = 7
+			1 encoding [0x90]
+			param_number [2]
+				param[1] = 8
+					type = T_DIR
+					int_val 8
+					value_type NUMBER
+
+					length 4
+				param[2] = 3
+					type = T_REG
+					int_val 3
+					value_type REGISTER
+
+					length 1
+				param[3] = (null)
+					type = UNKNOWN
+					int_val 0
+					value_type UNKNOWN
+
+					length 0
+		operation name = ld
+			opc = 2
+			memory address = 363
+			length = 7
+			1 encoding [0x90]
+			param_number [2]
+				param[1] = 1
+					type = T_DIR
+					int_val 1
+					value_type NUMBER
+
+					length 4
+				param[2] = 4
+					type = T_REG
+					int_val 4
+					value_type REGISTER
+
+					length 1
+				param[3] = (null)
+					type = UNKNOWN
+					int_val 0
+					value_type UNKNOWN
+
+					length 0
+		operation name = ld
+			opc = 2
+			memory address = 370
+			length = 7
+			1 encoding [0x90]
+			param_number [2]
+				param[1] = 0
+					type = T_DIR
+					int_val 0
+					value_type NUMBER
+
+					length 4
+				param[2] = 6
+					type = T_REG
+					int_val 6
+					value_type REGISTER
+
+					length 1
+				param[3] = (null)
+					type = UNKNOWN
+					int_val 0
+					value_type UNKNOWN
+
+					length 0
+		operation name = live
+			opc = 1
+			memory address = 377
+			length = 5
+			0 encoding [0x80]
+			param_number [1]
+				param[1] = 1
+					type = T_DIR
+					int_val 1
+					value_type NUMBER
+
+					length 4
+				param[2] = (null)
+					type = UNKNOWN
+					int_val 0
+					value_type UNKNOWN
+
+					length 0
+				param[3] = (null)
+					type = UNKNOWN
+					int_val 0
+					value_type UNKNOWN
+
+					length 0
+		operation name = sub
+			opc = 5
+			memory address = 382
+			length = 5
+			1 encoding [0x54]
+			param_number [3]
+				param[1] = 3
+					type = T_REG
+					int_val 3
+					value_type REGISTER
+
+					length 1
+				param[2] = 4
+					type = T_REG
+					int_val 4
+					value_type REGISTER
+
+					length 1
+				param[3] = 3
+					type = T_REG
+					int_val 3
+					value_type REGISTER
+
+					length 1
+		operation name = zjmp
+			opc = 9
+			memory address = 387
+			length = 3
+			0 encoding [0x80]
+			param_number [1]
+				param[1] = tart
+					type = T_DIR
+					int_val 253
+					value_type LABEL
+
+					length 2
+				param[2] = (null)
+					type = UNKNOWN
+					int_val 0
+					value_type UNKNOWN
+
+					length 0
+				param[3] = (null)
+					type = UNKNOWN
+					int_val 0
+					value_type UNKNOWN
+
+					length 0
+		operation name = fork
+			opc = 12
+			memory address = 390
+			length = 3
+			0 encoding [0x80]
+			param_number [1]
+				param[1] = b1
+					type = T_DIR
+					int_val 32
+					value_type LABEL
+
+					length 2
+				param[2] = (null)
+					type = UNKNOWN
+					int_val 0
+					value_type UNKNOWN
+
+					length 0
+				param[3] = (null)
+					type = UNKNOWN
+					int_val 0
+					value_type UNKNOWN
+
+					length 0
+		operation name = st
+			opc = 3
+			memory address = 393
+			length = 4
+			1 encoding [0x50]
+			param_number [2]
+				param[1] = 5
+					type = T_REG
+					int_val 5
+					value_type REGISTER
+
+					length 1
+				param[2] = 2
+					type = T_REG
+					int_val 2
+					value_type REGISTER
+
+					length 1
+				param[3] = (null)
+					type = UNKNOWN
+					int_val 0
+					value_type UNKNOWN
+
+					length 0
+		operation name = xor
+			opc = 8
+			memory address = 397
+			length = 5
+			1 encoding [0x54]
+			param_number [3]
+				param[1] = 10
+					type = T_REG
+					int_val 10
+					value_type REGISTER
+
+					length 1
+				param[2] = 10
+					type = T_REG
+					int_val 10
+					value_type REGISTER
+
+					length 1
+				param[3] = 10
+					type = T_REG
+					int_val 10
+					value_type REGISTER
+
+					length 1
+		operation name = add
+			opc = 4
+			memory address = 402
+			length = 5
+			1 encoding [0x54]
+			param_number [3]
+				param[1] = 10
+					type = T_REG
+					int_val 10
+					value_type REGISTER
+
+					length 1
+				param[2] = 10
+					type = T_REG
+					int_val 10
+					value_type REGISTER
+
+					length 1
+				param[3] = 10
+					type = T_REG
+					int_val 10
+					value_type REGISTER
+
+					length 1
+		operation name = add
+			opc = 4
+			memory address = 407
+			length = 5
+			1 encoding [0x54]
+			param_number [3]
+				param[1] = 6
+					type = T_REG
+					int_val 6
+					value_type REGISTER
+
+					length 1
+				param[2] = 6
+					type = T_REG
+					int_val 6
+					value_type REGISTER
+
+					length 1
+				param[3] = 6
+					type = T_REG
+					int_val 6
+					value_type REGISTER
+
+					length 1
+		operation name = ld
+			opc = 2
+			memory address = 412
+			length = 7
+			1 encoding [0x90]
+			param_number [2]
+				param[1] = 0
+					type = T_DIR
+					int_val 0
+					value_type NUMBER
+
+					length 4
+				param[2] = 10
+					type = T_REG
+					int_val 10
+					value_type REGISTER
+
+					length 1
+				param[3] = (null)
+					type = UNKNOWN
+					int_val 0
+					value_type UNKNOWN
+
+					length 0
+		operation name = zjmp
+			opc = 9
+			memory address = 419
+			length = 3
+			0 encoding [0x80]
+			param_number [1]
+				param[1] = b0
+					type = T_DIR
+					int_val -42
+					value_type LABEL
+
+					length 2
+				param[2] = (null)
+					type = UNKNOWN
+					int_val 0
+					value_type UNKNOWN
+
+					length 0
+				param[3] = (null)
+					type = UNKNOWN
+					int_val 0
+					value_type UNKNOWN
+
+					length 0
+		operation name = add
+			opc = 4
+			memory address = 422
+			length = 5
+			1 encoding [0x54]
+			param_number [3]
+				param[1] = 2
+					type = T_REG
+					int_val 2
+					value_type REGISTER
+
+					length 1
+				param[2] = 4
+					type = T_REG
+					int_val 4
+					value_type REGISTER
+
+					length 1
+				param[3] = 2
+					type = T_REG
+					int_val 2
+					value_type REGISTER
+
+					length 1
+		operation name = add
+			opc = 4
+			memory address = 427
+			length = 5
+			1 encoding [0x54]
+			param_number [3]
+				param[1] = 6
+					type = T_REG
+					int_val 6
+					value_type REGISTER
+
+					length 1
+				param[2] = 6
+					type = T_REG
+					int_val 6
+					value_type REGISTER
+
+					length 1
+				param[3] = 6
+					type = T_REG
+					int_val 6
+					value_type REGISTER
+
+					length 1
+		operation name = add
+			opc = 4
+			memory address = 432
+			length = 5
+			1 encoding [0x54]
+			param_number [3]
+				param[1] = 6
+					type = T_REG
+					int_val 6
+					value_type REGISTER
+
+					length 1
+				param[2] = 4
+					type = T_REG
+					int_val 4
+					value_type REGISTER
+
+					length 1
+				param[3] = 6
+					type = T_REG
+					int_val 6
+					value_type REGISTER
+
+					length 1
+		operation name = ld
+			opc = 2
+			memory address = 437
+			length = 7
+			1 encoding [0x90]
+			param_number [2]
+				param[1] = 0
+					type = T_DIR
+					int_val 0
+					value_type NUMBER
+
+					length 4
+				param[2] = 10
+					type = T_REG
+					int_val 10
+					value_type REGISTER
+
+					length 1
+				param[3] = (null)
+					type = UNKNOWN
+					int_val 0
+					value_type UNKNOWN
+
+					length 0
+		operation name = zjmp
+			opc = 9
+			memory address = 444
+			length = 3
+			0 encoding [0x80]
+			param_number [1]
+				param[1] = b0
+					type = T_DIR
+					int_val -67
+					value_type LABEL
+
+					length 2
+				param[2] = (null)
+					type = UNKNOWN
+					int_val 0
+					value_type UNKNOWN
+
+					length 0
+				param[3] = (null)
+					type = UNKNOWN
+					int_val 0
+					value_type UNKNOWN
+
+					length 0
+		operation name = live
+			opc = 1
+			memory address = 447
+			length = 5
+			0 encoding [0x80]
+			param_number [1]
+				param[1] = 42
+					type = T_DIR
+					int_val 42
+					value_type NUMBER
+
+					length 4
+				param[2] = (null)
+					type = UNKNOWN
+					int_val 0
+					value_type UNKNOWN
+
+					length 0
+				param[3] = (null)
+					type = UNKNOWN
+					int_val 0
+					value_type UNKNOWN
+
+					length 0
+		operation name = ld
+			opc = 2
+			memory address = 452
+			length = 7
+			1 encoding [0x90]
+			param_number [2]
+				param[1] = 9
+					type = T_DIR
+					int_val 9
+					value_type NUMBER
+
+					length 4
+				param[2] = 3
+					type = T_REG
+					int_val 3
+					value_type REGISTER
+
+					length 1
+				param[3] = (null)
+					type = UNKNOWN
+					int_val 0
+					value_type UNKNOWN
+
+					length 0
+		operation name = sti
+			opc = 11
+			memory address = 459
+			length = 7
+			1 encoding [0x68]
+			param_number [3]
+				param[1] = 3
+					type = T_REG
+					int_val 3
+					value_type REGISTER
+
+					length 1
+				param[2] = p32deb
+					type = T_DIR
+					int_val -259
+					value_type LABEL
+
+					length 2
+				param[3] = -6
+					type = T_DIR
+					int_val -6
+					value_type NUMBER
+
+					length 2
+		operation name = ld
+			opc = 2
+			memory address = 466
+			length = 7
+			1 encoding [0x90]
+			param_number [2]
+				param[1] = 2
+					type = T_DIR
+					int_val 2
+					value_type NUMBER
+
+					length 4
+				param[2] = 3
+					type = T_REG
+					int_val 3
+					value_type REGISTER
+
+					length 1
+				param[3] = (null)
+					type = UNKNOWN
+					int_val 0
+					value_type UNKNOWN
+
+					length 0
+		operation name = sti
+			opc = 11
+			memory address = 473
+			length = 7
+			1 encoding [0x68]
+			param_number [3]
+				param[1] = 3
+					type = T_REG
+					int_val 3
+					value_type REGISTER
+
+					length 1
+				param[2] = p32deb
+					type = T_DIR
+					int_val -273
+					value_type LABEL
+
+					length 2
+				param[3] = -16
+					type = T_DIR
+					int_val -16
+					value_type NUMBER
+
+					length 2
+		operation name = ld
+			opc = 2
+			memory address = 480
+			length = 7
+			1 encoding [0x90]
+			param_number [2]
+				param[1] = 0
+					type = T_DIR
+					int_val 0
+					value_type NUMBER
+
+					length 4
+				param[2] = 3
+					type = T_REG
+					int_val 3
+					value_type REGISTER
+
+					length 1
+				param[3] = (null)
+					type = UNKNOWN
+					int_val 0
+					value_type UNKNOWN
+
+					length 0
+		operation name = zjmp
+			opc = 9
+			memory address = 487
+			length = 3
+			0 encoding [0x80]
+			param_number [1]
+				param[1] = topd
+					type = T_DIR
+					int_val 189
+					value_type LABEL
+
+					length 2
+				param[2] = (null)
+					type = UNKNOWN
+					int_val 0
+					value_type UNKNOWN
+
+					length 0
+				param[3] = (null)
+					type = UNKNOWN
+					int_val 0
+					value_type UNKNOWN
+
+					length 0
+		operation name = sti
+			opc = 11
+			memory address = 490
+			length = 7
+			1 encoding [0x68]
+			param_number [3]
+				param[1] = 1
+					type = T_REG
+					int_val 1
+					value_type REGISTER
+
+					length 1
+				param[2] = l0
+					type = T_DIR
+					int_val 77
+					value_type LABEL
+
+					length 2
+				param[3] = 1
+					type = T_DIR
+					int_val 1
+					value_type NUMBER
+
+					length 2
+		operation name = sti
+			opc = 11
+			memory address = 497
+			length = 7
+			1 encoding [0x68]
+			param_number [3]
+				param[1] = 1
+					type = T_REG
+					int_val 1
+					value_type REGISTER
+
+					length 1
+				param[2] = l1
+					type = T_DIR
+					int_val 75
+					value_type LABEL
+
+					length 2
+				param[3] = 1
+					type = T_DIR
+					int_val 1
+					value_type NUMBER
+
+					length 2
+		operation name = sti
+			opc = 11
+			memory address = 504
+			length = 7
+			1 encoding [0x68]
+			param_number [3]
+				param[1] = 1
+					type = T_REG
+					int_val 1
+					value_type REGISTER
+
+					length 1
+				param[2] = l2
+					type = T_DIR
+					int_val 73
+					value_type LABEL
+
+					length 2
+				param[3] = 1
+					type = T_DIR
+					int_val 1
+					value_type NUMBER
+
+					length 2
+		operation name = sti
+			opc = 11
+			memory address = 511
+			length = 7
+			1 encoding [0x68]
+			param_number [3]
+				param[1] = 1
+					type = T_REG
+					int_val 1
+					value_type REGISTER
+
+					length 1
+				param[2] = l3
+					type = T_DIR
+					int_val 71
+					value_type LABEL
+
+					length 2
+				param[3] = 1
+					type = T_DIR
+					int_val 1
+					value_type NUMBER
+
+					length 2
+		operation name = sti
+			opc = 11
+			memory address = 518
+			length = 7
+			1 encoding [0x68]
+			param_number [3]
+				param[1] = 1
+					type = T_REG
+					int_val 1
+					value_type REGISTER
+
+					length 1
+				param[2] = l4
+					type = T_DIR
+					int_val 69
+					value_type LABEL
+
+					length 2
+				param[3] = 1
+					type = T_DIR
+					int_val 1
+					value_type NUMBER
+
+					length 2
+		operation name = sti
+			opc = 11
+			memory address = 525
+			length = 7
+			1 encoding [0x68]
+			param_number [3]
+				param[1] = 1
+					type = T_REG
+					int_val 1
+					value_type REGISTER
+
+					length 1
+				param[2] = l5
+					type = T_DIR
+					int_val 67
+					value_type LABEL
+
+					length 2
+				param[3] = 1
+					type = T_DIR
+					int_val 1
+					value_type NUMBER
+
+					length 2
+		operation name = sti
+			opc = 11
+			memory address = 532
+			length = 7
+			1 encoding [0x68]
+			param_number [3]
+				param[1] = 1
+					type = T_REG
+					int_val 1
+					value_type REGISTER
+
+					length 1
+				param[2] = l6
+					type = T_DIR
+					int_val 65
+					value_type LABEL
+
+					length 2
+				param[3] = 1
+					type = T_DIR
+					int_val 1
+					value_type NUMBER
+
+					length 2
+		operation name = sti
+			opc = 11
+			memory address = 539
+			length = 7
+			1 encoding [0x68]
+			param_number [3]
+				param[1] = 1
+					type = T_REG
+					int_val 1
+					value_type REGISTER
+
+					length 1
+				param[2] = l7
+					type = T_DIR
+					int_val 63
+					value_type LABEL
+
+					length 2
+				param[3] = 1
+					type = T_DIR
+					int_val 1
+					value_type NUMBER
+
+					length 2
+		operation name = sti
+			opc = 11
+			memory address = 546
+			length = 7
+			1 encoding [0x68]
+			param_number [3]
+				param[1] = 1
+					type = T_REG
+					int_val 1
+					value_type REGISTER
+
+					length 1
+				param[2] = l8
+					type = T_DIR
+					int_val 61
+					value_type LABEL
+
+					length 2
+				param[3] = 1
+					type = T_DIR
+					int_val 1
+					value_type NUMBER
+
+					length 2
+		operation name = sti
+			opc = 11
+			memory address = 553
+			length = 7
+			1 encoding [0x68]
+			param_number [3]
+				param[1] = 1
+					type = T_REG
+					int_val 1
+					value_type REGISTER
+
+					length 1
+				param[2] = l9
+					type = T_DIR
+					int_val 59
+					value_type LABEL
+
+					length 2
+				param[3] = 1
+					type = T_DIR
+					int_val 1
+					value_type NUMBER
+
+					length 2
+		operation name = sti
+			opc = 11
+			memory address = 560
+			length = 7
+			1 encoding [0x68]
+			param_number [3]
+				param[1] = 1
+					type = T_REG
+					int_val 1
+					value_type REGISTER
+
+					length 1
+				param[2] = l10
+					type = T_DIR
+					int_val 57
+					value_type LABEL
+
+					length 2
+				param[3] = 1
+					type = T_DIR
+					int_val 1
+					value_type NUMBER
+
+					length 2
+		operation name = live
+			opc = 1
+			memory address = 567
+			length = 5
+			0 encoding [0x80]
+			param_number [1]
+				param[1] = 1
+					type = T_DIR
+					int_val 1
+					value_type NUMBER
+
+					length 4
+				param[2] = (null)
+					type = UNKNOWN
+					int_val 0
+					value_type UNKNOWN
+
+					length 0
+				param[3] = (null)
+					type = UNKNOWN
+					int_val 0
+					value_type UNKNOWN
+
+					length 0
+		operation name = live
+			opc = 1
+			memory address = 572
+			length = 5
+			0 encoding [0x80]
+			param_number [1]
+				param[1] = 1
+					type = T_DIR
+					int_val 1
+					value_type NUMBER
+
+					length 4
+				param[2] = (null)
+					type = UNKNOWN
+					int_val 0
+					value_type UNKNOWN
+
+					length 0
+				param[3] = (null)
+					type = UNKNOWN
+					int_val 0
+					value_type UNKNOWN
+
+					length 0
+		operation name = live
+			opc = 1
+			memory address = 577
+			length = 5
+			0 encoding [0x80]
+			param_number [1]
+				param[1] = 1
+					type = T_DIR
+					int_val 1
+					value_type NUMBER
+
+					length 4
+				param[2] = (null)
+					type = UNKNOWN
+					int_val 0
+					value_type UNKNOWN
+
+					length 0
+				param[3] = (null)
+					type = UNKNOWN
+					int_val 0
+					value_type UNKNOWN
+
+					length 0
+		operation name = live
+			opc = 1
+			memory address = 582
+			length = 5
+			0 encoding [0x80]
+			param_number [1]
+				param[1] = 1
+					type = T_DIR
+					int_val 1
+					value_type NUMBER
+
+					length 4
+				param[2] = (null)
+					type = UNKNOWN
+					int_val 0
+					value_type UNKNOWN
+
+					length 0
+				param[3] = (null)
+					type = UNKNOWN
+					int_val 0
+					value_type UNKNOWN
+
+					length 0
+		operation name = live
+			opc = 1
+			memory address = 587
+			length = 5
+			0 encoding [0x80]
+			param_number [1]
+				param[1] = 1
+					type = T_DIR
+					int_val 1
+					value_type NUMBER
+
+					length 4
+				param[2] = (null)
+					type = UNKNOWN
+					int_val 0
+					value_type UNKNOWN
+
+					length 0
+				param[3] = (null)
+					type = UNKNOWN
+					int_val 0
+					value_type UNKNOWN
+
+					length 0
+		operation name = live
+			opc = 1
+			memory address = 592
+			length = 5
+			0 encoding [0x80]
+			param_number [1]
+				param[1] = 1
+					type = T_DIR
+					int_val 1
+					value_type NUMBER
+
+					length 4
+				param[2] = (null)
+					type = UNKNOWN
+					int_val 0
+					value_type UNKNOWN
+
+					length 0
+				param[3] = (null)
+					type = UNKNOWN
+					int_val 0
+					value_type UNKNOWN
+
+					length 0
+		operation name = live
+			opc = 1
+			memory address = 597
+			length = 5
+			0 encoding [0x80]
+			param_number [1]
+				param[1] = 1
+					type = T_DIR
+					int_val 1
+					value_type NUMBER
+
+					length 4
+				param[2] = (null)
+					type = UNKNOWN
+					int_val 0
+					value_type UNKNOWN
+
+					length 0
+				param[3] = (null)
+					type = UNKNOWN
+					int_val 0
+					value_type UNKNOWN
+
+					length 0
+		operation name = live
+			opc = 1
+			memory address = 602
+			length = 5
+			0 encoding [0x80]
+			param_number [1]
+				param[1] = 1
+					type = T_DIR
+					int_val 1
+					value_type NUMBER
+
+					length 4
+				param[2] = (null)
+					type = UNKNOWN
+					int_val 0
+					value_type UNKNOWN
+
+					length 0
+				param[3] = (null)
+					type = UNKNOWN
+					int_val 0
+					value_type UNKNOWN
+
+					length 0
+		operation name = live
+			opc = 1
+			memory address = 607
+			length = 5
+			0 encoding [0x80]
+			param_number [1]
+				param[1] = 1
+					type = T_DIR
+					int_val 1
+					value_type NUMBER
+
+					length 4
+				param[2] = (null)
+					type = UNKNOWN
+					int_val 0
+					value_type UNKNOWN
+
+					length 0
+				param[3] = (null)
+					type = UNKNOWN
+					int_val 0
+					value_type UNKNOWN
+
+					length 0
+		operation name = live
+			opc = 1
+			memory address = 612
+			length = 5
+			0 encoding [0x80]
+			param_number [1]
+				param[1] = 1
+					type = T_DIR
+					int_val 1
+					value_type NUMBER
+
+					length 4
+				param[2] = (null)
+					type = UNKNOWN
+					int_val 0
+					value_type UNKNOWN
+
+					length 0
+				param[3] = (null)
+					type = UNKNOWN
+					int_val 0
+					value_type UNKNOWN
+
+					length 0
+		operation name = live
+			opc = 1
+			memory address = 617
+			length = 5
+			0 encoding [0x80]
+			param_number [1]
+				param[1] = 1
+					type = T_DIR
+					int_val 1
+					value_type NUMBER
+
+					length 4
+				param[2] = (null)
+					type = UNKNOWN
+					int_val 0
+					value_type UNKNOWN
+
+					length 0
+				param[3] = (null)
+					type = UNKNOWN
+					int_val 0
+					value_type UNKNOWN
+
+					length 0
+		operation name = zjmp
+			opc = 9
+			memory address = 622
+			length = 3
+			0 encoding [0x80]
+			param_number [1]
+				param[1] = l0
+					type = T_DIR
+					int_val -55
+					value_type LABEL
+
+					length 2
+				param[2] = (null)
+					type = UNKNOWN
+					int_val 0
+					value_type UNKNOWN
+
+					length 0
+				param[3] = (null)
+					type = UNKNOWN
+					int_val 0
+					value_type UNKNOWN
+
+					length 0
+		operation name = zjmp
+			opc = 9
+			memory address = 625
+			length = 3
+			0 encoding [0x80]
+			param_number [1]
+				param[1] = infi
+					type = T_DIR
+					int_val -135
+					value_type LABEL
+
+					length 2
+				param[2] = (null)
+					type = UNKNOWN
+					int_val 0
+					value_type UNKNOWN
+
+					length 0
+				param[3] = (null)
+					type = UNKNOWN
+					int_val 0
+					value_type UNKNOWN
+
+					length 0
+		operation name = live
+			opc = 1
+			memory address = 628
+			length = 5
+			0 encoding [0x80]
+			param_number [1]
+				param[1] = 0
+					type = T_DIR
+					int_val 0
+					value_type NUMBER
+
+					length 4
+				param[2] = (null)
+					type = UNKNOWN
+					int_val 0
+					value_type UNKNOWN
+
+					length 0
+				param[3] = (null)
+					type = UNKNOWN
+					int_val 0
+					value_type UNKNOWN
+
+					length 0
+		operation name = ld
+			opc = 2
+			memory address = 633
+			length = 7
+			1 encoding [0x90]
+			param_number [2]
+				param[1] = 1
+					type = T_DIR
+					int_val 1
+					value_type NUMBER
+
+					length 4
+				param[2] = 1
+					type = T_REG
+					int_val 1
+					value_type REGISTER
+
+					length 1
+				param[3] = (null)
+					type = UNKNOWN
+					int_val 0
+					value_type UNKNOWN
+
+					length 0
+		operation name = sti
+			opc = 11
+			memory address = 640
+			length = 7
+			1 encoding [0x68]
+			param_number [3]
+				param[1] = 1
+					type = T_REG
+					int_val 1
+					value_type REGISTER
+
+					length 1
+				param[2] = p64li
+					type = T_DIR
+					int_val 264
+					value_type LABEL
+
+					length 2
+				param[3] = 1
+					type = T_DIR
+					int_val 1
+					value_type NUMBER
+
+					length 2
+		operation name = or
+			opc = 7
+			memory address = 647
+			length = 5
+			1 encoding [0x54]
+			param_number [3]
+				param[1] = 2
+					type = T_REG
+					int_val 2
+					value_type REGISTER
+
+					length 1
+				param[2] = 2
+					type = T_REG
+					int_val 2
+					value_type REGISTER
+
+					length 1
+				param[3] = 2
+					type = T_REG
+					int_val 2
+					value_type REGISTER
+
+					length 1
+		operation name = zjmp
+			opc = 9
+			memory address = 652
+			length = 3
+			0 encoding [0x80]
+			param_number [1]
+				param[1] = p64
+					type = T_DIR
+					int_val 182
+					value_type LABEL
+
+					length 2
+				param[2] = (null)
+					type = UNKNOWN
+					int_val 0
+					value_type UNKNOWN
+
+					length 0
+				param[3] = (null)
+					type = UNKNOWN
+					int_val 0
+					value_type UNKNOWN
+
+					length 0
+		operation name = sub
+			opc = 5
+			memory address = 655
+			length = 5
+			1 encoding [0x54]
+			param_number [3]
+				param[1] = 2
+					type = T_REG
+					int_val 2
+					value_type REGISTER
+
+					length 1
+				param[2] = 4
+					type = T_REG
+					int_val 4
+					value_type REGISTER
+
+					length 1
+				param[3] = 2
+					type = T_REG
+					int_val 2
+					value_type REGISTER
+
+					length 1
+		operation name = zjmp
+			opc = 9
+			memory address = 660
+			length = 3
+			0 encoding [0x80]
+			param_number [1]
+				param[1] = p32
+					type = T_DIR
+					int_val -406
+					value_type LABEL
+
+					length 2
+				param[2] = (null)
+					type = UNKNOWN
+					int_val 0
+					value_type UNKNOWN
+
+					length 0
+				param[3] = (null)
+					type = UNKNOWN
+					int_val 0
+					value_type UNKNOWN
+
+					length 0
+		operation name = ld
+			opc = 2
+			memory address = 663
+			length = 7
+			1 encoding [0x90]
+			param_number [2]
+				param[1] = 0
+					type = T_DIR
+					int_val 0
+					value_type NUMBER
+
+					length 4
+				param[2] = 2
+					type = T_REG
+					int_val 2
+					value_type REGISTER
+
+					length 1
+				param[3] = (null)
+					type = UNKNOWN
+					int_val 0
+					value_type UNKNOWN
+
+					length 0
+		operation name = zjmp
+			opc = 9
+			memory address = 670
+			length = 3
+			0 encoding [0x80]
+			param_number [1]
+				param[1] = infi
+					type = T_DIR
+					int_val -180
+					value_type LABEL
+
+					length 2
+				param[2] = (null)
+					type = UNKNOWN
+					int_val 0
+					value_type UNKNOWN
+
+					length 0
+				param[3] = (null)
+					type = UNKNOWN
+					int_val 0
+					value_type UNKNOWN
+
+					length 0
+		operation name = zjmp
+			opc = 9
+			memory address = 673
+			length = 3
+			0 encoding [0x80]
+			param_number [1]
+				param[1] = tirdow
+					type = T_DIR
+					int_val 246
+					value_type LABEL
+
+					length 2
+				param[2] = (null)
+					type = UNKNOWN
+					int_val 0
+					value_type UNKNOWN
+
+					length 0
+				param[3] = (null)
+					type = UNKNOWN
+					int_val 0
+					value_type UNKNOWN
+
+					length 0
+		operation name = ld
+			opc = 2
+			memory address = 676
+			length = 7
+			1 encoding [0x90]
+			param_number [2]
+				param[1] = 9
+					type = T_DIR
+					int_val 9
+					value_type NUMBER
+
+					length 4
+				param[2] = 3
+					type = T_REG
+					int_val 3
+					value_type REGISTER
+
+					length 1
+				param[3] = (null)
+					type = UNKNOWN
+					int_val 0
+					value_type UNKNOWN
+
+					length 0
+		operation name = sti
+			opc = 11
+			memory address = 683
+			length = 7
+			1 encoding [0x68]
+			param_number [3]
+				param[1] = 3
+					type = T_REG
+					int_val 3
+					value_type REGISTER
+
+					length 1
+				param[2] = fin
+					type = T_DIR
+					int_val 305
+					value_type LABEL
+
+					length 2
+				param[3] = -6
+					type = T_DIR
+					int_val -6
+					value_type NUMBER
+
+					length 2
+		operation name = ld
+			opc = 2
+			memory address = 690
+			length = 7
+			1 encoding [0x90]
+			param_number [2]
+				param[1] = 2
+					type = T_DIR
+					int_val 2
+					value_type NUMBER
+
+					length 4
+				param[2] = 3
+					type = T_REG
+					int_val 3
+					value_type REGISTER
+
+					length 1
+				param[3] = (null)
+					type = UNKNOWN
+					int_val 0
+					value_type UNKNOWN
+
+					length 0
+		operation name = sti
+			opc = 11
+			memory address = 697
+			length = 7
+			1 encoding [0x68]
+			param_number [3]
+				param[1] = 3
+					type = T_REG
+					int_val 3
+					value_type REGISTER
+
+					length 1
+				param[2] = fin
+					type = T_DIR
+					int_val 291
+					value_type LABEL
+
+					length 2
+				param[3] = -16
+					type = T_DIR
+					int_val -16
+					value_type NUMBER
+
+					length 2
+		operation name = ld
+			opc = 2
+			memory address = 704
+			length = 7
+			1 encoding [0x90]
+			param_number [2]
+				param[1] = 0
+					type = T_DIR
+					int_val 0
+					value_type NUMBER
+
+					length 4
+				param[2] = 3
+					type = T_REG
+					int_val 3
+					value_type REGISTER
+
+					length 1
+				param[3] = (null)
+					type = UNKNOWN
+					int_val 0
+					value_type UNKNOWN
+
+					length 0
+		operation name = zjmp
+			opc = 9
+			memory address = 711
+			length = 3
+			0 encoding [0x80]
+			param_number [1]
+				param[1] = infi
+					type = T_DIR
+					int_val -221
+					value_type LABEL
+
+					length 2
+				param[2] = (null)
+					type = UNKNOWN
+					int_val 0
+					value_type UNKNOWN
+
+					length 0
+				param[3] = (null)
+					type = UNKNOWN
+					int_val 0
+					value_type UNKNOWN
+
+					length 0
+		operation name = zjmp
+			opc = 9
+			memory address = 714
+			length = 3
+			0 encoding [0x80]
+			param_number [1]
+				param[1] = 0
+					type = T_DIR
+					int_val 0
+					value_type NUMBER
+
+					length 2
+				param[2] = (null)
+					type = UNKNOWN
+					int_val 0
+					value_type UNKNOWN
+
+					length 0
+				param[3] = (null)
+					type = UNKNOWN
+					int_val 0
+					value_type UNKNOWN
+
+					length 0
+		operation name = zjmp
+			opc = 9
+			memory address = 717
+			length = 3
+			0 encoding [0x80]
+			param_number [1]
+				param[1] = 0
+					type = T_DIR
+					int_val 0
+					value_type NUMBER
+
+					length 2
+				param[2] = (null)
+					type = UNKNOWN
+					int_val 0
+					value_type UNKNOWN
+
+					length 0
+				param[3] = (null)
+					type = UNKNOWN
+					int_val 0
+					value_type UNKNOWN
+
+					length 0
+		operation name = zjmp
+			opc = 9
+			memory address = 720
+			length = 3
+			0 encoding [0x80]
+			param_number [1]
+				param[1] = 0
+					type = T_DIR
+					int_val 0
+					value_type NUMBER
+
+					length 2
+				param[2] = (null)
+					type = UNKNOWN
+					int_val 0
+					value_type UNKNOWN
+
+					length 0
+				param[3] = (null)
+					type = UNKNOWN
+					int_val 0
+					value_type UNKNOWN
+
+					length 0
+		operation name = zjmp
+			opc = 9
+			memory address = 723
+			length = 3
+			0 encoding [0x80]
+			param_number [1]
+				param[1] = 0
+					type = T_DIR
+					int_val 0
+					value_type NUMBER
+
+					length 2
+				param[2] = (null)
+					type = UNKNOWN
+					int_val 0
+					value_type UNKNOWN
+
+					length 0
+				param[3] = (null)
+					type = UNKNOWN
+					int_val 0
+					value_type UNKNOWN
+
+					length 0
+		operation name = zjmp
+			opc = 9
+			memory address = 726
+			length = 3
+			0 encoding [0x80]
+			param_number [1]
+				param[1] = 0
+					type = T_DIR
+					int_val 0
+					value_type NUMBER
+
+					length 2
+				param[2] = (null)
+					type = UNKNOWN
+					int_val 0
+					value_type UNKNOWN
+
+					length 0
+				param[3] = (null)
+					type = UNKNOWN
+					int_val 0
+					value_type UNKNOWN
+
+					length 0
+		operation name = zjmp
+			opc = 9
+			memory address = 729
+			length = 3
+			0 encoding [0x80]
+			param_number [1]
+				param[1] = 0
+					type = T_DIR
+					int_val 0
+					value_type NUMBER
+
+					length 2
+				param[2] = (null)
+					type = UNKNOWN
+					int_val 0
+					value_type UNKNOWN
+
+					length 0
+				param[3] = (null)
+					type = UNKNOWN
+					int_val 0
+					value_type UNKNOWN
+
+					length 0
+		operation name = zjmp
+			opc = 9
+			memory address = 732
+			length = 3
+			0 encoding [0x80]
+			param_number [1]
+				param[1] = 0
+					type = T_DIR
+					int_val 0
+					value_type NUMBER
+
+					length 2
+				param[2] = (null)
+					type = UNKNOWN
+					int_val 0
+					value_type UNKNOWN
+
+					length 0
+				param[3] = (null)
+					type = UNKNOWN
+					int_val 0
+					value_type UNKNOWN
+
+					length 0
+		operation name = zjmp
+			opc = 9
+			memory address = 735
+			length = 3
+			0 encoding [0x80]
+			param_number [1]
+				param[1] = 0
+					type = T_DIR
+					int_val 0
+					value_type NUMBER
+
+					length 2
+				param[2] = (null)
+					type = UNKNOWN
+					int_val 0
+					value_type UNKNOWN
+
+					length 0
+				param[3] = (null)
+					type = UNKNOWN
+					int_val 0
+					value_type UNKNOWN
+
+					length 0
+		operation name = zjmp
+			opc = 9
+			memory address = 738
+			length = 3
+			0 encoding [0x80]
+			param_number [1]
+				param[1] = 0
+					type = T_DIR
+					int_val 0
+					value_type NUMBER
+
+					length 2
+				param[2] = (null)
+					type = UNKNOWN
+					int_val 0
+					value_type UNKNOWN
+
+					length 0
+				param[3] = (null)
+					type = UNKNOWN
+					int_val 0
+					value_type UNKNOWN
+
+					length 0
+		operation name = zjmp
+			opc = 9
+			memory address = 741
+			length = 3
+			0 encoding [0x80]
+			param_number [1]
+				param[1] = 0
+					type = T_DIR
+					int_val 0
+					value_type NUMBER
+
+					length 2
+				param[2] = (null)
+					type = UNKNOWN
+					int_val 0
+					value_type UNKNOWN
+
+					length 0
+				param[3] = (null)
+					type = UNKNOWN
+					int_val 0
+					value_type UNKNOWN
+
+					length 0
+		operation name = zjmp
+			opc = 9
+			memory address = 744
+			length = 3
+			0 encoding [0x80]
+			param_number [1]
+				param[1] = 0
+					type = T_DIR
+					int_val 0
+					value_type NUMBER
+
+					length 2
+				param[2] = (null)
+					type = UNKNOWN
+					int_val 0
+					value_type UNKNOWN
+
+					length 0
+				param[3] = (null)
+					type = UNKNOWN
+					int_val 0
+					value_type UNKNOWN
+
+					length 0
+		operation name = zjmp
+			opc = 9
+			memory address = 747
+			length = 3
+			0 encoding [0x80]
+			param_number [1]
+				param[1] = 0
+					type = T_DIR
+					int_val 0
+					value_type NUMBER
+
+					length 2
+				param[2] = (null)
+					type = UNKNOWN
+					int_val 0
+					value_type UNKNOWN
+
+					length 0
+				param[3] = (null)
+					type = UNKNOWN
+					int_val 0
+					value_type UNKNOWN
+
+					length 0
+		operation name = zjmp
+			opc = 9
+			memory address = 750
+			length = 3
+			0 encoding [0x80]
+			param_number [1]
+				param[1] = 0
+					type = T_DIR
+					int_val 0
+					value_type NUMBER
+
+					length 2
+				param[2] = (null)
+					type = UNKNOWN
+					int_val 0
+					value_type UNKNOWN
+
+					length 0
+				param[3] = (null)
+					type = UNKNOWN
+					int_val 0
+					value_type UNKNOWN
+
+					length 0
+		operation name = zjmp
+			opc = 9
+			memory address = 753
+			length = 3
+			0 encoding [0x80]
+			param_number [1]
+				param[1] = 0
+					type = T_DIR
+					int_val 0
+					value_type NUMBER
+
+					length 2
+				param[2] = (null)
+					type = UNKNOWN
+					int_val 0
+					value_type UNKNOWN
+
+					length 0
+				param[3] = (null)
+					type = UNKNOWN
+					int_val 0
+					value_type UNKNOWN
+
+					length 0
+		operation name = zjmp
+			opc = 9
+			memory address = 756
+			length = 3
+			0 encoding [0x80]
+			param_number [1]
+				param[1] = 0
+					type = T_DIR
+					int_val 0
+					value_type NUMBER
+
+					length 2
+				param[2] = (null)
+					type = UNKNOWN
+					int_val 0
+					value_type UNKNOWN
+
+					length 0
+				param[3] = (null)
+					type = UNKNOWN
+					int_val 0
+					value_type UNKNOWN
+
+					length 0
+		operation name = zjmp
+			opc = 9
+			memory address = 759
+			length = 3
+			0 encoding [0x80]
+			param_number [1]
+				param[1] = 0
+					type = T_DIR
+					int_val 0
+					value_type NUMBER
+
+					length 2
+				param[2] = (null)
+					type = UNKNOWN
+					int_val 0
+					value_type UNKNOWN
+
+					length 0
+				param[3] = (null)
+					type = UNKNOWN
+					int_val 0
+					value_type UNKNOWN
+
+					length 0
+		operation name = zjmp
+			opc = 9
+			memory address = 762
+			length = 3
+			0 encoding [0x80]
+			param_number [1]
+				param[1] = 0
+					type = T_DIR
+					int_val 0
+					value_type NUMBER
+
+					length 2
+				param[2] = (null)
+					type = UNKNOWN
+					int_val 0
+					value_type UNKNOWN
+
+					length 0
+				param[3] = (null)
+					type = UNKNOWN
+					int_val 0
+					value_type UNKNOWN
+
+					length 0
+		operation name = zjmp
+			opc = 9
+			memory address = 765
+			length = 3
+			0 encoding [0x80]
+			param_number [1]
+				param[1] = 0
+					type = T_DIR
+					int_val 0
+					value_type NUMBER
+
+					length 2
+				param[2] = (null)
+					type = UNKNOWN
+					int_val 0
+					value_type UNKNOWN
+
+					length 0
+				param[3] = (null)
+					type = UNKNOWN
+					int_val 0
+					value_type UNKNOWN
+
+					length 0
+		operation name = zjmp
+			opc = 9
+			memory address = 768
+			length = 3
+			0 encoding [0x80]
+			param_number [1]
+				param[1] = 0
+					type = T_DIR
+					int_val 0
+					value_type NUMBER
+
+					length 2
+				param[2] = (null)
+					type = UNKNOWN
+					int_val 0
+					value_type UNKNOWN
+
+					length 0
+				param[3] = (null)
+					type = UNKNOWN
+					int_val 0
+					value_type UNKNOWN
+
+					length 0
+		operation name = zjmp
+			opc = 9
+			memory address = 771
+			length = 3
+			0 encoding [0x80]
+			param_number [1]
+				param[1] = 0
+					type = T_DIR
+					int_val 0
+					value_type NUMBER
+
+					length 2
+				param[2] = (null)
+					type = UNKNOWN
+					int_val 0
+					value_type UNKNOWN
+
+					length 0
+				param[3] = (null)
+					type = UNKNOWN
+					int_val 0
+					value_type UNKNOWN
+
+					length 0
+		operation name = zjmp
+			opc = 9
+			memory address = 774
+			length = 3
+			0 encoding [0x80]
+			param_number [1]
+				param[1] = 0
+					type = T_DIR
+					int_val 0
+					value_type NUMBER
+
+					length 2
+				param[2] = (null)
+					type = UNKNOWN
+					int_val 0
+					value_type UNKNOWN
+
+					length 0
+				param[3] = (null)
+					type = UNKNOWN
+					int_val 0
+					value_type UNKNOWN
+
+					length 0
+		operation name = zjmp
+			opc = 9
+			memory address = 777
+			length = 3
+			0 encoding [0x80]
+			param_number [1]
+				param[1] = 0
+					type = T_DIR
+					int_val 0
+					value_type NUMBER
+
+					length 2
+				param[2] = (null)
+					type = UNKNOWN
+					int_val 0
+					value_type UNKNOWN
+
+					length 0
+				param[3] = (null)
+					type = UNKNOWN
+					int_val 0
+					value_type UNKNOWN
+
+					length 0
+		operation name = zjmp
+			opc = 9
+			memory address = 780
+			length = 3
+			0 encoding [0x80]
+			param_number [1]
+				param[1] = 0
+					type = T_DIR
+					int_val 0
+					value_type NUMBER
+
+					length 2
+				param[2] = (null)
+					type = UNKNOWN
+					int_val 0
+					value_type UNKNOWN
+
+					length 0
+				param[3] = (null)
+					type = UNKNOWN
+					int_val 0
+					value_type UNKNOWN
+
+					length 0
+		operation name = zjmp
+			opc = 9
+			memory address = 783
+			length = 3
+			0 encoding [0x80]
+			param_number [1]
+				param[1] = 0
+					type = T_DIR
+					int_val 0
+					value_type NUMBER
+
+					length 2
+				param[2] = (null)
+					type = UNKNOWN
+					int_val 0
+					value_type UNKNOWN
+
+					length 0
+				param[3] = (null)
+					type = UNKNOWN
+					int_val 0
+					value_type UNKNOWN
+
+					length 0
+		operation name = zjmp
+			opc = 9
+			memory address = 786
+			length = 3
+			0 encoding [0x80]
+			param_number [1]
+				param[1] = 0
+					type = T_DIR
+					int_val 0
+					value_type NUMBER
+
+					length 2
+				param[2] = (null)
+					type = UNKNOWN
+					int_val 0
+					value_type UNKNOWN
+
+					length 0
+				param[3] = (null)
+					type = UNKNOWN
+					int_val 0
+					value_type UNKNOWN
+
+					length 0
+		operation name = zjmp
+			opc = 9
+			memory address = 789
+			length = 3
+			0 encoding [0x80]
+			param_number [1]
+				param[1] = 0
+					type = T_DIR
+					int_val 0
+					value_type NUMBER
+
+					length 2
+				param[2] = (null)
+					type = UNKNOWN
+					int_val 0
+					value_type UNKNOWN
+
+					length 0
+				param[3] = (null)
+					type = UNKNOWN
+					int_val 0
+					value_type UNKNOWN
+
+					length 0
+		operation name = zjmp
+			opc = 9
+			memory address = 792
+			length = 3
+			0 encoding [0x80]
+			param_number [1]
+				param[1] = 0
+					type = T_DIR
+					int_val 0
+					value_type NUMBER
+
+					length 2
+				param[2] = (null)
+					type = UNKNOWN
+					int_val 0
+					value_type UNKNOWN
+
+					length 0
+				param[3] = (null)
+					type = UNKNOWN
+					int_val 0
+					value_type UNKNOWN
+
+					length 0
+		operation name = zjmp
+			opc = 9
+			memory address = 795
+			length = 3
+			0 encoding [0x80]
+			param_number [1]
+				param[1] = 0
+					type = T_DIR
+					int_val 0
+					value_type NUMBER
+
+					length 2
+				param[2] = (null)
+					type = UNKNOWN
+					int_val 0
+					value_type UNKNOWN
+
+					length 0
+				param[3] = (null)
+					type = UNKNOWN
+					int_val 0
+					value_type UNKNOWN
+
+					length 0
+		operation name = zjmp
+			opc = 9
+			memory address = 798
+			length = 3
+			0 encoding [0x80]
+			param_number [1]
+				param[1] = 0
+					type = T_DIR
+					int_val 0
+					value_type NUMBER
+
+					length 2
+				param[2] = (null)
+					type = UNKNOWN
+					int_val 0
+					value_type UNKNOWN
+
+					length 0
+				param[3] = (null)
+					type = UNKNOWN
+					int_val 0
+					value_type UNKNOWN
+
+					length 0
+		operation name = zjmp
+			opc = 9
+			memory address = 801
+			length = 3
+			0 encoding [0x80]
+			param_number [1]
+				param[1] = 0
+					type = T_DIR
+					int_val 0
+					value_type NUMBER
+
+					length 2
+				param[2] = (null)
+					type = UNKNOWN
+					int_val 0
+					value_type UNKNOWN
+
+					length 0
+				param[3] = (null)
+					type = UNKNOWN
+					int_val 0
+					value_type UNKNOWN
+
+					length 0
+		operation name = zjmp
+			opc = 9
+			memory address = 804
+			length = 3
+			0 encoding [0x80]
+			param_number [1]
+				param[1] = 0
+					type = T_DIR
+					int_val 0
+					value_type NUMBER
+
+					length 2
+				param[2] = (null)
+					type = UNKNOWN
+					int_val 0
+					value_type UNKNOWN
+
+					length 0
+				param[3] = (null)
+					type = UNKNOWN
+					int_val 0
+					value_type UNKNOWN
+
+					length 0
+		operation name = zjmp
+			opc = 9
+			memory address = 807
+			length = 3
+			0 encoding [0x80]
+			param_number [1]
+				param[1] = 0
+					type = T_DIR
+					int_val 0
+					value_type NUMBER
+
+					length 2
+				param[2] = (null)
+					type = UNKNOWN
+					int_val 0
+					value_type UNKNOWN
+
+					length 0
+				param[3] = (null)
+					type = UNKNOWN
+					int_val 0
+					value_type UNKNOWN
+
+					length 0
+		operation name = zjmp
+			opc = 9
+			memory address = 810
+			length = 3
+			0 encoding [0x80]
+			param_number [1]
+				param[1] = 0
+					type = T_DIR
+					int_val 0
+					value_type NUMBER
+
+					length 2
+				param[2] = (null)
+					type = UNKNOWN
+					int_val 0
+					value_type UNKNOWN
+
+					length 0
+				param[3] = (null)
+					type = UNKNOWN
+					int_val 0
+					value_type UNKNOWN
+
+					length 0
+		operation name = zjmp
+			opc = 9
+			memory address = 813
+			length = 3
+			0 encoding [0x80]
+			param_number [1]
+				param[1] = 0
+					type = T_DIR
+					int_val 0
+					value_type NUMBER
+
+					length 2
+				param[2] = (null)
+					type = UNKNOWN
+					int_val 0
+					value_type UNKNOWN
+
+					length 0
+				param[3] = (null)
+					type = UNKNOWN
+					int_val 0
+					value_type UNKNOWN
+
+					length 0
+		operation name = zjmp
+			opc = 9
+			memory address = 816
+			length = 3
+			0 encoding [0x80]
+			param_number [1]
+				param[1] = 0
+					type = T_DIR
+					int_val 0
+					value_type NUMBER
+
+					length 2
+				param[2] = (null)
+					type = UNKNOWN
+					int_val 0
+					value_type UNKNOWN
+
+					length 0
+				param[3] = (null)
+					type = UNKNOWN
+					int_val 0
+					value_type UNKNOWN
+
+					length 0
+		operation name = zjmp
+			opc = 9
+			memory address = 819
+			length = 3
+			0 encoding [0x80]
+			param_number [1]
+				param[1] = 0
+					type = T_DIR
+					int_val 0
+					value_type NUMBER
+
+					length 2
+				param[2] = (null)
+					type = UNKNOWN
+					int_val 0
+					value_type UNKNOWN
+
+					length 0
+				param[3] = (null)
+					type = UNKNOWN
+					int_val 0
+					value_type UNKNOWN
+
+					length 0
+		operation name = zjmp
+			opc = 9
+			memory address = 822
+			length = 3
+			0 encoding [0x80]
+			param_number [1]
+				param[1] = 0
+					type = T_DIR
+					int_val 0
+					value_type NUMBER
+
+					length 2
+				param[2] = (null)
+					type = UNKNOWN
+					int_val 0
+					value_type UNKNOWN
+
+					length 0
+				param[3] = (null)
+					type = UNKNOWN
+					int_val 0
+					value_type UNKNOWN
+
+					length 0
+		operation name = zjmp
+			opc = 9
+			memory address = 825
+			length = 3
+			0 encoding [0x80]
+			param_number [1]
+				param[1] = 0
+					type = T_DIR
+					int_val 0
+					value_type NUMBER
+
+					length 2
+				param[2] = (null)
+					type = UNKNOWN
+					int_val 0
+					value_type UNKNOWN
+
+					length 0
+				param[3] = (null)
+					type = UNKNOWN
+					int_val 0
+					value_type UNKNOWN
+
+					length 0
+		operation name = zjmp
+			opc = 9
+			memory address = 828
+			length = 3
+			0 encoding [0x80]
+			param_number [1]
+				param[1] = 0
+					type = T_DIR
+					int_val 0
+					value_type NUMBER
+
+					length 2
+				param[2] = (null)
+					type = UNKNOWN
+					int_val 0
+					value_type UNKNOWN
+
+					length 0
+				param[3] = (null)
+					type = UNKNOWN
+					int_val 0
+					value_type UNKNOWN
+
+					length 0
+		operation name = zjmp
+			opc = 9
+			memory address = 831
+			length = 3
+			0 encoding [0x80]
+			param_number [1]
+				param[1] = 0
+					type = T_DIR
+					int_val 0
+					value_type NUMBER
+
+					length 2
+				param[2] = (null)
+					type = UNKNOWN
+					int_val 0
+					value_type UNKNOWN
+
+					length 0
+				param[3] = (null)
+					type = UNKNOWN
+					int_val 0
+					value_type UNKNOWN
+
+					length 0
+		operation name = ld
+			opc = 2
+			memory address = 834
+			length = 7
+			1 encoding [0x90]
+			param_number [2]
+				param[1] = 10
+					type = T_DIR
+					int_val 10
+					value_type NUMBER
+
+					length 4
+				param[2] = 8
+					type = T_REG
+					int_val 8
+					value_type REGISTER
+
+					length 1
+				param[3] = (null)
+					type = UNKNOWN
+					int_val 0
+					value_type UNKNOWN
+
+					length 0
+		operation name = sub
+			opc = 5
+			memory address = 841
+			length = 5
+			1 encoding [0x54]
+			param_number [3]
+				param[1] = 6
+					type = T_REG
+					int_val 6
+					value_type REGISTER
+
+					length 1
+				param[2] = 8
+					type = T_REG
+					int_val 8
+					value_type REGISTER
+
+					length 1
+				param[3] = 6
+					type = T_REG
+					int_val 6
+					value_type REGISTER
+
+					length 1
+		operation name = and
+			opc = 6
+			memory address = 846
+			length = 8
+			1 encoding [0x64]
+			param_number [3]
+				param[1] = 6
+					type = T_REG
+					int_val 6
+					value_type REGISTER
+
+					length 1
+				param[2] = 2147483648
+					type = T_DIR
+					int_val -2147483648
+					value_type NUMBER
+
+					length 4
+				param[3] = 8
+					type = T_REG
+					int_val 8
+					value_type REGISTER
+
+					length 1
+		operation name = zjmp
+			opc = 9
+			memory address = 854
+			length = 3
+			0 encoding [0x80]
+			param_number [1]
+				param[1] = cont
+					type = T_DIR
+					int_val 15
+					value_type LABEL
+
+					length 2
+				param[2] = (null)
+					type = UNKNOWN
+					int_val 0
+					value_type UNKNOWN
+
+					length 0
+				param[3] = (null)
+					type = UNKNOWN
+					int_val 0
+					value_type UNKNOWN
+
+					length 0
+		operation name = ld
+			opc = 2
+			memory address = 857
+			length = 7
+			1 encoding [0x90]
+			param_number [2]
+				param[1] = 118
+					type = T_DIR
+					int_val 118
+					value_type NUMBER
+
+					length 4
+				param[2] = 8
+					type = T_REG
+					int_val 8
+					value_type REGISTER
+
+					length 1
+				param[3] = (null)
+					type = UNKNOWN
+					int_val 0
+					value_type UNKNOWN
+
+					length 0
+		operation name = add
+			opc = 4
+			memory address = 864
+			length = 5
+			1 encoding [0x54]
+			param_number [3]
+				param[1] = 6
+					type = T_REG
+					int_val 6
+					value_type REGISTER
+
+					length 1
+				param[2] = 8
+					type = T_REG
+					int_val 8
+					value_type REGISTER
+
+					length 1
+				param[3] = 6
+					type = T_REG
+					int_val 6
+					value_type REGISTER
+
+					length 1
+		operation name = add
+			opc = 4
+			memory address = 869
+			length = 5
+			1 encoding [0x54]
+			param_number [3]
+				param[1] = 6
+					type = T_REG
+					int_val 6
+					value_type REGISTER
+
+					length 1
+				param[2] = 6
+					type = T_REG
+					int_val 6
+					value_type REGISTER
+
+					length 1
+				param[3] = 6
+					type = T_REG
+					int_val 6
+					value_type REGISTER
+
+					length 1
+		operation name = ld
+			opc = 2
+			memory address = 874
+			length = 7
+			1 encoding [0x90]
+			param_number [2]
+				param[1] = 272
+					type = T_DIR
+					int_val 272
+					value_type NUMBER
+
+					length 4
+				param[2] = 8
+					type = T_REG
+					int_val 8
+					value_type REGISTER
+
+					length 1
+				param[3] = (null)
+					type = UNKNOWN
+					int_val 0
+					value_type UNKNOWN
+
+					length 0
+		operation name = ld
+			opc = 2
+			memory address = 881
+			length = 7
+			1 encoding [0x90]
+			param_number [2]
+				param[1] = 29
+					type = T_DIR
+					int_val 29
+					value_type NUMBER
+
+					length 4
+				param[2] = 9
+					type = T_REG
+					int_val 9
+					value_type REGISTER
+
+					length 1
+				param[3] = (null)
+					type = UNKNOWN
+					int_val 0
+					value_type UNKNOWN
+
+					length 0
+		operation name = ldi
+			opc = 10
+			memory address = 888
+			length = 6
+			1 encoding [0x94]
+			param_number [3]
+				param[1] = p64deb
+					type = T_DIR
+					int_val -174
+					value_type LABEL
+
+					length 2
+				param[2] = 6
+					type = T_REG
+					int_val 6
+					value_type REGISTER
+
+					length 1
+				param[3] = 7
+					type = T_REG
+					int_val 7
+					value_type REGISTER
+
+					length 1
+		operation name = sti
+			opc = 11
+			memory address = 894
+			length = 5
+			1 encoding [0x54]
+			param_number [3]
+				param[1] = 7
+					type = T_REG
+					int_val 7
+					value_type REGISTER
+
+					length 1
+				param[2] = 8
+					type = T_REG
+					int_val 8
+					value_type REGISTER
+
+					length 1
+				param[3] = 6
+					type = T_REG
+					int_val 6
+					value_type REGISTER
+
+					length 1
+		operation name = sti
+			opc = 11
+			memory address = 899
+			length = 5
+			1 encoding [0x54]
+			param_number [3]
+				param[1] = 7
+					type = T_REG
+					int_val 7
+					value_type REGISTER
+
+					length 1
+				param[2] = 9
+					type = T_REG
+					int_val 9
+					value_type REGISTER
+
+					length 1
+				param[3] = 6
+					type = T_REG
+					int_val 6
+					value_type REGISTER
+
+					length 1
+		operation name = live
+			opc = 1
+			memory address = 904
+			length = 5
+			0 encoding [0x80]
+			param_number [1]
+				param[1] = 1
+					type = T_DIR
+					int_val 1
+					value_type NUMBER
+
+					length 4
+				param[2] = (null)
+					type = UNKNOWN
+					int_val 0
+					value_type UNKNOWN
+
+					length 0
+				param[3] = (null)
+					type = UNKNOWN
+					int_val 0
+					value_type UNKNOWN
+
+					length 0
+		operation name = ld
+			opc = 2
+			memory address = 909
+			length = 7
+			1 encoding [0x90]
+			param_number [2]
+				param[1] = 0
+					type = T_DIR
+					int_val 0
+					value_type NUMBER
+
+					length 4
+				param[2] = 10
+					type = T_REG
+					int_val 10
+					value_type REGISTER
+
+					length 1
+				param[3] = (null)
+					type = UNKNOWN
+					int_val 0
+					value_type UNKNOWN
+
+					length 0
+		operation name = zjmp
+			opc = 9
+			memory address = 916
+			length = 3
+			0 encoding [0x80]
+			param_number [1]
+				param[1] = 186
+					type = T_DIR
+					int_val 186
+					value_type NUMBER
+
+					length 2
+				param[2] = (null)
+					type = UNKNOWN
+					int_val 0
+					value_type UNKNOWN
+
+					length 0
+				param[3] = (null)
+					type = UNKNOWN
+					int_val 0
+					value_type UNKNOWN
+
+					length 0
+		operation name = ld
+			opc = 2
+			memory address = 919
+			length = 7
+			1 encoding [0x90]
+			param_number [2]
+				param[1] = 425
+					type = T_DIR
+					int_val 425
+					value_type NUMBER
+
+					length 4
+				param[2] = 2
+					type = T_REG
+					int_val 2
+					value_type REGISTER
+
+					length 1
+				param[3] = (null)
+					type = UNKNOWN
+					int_val 0
+					value_type UNKNOWN
+
+					length 0
+		operation name = ld
+			opc = 2
+			memory address = 926
+			length = 7
+			1 encoding [0x90]
+			param_number [2]
+				param[1] = 0
+					type = T_DIR
+					int_val 0
+					value_type NUMBER
+
+					length 4
+				param[2] = 3
+					type = T_REG
+					int_val 3
+					value_type REGISTER
+
+					length 1
+				param[3] = (null)
+					type = UNKNOWN
+					int_val 0
+					value_type UNKNOWN
+
+					length 0
+		operation name = ld
+			opc = 2
+			memory address = 933
+			length = 7
+			1 encoding [0x90]
+			param_number [2]
+				param[1] = 4
+					type = T_DIR
+					int_val 4
+					value_type NUMBER
+
+					length 4
+				param[2] = 4
+					type = T_REG
+					int_val 4
+					value_type REGISTER
+
+					length 1
+				param[3] = (null)
+					type = UNKNOWN
+					int_val 0
+					value_type UNKNOWN
+
+					length 0
+		operation name = live
+			opc = 1
+			memory address = 940
+			length = 5
+			0 encoding [0x80]
+			param_number [1]
+				param[1] = 42
+					type = T_DIR
+					int_val 42
+					value_type NUMBER
+
+					length 4
+				param[2] = (null)
+					type = UNKNOWN
+					int_val 0
+					value_type UNKNOWN
+
+					length 0
+				param[3] = (null)
+					type = UNKNOWN
+					int_val 0
+					value_type UNKNOWN
+
+					length 0
+		operation name = sti
+			opc = 11
+			memory address = 945
+			length = 6
+			1 encoding [0x64]
+			param_number [3]
+				param[1] = 10
+					type = T_REG
+					int_val 10
+					value_type REGISTER
+
+					length 1
+				param[2] = fin
+					type = T_DIR
+					int_val 43
+					value_type LABEL
+
+					length 2
+				param[3] = 2
+					type = T_REG
+					int_val 2
+					value_type REGISTER
+
+					length 1
+		operation name = sti
+			opc = 11
+			memory address = 951
+			length = 6
+			1 encoding [0x64]
+			param_number [3]
+				param[1] = 10
+					type = T_REG
+					int_val 10
+					value_type REGISTER
+
+					length 1
+				param[2] = fin
+					type = T_DIR
+					int_val 37
+					value_type LABEL
+
+					length 2
+				param[3] = 3
+					type = T_REG
+					int_val 3
+					value_type REGISTER
+
+					length 1
+		operation name = add
+			opc = 4
+			memory address = 957
+			length = 5
+			1 encoding [0x54]
+			param_number [3]
+				param[1] = 4
+					type = T_REG
+					int_val 4
+					value_type REGISTER
+
+					length 1
+				param[2] = 5
+					type = T_REG
+					int_val 5
+					value_type REGISTER
+
+					length 1
+				param[3] = 4
+					type = T_REG
+					int_val 4
+					value_type REGISTER
+
+					length 1
+		operation name = add
+			opc = 4
+			memory address = 962
+			length = 5
+			1 encoding [0x54]
+			param_number [3]
+				param[1] = 3
+					type = T_REG
+					int_val 3
+					value_type REGISTER
+
+					length 1
+				param[2] = 4
+					type = T_REG
+					int_val 4
+					value_type REGISTER
+
+					length 1
+				param[3] = 3
+					type = T_REG
+					int_val 3
+					value_type REGISTER
+
+					length 1
+		operation name = sub
+			opc = 5
+			memory address = 967
+			length = 5
+			1 encoding [0x54]
+			param_number [3]
+				param[1] = 2
+					type = T_REG
+					int_val 2
+					value_type REGISTER
+
+					length 1
+				param[2] = 4
+					type = T_REG
+					int_val 4
+					value_type REGISTER
+
+					length 1
+				param[3] = 2
+					type = T_REG
+					int_val 2
+					value_type REGISTER
+
+					length 1
+		operation name = zjmp
+			opc = 9
+			memory address = 972
+			length = 3
+			0 encoding [0x80]
+			param_number [1]
+				param[1] = tirdow
+					type = T_DIR
+					int_val -53
+					value_type LABEL
+
+					length 2
+				param[2] = (null)
+					type = UNKNOWN
+					int_val 0
+					value_type UNKNOWN
+
+					length 0
+				param[3] = (null)
+					type = UNKNOWN
+					int_val 0
+					value_type UNKNOWN
+
+					length 0
+		operation name = ld
+			opc = 2
+			memory address = 975
+			length = 7
+			1 encoding [0x90]
+			param_number [2]
+				param[1] = 0
+					type = T_DIR
+					int_val 0
+					value_type NUMBER
+
+					length 4
+				param[2] = 11
+					type = T_REG
+					int_val 11
+					value_type REGISTER
+
+					length 1
+				param[3] = (null)
+					type = UNKNOWN
+					int_val 0
+					value_type UNKNOWN
+
+					length 0
+		operation name = zjmp
+			opc = 9
+			memory address = 982
+			length = 3
+			0 encoding [0x80]
+			param_number [1]
+				param[1] = tird
+					type = T_DIR
+					int_val -42
+					value_type LABEL
+
+					length 2
+				param[2] = (null)
+					type = UNKNOWN
+					int_val 0
+					value_type UNKNOWN
+
+					length 0
+				param[3] = (null)
+					type = UNKNOWN
+					int_val 0
+					value_type UNKNOWN
+
+					length 0
+		operation name = zjmp
+			opc = 9
+			memory address = 985
+			length = 3
+			0 encoding [0x80]
+			param_number [1]
+				param[1] = p1
+					type = T_DIR
+					int_val -360
+					value_type LABEL
+
+					length 2
+				param[2] = (null)
+					type = UNKNOWN
+					int_val 0
+					value_type UNKNOWN
+
+					length 0
+				param[3] = (null)
+					type = UNKNOWN
+					int_val 0
+					value_type UNKNOWN
+
+					length 0
+		operation name = live
+			opc = 1
+			memory address = 988
+			length = 5
+			0 encoding [0x80]
+			param_number [1]
+				param[1] = 633
+					type = T_DIR
+					int_val 633
+					value_type NUMBER
+
+					length 4
+				param[2] = (null)
+					type = UNKNOWN
+					int_val 0
+					value_type UNKNOWN
+
+					length 0
+				param[3] = (null)
+					type = UNKNOWN
+					int_val 0
+					value_type UNKNOWN
+
+					length 0
+Cor file generated
+prog name : ../asm
+	file name = srcsok/42.s
+	file fd = 3
+	line:col [242:1]
+	file offset = 2967
+	file mode = 2
+==7034== 
+==7034== HEAP SUMMARY:
+==7034==     in use at exit: 19,201 bytes in 168 blocks
+==7034==   total heap usage: 3,272 allocs, 3,104 frees, 114,630 bytes allocated
+==7034== 
+==7034== LEAK SUMMARY:
+==7034==    definitely lost: 0 bytes in 0 blocks
+==7034==    indirectly lost: 0 bytes in 0 blocks
+==7034==      possibly lost: 8,840 bytes in 7 blocks
+==7034==    still reachable: 10,361 bytes in 161 blocks
+==7034==         suppressed: 0 bytes in 0 blocks
+==7034== Rerun with --leak-check=full to see details of leaked memory
+==7034== 
+==7034== For lists of detected and suppressed errors, rerun with: -s
+==7034== ERROR SUMMARY: 0 errors from 0 contexts (suppressed: 398 from 10)
