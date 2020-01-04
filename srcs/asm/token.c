@@ -49,8 +49,8 @@ void		ft_token_init(t_token *token, int type, int col, int line)
 
 void		ft_parse_comment(t_file *file)
 {
-	char 	*comment;
-	
+	char	*comment;
+
 	comment = NULL;
 	ft_parse_until(file, (char[]){NEWLINE_CHAR, '\0'}, &comment, 0);
 	free(comment);
@@ -79,8 +79,8 @@ void		ft_parse_string(t_file *file)
 
 void		ft_parse_indirect_label(t_file *file)
 {
-	t_token	token;
-	t_token	*const last = ft_last_token(file);
+	t_token			token;
+	t_token *const	last = ft_last_token(file);
 
 	if (last && last->type == DIRECT)
 	{
@@ -112,7 +112,7 @@ void		ft_parse_newline(t_file *file)
 {
 	t_token	token;
 	char	separator[2];
-	
+
 	separator[0] = NEWLINE_CHAR;
 	separator[1] = '\0';
 	ft_token_init(&token, NEWLINE, file->col, file->line);
@@ -127,7 +127,7 @@ void		ft_parse_separator(t_file *file)
 {
 	t_token	token;
 	char	separator[2];
-	
+
 	separator[0] = SEPARATOR_CHAR;
 	separator[1] = '\0';
 	ft_token_init(&token, SEPARATOR, file->col, file->line);
@@ -144,7 +144,7 @@ int			ft_is_reg(char *str)
 	if (str[0] == 'r')
 	{
 		i = 1;
-		while(str[i])
+		while (str[i])
 		{
 			if (str[i] < '0' || str[i] > '9')
 				return (0);
@@ -172,11 +172,10 @@ int			ft_is_number(t_token *token)
 	{
 		token->int_value = ft_atoi(token->value);
 		return (1);
-	}	
+	}
 	// verifier qu'on a bien la bonne valeur en int (int max pas plus de 12 char)
 	return (0);
 }
-
 
 int			ft_is_label(t_file *file)
 {
@@ -208,7 +207,7 @@ int			ft_parse_number(t_file *file, t_token *token)
 		i = (buf[0] == '-') ? 1 : 0;
 		if (!ft_is_one_of(buf[i], "0123456789"))
 			return (ft_lexical_error(file, token));
-		while(i != retval && ft_is_one_of(buf[i], "0123456789"))
+		while (i != retval && ft_is_one_of(buf[i], "0123456789"))
 			i++;
 	}
 	if (retval == -1)
@@ -226,8 +225,8 @@ int			ft_parse_number(t_file *file, t_token *token)
 
 void		ft_parse_indirect(t_file *file)
 {
-	t_token token;
-	t_token *const last = ft_last_token(file);
+	t_token			token;
+	t_token *const	last = ft_last_token(file);
 
 	if (last && last->type == DIRECT && !last->value)
 		ft_parse_number(file, last);
@@ -262,10 +261,11 @@ void		ft_parse_instruction2(t_file *file, t_token *token, size_t ret)
 	}
 }
 
-void		ft_parse_instruction_direct (t_file *file, t_token *token, t_token *last, size_t ret)
+void		ft_parse_instruction_direct(t_file *file, t_token *token,
+										t_token *last, size_t ret)
 {
-	char	*line;
-	const int		diff = ft_strlen(token->value) - ret;
+	char		*line;
+	const int	diff = ft_strlen(token->value) - ret;
 
 	last->value = token->value;
 	line = token->value;
@@ -310,9 +310,9 @@ void		ft_parse_register(t_file *file, t_token *token, size_t ret)
 
 void		ft_parse_instruction(t_file *file)
 {
-	t_token	token;
-	int		ret;
-	t_token *const last = ft_last_token(file);
+	t_token			token;
+	int				ret;
+	t_token *const	last = ft_last_token(file);
 
 	ret = 0;
 	ft_token_init(&token, UNKNOWN, file->col, file->line);
@@ -348,7 +348,7 @@ void		ft_parse_unknown(t_file *file)
 {
 	t_token	token;
 	char	separator[4];
-	
+
 	separator[0] = NEWLINE_CHAR;
 	separator[1] = ' ';
 	separator[2] = SEPARATOR_CHAR;
@@ -374,19 +374,21 @@ void		ft_parse_token(t_env *env, t_file *file)
 {
 	char	buf[51];
 	int		retval;
-	
+
 	(void)env;
 	if ((retval = read(file->fd, buf, 50)) > 0)
 	{
 		buf[retval] = 0;
 		// ft_printf("nous sommes at [%d:%d]\n", file->line, file->col);
-		if ((buf[0] == COMMENT_CHAR || buf[0] == ALT_COMMENT_CHAR) && ft_offset_head(env, file, 1) && (file->col += 1))
+		if ((buf[0] == COMMENT_CHAR || buf[0] == ALT_COMMENT_CHAR) &&
+				ft_offset_head(env, file, 1) && (file->col += 1))
 			ft_parse_comment(file);
 		else if (buf[0] == CMD_CHAR && ft_offset_head(env, file, 1))
 			ft_parse_cmd(file);
 		else if (buf[0] == STRING_CHAR && ft_offset_head(env, file, 1))
 			ft_parse_string(file);
-		else if (buf[0] == LABEL_CHAR && ft_offset_head(env, file, 1) && (file->col += 1))
+		else if (buf[0] == LABEL_CHAR && ft_offset_head(env, file, 1)
+				&& (file->col += 1))
 			ft_parse_indirect_label(file);
 		else if (buf[0] == DIRECT_CHAR && ft_offset_head(env, file, 1))
 			ft_parse_direct(file);
@@ -396,7 +398,8 @@ void		ft_parse_token(t_env *env, t_file *file)
 			ft_parse_separator(file);
 		else if (buf[0] == '-' && ft_offset_head(env, file, 0))
 			ft_parse_indirect(file);
-		else if (ft_is_one_of(buf[0], LABEL_CHARS) && ft_offset_head(env, file, 0))
+		else if (ft_is_one_of(buf[0], LABEL_CHARS)
+				&& ft_offset_head(env, file, 0))
 			ft_parse_instruction(file);
 		else
 		{
