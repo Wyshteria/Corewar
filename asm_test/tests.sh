@@ -33,7 +33,7 @@ rm -f "$path_to_testko"*.diff
 #echo "\033[0;32m==Building $tester==\033[0m"	| tee	-a	$launcher_log
 #make -C $path_to_test							>>			$launcher_log
 echo "\n\033[0;32m==Building $ft_asm==\033[0m"	| tee	-a	$launcher_log
-make -C $path_to_ft_asm asm						>>			$launcher_log
+make -C $path_to_ft_asm fclean_asm asm	 					>>			$launcher_log
 #if [ -x $tester ]
 #then
 	if [ -x $asm ]
