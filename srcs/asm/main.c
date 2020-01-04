@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: toliver <marvin@42.fr>                     +#+  +:+       +#+        */
+/*   By: lboukrou <lboukrou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/19 18:19:18 by toliver           #+#    #+#             */
-/*   Updated: 2019/11/29 17:46:06 by toliver          ###   ########.fr       */
+/*   Updated: 2020/01/04 22:23:23 by lboukrou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ int			ft_open_file(t_env *env, t_file *file)
 	file->fd = fd;
 	if (fd == -1)
 	{
-		ft_error(env, file, OPEN_ERROR); 
+		ft_error(env, file, OPEN_ERROR);
 		return (0);
 	}
 	return (1);
@@ -44,23 +44,24 @@ void		ft_delete_file(t_env *env, t_file *file)
 
 int			ft_parse_operations(t_env *env, t_file *file)
 {
-	// ft_printf("parsing operations !\n");
-	// ft_dump_tokens(file);
+// ft_printf("parsing operations !\n");
+// ft_dump_tokens(file);
 	if (!ft_init_prog(env, file))
 	{
-		// ft_dump_op(&env->prog);
+	// ft_dump_op(&env->prog);
 		if (file->mode != CRASH)
 			file->mode = CONTAIN_ERRORS;
 		return (0);
 	}
 	// else
-		// ft_dump_tokens(file);
+	// ft_dump_tokens(file);
 	return (1);
 }
 
 int			ft_parse_file(t_env *env, t_file *file)
 {
-	while (file->mode != DONE && file->mode != CRASH && file->mode != CONTAIN_ERRORS)
+	while (file->mode != DONE && file->mode != CRASH
+			&& file->mode != CONTAIN_ERRORS)
 	{
 		ft_skip_spaces(env, file);
 		ft_parse_token(env, file);
@@ -70,7 +71,7 @@ int			ft_parse_file(t_env *env, t_file *file)
 		return (ft_parse_operations(env, file));
 	else if (file->mode == CONTAIN_ERRORS)
 	{
-		// ft_dump_tokens(file);
+	// ft_dump_tokens(file);
 		return (0);
 	}
 	return (1);
@@ -78,15 +79,14 @@ int			ft_parse_file(t_env *env, t_file *file)
 
 int			ft_write_file(t_env *env, t_file *file)
 {
-	// ft_printf("writing file !\n");
-	// ft_dump_prog(&env->prog);
+// ft_printf("writing file !\n");
+// ft_dump_prog(&env->prog);
 	if (!ft_open_cor_file(&(env->prog), env, file))
 		return (0);
-	// (void)file;
+// (void)file;
 	ft_printf("Cor file generated\n");
 	return (1);
 }
-
 
 void		ft_parse_files(t_env *env)
 {	
