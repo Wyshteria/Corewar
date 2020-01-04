@@ -71,7 +71,7 @@ int					ft_init_prog(t_env *env, t_file *file)
 	env->prog.header.magic = COREWAR_EXEC_MAGIC;
 	if (!(env->prog.filename = ft_cor_filename(file)))
 		return (0);
-	ft_printf("got the name\n");
+	// ft_printf("got the name\n");
 	if (!ft_check_header(file, &env->prog) || !ft_check_body(file, &env->prog) \
 	|| !ft_check_labels(file, &env->prog, file->tokens))
 	{
