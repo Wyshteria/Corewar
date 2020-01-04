@@ -1,5 +1,16 @@
 #include "asm.h"
 
+static void		ft_free_head_token(t_file *file, t_token *tmp)
+{
+	if (tmp && tmp->prev)
+	{
+		tmp->prev->next = NULL;
+		ft_free_file(file);
+		tmp->prev = NULL;
+		file->tokens = tmp;
+	}
+}
+
 static int		ft_check_str(t_file *file, t_token *tmp, int status)
 {
 	if (!tmp || tmp->type != STRING)
@@ -22,9 +33,6 @@ static int		ft_check_str(t_file *file, t_token *tmp, int status)
 	}
 	else
 	{
-		file->tokens = tmp->next->next;
-		if (file->tokens)
-			file->tokens->prev = NULL;
 		return (1);
 	}
 }
@@ -41,9 +49,7 @@ static int		ft_check_name(t_file *file, t_program *prog)
 	{
 		ft_memccpy(prog->header.prog_name, tmp->next->value, '\0',\
 			PROG_NAME_LENGTH + 1);
-		free(tmp->next->next);
-		free(tmp->next);
-		free(tmp);
+		ft_free_head_token(file, tmp->next->next);
 		if (prog->header.prog_name[PROG_NAME_LENGTH])
 		{
 			ft_printf("name too long\n");
@@ -67,9 +73,7 @@ static int		ft_check_comment(t_file *file, t_program *prog)
 	{
 		ft_memccpy(prog->header.comment, tmp->next->value, '\0',\
 				COMMENT_LENGTH + 1);
-		free(tmp->next->next);
-		free(tmp->next);
-		free(tmp);
+		ft_free_head_token(file, tmp->next->next);
 		if (prog->header.comment[COMMENT_LENGTH])
 		{
 			ft_printf("comment too long\n");
@@ -92,13 +96,7 @@ int			ft_check_header(t_file *file, t_program *prog)
 		tmp = file->tokens;
 		if (!ft_pass_newline(file, &tmp))
 			return (0);
-		if (tmp && tmp->prev)
-		{
-			tmp->prev->next = NULL;
-			ft_free_file(file);
-			tmp->prev = NULL;
-			file->tokens = tmp;
-		}
+		ft_free_head_token(file, tmp);
 		if (ft_check_comment(file, prog))
 			cmd++;
 		else if (ft_check_name(file, prog))

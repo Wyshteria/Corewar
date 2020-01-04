@@ -44,6 +44,8 @@ void		ft_delete_file(t_env *env, t_file *file)
 
 int			ft_parse_operations(t_env *env, t_file *file)
 {
+	ft_printf("parsing operations !\n");
+	// ft_dump_tokens(file);
 	if (!ft_init_prog(env, file))
 	{
 		// ft_dump_tokens(file);
@@ -51,7 +53,7 @@ int			ft_parse_operations(t_env *env, t_file *file)
 			file->mode = CONTAIN_ERRORS;
 		return (0);
 	}
-	else
+	// else
 		// ft_dump_tokens(file);
 	return (1);
 }
@@ -68,7 +70,7 @@ int			ft_parse_file(t_env *env, t_file *file)
 		return (ft_parse_operations(env, file));
 	else if (file->mode == CONTAIN_ERRORS)
 	{
-		ft_dump_tokens(file);
+		// ft_dump_tokens(file);
 		return (0);
 	}
 	return (1);
@@ -77,15 +79,10 @@ int			ft_parse_file(t_env *env, t_file *file)
 int			ft_write_file(t_env *env, t_file *file)
 {
 	ft_printf("writing file !\n");
-	// ft_init_prog()
-	// if (!ft_init_prog(env, file))
-	// {
-	// 	ft_dump_tokens(file);
-	// }
-	// 	return (0);
-	ft_dump_tokens(file);
-	// (void)file;
-	ft_dump_env(env);
+	// ft_dump_tokens(file);
+	(void)file;
+	(void)env;
+	// ft_dump_env(env);
 	return (1);
 }
 

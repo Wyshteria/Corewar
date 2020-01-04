@@ -66,6 +66,7 @@ int			ft_check_params_types(t_file *file, t_operation *operation, t_op *op)
 	int nbr_param;
 
 	nbr_param = 0;
+	// ft_printf("check_params_types\n");
 	while (nbr_param != op->params_number && operation->params[nbr_param].type)
 	{
 		if (!(op->params[nbr_param] & operation->params[nbr_param].type))

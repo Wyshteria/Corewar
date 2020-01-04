@@ -50,13 +50,9 @@ void		ft_token_init(t_token *token, int type, int col, int line)
 void		ft_parse_comment(t_file *file)
 {
 	char 	*comment;
-	t_token *const last = ft_last_token(file);
 	
 	comment = NULL;
-	if (last && last->prev && last->prev->type < STRING)
-		ft_lexical_error(file, last);
-	else
-		ft_parse_until(file, (char[]){NEWLINE_CHAR, '\0'}, &comment, 0);
+	ft_parse_until(file, (char[]){NEWLINE_CHAR, '\0'}, &comment, 0);
 	free(comment);
 }
 
@@ -356,6 +352,7 @@ void		ft_parse_unknown(t_file *file)
 	ft_token_init(&token, UNKNOWN, file->col, file->line);
 	ft_parse_until(file, separator, &(token.value), 1);
 	ft_add_token(file, &token);
+	ft_syntax_error(file, ft_last_token(file));
 }
 
 void		ft_check_direct_token(t_file *file)
@@ -363,7 +360,10 @@ void		ft_check_direct_token(t_file *file)
 	t_token	*const last = ft_last_token(file);
 
 	if (last && last->prev && last->prev->type == DIRECT && !last->prev->value)
+	{
+		ft_printf("Direct has problem\n");
 		ft_lexical_error(file, last->prev);
+	}
 }
 
 void		ft_parse_token(t_env *env, t_file *file)
@@ -371,7 +371,6 @@ void		ft_parse_token(t_env *env, t_file *file)
 	char	buf[51];
 	int		retval;
 	
-
 	(void)env;
 	if ((retval = read(file->fd, buf, 50)) > 0)
 	{

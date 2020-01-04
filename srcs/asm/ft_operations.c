@@ -60,7 +60,8 @@ int		ft_check_op(t_file *file, t_program *prog, t_token **token)
 		}
 		return (0);
 	}
-	ft_dump_op(prog);
+	// ft_dump_op(prog);
+	// ft_dump_tokens(file);
 	if (!ft_check_params_types(file, operation, op))
 		return (0);
 	return (1);
@@ -78,5 +79,6 @@ void	ft_free_op(t_program *prog)
 		free(ptr);
 		ptr = tmp;
 	}
+	prog->operations = NULL;
 }
 

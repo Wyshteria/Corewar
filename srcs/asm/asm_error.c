@@ -87,10 +87,10 @@ int		ft_syntax_error(t_file *file, t_token *tok)
 	syntax, tok->line, tok->col, tok->value, tok->int_value);
 	else if (tok->type == COMMENT || tok->type == INSTRUCTION || tok->type == OPERATION)
 		ft_printf("%s[%03d:%03d] %s \"%s\"\n",\
-	syntax, tok->line, ft_tokentype_string(tok->type), tok->col, tok->value);
-	else 
+	syntax, tok->line, tok->col, ft_tokentype_string(tok->type), tok->value);
+	else
 		ft_printf("%s[%03d:%03d] %s \"%s\"\n",\
-	syntax, tok->line, ft_tokentype_string(tok->type), tok->col, tok->value);
+	syntax, tok->line, tok->col, ft_tokentype_string(tok->type), tok->value);
 	file->mode = CONTAIN_ERRORS;
 	return (0);
 
