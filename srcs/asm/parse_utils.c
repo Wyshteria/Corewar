@@ -3,45 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   parse_utils.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: toliver <marvin@42.fr>                     +#+  +:+       +#+        */
+/*   By: lboukrou <lboukrou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/29 15:48:43 by toliver           #+#    #+#             */
-/*   Updated: 2020/01/04 09:46:10 by jates-           ###   ########.fr       */
+/*   Updated: 2020/01/04 22:22:29 by lboukrou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "asm.h"
-
-int			ft_offset_head(t_env *env, t_file *file, size_t size)
-{
-	file->offset = lseek(file->fd, file->offset + size, SEEK_SET);
-	if (file->offset == -1)
-	{
-		ft_error(env, file, LSEEK_ERROR);
-		return (0);
-	}
-	return (1);
-}
-
-int			ft_offset_lines(t_env *env, t_file *file, char *str)
-{
-	int		i;
-
-	i = 0;
-	(void)env;
-	while (str && str[i])
-	{
-		if (str[i] == NEWLINE_CHAR)
-		{
-			file->line += 1;
-			file->col = 1;
-		}
-		else
-			file->col += 1;
-		i++;
-	}
-	return (1);
-}
 
 void		ft_skip_spaces(t_env *env, t_file *file)
 {
@@ -62,7 +31,7 @@ void		ft_skip_spaces(t_env *env, t_file *file)
 		}
 		size += i;
 		if (i != retval)
-			break;
+			break ;
 	}
 	if (retval == -1)
 		ft_error(env, file, READ_ERROR);
@@ -72,28 +41,38 @@ void		ft_skip_spaces(t_env *env, t_file *file)
 		ft_offset_head(env, file, size);
 }
 
-int			ft_parse_while(t_file *file, char *containing, char **line)
+static int	read_file_fd(t_file *file, char *containing, char *buf)
 {
-	char	buf[51];
-	int		i;
-	int		size;
 	int		retval;
+	int		size;
+	int		i;
 
 	size = 0;
 	while ((retval = read(file->fd, buf, 50)) > 0)
 	{
 		i = 0;
 		buf[retval] = '\0';
-		while(buf[i] && ft_is_one_of(buf[i], containing))
+		while (buf[i] && ft_is_one_of(buf[i], containing))
 			i++;
 		size += i;
 		if (i != retval)
-			break;
+			break ;
 	}
 	if (retval == -1)
-		return (ft_error(ft_get_env(), file, READ_ERROR));
+		return (-1);
 	if (retval == 0)
 		file->mode = DONE;
+	return (size);
+}
+
+int			ft_parse_while(t_file *file, char *containing, char **line)
+{
+	char	buf[51];
+	int		size;
+	int		retval;
+
+	if ((size = read_file_fd(file, containing, buf)) == -1)
+		return (ft_error(ft_get_env(), file, READ_ERROR));
 	*line = (char*)ft_malloc(sizeof(char) * (size + 1));
 	ft_offset_head(ft_get_env(), file, 0);
 	retval = read(file->fd, *line, size);
@@ -109,31 +88,39 @@ int			ft_parse_while(t_file *file, char *containing, char **line)
 	return (1);
 }
 
-
-
-int			ft_parse_until(t_file *file, char *limit, char **line, int skipping)
+static int	read_until(t_file *file, char *limit, char *end, char *buf)
 {
-	char	buf[51];
-	int		i;
-	int		size;
 	int		retval;
-	char	end;
+	int		size;
+	int		i;
 
 	size = 0;
 	while ((retval = read(file->fd, buf, 50)) > 0)
 	{
 		i = 0;
 		buf[retval] = '\0';
-		while(buf[i] && !(end = ft_is_one_of(buf[i], limit)))
+		while (buf[i] && !(*end = ft_is_one_of(buf[i], limit)))
 			i++;
 		size += i;
 		if (i != retval)
-			break;
+			break ;
 	}
 	if (retval == -1)
-		return (ft_error(ft_get_env(), file, READ_ERROR));
+		return (-1);
 	if (retval == 0)
 		file->mode = DONE;
+	return (size);
+}
+
+int			ft_parse_until(t_file *file, char *limit, char **line, int skipping)
+{
+	char	buf[51];
+	int		size;
+	int		retval;
+	char	end;
+
+	if ((size = read_until(file, limit, &end, buf)) == -1)
+		return (ft_error(ft_get_env(), file, READ_ERROR));
 	*line = (char*)ft_malloc(sizeof(char) * (size + 1));
 	ft_offset_head(ft_get_env(), file, 0);
 	retval = read(file->fd, *line, size);

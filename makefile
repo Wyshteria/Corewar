@@ -6,7 +6,7 @@
 #    By: lboukrou <lboukrou@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/09/20 19:50:33 by toliver           #+#    #+#              #
-#    Updated: 2020/01/04 22:07:25 by lboukrou         ###   ########.fr        #
+#    Updated: 2020/01/04 22:33:43 by lboukrou         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -57,6 +57,7 @@ OBJS_ASM = $(addprefix objs/, $(addsuffix .o, \
 				ft_check_header \
 				ft_parse_op_utils \
 				ft_program \
+				offset \
 				) \
 		)) 
 
