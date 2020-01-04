@@ -33,7 +33,7 @@ rm -f "$path_to_testko"*.diff
 #echo "\033[0;32m==Building $tester==\033[0m"	| tee	-a	$launcher_log
 #make -C $path_to_test							>>			$launcher_log
 echo "\n\033[0;32m==Building $ft_asm==\033[0m"	| tee	-a	$launcher_log
-make -C $path_to_ft_asm asm						>>			$launcher_log
+make -C $path_to_ft_asm fclean_asm asm			>>			$launcher_log
 #if [ -x $tester ]
 #then
 	if [ -x $asm ]
@@ -63,16 +63,21 @@ make -C $path_to_ft_asm asm						>>			$launcher_log
 					hexdump -vC "$path_to_testko$cor.cor" > "$path_to_testko$cor.log"
 				else
 					diff "$path_to_testko$cor.txt" "$path_to_testko$cor.my.txt" > "$path_to_testko$cor.diff"
-					if [ -s "$path_to_testko$cor.diff" ]
+					if [ -s "$path_to_testko$cor.my.txt" ]
 					then
-						let "invalid_error = $invalid_error + 1"
-						cat "$path_to_testko$cor.my.txt">> $launcher_log
-					else
 						let "success = $success + 1"
-						rm "$path_to_testko$cor.diff"
-						rm "$path_to_testko$cor.my.txt"
-						rm "$path_to_testko$cor.txt"
+						if [ -s "$path_to_testko$cor.diff" ]
+						then
+							let "invalid_error = $invalid_error + 1"
+							cat "$path_to_testko$cor.my.txt">> $launcher_log
+						fi
+					else
+						let "fail = $fail + 1"
+						echo "$path_to_testko$cor\n"
 					fi
+					rm "$path_to_testko$cor.diff"
+					rm "$path_to_testko$cor.my.txt"
+					rm "$path_to_testko$cor.txt"			
 				fi
 			fi
 			echo "\033[A\033[2K\033[0;36mkoTests: $koTest tests, $discarded discarded, $success success, $fail fails, $invalid_error invalid error\033[0m"
