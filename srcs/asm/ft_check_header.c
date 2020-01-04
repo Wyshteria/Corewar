@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_check_header.c                                  :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: jates- <jates-@student.42.fr>              +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2020/01/04 09:17:19 by jates-            #+#    #+#             */
+/*   Updated: 2020/01/04 09:18:35 by jates-           ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "asm.h"
 
 static void		ft_free_head_token(t_file *file, t_token *tmp)
@@ -69,7 +81,7 @@ static int		ft_check_comment(t_file *file, t_program *prog)
 	if (!(tmp = file->tokens))
 		return (0);
 	if (tmp->type == COMMAND && ft_strnequ(tmp->value, COMMENT_CMD_STRING,\
-	ft_strlen(COMMENT_CMD_STRING) + 1)&& ft_check_str(file, tmp->next, status))
+	ft_strlen(COMMENT_CMD_STRING) + 1) && ft_check_str(file, tmp->next, status))
 	{
 		ft_memccpy(prog->header.comment, tmp->next->value, '\0',\
 				COMMENT_LENGTH + 1);
@@ -85,7 +97,7 @@ static int		ft_check_comment(t_file *file, t_program *prog)
 	return (0);
 }
 
-int			ft_check_header(t_file *file, t_program *prog)
+int				ft_check_header(t_file *file, t_program *prog)
 {
 	t_token		*tmp;
 	int			cmd;
@@ -102,7 +114,10 @@ int			ft_check_header(t_file *file, t_program *prog)
 		else if (ft_check_name(file, prog))
 			cmd++;
 		else
-			return (0);
+		{
+			ft_printf("header wrong\n");
+			return (ft_syntax_error(file, file->tokens));
+		}
 	}
 	return (1);
 }

@@ -103,6 +103,7 @@ typedef struct		s_param
 	int				value_type;
 	char			*value;
 	int				int_value;
+	int				len;
 }					t_param;
 
 typedef struct		s_operation
@@ -115,6 +116,8 @@ typedef struct		s_operation
 	int					p_num;
 	int					mem;
 	int					len;
+	int					encoding;
+	int					is_encoding_needed;
 	// unsigned char	len_direct;
 }					t_operation;
 
@@ -195,14 +198,15 @@ int					ft_check_op(t_file *file, t_program *prog, t_token **token);
 ** PARAMS FUNC
 */
 
-int					ft_create_param(t_file *file, t_operation *operation, t_token **token, t_op *op);
-int					ft_check_params_types(t_file *file, t_operation *operation, t_op *op);
+int					ft_create_param(t_file *file, t_operation *operation, t_token **token, t_op const*op);
+int					ft_check_params_types(t_file *file, t_operation *operation, t_op const*op);
 
 /*
 ** WRITING FUNC
 */
 
 int					ft_check_header(t_file *file, t_program *prog);
+int					ft_open_cor_file(t_program *prog, t_env *env, t_file *file);
 
 /*
 ** PARSING OPERATION FUNC UTILS
@@ -279,5 +283,7 @@ void				ft_dump_tokens(t_file *file);
 void				ft_dump_env(t_env *env);
 void				ft_dump_files(t_file *files);
 void				ft_dump_op(t_program *prog);
+void				ft_dump_label(t_program *prog);
+void				ft_dump_prog(t_program *prog);
 
 #endif

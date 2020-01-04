@@ -6,23 +6,11 @@
 /*   By: lboukrou <lboukrou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/29 15:48:43 by toliver           #+#    #+#             */
-/*   Updated: 2020/01/04 04:04:29 by lboukrou         ###   ########.fr       */
+/*   Updated: 2020/01/04 19:19:53 by lboukrou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "asm.h"
-
-t_token		*ft_last_token(t_file *file)
-{
-	t_token *token;
-
-	token = file->tokens;
-	if (!token)
-		return (NULL);
-	while (token->next)
-		token = token->next;
-	return (token);
-}
 
 int			ft_offset_head(t_env *env, t_file *file, size_t size)
 {

@@ -6,14 +6,14 @@
 /*   By: zaz <marvin@42.fr>                         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2013/10/04 11:43:01 by zaz               #+#    #+#             */
-/*   Updated: 2019/12/31 12:47:44 by jates-           ###   ########.fr       */
+/*   Updated: 2020/01/04 09:32:37 by jates-           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "op.h"
 #include "libft.h"
 
-t_op 	g_op_tab[17] =
+t_op		g_op_tab[17] =
 {
 	{0, 0, {0}, 0, 0, 0, 0, 0},
 	{"live", 1, {T_DIR}, 1, 10, "alive", 0, 0},
@@ -40,7 +40,7 @@ t_op 	g_op_tab[17] =
 	{"aff", 1, {T_REG}, 16, 2, "aff", 1, 0},
 };
 
-t_op	*ft_fetch_op(char *str)
+t_op const	*ft_fetch_op(char *str)
 {
 	int		i;
 
@@ -49,8 +49,9 @@ t_op	*ft_fetch_op(char *str)
 	i = 1;
 	while (i < 16)
 	{
-		if (!ft_strncmp(str, g_op_tab[i].opcode, ft_strlen(g_op_tab[i].opcode) + 1))
-			return (&(g_op_tab[i]));
+		if (!ft_strncmp(str, g_op_tab[i].opcode,\
+			ft_strlen(g_op_tab[i].opcode) + 1))
+			return (&((g_op_tab)[i]));
 		i++;
 	}
 	return (NULL);

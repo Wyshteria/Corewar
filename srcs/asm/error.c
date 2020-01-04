@@ -6,7 +6,7 @@
 /*   By: toliver <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/25 21:14:07 by toliver           #+#    #+#             */
-/*   Updated: 2019/12/18 01:02:31 by jates-           ###   ########.fr       */
+/*   Updated: 2020/01/04 09:04:39 by jates-           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,12 +36,11 @@ void		ft_crash(int error)
 	exit(0);
 }
 
-int		ft_error(t_env *env, t_file *file, int error)
+int			ft_error(t_env *env, t_file *file, int error)
 {
 	(void)error;
-	ft_dprintf(2, "%s: %s: %s\n", env->prog_name, file->filename, strerror(errno));
+	ft_dprintf(2, "%s: %s: %s\n", env->prog_name, file->filename,\
+		strerror(errno));
 	file->mode = CRASH;
 	return (0);
 }
-
-

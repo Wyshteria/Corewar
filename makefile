@@ -33,6 +33,7 @@ OBJS = $(addprefix objs/, $(addsuffix .o, \
 				utils \
 				parse_utils \
 				print \
+				print2 \
 				token \
 				ft_write_file \
 				op \

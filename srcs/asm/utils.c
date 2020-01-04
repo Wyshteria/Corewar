@@ -6,11 +6,23 @@
 /*   By: toliver <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/25 21:55:29 by toliver           #+#    #+#             */
-/*   Updated: 2019/12/04 17:45:38 by toliver          ###   ########.fr       */
+/*   Updated: 2020/01/04 09:04:53 by jates-           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "asm.h"
+
+t_token		*ft_last_token(t_file *file)
+{
+	t_token *token;
+
+	token = file->tokens;
+	if (!token)
+		return (NULL);
+	while (token->next)
+		token = token->next;
+	return (token);
+}
 
 void		*ft_malloc(size_t size)
 {
@@ -51,7 +63,7 @@ int			ft_strchr_pos(char *str, int c)
 int			ft_is_one_of(char c, char *lookfor)
 {
 	int		i;
-	
+
 	i = 0;
 	while (lookfor && lookfor[i])
 	{

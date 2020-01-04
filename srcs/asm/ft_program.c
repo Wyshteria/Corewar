@@ -1,6 +1,18 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_program.c                                       :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: jates- <jates-@student.42.fr>              +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2020/01/04 09:05:10 by jates-            #+#    #+#             */
+/*   Updated: 2020/01/04 09:09:20 by jates-           ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "asm.h"
 
-static char	*ft_cor_filename(t_file *file)
+static char			*ft_cor_filename(t_file *file)
 {
 	const int	len = ft_strlen(file->filename);
 	char		*corname;
@@ -11,7 +23,7 @@ static char	*ft_cor_filename(t_file *file)
 	{
 		if ((corname = ft_strnew(len + 2)) \
 		&& ft_strncpy(corname, file->filename, len - 1))
-			return(ft_strcat(corname, "cor"));
+			return (ft_strcat(corname, "cor"));
 		ft_crash(MALLOC_FAIL);
 	}
 	else
@@ -24,13 +36,11 @@ static char	*ft_cor_filename(t_file *file)
 	return (corname);
 }
 
-
-static int	ft_check_body(t_file *file, t_program *prog)
+static int			ft_check_body(t_file *file, t_program *prog)
 {
 	t_token			*tmp;
-	
+
 	tmp = file->tokens;
-	// ft_printf("check the body\n");
 	while (tmp)
 	{
 		if (!ft_pass_newline_comm(file, &tmp))
@@ -46,12 +56,7 @@ static int	ft_check_body(t_file *file, t_program *prog)
 		else if (tmp->type == OPERATION)
 		{
 			if (!ft_check_op(file, prog, &tmp))
-			{
-				// ft_printf("check op did not work\n");
-				// ft_dump_op(prog);
-				ft_free_op(prog);
 				return (0);
-			}
 		}
 		else
 			return (ft_syntax_error(file, tmp));
@@ -63,11 +68,11 @@ static int	ft_check_body(t_file *file, t_program *prog)
 int					ft_init_prog(t_env *env, t_file *file)
 {
 	ft_clear_prog(&env->prog);
+	env->prog.header.magic = COREWAR_EXEC_MAGIC;
 	if (!(env->prog.filename = ft_cor_filename(file)))
 		return (0);
-	// ft_printf("got the name\n");
-	// ft_dump_tokens(file);
-	if (!ft_check_header(file, &env->prog) || !ft_check_body(file,&env->prog) \
+	ft_printf("got the name\n");
+	if (!ft_check_header(file, &env->prog) || !ft_check_body(file, &env->prog) \
 	|| !ft_check_labels(file, &env->prog, file->tokens))
 	{
 		ft_clear_prog(&env->prog);
