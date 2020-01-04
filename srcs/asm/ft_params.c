@@ -48,6 +48,8 @@ static void	ft_param_init(t_token *token, int nbr_param, \
 	t_operation *operation, t_op const *op)
 {
 	ft_bzero(&(operation->params[nbr_param]), sizeof(t_param));
+	operation->params[nbr_param].col = token->col;
+	operation->params[nbr_param].line = token->line;
 	if (token->type == REGISTER)
 		operation->params[nbr_param].type = T_REG;
 	else if (token->type == DIRECT || token->type == DIRECT_LABEL)
@@ -63,6 +65,7 @@ static void	ft_param_init(t_token *token, int nbr_param, \
 	else
 		operation->params[nbr_param].value_type = token->type;
 	ft_param_len(nbr_param, operation, op);
+	
 }
 
 int			ft_create_param(t_file *file, t_operation *operation, \
@@ -86,9 +89,9 @@ int			ft_create_param(t_file *file, t_operation *operation, \
 			*token = (*token)->next;
 			if (++nbr_param == op->params_number)
 			{
-				ft_printf("too much param or separator\n");
-				file->mode = CONTAIN_ERRORS;
-				return (0);
+				ft_printf("At [%d:%d] too much param separator\n", 
+				operation->line, operation->col);
+				return (ft_syntax_error(file, *token));
 			}
 		}
 	}

@@ -106,6 +106,8 @@ typedef struct		s_param
 	char			*value;
 	int				int_value;
 	int				len;
+	int				line;
+	int				col;
 }					t_param;
 
 typedef struct		s_operation
