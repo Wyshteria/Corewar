@@ -6,23 +6,11 @@
 /*   By: toliver <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/29 15:48:43 by toliver           #+#    #+#             */
-/*   Updated: 2019/12/04 18:43:24 by toliver          ###   ########.fr       */
+/*   Updated: 2020/01/04 09:46:10 by jates-           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "asm.h"
-
-t_token		*ft_last_token(t_file *file)
-{
-	t_token *token;
-
-	token = file->tokens;
-	if (!token)
-		return (NULL);
-	while (token->next)
-		token = token->next;
-	return (token);
-}
 
 int			ft_offset_head(t_env *env, t_file *file, size_t size)
 {
@@ -162,5 +150,3 @@ int			ft_parse_until(t_file *file, char *limit, char **line, int skipping)
 		ft_offset_lines(ft_get_env(), file, ((char[]){end, '\0'}));
 	return (1);
 }
-
-

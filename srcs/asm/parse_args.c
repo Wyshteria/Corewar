@@ -6,13 +6,13 @@
 /*   By: toliver <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/25 21:12:20 by toliver           #+#    #+#             */
-/*   Updated: 2019/12/04 04:09:22 by toliver          ###   ########.fr       */
+/*   Updated: 2020/01/04 09:34:06 by jates-           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "asm.h"
 
-static int			ft_parse_flags(t_env *env, char *flag)
+static int		ft_parse_flags(t_env *env, char *flag)
 {
 	int		i;
 	int		pos;
@@ -55,7 +55,7 @@ static void		ft_parse_files(t_env *env, char *file)
 	}
 }
 
-void		ft_parse_args(int ac, char **av, t_env *env)
+void			ft_parse_args(int ac, char **av, t_env *env)
 {
 	int		i;
 	int		mode;
@@ -80,5 +80,3 @@ void		ft_parse_args(int ac, char **av, t_env *env)
 		}
 	}
 }
-
-

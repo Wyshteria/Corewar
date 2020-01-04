@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_label.c                                         :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: jates- <jates-@student.42.fr>              +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2020/01/04 09:09:54 by jates-            #+#    #+#             */
+/*   Updated: 2020/01/04 09:12:50 by jates-           ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "asm.h"
 
 void				ft_free_label(t_program *prog)
@@ -29,7 +41,7 @@ static t_label		*ft_is_in_label(t_program *prog, char *label)
 	return (NULL);
 }
 
-int			ft_add_label(t_file *file, t_program *prog, char *label)
+int					ft_add_label(t_file *file, t_program *prog, char *label)
 {
 	t_label **tmp;
 
@@ -66,27 +78,26 @@ static void			ft_update_param_labels(t_program *prog)
 		{
 			if (tmp->params[i].value_type == LABEL)
 			{
-				tmp->params[i].int_value = ft_is_in_label(prog, tmp->params[i].value)->mem - tmp->mem;
-				// if (tmp->params[i].int_value < 0)
-				// 	tmp->params[i].int_value = ~(tmp->params[i].int_value) + 1;
-
+				tmp->params[i].int_value = ft_is_in_label(prog, \
+				tmp->params[i].value)->mem - tmp->mem;
 			}
 		}
 		tmp = tmp->next;
 	}
 }
 
-int					ft_check_labels(t_file *file, t_program *prog, t_token *token)
+int					ft_check_labels(t_file *file, t_program *prog, \
+	t_token *token)
 {
 	while (token)
 	{
-		if ((token->type == DIRECT_LABEL || token->type == INDIRECT_LABEL) 
+		if ((token->type == DIRECT_LABEL || token->type == INDIRECT_LABEL)
 			&& !ft_is_in_label(prog, token->value))
-			{
-				ft_printf("label is not referenced\n");
-				ft_syntax_error(file, token);
-				return (0);
-			}
+		{
+			ft_printf("label is not referenced\n");
+			ft_syntax_error(file, token);
+			return (0);
+		}
 		token = token->next;
 	}
 	ft_update_param_labels(prog);

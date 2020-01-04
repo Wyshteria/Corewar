@@ -1,6 +1,18 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_operations.c                                    :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: jates- <jates-@student.42.fr>              +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2020/01/04 09:22:46 by jates-            #+#    #+#             */
+/*   Updated: 2020/01/04 09:27:45 by jates-           ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "asm.h"
 
-static t_operation	*ft_op_init(t_program *prog, t_op const*op)
+static t_operation	*ft_op_init(t_program *prog, t_op const *op)
 {
 	t_operation *tmp;
 	t_operation *ptr;
@@ -26,53 +38,30 @@ static t_operation	*ft_op_init(t_program *prog, t_op const*op)
 	return (tmp);
 }
 
-int		ft_check_op(t_file *file, t_program *prog, t_token **token)
+int					ft_check_op(t_file *file, t_program *prog, t_token **token)
 {
-	t_op		*const op = ft_fetch_op((*token)->value);
+	t_op *const	op = ft_fetch_op((*token)->value);
 	t_operation	*operation;
 
 	operation = ft_op_init(prog, op);
-	// if (*token)
-	// 	{
-	// 		ft_printf("token of type : %s\n", ft_tokentype_string((*token)->type));
-	// 		ft_printf("\tits value is : %s\n", (*token)->value);
-	// 		ft_printf("\tits converted value is : %d\n", (*token)->int_value);
-	// 		ft_printf("\tat pos [%d:%d]\n", (*token)->line, (*token)->col);
-	// 	}
 	if (!ft_create_param(file, operation, token, op))
 		return (0);
 	ft_pass_comm(file, token);
-	// if (*token)
-	// 	{
-	// 		ft_printf("token of type : %s\n", ft_tokentype_string((*token)->type));
-	// 		ft_printf("\tits value is : %s\n", (*token)->value);
-	// 		ft_printf("\tits converted value is : %d\n", (*token)->int_value);
-	// 		ft_printf("\tat pos [%d:%d]\n", (*token)->line, (*token)->col);
-	// 	}
 	if (!*token || (*token)->type != NEWLINE)
 	{
-		ft_printf("operation does not end with a newline %s\n", operation->name);
-		if (*token)
-		{
-			ft_printf("token of type : %s\n", ft_tokentype_string((*token)->type));
-			ft_printf("\tits value is : %s\n", (*token)->value);
-			ft_printf("\tits converted value is : %d\n", (*token)->int_value);
-			ft_printf("\tat pos [%d:%d]\n", (*token)->line, (*token)->col);
-		}
-		return (0);
+		ft_printf("operation does not end with a newline\n");
+		return (ft_syntax_error(file, *token));
 	}
-	// ft_dump_op(prog);
-	// ft_dump_tokens(file);
 	if (!ft_check_params_types(file, operation, op))
 		return (0);
 	prog->header.prog_size += operation->len;
 	return (1);
 }
 
-void	ft_free_op(t_program *prog)
+void				ft_free_op(t_program *prog)
 {
-	t_operation *ptr;
-	t_operation *tmp;
+	t_operation	*ptr;
+	t_operation	*tmp;
 
 	ptr = prog->operations;
 	while (ptr)
@@ -83,4 +72,3 @@ void	ft_free_op(t_program *prog)
 	}
 	prog->operations = NULL;
 }
-

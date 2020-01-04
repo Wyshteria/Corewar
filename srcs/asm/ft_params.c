@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_params.c                                        :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: jates- <jates-@student.42.fr>              +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2020/01/04 09:13:17 by jates-            #+#    #+#             */
+/*   Updated: 2020/01/04 09:16:53 by jates-           ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "asm.h"
 
 char		*ft_type_param(t_param *param)
@@ -9,10 +21,10 @@ char		*ft_type_param(t_param *param)
 	else if (param->type == T_REG)
 		return ("T_REG");
 	else
-		return ("UNKNOWN");	
+		return ("UNKNOWN");
 }
 
-static void ft_param_len (int nbr_param, t_operation *operation, t_op const*op)
+static void	ft_param_len(int nbr_param, t_operation *operation, t_op const *op)
 {
 	if (operation->params[nbr_param].type == T_REG)
 	{
@@ -32,7 +44,8 @@ static void ft_param_len (int nbr_param, t_operation *operation, t_op const*op)
 	operation->len += operation->params[nbr_param].len;
 }
 
-static void	ft_param_init(t_token *token, int nbr_param, t_operation *operation, t_op const*op)
+static void	ft_param_init(t_token *token, int nbr_param, \
+	t_operation *operation, t_op const *op)
 {
 	ft_bzero(&(operation->params[nbr_param]), sizeof(t_param));
 	if (token->type == REGISTER)
@@ -50,10 +63,10 @@ static void	ft_param_init(t_token *token, int nbr_param, t_operation *operation,
 	else
 		operation->params[nbr_param].value_type = token->type;
 	ft_param_len(nbr_param, operation, op);
-
 }
 
-int			ft_create_param(t_file *file, t_operation *operation, t_token **token, t_op const*op)
+int			ft_create_param(t_file *file, t_operation *operation, \
+	t_token **token, t_op const *op)
 {
 	int nbr_param;
 
@@ -66,7 +79,7 @@ int			ft_create_param(t_file *file, t_operation *operation, t_token **token, t_o
 		|| (*token)->type == INDIRECT_LABEL)
 			ft_param_init(*token, nbr_param, operation, op);
 		else
-			break;
+			break ;
 		*token = (*token)->next;
 		if (*token && (*token)->type == SEPARATOR)
 		{
@@ -82,19 +95,19 @@ int			ft_create_param(t_file *file, t_operation *operation, t_token **token, t_o
 	return (1);
 }
 
-int			ft_check_params_types(t_file *file, t_operation *operation, t_op const*op)
+int			ft_check_params_types(t_file *file, t_operation *operation, \
+		t_op const *op)
 {
 	int nbr_param;
 
 	nbr_param = 0;
-	// ft_printf("check_params_types\n");
 	while (nbr_param != op->params_number && operation->params[nbr_param].type)
 	{
 		if (!(op->params[nbr_param] & operation->params[nbr_param].type))
 		{
 			ft_printf("wrong param in the operation\n");
-				file->mode = CONTAIN_ERRORS;
-				return (0);
+			file->mode = CONTAIN_ERRORS;
+			return (0);
 		}
 		nbr_param++;
 	}
@@ -106,4 +119,3 @@ int			ft_check_params_types(t_file *file, t_operation *operation, t_op const*op)
 	}
 	return (1);
 }
-
