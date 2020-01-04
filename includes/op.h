@@ -74,10 +74,10 @@ typedef char	t_arg_type;
 
 typedef struct		header_s
 {
-  unsigned int		magic;
-  char				prog_name[PROG_NAME_LENGTH + 1];
-  unsigned int		prog_size;
-  char				comment[COMMENT_LENGTH + 1];
+	unsigned int		magic;
+	char				prog_name[PROG_NAME_LENGTH + 1];
+	unsigned int		prog_size;
+	char				comment[COMMENT_LENGTH + 1];
 }					header_t;
 
 typedef struct		s_op
@@ -88,9 +88,9 @@ typedef struct		s_op
 	unsigned char	opcode_value;
 	unsigned int	cycles;
 	char			*opcode_name;
-	unsigned char	carry;
-	unsigned char	is_on_two_bytes;
+	int				need_encoding_byte;
+	int				t_dir_is_two_bytes;
 }					t_op;
 
-extern t_op    op_tab[17];
+extern t_op		op_tab[17];
 #endif

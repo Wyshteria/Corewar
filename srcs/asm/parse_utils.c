@@ -6,12 +6,12 @@
 /*   By: toliver <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/29 15:48:43 by toliver           #+#    #+#             */
-/*   Updated: 2019/12/04 18:43:24 by toliver          ###   ########.fr       */
+/*   Updated: 2020/01/04 09:46:10 by jates-           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "asm.h"
- 
+
 int			ft_offset_head(t_env *env, t_file *file, size_t size)
 {
 	file->offset = lseek(file->fd, file->offset + size, SEEK_SET);
@@ -34,7 +34,7 @@ int			ft_offset_lines(t_env *env, t_file *file, char *str)
 		if (str[i] == NEWLINE_CHAR)
 		{
 			file->line += 1;
-			file->col = 0;
+			file->col = 1;
 		}
 		else
 			file->col += 1;
@@ -83,6 +83,7 @@ int			ft_parse_while(t_file *file, char *containing, char **line)
 	while ((retval = read(file->fd, buf, 50)) > 0)
 	{
 		i = 0;
+		buf[retval] = '\0';
 		while(buf[i] && ft_is_one_of(buf[i], containing))
 			i++;
 		size += i;
@@ -116,12 +117,14 @@ int			ft_parse_until(t_file *file, char *limit, char **line, int skipping)
 	int		i;
 	int		size;
 	int		retval;
+	char	end;
 
 	size = 0;
 	while ((retval = read(file->fd, buf, 50)) > 0)
 	{
 		i = 0;
-		while(buf[i] && !ft_is_one_of(buf[i], limit))
+		buf[retval] = '\0';
+		while(buf[i] && !(end = ft_is_one_of(buf[i], limit)))
 			i++;
 		size += i;
 		if (i != retval)
@@ -143,7 +146,7 @@ int			ft_parse_until(t_file *file, char *limit, char **line, int skipping)
 	(*line)[retval] = '\0';
 	ft_offset_head(ft_get_env(), file, size + (skipping ? 1 : 0));
 	ft_offset_lines(ft_get_env(), file, *line);
+	if (end && skipping)
+		ft_offset_lines(ft_get_env(), file, ((char[]){end, '\0'}));
 	return (1);
 }
-
-

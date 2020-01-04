@@ -42,31 +42,48 @@ void		ft_delete_file(t_env *env, t_file *file)
 	ft_free_file(file);
 }
 
-void		ft_parse_operations(t_env *env, t_file *file)
+int			ft_parse_operations(t_env *env, t_file *file)
 {
-	ft_printf("parsing operations\n");
-	(void)env;
-	(void)file;
+	ft_printf("parsing operations !\n");
+	// ft_dump_tokens(file);
+	if (!ft_init_prog(env, file))
+	{
+		ft_dump_op(&env->prog);
+		if (file->mode != CRASH)
+			file->mode = CONTAIN_ERRORS;
+		return (0);
+	}
+	// else
+		// ft_dump_tokens(file);
+	return (1);
 }
 
 int			ft_parse_file(t_env *env, t_file *file)
 {
-	while (file->mode != DONE && file->mode != CRASH)
+	while (file->mode != DONE && file->mode != CRASH && file->mode != CONTAIN_ERRORS)
 	{
 		ft_skip_spaces(env, file);
 		ft_parse_token(env, file);
 	}
-	ft_dump_tokens(file);
+	// ft_dump_tokens(file);
 	if (file->mode == DONE)
-		ft_parse_operations(env, file);
+		return (ft_parse_operations(env, file));
+	else if (file->mode == CONTAIN_ERRORS)
+	{
+		// ft_dump_tokens(file);
+		return (0);
+	}
 	return (1);
 }
 
 int			ft_write_file(t_env *env, t_file *file)
 {
-	(void)env;
-	(void)file;
 	ft_printf("writing file !\n");
+	// ft_dump_prog(&env->prog);
+	if (!ft_open_cor_file(&(env->prog), env, file))
+		return (0);
+	// (void)file;
+	ft_printf("Cor file generated\n");
 	return (1);
 }
 

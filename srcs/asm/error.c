@@ -6,7 +6,7 @@
 /*   By: toliver <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/25 21:14:07 by toliver           #+#    #+#             */
-/*   Updated: 2019/12/04 17:45:39 by toliver          ###   ########.fr       */
+/*   Updated: 2020/01/04 09:04:39 by jates-           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ void		ft_wrong_flag(t_env *env, char c)
 
 void		ft_crash(int error)
 {
-	t_env	*env;
+	t_env		*env;
 
 	env = ft_get_env();
 	ft_dprintf(2, "%s: ", env->prog_name);
@@ -39,7 +39,8 @@ void		ft_crash(int error)
 int			ft_error(t_env *env, t_file *file, int error)
 {
 	(void)error;
-	ft_dprintf(2, "%s: %s: %s\n", env->prog_name, file->filename, strerror(errno));
+	ft_dprintf(2, "%s: %s: %s\n", env->prog_name, file->filename,\
+		strerror(errno));
 	file->mode = CRASH;
 	return (0);
 }
