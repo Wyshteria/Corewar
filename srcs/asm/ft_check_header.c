@@ -102,7 +102,10 @@ int			ft_check_header(t_file *file, t_program *prog)
 		else if (ft_check_name(file, prog))
 			cmd++;
 		else
-			return (0);
+		{
+			ft_printf("header wrong\n");
+			return (ft_syntax_error(file, file->tokens));
+		}
 	}
 	return (1);
 }

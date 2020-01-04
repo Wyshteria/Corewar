@@ -120,18 +120,20 @@ void		ft_dump_op(t_program *prog)
 	ptr = prog->operations;
 	while (ptr)
 	{
-		ft_printf("\toperation name = %s\n", ptr->name);
-		ft_printf("\t\topc = %d\n", ptr->opc);
-		ft_printf("\t\tmemory address = %d\n", ptr->mem);
-		ft_printf("\t\tlength = %d\n", ptr->len);
-		ft_printf("\t\tparam_number [%d]\n", ptr->p_num);
+		ft_printf("\t\toperation name = %s\n", ptr->name);
+		ft_printf("\t\t\topc = %d\n", ptr->opc);
+		ft_printf("\t\t\tmemory address = %d\n", ptr->mem);
+		ft_printf("\t\t\tlength = %d\n", ptr->len);
+		ft_printf("\t\t\t%d encoding [%#x]\n", ptr->is_encoding_needed, ptr->encoding);
+		ft_printf("\t\t\tparam_number [%d]\n", ptr->p_num);
 		i = -1;
 		while (++i < 3)
 		{
-			ft_printf("\t\t\tparam[%d] = %s\n", i + 1, ptr->params[i].value);
-			ft_printf("\t\t\t\ttype = %s\n", ft_type_param(&ptr->params[i]));
-			ft_printf("\t\t\t\tint_val %d\n", ptr->params[i].int_value);
-			ft_printf("\t\t\t\tvalue_type %s\n\n", ft_tokentype_string(ptr->params[i].value_type));
+			ft_printf("\t\t\t\tparam[%d] = %s\n", i + 1, ptr->params[i].value);
+			ft_printf("\t\t\t\t\ttype = %s\n", ft_type_param(&ptr->params[i]));
+			ft_printf("\t\t\t\t\tint_val %d\n", ptr->params[i].int_value);
+			ft_printf("\t\t\t\t\tvalue_type %s\n\n", ft_tokentype_string(ptr->params[i].value_type));
+			ft_printf("\t\t\t\t\tlength %d\n", ptr->params[i].len);
 		}
 		ptr = ptr->next;
 	}

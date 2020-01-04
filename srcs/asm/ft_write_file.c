@@ -40,13 +40,41 @@ void	ft_write_head(t_program *prog)
 	write(prog->fd, "\0\0\0\0", 4);
 }
 
+void	ft_write_body(t_program *prog, t_operation *op)
+{
+	int			i;
+	int			nbr = -1;
+
+	ft_dump_op(prog);
+	while (op && nbr--)
+	{
+		write_hexlen(prog->fd, op->opc, 1);
+		if (op->is_encoding_needed)
+			write_hexlen(prog->fd, op->encoding, 1);
+		i = 0;
+		while (i < op->p_num)
+		{
+			if (op->params[i].value_type == REGISTER)
+				write_hexlen(prog->fd, op->params[i].int_value, 1);
+			else
+				write_hexlen(prog->fd, op->params[i].int_value, op->params[i].len);
+			i++;
+		}
+		op = op->next;
+	}
+}
+
 int	ft_open_cor_file(t_program *prog, t_env *env, t_file *file)
 {
-	if ((prog->fd = open(prog->filename, O_WRONLY | O_CREAT, 0755) < 0))
-	{	
+	if ((prog->fd = open(prog->filename, O_WRONLY | O_CREAT, 0755)) < 0)
+	{
 		ft_clear_prog(prog);
 		return (ft_error(env, file, OPEN_ERROR));
 	}
+	else
+		ft_dump_prog(&env->prog);
+	ft_write_head(prog);
+	ft_write_body(prog, prog->operations);
 	close(prog->fd);
 	return (1);
 }

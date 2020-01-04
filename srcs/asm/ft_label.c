@@ -66,7 +66,10 @@ static void			ft_update_param_labels(t_program *prog)
 		{
 			if (tmp->params[i].value_type == LABEL)
 			{
-				tmp->params[i].int_value = ft_is_in_label(prog, tmp->params[i].value)->mem;
+				tmp->params[i].int_value = ft_is_in_label(prog, tmp->params[i].value)->mem - tmp->mem;
+				// if (tmp->params[i].int_value < 0)
+				// 	tmp->params[i].int_value = ~(tmp->params[i].int_value) + 1;
+
 			}
 		}
 		tmp = tmp->next;

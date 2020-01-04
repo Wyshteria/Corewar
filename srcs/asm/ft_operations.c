@@ -1,6 +1,6 @@
 #include "asm.h"
 
-static t_operation	*ft_op_init(t_program *prog, t_op *op)
+static t_operation	*ft_op_init(t_program *prog, t_op const*op)
 {
 	t_operation *tmp;
 	t_operation *ptr;
@@ -12,7 +12,8 @@ static t_operation	*ft_op_init(t_program *prog, t_op *op)
 	tmp->opc = op->opcode_value;
 	tmp->name = op->opcode;
 	tmp->p_num = op->params_number;
-	tmp->len = op->carry + 1;
+	tmp->len = op->need_encoding_byte + 1;
+	tmp->is_encoding_needed = op->need_encoding_byte;
 	if (prog->operations == NULL)
 		prog->operations = tmp;
 	else

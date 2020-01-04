@@ -241,17 +241,19 @@ void		ft_parse_indirect(t_file *file)
 
 void		ft_parse_instruction2(t_file *file, t_token *token, size_t ret)
 {
-	char	*line;
+	char			*line;
+	const int		diff = ft_strlen(token->value) - ret;
 
-	if (ret != ft_strlen(token->value))
-	{
-		line = token->value;
+	line = token->value;
+	if (diff)
 		if (!(token->value = ft_strsub(line, 0, ret)))
 			ft_crash(MALLOC_FAIL);
-		token->int_value = ft_atoi(token->value);
-		file->col = token->col;
-		file->line = token->line;
-		ft_offset_lines(ft_get_env(), file, token->value);
+	token->int_value = ft_atoi(token->value);
+	file->col = token->col;
+	file->line = token->line;
+	ft_offset_lines(ft_get_env(), file, token->value);
+	if (diff)
+	{
 		ft_add_token(file, token);
 		ft_token_init(token, UNKNOWN, file->col, file->line);
 		if (!(token->value = ft_strsub(line, ret, ft_strlen(line))))
@@ -263,17 +265,19 @@ void		ft_parse_instruction2(t_file *file, t_token *token, size_t ret)
 void		ft_parse_instruction_direct (t_file *file, t_token *token, t_token *last, size_t ret)
 {
 	char	*line;
+	const int		diff = ft_strlen(token->value) - ret;
 
 	last->value = token->value;
-	if (ret != ft_strlen(last->value))
-	{
-		line = token->value;
+	line = token->value;
+	if (diff)
 		if (!(last->value = ft_strsub(line, 0, ret)))
 			ft_crash(MALLOC_FAIL);
-		last->int_value = ft_atoi(last->value);
-		file->col = token->col;
-		file->line = token->line;
-		ft_offset_lines(ft_get_env(), file, last->value);
+	last->int_value = ft_atoi(last->value);
+	file->col = token->col;
+	file->line = token->line;
+	ft_offset_lines(ft_get_env(), file, last->value);
+	if (diff)
+	{
 		ft_token_init(token, UNKNOWN, file->col, file->line);
 		if (!(token->value = ft_strsub(line, ret, ft_strlen(line))))
 			ft_crash(MALLOC_FAIL);

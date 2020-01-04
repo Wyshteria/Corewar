@@ -88,8 +88,8 @@ typedef struct		s_op
 	unsigned char	opcode_value;
 	unsigned int	cycles;
 	char			*opcode_name;
-	unsigned char	carry;
-	unsigned char	is_on_two_bytes;
+	int				need_encoding_byte;
+	int				t_dir_is_two_bytes;
 }					t_op;
 
 extern t_op		op_tab[17];
