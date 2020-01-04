@@ -308,6 +308,21 @@ void		ft_parse_register(t_file *file, t_token *token, size_t ret)
 	free(line);
 }
 
+int			ft_parse_instruction_set_token(t_token *token,
+										int ret, t_file *file)
+{
+	if ((*token).value[0] == 'r')
+	{
+		(*token).type = REGISTER;
+		if ((ret = ft_strspn(&((*token).value[1]), "0123456789")) > 2)
+			ret = 2;
+		ft_parse_register(file, &(*token), ret + 1);
+	}
+	else if (ft_fetch_op((*token).value))
+		(*token).type = OPERATION;
+	return (1);
+}
+
 void		ft_parse_instruction(t_file *file)
 {
 	t_token			token;
@@ -332,15 +347,8 @@ void		ft_parse_instruction(t_file *file)
 		else
 			ft_parse_instruction2(file, &token, ret);
 	}
-	else if (token.value[0] == 'r')
-	{
-		token.type = REGISTER;
-		if ((ret = ft_strspn(&(token.value[1]), "0123456789")) > 2)
-			ret = 2;
-		ft_parse_register(file, &token, ret + 1);
-	}
-	else if (ft_fetch_op(token.value))
-		token.type = OPERATION;
+	else if (token.value[0] == 'r' || ft_fetch_op(token.value))
+		ft_parse_instruction_set_token(&token, ret, file);
 	ft_add_token(file, &token);
 }
 
@@ -370,37 +378,45 @@ void		ft_check_direct_token(t_file *file)
 	}
 }
 
+int			ft_parse_token2(t_env *env, t_file *file, char *buf)
+{
+	if ((buf[0] == COMMENT_CHAR || buf[0] == ALT_COMMENT_CHAR) &&
+			ft_offset_head(env, file, 1) && (file->col += 1))
+		ft_parse_comment(file);
+	else if (buf[0] == CMD_CHAR && ft_offset_head(env, file, 1))
+		ft_parse_cmd(file);
+	else if (buf[0] == STRING_CHAR && ft_offset_head(env, file, 1))
+		ft_parse_string(file);
+	else if (buf[0] == LABEL_CHAR && ft_offset_head(env, file, 1)
+			&& (file->col += 1))
+		ft_parse_indirect_label(file);
+	else if (buf[0] == DIRECT_CHAR && ft_offset_head(env, file, 1))
+		ft_parse_direct(file);
+	else if (buf[0] == NEWLINE_CHAR && ft_offset_head(env, file, 1))
+		ft_parse_newline(file);
+	else if (buf[0] == SEPARATOR_CHAR && ft_offset_head(env, file, 1))
+		ft_parse_separator(file);
+	else if (buf[0] == '-' && ft_offset_head(env, file, 0))
+		ft_parse_indirect(file);
+	else if (ft_is_one_of(buf[0], LABEL_CHARS)
+			&& ft_offset_head(env, file, 0))
+		ft_parse_instruction(file);
+	else
+		return (0);
+	return (1);
+}
+
 void		ft_parse_token(t_env *env, t_file *file)
 {
 	char	buf[51];
 	int		retval;
 
-	(void)env;
 	if ((retval = read(file->fd, buf, 50)) > 0)
 	{
 		buf[retval] = 0;
 		// ft_printf("nous sommes at [%d:%d]\n", file->line, file->col);
-		if ((buf[0] == COMMENT_CHAR || buf[0] == ALT_COMMENT_CHAR) &&
-				ft_offset_head(env, file, 1) && (file->col += 1))
-			ft_parse_comment(file);
-		else if (buf[0] == CMD_CHAR && ft_offset_head(env, file, 1))
-			ft_parse_cmd(file);
-		else if (buf[0] == STRING_CHAR && ft_offset_head(env, file, 1))
-			ft_parse_string(file);
-		else if (buf[0] == LABEL_CHAR && ft_offset_head(env, file, 1)
-				&& (file->col += 1))
-			ft_parse_indirect_label(file);
-		else if (buf[0] == DIRECT_CHAR && ft_offset_head(env, file, 1))
-			ft_parse_direct(file);
-		else if (buf[0] == NEWLINE_CHAR && ft_offset_head(env, file, 1))
-			ft_parse_newline(file);
-		else if (buf[0] == SEPARATOR_CHAR && ft_offset_head(env, file, 1))
-			ft_parse_separator(file);
-		else if (buf[0] == '-' && ft_offset_head(env, file, 0))
-			ft_parse_indirect(file);
-		else if (ft_is_one_of(buf[0], LABEL_CHARS)
-				&& ft_offset_head(env, file, 0))
-			ft_parse_instruction(file);
+		if (ft_parse_token2(env, file, buf))
+			;
 		else
 		{
 			ft_offset_head(env, file, 0);
@@ -408,7 +424,7 @@ void		ft_parse_token(t_env *env, t_file *file)
 		}
 		if (file->mode == PARSING || file->mode == DONE)
 			ft_check_direct_token(file);
-		// ft_printf("End at [%d:%d]\n", file->line, file->col);
+			// ft_printf("End at [%d:%d]\n", file->line, file->col);
 	}
 	else if (retval == -1)
 		ft_error(env, file, READ_ERROR);
