@@ -33,7 +33,7 @@ rm -f "$path_to_testko"*.diff
 #echo "\033[0;32m==Building $tester==\033[0m"	| tee	-a	$launcher_log
 #make -C $path_to_test							>>			$launcher_log
 echo "\n\033[0;32m==Building $ft_asm==\033[0m"	| tee	-a	$launcher_log
-make -C $path_to_ft_asm fclean_asm asm			>>			$launcher_log
+make -C $path_to_ft_asm  re					>>			$launcher_log
 #if [ -x $tester ]
 #then
 	if [ -x $asm ]
@@ -51,7 +51,7 @@ make -C $path_to_ft_asm fclean_asm asm			>>			$launcher_log
 			cor=`echo $file | rev | cut -d'.' -f2- | rev`
 			if [ -f "$path_to_testko$cor.cor" ]
 			then
-				mv $path_to_testko$file $path_to_testok$file
+			#	mv $path_to_testko$file $path_to_testok$file
 				let "discarded = $discarded + 1"
 			else
 				$asm "$path_to_testko$file" > "$path_to_testko$cor.txt"
@@ -73,7 +73,7 @@ make -C $path_to_ft_asm fclean_asm asm			>>			$launcher_log
 						fi
 					else
 						let "fail = $fail + 1"
-						echo "$path_to_testko$cor\n"
+						echo "\n\n\n$path_to_testko$cor\n"
 					fi
 					rm "$path_to_testko$cor.diff"
 					rm "$path_to_testko$cor.my.txt"

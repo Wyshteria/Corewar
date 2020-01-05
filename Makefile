@@ -6,7 +6,7 @@
 #    By: lboukrou <lboukrou@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/09/20 19:50:33 by toliver           #+#    #+#              #
-#    Updated: 2020/01/05 03:12:48 by lboukrou         ###   ########.fr        #
+#    Updated: 2020/01/05 03:21:03 by lboukrou         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -227,7 +227,7 @@ clean: clean_asm clean_vm
 	@rm -rf objs
 
 .PHONY: fclean
-fclean: clean
+fclean: clean fclean_vm fclean_asm
 
 .PHONY: re
 re:
