@@ -32,13 +32,13 @@ static int		ft_check_str(t_file *file, t_token *tmp, int status)
 	}
 	else if (status)
 	{
-		ft_printf("command %s already have\n", tmp->value);
+		ft_printf("Command %s already have\n", tmp->value);
 		return (ft_syntax_error(file, tmp));
 	}
 	else if (!tmp->next->next || tmp->next->next->type != NEWLINE)
 	{
-		ft_printf("problem syntax no newline\n");
-		return (ft_syntax_error(file, tmp->next->next));
+		ft_printf("No newline\n");
+		return (ft_syntax_error(file, tmp->next));
 	}
 	else
 		return (1);
@@ -111,10 +111,7 @@ int				ft_check_header(t_file *file, t_program *prog)
 		else if (ft_check_name(file, prog, 0))
 			cmd++;
 		else
-		{
-			ft_printf("The header wrong\n");
-			return (ft_syntax_error(file, file->tokens));
-		}
+			return (0);
 	}
 	ft_check_comment(file, prog, 1);
 	ft_check_name(file, prog, 1);

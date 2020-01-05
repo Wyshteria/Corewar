@@ -46,6 +46,7 @@ int			ft_parse_operations(t_env *env, t_file *file)
 {
 	if (!ft_init_prog(env, file))
 	{
+		ft_clear_prog(&env->prog);
 		if (file->mode != CRASH)
 			file->mode = CONTAIN_ERRORS;
 		return (0);
@@ -98,6 +99,7 @@ void		ft_parse_files(t_env *env)
 		}
 		else if (!(ft_parse_file(env, ptr)))
 		{
+			// ft_dump_files(ptr);
 			close(ptr->fd);
 			tmp = ptr;
 			ptr = ptr->next;
@@ -106,6 +108,7 @@ void		ft_parse_files(t_env *env)
 		}
 		else if (!(ft_write_file(env, ptr)))
 		{
+			// ft_dump_tokens(ptr);
 			close(ptr->fd);
 			tmp = ptr;
 			ptr = ptr->next;

@@ -6,33 +6,11 @@
 /*   By: lboukrou <lboukrou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/04 21:33:41 by lboukrou          #+#    #+#             */
-/*   Updated: 2020/01/04 21:34:22 by lboukrou         ###   ########.fr       */
+/*   Updated: 2020/01/05 02:01:54 by jates-           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "asm.h"
-
-int			ft_is_number(t_token *token)
-{
-	int		i;
-
-	i = 0;
-	if (token->value && token->value[0] == '-')
-		i++;
-	while (token->value && token->value[i])
-	{
-		if (token->value[i] < '0' || token->value[i] > '9')
-			return (0);
-		i++;
-	}
-	if (i != 0 && i < 12 && token->value[i] == '\0')
-	{
-		token->int_value = ft_atoi(token->value);
-		return (1);
-	}
-	// verifier qu'on a bien la bonne valeur en int (int max pas plus de 12 char)
-	return (0);
-}
 
 int			ft_is_label(t_file *file)
 {
