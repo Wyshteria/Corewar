@@ -6,7 +6,7 @@
 /*   By: jates- <jates-@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/04 09:09:54 by jates-            #+#    #+#             */
-/*   Updated: 2020/01/04 09:12:50 by jates-           ###   ########.fr       */
+/*   Updated: 2020/01/05 03:04:10 by jates-           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,8 @@ static t_label		*ft_is_in_label(t_program *prog, char *label)
 	return (NULL);
 }
 
-int					ft_add_label(t_file *file, t_program *prog, char *label, t_token *token)
+int					ft_add_label(t_file *file, t_program *prog, char *label, \
+		t_token *token)
 {
 	t_label **tmp;
 
@@ -52,8 +53,8 @@ int					ft_add_label(t_file *file, t_program *prog, char *label, t_token *token)
 			tmp = &((*tmp)->next);
 		else
 		{
-			ft_printf("At [%d:%d] ", token->line, token->col);
-			ft_printf("label %s already used at [%d:%d]\n", label, (*tmp)->line, (*tmp)->col);
+			ft_printf("At [%d:%d] label %s", token->line, token->col, label);
+			ft_printf(" already used at [%d:%d]\n", (*tmp)->line, (*tmp)->col);
 			file->mode = CONTAIN_ERRORS;
 			return (0);
 		}
@@ -81,8 +82,8 @@ static void			ft_update_param_labels(t_program *prog)
 		{
 			if (tmp->params[i].value_type == LABEL)
 			{
-					tmp->params[i].int_value = ft_is_in_label(prog, \
-						tmp->params[i].value)->mem - tmp->mem;
+				tmp->params[i].int_value = ft_is_in_label(prog, \
+					tmp->params[i].value)->mem - tmp->mem;
 			}
 		}
 		tmp = tmp->next;
