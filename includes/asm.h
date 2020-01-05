@@ -6,29 +6,29 @@
 /*   By: lboukrou <lboukrou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/19 18:18:38 by toliver           #+#    #+#             */
-/*   Updated: 2020/01/05 03:20:55 by lboukrou         ###   ########.fr       */
+/*   Updated: 2020/01/05 03:36:19 by lboukrou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef ASM_H
-#define ASM_H
-#include <unistd.h>
-#include <sys/errno.h>
-#include <fcntl.h>
-#include "libft.h"
-#include "libftprintf.h"
-#include "op.h"
+# define ASM_H
+# include <unistd.h>
+# include <sys/errno.h>
+# include <fcntl.h>
+# include "libft.h"
+# include "libftprintf.h"
+# include "op.h"
 
-#define FLAGS "a"
+# define FLAGS "a"
 
-enum e_mode 
+enum	e_mode
 {
 	PARSING_FLAGS,
 	PARSING_FILES,
 	PARSING_COMMANDS,
 };
 
-enum e_error
+enum	e_error
 {
 	MALLOC_FAIL,
 	OPEN_ERROR,
@@ -37,7 +37,7 @@ enum e_error
 	WRITE_ERROR,
 };
 
-enum e_type
+enum	e_type
 {
 	COMMAND = 1,
 	COMMAND_NAME,
@@ -58,7 +58,6 @@ enum e_type
 	INSTRUCTION,
 	UNKNOWN,
 };
-// parse par token puis parse les tokens
 
 typedef struct		s_token
 {
@@ -71,7 +70,7 @@ typedef struct		s_token
 	struct s_token	*prev;
 }					t_token;
 
-enum e_fileparsing_mode
+enum	e_fileparsing_mode
 {
 	PARSING,
 	CRASH,
@@ -79,19 +78,27 @@ enum e_fileparsing_mode
 	CONTAIN_ERRORS,
 };
 
+/*
+**	Ne pas free char *value, assigne token->value
+*/
+
 typedef struct		s_label
 {
 	struct s_label	*next;
-	char			*value; // ne pas free, assigne token->value
-	int				mem; 
+	char			*value;
+	int				mem;
 	int				col;
 	int				line;
 }					t_label;
 
+/*
+**	Ne pas free char *filename, assigne le av[i] correspondant
+*/
+
 typedef struct		s_file
 {
 	struct s_file	*next;
-	char			*filename; // ne pas free, assigne le av[i] correspondant;
+	char			*filename;
 	int				fd;
 	int				line;
 	int				col;
@@ -111,12 +118,16 @@ typedef struct		s_param
 	int				col;
 }					t_param;
 
+/*
+**	Do not free char *name, token value
+*/
+
 typedef struct		s_operation
 {
 	struct s_operation	*next;
 	struct s_operation	*prev;
 	char				opc;
-	char				*name; // ne pas free, assigne g_op_opcode
+	char				*name;
 	t_param				params[3];
 	int					p_num;
 	int					mem;
@@ -136,9 +147,13 @@ typedef struct		s_program
 	t_header		header;
 }					t_program;
 
+/*
+**	Do not free char *progr_name, assign av[0]
+*/
+
 typedef struct		s_env
 {
-	char			*prog_name; // ne pas free, assigne av[0]
+	char			*prog_name;
 	int				flags;
 	t_file			*files;
 	t_program		prog;
@@ -155,9 +170,11 @@ void				ft_clear_prog(t_program *prog);
 ** LABEL FUNC
 */
 
-int					ft_check_labels(t_file *file, t_program *prog, t_token *token);
+int					ft_check_labels(t_file *file, t_program *prog,
+									t_token *token);
 void				ft_free_label(t_program *prog);
-int					ft_add_label(t_file *file, t_program *prog, char *label, t_token *token);
+int					ft_add_label(t_file *file, t_program *prog, \
+							char *label, t_token *token);
 
 /*
 ** OPERATION FUNC
@@ -171,8 +188,11 @@ int					ft_check_op(t_file *file, t_program *prog, t_token **token);
 ** PARAMS FUNC
 */
 
-int					ft_create_param(t_file *file, t_operation *operation, t_token **token, t_op const*op);
-int					ft_check_params_types(t_file *file, t_operation *operation, t_op const*op);
+int					ft_create_param(t_file *file, t_operation *operation, \
+							t_token **token, t_op const*op);
+int					ft_check_params_types(t_file *file, \
+						t_operation *operation, \
+							t_op const*op);
 
 /*
 ** WRITING FUNC
@@ -201,7 +221,6 @@ int					ft_error(t_env *env, t_file *file, int error);
 int					ft_lexical_error(t_file *file, t_token *token);
 int					ft_syntax_error(t_file *file, t_token *token);
 
-
 /*
 ** ENV FUNC
 */
@@ -222,7 +241,7 @@ void				ft_free_files(t_env *env);
 ** UTILS FUNC
 */
 
-size_t				ft_strspn(const char *s, const char *charset);;
+size_t				ft_strspn(const char *s, const char *charset);
 void				*ft_malloc(size_t size);
 int					ft_pow2(int pow);
 int					ft_strchr_pos(char *str, int c);
@@ -232,12 +251,13 @@ int					ft_is_one_of(char c, char *lookfor);
 ** PARSING UTILS FUNC
 */
 
-int					ft_parse_while(t_file *file, char *containing, char **line);
-int					ft_parse_until(t_file *file, char *limit, char **line, int skipping);
+int					ft_parse_while(t_file *file, char *containing,\
+						char **line);
+int					ft_parse_until(t_file *file, char *limit,\
+						char **line, int skipping);
 void				ft_skip_spaces(t_env *env, t_file *file);
 int					ft_offset_lines(t_env *env, t_file *file, char *str);
 int					ft_offset_head(t_env *env, t_file *file, size_t size);
-
 
 /*
 ** TOKEN FUNC
@@ -247,14 +267,13 @@ void				ft_parse_token(t_env *env, t_file *file);
 t_token				*ft_last_token(t_file *file);
 void				ft_parse_unknown(t_file *file);
 
-
-
 /*
 ** TOKEN INIT FUNC
 */
 
 void				ft_add_token(t_file *file, t_token *token);
-void				ft_token_init(t_token *token, int type, int col, int line);
+void				ft_token_init(t_token *token, int type,\
+						int col, int line);
 
 /*
 ** PARSE FILES FUNC
@@ -266,9 +285,6 @@ int					ft_write_file(t_env *env, t_file *file);
 void				ft_delete_file(t_env *env, t_file *file);
 int					ft_open_file(t_env *env, t_file *file);
 
-
-
-
 /*
 ** TOKEN PARSE FUNC
 */
@@ -279,7 +295,6 @@ void				ft_parse_indirect(t_file *file);
 void				ft_parse_register(t_file *file, t_token *token, size_t ret);
 int					ft_parse_number(t_file *file, t_token *token);
 
-
 /*
 ** TOKEN PARSE IDENTIFIER FUNC
 */
@@ -288,7 +303,6 @@ int					ft_is_number(t_token *token);
 int					ft_is_label(t_file *file);
 int					ft_is_reg(char *str);
 
-
 /*
 ** TOKEN PARSE INSTRUCTIONS FUNC
 */
@@ -296,7 +310,6 @@ int					ft_is_reg(char *str);
 void				ft_parse_instruction(t_file *file);
 void				ft_parse_instruction_direct(t_file *file, t_token *token,
 										t_token *last, size_t ret);
-
 
 /*
 ** TOKEN TYPE FUNC
@@ -307,7 +320,6 @@ void				ft_parse_cmd(t_file *file);
 void				ft_parse_string(t_file *file);
 void				ft_parse_newline(t_file *file);
 void				ft_parse_separator(t_file *file);
-
 
 /*
 ** PRINTING FUNC
