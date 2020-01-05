@@ -46,6 +46,7 @@ int			ft_parse_operations(t_env *env, t_file *file)
 {
 	if (!ft_init_prog(env, file))
 	{
+		ft_clear_prog(&env->prog);
 		if (file->mode != CRASH)
 			file->mode = CONTAIN_ERRORS;
 		return (0);

@@ -6,7 +6,7 @@
 /*   By: lboukrou <lboukrou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/04 21:16:36 by lboukrou          #+#    #+#             */
-/*   Updated: 2020/01/04 21:30:46 by lboukrou         ###   ########.fr       */
+/*   Updated: 2020/01/05 02:38:40 by jates-           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,6 @@ void		ft_parse_string(t_file *file)
 	ft_offset_lines(ft_get_env(), file, ((char[]){STRING_CHAR, '\0'}));
 	ft_parse_until(file, (char[]){STRING_CHAR, '\0'}, &(token.value), 1);
 	ft_add_token(file, &token);
-	//check what happens if string_char not terminated
 }
 
 void		ft_parse_newline(t_file *file)

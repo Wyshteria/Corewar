@@ -74,9 +74,9 @@ int					ft_init_prog(t_env *env, t_file *file)
 	if (!ft_check_header(file, &env->prog))
 	{
 		ft_printf("The header is wrong format\n");
-		// ft_clear_prog(&env->prog);
 		if (file->mode != CONTAIN_ERRORS)
 			return (ft_lexical_error(file, NULL));
+		return (0);
 	}
 	if (!ft_check_body(file, &env->prog) \
 	|| !ft_check_labels(file, &env->prog, file->tokens))
