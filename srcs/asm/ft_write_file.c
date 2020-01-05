@@ -6,16 +6,17 @@
 /*   By: lboukrou <lboukrou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/17 03:10:28 by jates-            #+#    #+#             */
-/*   Updated: 2020/01/05 00:39:34 by lboukrou         ###   ########.fr       */
+/*   Updated: 2020/01/05 01:10:00 by lboukrou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "asm.h"
 
-void	write_hexlen(int fd, size_t size, int len)
+static int	write_hexlen(int fd, size_t size, int len)
 {
 	unsigned char	*tmp;
 	int				i;
+	int				ret;
 
 	i = len;
 	if (!(tmp = (unsigned char*)ft_memalloc(i * sizeof(unsigned char))))
@@ -25,20 +26,26 @@ void	write_hexlen(int fd, size_t size, int len)
 		tmp[--i] = size % 256;
 		size /= 256;
 	}
-	write(fd, tmp, len);
+	ret = write(fd, tmp, len);
 	ft_memdel((void**)&tmp);
+	if (ret == -1)
+		return (-1);
+	else if (ret != len)
+		return (0);
+	return (1);
 }
 
-void	ft_write_head(t_program *prog)
+static int	ft_write_head(t_program *prog)
 {
 	write_hexlen(prog->fd, prog->header.magic, 4);
 	write(prog->fd, prog->header.prog_name, PROG_NAME_LENGTH);
 	write_hexlen(prog->fd, prog->header.prog_size, 8);
 	write(prog->fd, prog->header.comment, COMMENT_LENGTH);
 	write(prog->fd, "\0\0\0\0", 4);
+	return (1);
 }
 
-void	ft_write_body(t_program *prog, t_operation *op)
+static void	ft_write_body(t_program *prog, t_operation *op)
 {
 	int			i;
 
