@@ -6,7 +6,7 @@
 /*   By: lboukrou <lboukrou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/19 18:19:18 by toliver           #+#    #+#             */
-/*   Updated: 2020/01/05 00:42:42 by lboukrou         ###   ########.fr       */
+/*   Updated: 2020/01/05 01:53:30 by lboukrou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,18 +61,23 @@ int			ft_parse_file(t_env *env, t_file *file)
 		ft_skip_spaces(env, file);
 		ft_parse_token(env, file);
 	}
-	return (file->mode != CRASH && file->mode != CONTAIN_ERRORS)
+	return (file->mode != CRASH && file->mode != CONTAIN_ERRORS);
 }
 
 int			ft_write_file(t_env *env, t_file *file)
 {
+	int		ret;
 
 	ft_clear_prog(&env->prog);
 	if (!ft_parse_operations(env, file))
 		return(0);
-	if (!ft_open_cor_file(&(env->prog), env, file))
+	if (!(ret = ft_open_cor_file(&(env->prog), env, file)))
 		return (0);
-	ft_printf("Cor file %s generated\n", env->prog.filename);
+	// (void)file;
+	if (ret == -1)
+		ft_printf("Cor file %s generated but corrupted\n", env->prog.filename);
+	else
+		ft_printf("Cor file %s generated\n", env->prog.filename);
 	return (1);
 }
 

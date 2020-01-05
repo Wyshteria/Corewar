@@ -6,7 +6,7 @@
 /*   By: lboukrou <lboukrou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/19 18:18:38 by toliver           #+#    #+#             */
-/*   Updated: 2020/01/05 00:42:11 by lboukrou         ###   ########.fr       */
+/*   Updated: 2020/01/05 01:22:39 by lboukrou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,6 +34,7 @@ enum e_error
 	OPEN_ERROR,
 	READ_ERROR,
 	LSEEK_ERROR,
+	WRITE_ERROR,
 };
 
 enum e_type

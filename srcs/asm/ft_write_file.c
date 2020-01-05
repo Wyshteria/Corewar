@@ -6,7 +6,7 @@
 /*   By: lboukrou <lboukrou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/17 03:10:28 by jates-            #+#    #+#             */
-/*   Updated: 2020/01/05 01:10:00 by lboukrou         ###   ########.fr       */
+/*   Updated: 2020/01/05 01:54:08 by lboukrou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ static int	write_hexlen(int fd, size_t size, int len)
 
 	i = len;
 	if (!(tmp = (unsigned char*)ft_memalloc(i * sizeof(unsigned char))))
-		return ;
+		return (-1);
 	while (size && i > 0)
 	{
 		tmp[--i] = size % 256;
@@ -37,40 +37,98 @@ static int	write_hexlen(int fd, size_t size, int len)
 
 static int	ft_write_head(t_program *prog)
 {
-	write_hexlen(prog->fd, prog->header.magic, 4);
-	write(prog->fd, prog->header.prog_name, PROG_NAME_LENGTH);
-	write_hexlen(prog->fd, prog->header.prog_size, 8);
-	write(prog->fd, prog->header.comment, COMMENT_LENGTH);
-	write(prog->fd, "\0\0\0\0", 4);
-	return (1);
+	int		ret;
+	int		mark;
+
+	mark = 0;
+	if ((ret = write_hexlen(prog->fd, prog->header.magic, 4)) == -1)
+		return (ret);
+	else if (ret == 0)
+		mark++;
+	if ((ret = write(prog->fd, prog->header.prog_name, PROG_NAME_LENGTH)) == -1)
+		return (ret);
+	else if (ret == 0)
+		mark++;
+	if ((ret = write_hexlen(prog->fd, prog->header.prog_size, 8)) == -1)
+		return (ret);
+	else if (ret == 0)
+		mark++;
+	if ((ret = write(prog->fd, prog->header.comment, COMMENT_LENGTH)) == -1)
+		return (ret);
+	else if (ret == 0)
+		mark++;
+	if ((ret = write(prog->fd, "\0\0\0\0", 4)) == -1)
+		return (ret);
+	else if (ret == 0)
+		mark++;
+	return ((mark) ? 0 : 1);
 }
 
-static void	ft_write_body(t_program *prog, t_operation *op)
+static int	ft_write_while(t_program *prog, t_operation *op, int limit)
 {
-	int			i;
+	int		i;
+	int		ret;
+	int		mark;
+	
+	i = 0;
+	mark = 0;
+	while (i < limit)
+	{
+		if (op->params[i].value_type == REGISTER)
+		{	
+			if ((ret = write_hexlen(prog->fd, op->params[i].int_value, 1)) == -1)
+				return (-1);
+			else if (ret == 0)
+				mark++; 
+		}
+		else
+		{
+			if ((ret = write_hexlen(prog->fd, op->params[i].int_value,
+									op->params[i].len)) == -1)
+				return (-1);
+			else if (ret == 0)
+				mark++;
+		}
+		i++;
+	}
+	return (mark ? 0 : 1);
+}
+
+static int	ft_write_body(t_program *prog, t_operation *op)
+{
+	int			mark;
+	int			ret;
 
 	// ft_dump_op(prog);
+	mark = 0;
 	while (op)
 	{
-		write_hexlen(prog->fd, op->opc, 1);
+		if ((ret = write_hexlen(prog->fd, op->opc, 1)) == -1)
+			return (ret);
+		else if (ret == 0)
+			mark++;
 		if (op->is_encoding_needed)
-			write_hexlen(prog->fd, op->encoding, 1);
-		i = 0;
-		while (i < op->p_num)
 		{
-			if (op->params[i].value_type == REGISTER)
-				write_hexlen(prog->fd, op->params[i].int_value, 1);
-			else
-				write_hexlen(prog->fd, op->params[i].int_value, \
-					op->params[i].len);
-			i++;
+			if ((ret = write_hexlen(prog->fd, op->encoding, 1)) == -1)
+				return (ret);
+			else if (ret == 0)
+				mark++;
 		}
+		if ((ret = ft_write_while(prog, op, op->p_num)) == -1)
+			return (-1);
+		else if (ret == 0)
+			mark++;
 		op = op->next;
 	}
+	return (mark ? 0 : 1);
 }
 
 int		ft_open_cor_file(t_program *prog, t_env *env, t_file *file)
 {
+	int		ret;
+	int		mark;
+	
+	mark = 0;
 	if ((prog->fd = open(prog->filename, O_WRONLY | O_CREAT, 0755)) < 0)
 	{
 		ft_clear_prog(prog);
@@ -78,8 +136,14 @@ int		ft_open_cor_file(t_program *prog, t_env *env, t_file *file)
 	}
 	// else
 	// 	ft_dump_prog(&env->prog);
-	ft_write_head(prog);
-	ft_write_body(prog, prog->operations);
+	if ((ret = ft_write_head(prog)) == -1)
+		return (ft_error(env, file, WRITE_ERROR));
+	else if (ret == 0)
+		mark++; //TODO Afficher corrompu, how ?
+	if ((ret = ft_write_body(prog, prog->operations)) == -1)
+		return (ft_error(env, file, WRITE_ERROR));
+	else if (ret == 0)
+		mark++;			
 	close(prog->fd);
-	return (1);
+	return (mark ? -1 : 1);
 }
