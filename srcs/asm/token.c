@@ -6,7 +6,7 @@
 /*   By: lboukrou <lboukrou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/29 15:55:24 by toliver           #+#    #+#             */
-/*   Updated: 2020/01/05 02:39:10 by jates-           ###   ########.fr       */
+/*   Updated: 2020/01/05 02:57:55 by jates-           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,7 +74,6 @@ void		ft_parse_token(t_env *env, t_file *file)
 	if ((retval = read(file->fd, buf, 50)) > 0)
 	{
 		buf[retval] = 0;
-		// ft_printf("nous sommes at [%d:%d]\n", file->line, file->col);
 		if (ft_parse_token2(env, file, buf))
 			;
 		else
@@ -84,7 +83,6 @@ void		ft_parse_token(t_env *env, t_file *file)
 		}
 		if (file->mode == PARSING || file->mode == DONE)
 			ft_check_direct_token(file);
-			// ft_printf("End at [%d:%d]\n", file->line, file->col);
 	}
 	else if (retval == -1)
 		ft_error(env, file, READ_ERROR);

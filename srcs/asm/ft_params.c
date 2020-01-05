@@ -6,7 +6,11 @@
 /*   By: lboukrou <lboukrou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/04 09:13:17 by jates-            #+#    #+#             */
+<<<<<<< HEAD
 /*   Updated: 2020/01/05 03:03:44 by lboukrou         ###   ########.fr       */
+=======
+/*   Updated: 2020/01/05 03:01:11 by jates-           ###   ########.fr       */
+>>>>>>> fca1d64cb196e2bb02c797892db97aec2c3284e0
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,7 +92,11 @@ int			ft_create_param(t_file *file, t_operation *operation, \
 			*token = (*token)->next;
 			if (++nbr_param == op->params_number)
 			{
+<<<<<<< HEAD
 				ft_printf("At [%d:%d] too much param separator\n",
+=======
+				ft_printf("At [%d:%d] too much param separator\n", \
+>>>>>>> fca1d64cb196e2bb02c797892db97aec2c3284e0
 				operation->line, operation->col);
 				return (ft_syntax_error(file, *token));
 			}
