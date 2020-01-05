@@ -61,7 +61,7 @@ int			ft_parse_file(t_env *env, t_file *file)
 		ft_skip_spaces(env, file);
 		ft_parse_token(env, file);
 	}
-	return (file->mode != CRASH && file->mode != CONTAIN_ERRORS)
+	return (file->mode != CRASH && file->mode != CONTAIN_ERRORS);
 }
 
 int			ft_write_file(t_env *env, t_file *file)
