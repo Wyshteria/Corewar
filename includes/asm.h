@@ -6,7 +6,7 @@
 /*   By: lboukrou <lboukrou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/19 18:18:38 by toliver           #+#    #+#             */
-/*   Updated: 2020/01/05 01:22:39 by lboukrou         ###   ########.fr       */
+/*   Updated: 2020/01/05 03:14:50 by lboukrou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -288,6 +288,18 @@ void				ft_parse_unknown(t_file *file);
 
 void				ft_add_token(t_file *file, t_token *token);
 void				ft_token_init(t_token *token, int type, int col, int line);
+
+/*
+** PARSE FILES FUNC
+*/
+
+void				ft_parse_files(t_env *env);
+int					ft_parse_file(t_env *env, t_file *file);
+int					ft_write_file(t_env *env, t_file *file);
+void				ft_delete_file(t_env *env, t_file *file);
+int					ft_open_file(t_env *env, t_file *file);
+
+
 
 
 /*
