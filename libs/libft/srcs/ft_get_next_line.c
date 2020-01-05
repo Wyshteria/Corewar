@@ -6,11 +6,12 @@
 /*   By: toliver <toliver@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/15 00:43:10 by toliver           #+#    #+#             */
-/*   Updated: 2019/02/11 08:33:25 by toliver          ###   ########.fr       */
+/*   Updated: 2020/01/05 03:11:14 by jates-           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
+
 static int			elem_fill(t_lst *lst, int fd)
 {
 	char			buf[BUFF_SIZE + 1];

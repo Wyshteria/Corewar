@@ -6,7 +6,7 @@
 /*   By: toliver <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/21 19:48:24 by toliver           #+#    #+#             */
-/*   Updated: 2019/07/21 22:24:03 by toliver          ###   ########.fr       */
+/*   Updated: 2020/01/05 03:10:38 by jates-           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ static int		wordnumber(char *str, char *charset, int *words, int *size)
 	if (!str || !charset)
 	{
 		*words = !str ? 0 : 1;
-		*size = str ? ft_strlen(str) + 1: 0;
+		*size = str ? ft_strlen(str) + 1 : 0;
 		return (1);
 	}
 	while (*str)
@@ -70,6 +70,10 @@ static int		fill_string(char *arrstr, char *str, int *c, char *charset)
 	return (i);
 }
 
+/*
+**   (char*)((*arr) + sizeof(char*) * (words + 1)
+*/
+
 static int		fill_array(char ***arr, int words, char *str, char *charset)
 {
 	int		word;
@@ -81,7 +85,7 @@ static int		fill_array(char ***arr, int words, char *str, char *charset)
 	{
 		if (!is_charset(*str, charset))
 		{
-			(*arr)[word] = ((char*)&((*arr)[words + 1])) + c;//   (char*)((*arr) + sizeof(char*) * (words + 1)
+			(*arr)[word] = ((char*)&((*arr)[words + 1])) + c;
 			str += fill_string((*arr)[word], str, &c, charset);
 			word++;
 		}

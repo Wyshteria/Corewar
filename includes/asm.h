@@ -6,7 +6,7 @@
 /*   By: lboukrou <lboukrou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/19 18:18:38 by toliver           #+#    #+#             */
-/*   Updated: 2020/01/05 01:22:39 by lboukrou         ###   ########.fr       */
+/*   Updated: 2020/01/05 03:20:55 by lboukrou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -145,39 +145,6 @@ typedef struct		s_env
 }					t_env;
 
 /*
-	STRUCTURES POUR LA CONVERSION EN OPERATIONS
-
-typedef struct		s_param
-{
-	int				type;
-	int				value_type;
-	char			*value;
-	int				int_value;
-}					t_param;
-
-typedef struct		s_label
-{
-	char			*value;
-	struct s_label	*next;
-}					t_label;
-
-typedef struct		s_operation
-{
-	t_label			*labels;
-	unsigned		op_code;
-	t_param			params[3];	
-}					t_operation;
-
-typedef struct		s_program
-{
-	char			*filename;
-	char			*name;
-	char			*comment;
-	t_operation		*operations;
-}					t_program;
-*/
-
-/*
 ** CHAMPION PROGRAM FUNC
 */
 
@@ -288,6 +255,18 @@ void				ft_parse_unknown(t_file *file);
 
 void				ft_add_token(t_file *file, t_token *token);
 void				ft_token_init(t_token *token, int type, int col, int line);
+
+/*
+** PARSE FILES FUNC
+*/
+
+void				ft_parse_files(t_env *env);
+int					ft_parse_file(t_env *env, t_file *file);
+int					ft_write_file(t_env *env, t_file *file);
+void				ft_delete_file(t_env *env, t_file *file);
+int					ft_open_file(t_env *env, t_file *file);
+
+
 
 
 /*

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parse_args.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: toliver <marvin@42.fr>                     +#+  +:+       +#+        */
+/*   By: lboukrou <lboukrou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/25 21:12:20 by toliver           #+#    #+#             */
-/*   Updated: 2020/01/04 09:34:06 by jates-           ###   ########.fr       */
+/*   Updated: 2020/01/05 03:17:22 by lboukrou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ static int		ft_parse_flags(t_env *env, char *flag)
 	return (1);
 }
 
-static void		ft_parse_files(t_env *env, char *file)
+static void		ft_parse_args_files(t_env *env, char *file)
 {
 	t_file	*ptr;
 	t_file	*tmp;
@@ -75,7 +75,7 @@ void			ft_parse_args(int ac, char **av, t_env *env)
 		}
 		if (mode == PARSING_FILES)
 		{
-			ft_parse_files(env, av[i]);
+			ft_parse_args_files(env, av[i]);
 			i++;
 		}
 	}
