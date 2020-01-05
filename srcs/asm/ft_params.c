@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_params.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jates- <jates-@student.42.fr>              +#+  +:+       +#+        */
+/*   By: lboukrou <lboukrou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/04 09:13:17 by jates-            #+#    #+#             */
-/*   Updated: 2020/01/04 09:16:53 by jates-           ###   ########.fr       */
+/*   Updated: 2020/01/05 03:03:44 by lboukrou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,7 +65,6 @@ static void	ft_param_init(t_token *token, int nbr_param, \
 	else
 		operation->params[nbr_param].value_type = token->type;
 	ft_param_len(nbr_param, operation, op);
-	
 }
 
 int			ft_create_param(t_file *file, t_operation *operation, \
@@ -89,7 +88,7 @@ int			ft_create_param(t_file *file, t_operation *operation, \
 			*token = (*token)->next;
 			if (++nbr_param == op->params_number)
 			{
-				ft_printf("At [%d:%d] too much param separator\n", 
+				ft_printf("At [%d:%d] too much param separator\n",
 				operation->line, operation->col);
 				return (ft_syntax_error(file, *token));
 			}
