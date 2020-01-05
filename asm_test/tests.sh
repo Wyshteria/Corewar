@@ -51,7 +51,7 @@ make -C $path_to_ft_asm fclean_asm asm			>>			$launcher_log
 			cor=`echo $file | rev | cut -d'.' -f2- | rev`
 			if [ -f "$path_to_testko$cor.cor" ]
 			then
-				#mv $path_to_testko$file $path_to_testok$file
+				mv $path_to_testko$file $path_to_testok$file
 				let "discarded = $discarded + 1"
 			else
 				$asm "$path_to_testko$file" > "$path_to_testko$cor.txt"

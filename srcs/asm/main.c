@@ -16,7 +16,7 @@ int			ft_open_file(t_env *env, t_file *file)
 {
 	int		fd;
 
-	fd = open(file->filename, O_RDONLY);x
+	fd = open(file->filename, O_RDONLY);
 	file->fd = fd;
 	if (fd == -1)
 	{
@@ -44,17 +44,12 @@ void		ft_delete_file(t_env *env, t_file *file)
 
 int			ft_parse_operations(t_env *env, t_file *file)
 {
-// ft_printf("parsing operations !\n");
-// ft_dump_tokens(file);
 	if (!ft_init_prog(env, file))
 	{
-	// ft_dump_op(&env->prog);
 		if (file->mode != CRASH)
 			file->mode = CONTAIN_ERRORS;
 		return (0);
 	}
-	// else
-	// ft_dump_tokens(file);
 	return (1);
 }
 
@@ -66,31 +61,18 @@ int			ft_parse_file(t_env *env, t_file *file)
 		ft_skip_spaces(env, file);
 		ft_parse_token(env, file);
 	}
-	// ft_dump_tokens(file);
-	// if (file->mode == DONE)
-	// 	return (ft_parse_operations(env, file));
-	if (file->mode == CRASH
-			|| file->mode == CONTAIN_ERRORS)
-	{
-	// ft_dump_tokens(file);
-		return (0);
-	}
-	return (1);
+	return (file->mode != CRASH && file->mode != CONTAIN_ERRORS)
 }
 
 int			ft_write_file(t_env *env, t_file *file)
 {
-// ft_printf("writing file !\n");
+
 	ft_clear_prog(&env->prog);
-	if (!file->next)
-		ft_dump_tokens(file);
 	if (!ft_parse_operations(env, file))
 		return(0);
 	if (!ft_open_cor_file(&(env->prog), env, file))
 		return (0);
-// (void)file;
 	ft_printf("Cor file %s generated\n", env->prog.filename);
-	// ft_dump_prog(&env->prog);
 	return (1);
 }
 
@@ -106,7 +88,7 @@ void		ft_parse_files(t_env *env)
 		{
 			tmp = ptr;
 			ptr = ptr->next;
-//			ft_delete_file(env, tmp); pareil que dessous
+			ft_delete_file(env, tmp);
 			continue;
 		}
 		else if (!(ft_parse_file(env, ptr)))
@@ -114,7 +96,7 @@ void		ft_parse_files(t_env *env)
 			close(ptr->fd);
 			tmp = ptr;
 			ptr = ptr->next;
-//			ft_delete_file(env, tmp); pareil que dessous
+			ft_delete_file(env, tmp);
 			continue;
 		}
 		else if (!(ft_write_file(env, ptr)))
@@ -122,12 +104,12 @@ void		ft_parse_files(t_env *env)
 			close(ptr->fd);
 			tmp = ptr;
 			ptr = ptr->next;
-//			ft_delete_file(env, tmp); pareil que dessous
+			ft_delete_file(env, tmp);
 			continue;
 		}
 		close(ptr->fd);
 		tmp = ptr;
-//		ft_delete_file(env, tmp); penser a decomenter pour retrouver les files dans le dump
+		ft_delete_file(env, tmp);
 		ptr = ptr->next;
 	}
 }
@@ -140,7 +122,6 @@ int			main(int ac, char **av)
 	ft_set_env(&env);
 	ft_parse_args(ac, av, &env);
 	ft_parse_files(&env);
-	// ft_dump_env(&env);
 	ft_free_env(&env);
 	return (0);
 }
