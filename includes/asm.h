@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   asm.h                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lboukrou <lboukrou@student.42.fr>          +#+  +:+       +#+        */
+/*   By: jates- <jates-@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/19 18:18:38 by toliver           #+#    #+#             */
-/*   Updated: 2020/01/05 03:36:19 by lboukrou         ###   ########.fr       */
+/*   Updated: 2020/02/24 17:23:05 by jates-           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -242,7 +242,7 @@ void				ft_free_files(t_env *env);
 */
 
 size_t				ft_strspn(const char *s, const char *charset);
-void				*ft_malloc(size_t size);
+void				*ft_safe_malloc(size_t size);
 int					ft_pow2(int pow);
 int					ft_strchr_pos(char *str, int c);
 int					ft_is_one_of(char c, char *lookfor);

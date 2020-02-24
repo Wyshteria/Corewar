@@ -3,21 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   op.h                                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: zaz <marvin@42.fr>                         +#+  +:+       +#+        */
+/*   By: jates- <jates-@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2013/10/04 11:33:27 by zaz               #+#    #+#             */
-/*   Updated: 2020/01/04 05:19:08 by toliver          ###   ########.fr       */
+/*   Updated: 2020/02/24 17:26:18 by jates-           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef OP_H
 # define OP_H
 # include <stdint.h>
-
-/*
-** Toutes les tailles sont en octets.
-** On part du principe qu'un int fait 32 bits. Est-ce vrai chez vous ?
-*/
 
 # define IND_SIZE				2
 # define REG_SIZE				4
@@ -29,9 +24,9 @@
 
 # define MAX_ARGS_NUMBER		4
 # define MAX_PLAYERS			4
-# define MEM_SIZE				4096
-# define IDX_MOD				512
-# define CHAMP_MAX_SIZE			682
+# define MEM_SIZE				(4*1024)
+# define IDX_MOD				(MEM_SIZE/8)
+# define CHAMP_MAX_SIZE			(MEM_SIZE/6)
 
 # define COMMENT_CHAR			'#'
 # define ALT_COMMENT_CHAR		';'

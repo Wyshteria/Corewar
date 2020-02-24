@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parse_args.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lboukrou <lboukrou@student.42.fr>          +#+  +:+       +#+        */
+/*   By: jates- <jates-@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/25 21:12:20 by toliver           #+#    #+#             */
-/*   Updated: 2020/01/05 03:17:22 by lboukrou         ###   ########.fr       */
+/*   Updated: 2020/02/24 17:23:08 by jates-           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,7 @@ static void		ft_parse_args_files(t_env *env, char *file)
 	t_file	*ptr;
 	t_file	*tmp;
 
-	ptr = (t_file*)ft_malloc(sizeof(t_file));
+	ptr = (t_file*)ft_safe_malloc(sizeof(t_file));
 	ft_bzero(ptr, sizeof(t_file));
 	ptr->line++;
 	ptr->col++;

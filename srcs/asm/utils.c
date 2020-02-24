@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: toliver <marvin@42.fr>                     +#+  +:+       +#+        */
+/*   By: jates- <jates-@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/25 21:55:29 by toliver           #+#    #+#             */
-/*   Updated: 2020/01/04 09:04:53 by jates-           ###   ########.fr       */
+/*   Updated: 2020/02/24 17:23:11 by jates-           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ t_token		*ft_last_token(t_file *file)
 	return (token);
 }
 
-void		*ft_malloc(size_t size)
+void		*ft_safe_malloc(size_t size)
 {
 	void	*ptr;
 

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parse_utils.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lboukrou <lboukrou@student.42.fr>          +#+  +:+       +#+        */
+/*   By: jates- <jates-@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/29 15:48:43 by toliver           #+#    #+#             */
-/*   Updated: 2020/01/04 22:22:29 by lboukrou         ###   ########.fr       */
+/*   Updated: 2020/02/24 17:23:10 by jates-           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,7 +73,7 @@ int			ft_parse_while(t_file *file, char *containing, char **line)
 
 	if ((size = read_file_fd(file, containing, buf)) == -1)
 		return (ft_error(ft_get_env(), file, READ_ERROR));
-	*line = (char*)ft_malloc(sizeof(char) * (size + 1));
+	*line = (char*)ft_safe_malloc(sizeof(char) * (size + 1));
 	ft_offset_head(ft_get_env(), file, 0);
 	retval = read(file->fd, *line, size);
 	if (retval == -1)
@@ -121,7 +121,7 @@ int			ft_parse_until(t_file *file, char *limit, char **line, int skipping)
 
 	if ((size = read_until(file, limit, &end, buf)) == -1)
 		return (ft_error(ft_get_env(), file, READ_ERROR));
-	*line = (char*)ft_malloc(sizeof(char) * (size + 1));
+	*line = (char*)ft_safe_malloc(sizeof(char) * (size + 1));
 	ft_offset_head(ft_get_env(), file, 0);
 	retval = read(file->fd, *line, size);
 	if (retval == -1)

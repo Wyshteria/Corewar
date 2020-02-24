@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   vm.h                                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: toliver <marvin@42.fr>                     +#+  +:+       +#+        */
+/*   By: jates- <jates-@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/04 01:38:07 by toliver           #+#    #+#             */
-/*   Updated: 2020/01/04 09:47:29 by toliver          ###   ########.fr       */
+/*   Updated: 2020/02/24 17:23:06 by jates-           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -231,7 +231,7 @@ int							ft_is_containing_other_than(char *str,
 int							ft_pow2(int pow);
 int							ft_strchr_pos(char *str, int c);
 int							ft_is_one_of(char c, char *lookfor);
-void						*ft_malloc(size_t size);
+void						*ft_safe_malloc(size_t size);
 t_champ						*ft_get_champ(int champnumber);
 int							ft_parsing_error(t_env *env, int error, char *s,
 		char *s2);

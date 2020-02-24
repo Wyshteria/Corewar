@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   champs.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: toliver <marvin@42.fr>                     +#+  +:+       +#+        */
+/*   By: jates- <jates-@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/07 22:34:31 by toliver           #+#    #+#             */
-/*   Updated: 2020/01/04 01:59:06 by toliver          ###   ########.fr       */
+/*   Updated: 2020/02/24 17:23:12 by jates-           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,7 +86,7 @@ int			ft_parse_champ(t_env *env, t_champ *champ)
 			|| champ->header.prog_size > CHAMP_MAX_SIZE)
 		return (ft_champ_error(env, SIZE_ERROR, champ));
 	champ->offset = lseek(champ->fd, champ->offset, SEEK_SET);
-	champ->content = (char*)ft_malloc(champ->header.prog_size);
+	champ->content = (char*)ft_safe_malloc(champ->header.prog_size);
 	read(champ->fd, champ->content, champ->header.prog_size);
 	return (1);
 }

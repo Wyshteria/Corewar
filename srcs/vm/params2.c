@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   params2.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: toliver <marvin@42.fr>                     +#+  +:+       +#+        */
+/*   By: jates- <jates-@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/04 04:15:49 by toliver           #+#    #+#             */
-/*   Updated: 2020/01/04 04:17:32 by toliver          ###   ########.fr       */
+/*   Updated: 2020/02/24 17:23:12 by jates-           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,7 @@ int			ft_parse_file1(t_env *env, t_champ *champ)
 {
 	t_champ	*node;
 
-	if (!(node = (t_champ*)ft_malloc(sizeof(t_champ))))
+	if (!(node = (t_champ*)ft_safe_malloc(sizeof(t_champ))))
 	{
 		ft_dprintf(2, "%s: Malloc failed: %s\n",
 				env->prog_name, strerror(errno));

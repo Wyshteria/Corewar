@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   op_correc.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: toliver <marvin@42.fr>                     +#+  +:+       +#+        */
+/*   By: jates- <jates-@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/03 22:55:54 by toliver           #+#    #+#             */
-/*   Updated: 2020/01/03 23:14:23 by toliver          ###   ########.fr       */
+/*   Updated: 2020/02/24 17:20:31 by jates-           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,6 +65,6 @@ void		ft_check_for_winner(t_env *env)
 
 	highest = ft_get_champ(env->arena.last_live);
 	if (!(env->flags & NCURSES_FLAG))
-		ft_printf("Le joueur %d, \"%s\" a gagne\n", -highest->number,
+		ft_printf("Player %d, \"%s\" has won\n", -highest->number,
 				highest->header.prog_name);
 }
