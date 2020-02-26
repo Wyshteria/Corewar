@@ -19,6 +19,7 @@
 # include <sys/types.h>
 # include <wchar.h>
 # include <stddef.h>
+# include <stdint.h>
 
 # define BUFFSIZE 2048
 # define DBL_MAX_EXP_VAL 0x7FF
