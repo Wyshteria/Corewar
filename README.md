@@ -1,4 +1,5 @@
 # Core War
+[![Build Status](https://www.travis-ci.org/Wyshteria/Corewar.svg?branch=master)](https://www.travis-ci.org/Wyshteria/Corewar)
 
 **[42]** group project in C - assembler and virtual machine of CoreWar game (in 42's style)
 
