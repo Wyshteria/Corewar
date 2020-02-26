@@ -36,7 +36,7 @@ We compile a champion : **./asm <champion1.s> <...>**
 >>>Cor file champs/srcsok/zork.cor generated
 >>>Cor file champs/srcsok/wave.cor generated
 ```
-We launch the virtual machine : **./corewar [-dump N] [-n N] [-g] <champion1.cor> <...>**
+We launch the virtual machine : **./corewar [-dump N || -g] [-n N]  <champion1.cor> <...>**
 ```bash
 ./corewar champs/srcsok/zork.cor champs/srcsok/wave.cor
 >>>Introducing contestants...
