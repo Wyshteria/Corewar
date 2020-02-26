@@ -1,4 +1,0 @@
-.name "LOL"
-
-
-.comment
