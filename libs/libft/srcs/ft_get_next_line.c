@@ -63,9 +63,9 @@ static t_lst		*get_elem(t_lst **lst, int fd)
 static int			split_and_return(t_lst *lst, char **line)
 {
 	char			*tmp;
-	int				nl_pos;
+	long	nl_pos;
 
-	if (!(nl_pos = (int)ft_strchr(lst->str, '\n')))
+	if (!(nl_pos = (long)ft_strchr(lst->str, '\n')))
 	{
 		*line = lst->str;
 		lst->str = NULL;
@@ -73,7 +73,7 @@ static int			split_and_return(t_lst *lst, char **line)
 			return (1);
 		return (0);
 	}
-	nl_pos -= (int)lst->str;
+	nl_pos -= (long)(lst->str);
 	if (!(*line = ft_strsub(lst->str, 0, nl_pos)))
 		return (-1);
 	if (!(tmp = ft_strsub(lst->str, nl_pos + 1,

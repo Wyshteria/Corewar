@@ -24,7 +24,8 @@ static t_operation	*ft_op_init(t_program *prog, t_op const *op, t_token *token)
 	.prev = NULL, .next = NULL, \
 	.p_num = op->params_number, .line = token->line,\
 	.len = op->need_encoding_byte + 1, .col = token->line, \
-	.is_encoding_needed = op->need_encoding_byte, .params = {0}};
+	.is_encoding_needed = op->need_encoding_byte, .params[0] = {0}, \
+	.params[1] = {0}, .params[2] = {0}};
 	if (prog->operations == NULL)
 		prog->operations = tmp;
 	else

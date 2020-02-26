@@ -55,12 +55,10 @@ int				buff_fillc(t_penv *env, t_arg *arg)
 
 int				buff_fillwchar(t_penv *env, t_arg *arg)
 {
-	wint_t		value;
 	int			size;
 
 	size = octsize(arg->argument.wi);
-	value = arg->argument.wi;
-	if (arg->argument.wi > 0x10FFFF || arg->argument.wi < 0
+	if (arg->argument.wi > 0x10FFFF 
 			|| (arg->argument.wi >= 0xD800 && arg->argument.wi <= 0xDFFF))
 		return (-1);
 	else if (arg->argument.wi <= 127

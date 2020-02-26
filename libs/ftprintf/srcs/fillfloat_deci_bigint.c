@@ -87,8 +87,6 @@ int				resetbigint(t_bigint *number)
 
 int				fill_bigint(t_bigint *number, t_splitd *num)
 {
-	int			testvalue;
-
 	initbigint(number);
 	number->value[967] = 1;
 	fillint(number, num);
@@ -99,7 +97,6 @@ int				fill_bigint(t_bigint *number, t_splitd *num)
 	number->comapos = number->fullnumbuffer;
 	number->fullnum[number->fullnumbuffer] = '.';
 	number->fullnumbuffer++;
-	testvalue = number->fullnumbuffer;
 	copydecivalue(number);
 	return (1);
 }
