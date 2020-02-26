@@ -1,14 +1,13 @@
-# Corewar
+# Core War
 
-**[42]** group project in C - assembler and virtual machine of Corewar game (in 42's style)
+**[42]** group project in C - assembler and virtual machine of CoreWar game (in 42's style)
 
-The assignment is to create an assembler, a virtual machine and a simple champion for Corewar game.
+The assignment is to create an assembler, a virtual machine and a simple champion for CoreWar game.
 
 ## What is ? 
-[According to (Pracner D., Tomašev N., Radovanović M., Ivanović M. 2007)] CoreWar is a computer simulation where two programs written inan assembly language called redcode compete in a virtual memory array. Theseprograms are referred to aswarriors
-[According to (Pracner D., Tomašev N., Radovanović M., Ivanović M. 2007)]: https://page-one.springer.com/pdf/preview/10.1007/978-3-540-73499-4_51#page=1
+[According to (Pracner D., Tomašev N., Radovanović M., Ivanović M. 2007)](https://page-one.springer.com/pdf/preview/10.1007/978-3-540-73499-4_51#page=1) CoreWar is a computer simulation where two programs written in an assembly language called redcode compete in a virtual memory array. These programs are referred to as warriors
 
-It's a battle royale of champions. The objective of the game is to be the last champion that is alive in the arena.
+The objective of the game is to be the last champion that is alive in the arena.
 A champion has a set of instructions that will run when the game start. The champion file is .s type.
 ```bash 
 .name "player1"
@@ -37,7 +36,7 @@ We compile a champion : **./asm <champion1.s> <...>**
 >>>Cor file champs/srcsok/zork.cor generated
 >>>Cor file champs/srcsok/wave.cor generated
 ```
-We launch the virtual machine : **./corewar [-dump N] [-n N] <champion1.cor> <...>**
+We launch the virtual machine : **./corewar [-dump N] [-n N] [-g] <champion1.cor> <...>**
 ```bash
 ./corewar champs/srcsok/zork.cor champs/srcsok/wave.cor
 >>>Introducing contestants...
@@ -45,7 +44,7 @@ We launch the virtual machine : **./corewar [-dump N] [-n N] <champion1.cor> <..
 >>>* Player 2, weighing 427 bytes, "Wave" ("I'm coming") !
 >>>Player 1, "Wave" has won
 ```
-* flag dump - will show the memory of stated cycle
+* flag **dump** - will show the memory of stated cycle
 ```bash
 ./corewar -dump 1 champs/srcsok/wave.cor champs/srcsok/zork.cor
 >>>Introducing contestants...
@@ -116,7 +115,7 @@ We launch the virtual machine : **./corewar [-dump N] [-n N] <champion1.cor> <..
 >>>0x0f80 : 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
 >>>0x0fc0 : 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
 ```
-* flag n - will change the number of the player
+* flag **n** - will change the number of the player
 ```bash
 ./corewar -n 42 champs/srcsok/wave.cor -n 21 champs/srcsok/zork.cor
 >>>Introducing contestants...
@@ -124,6 +123,8 @@ We launch the virtual machine : **./corewar [-dump N] [-n N] <champion1.cor> <..
 >>>* Player 21, weighing 23 bytes, "zork" ("I'M ALIIIIVE") !
 >>>Player 42, "Wave" has won
 ```
+* flag **g** - will launch the graphic mode
+
 
 ## Contributions
 * Toliver - virtual machine 
