@@ -6,7 +6,7 @@
 /*   By: toliver <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/04 05:04:05 by toliver           #+#    #+#             */
-/*   Updated: 2020/01/04 05:04:32 by toliver          ###   ########.fr       */
+/*   Updated: 2020/02/27 03:00:50 by jates-           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,10 +14,8 @@
 
 void		ft_ld(t_opcode *op, t_process *process, t_arena *arena)
 {
-	int		reg_number;
 	int32_t	value;
 
-	reg_number = op->params[1];
 	if (op->params_types[0] == T_DIR)
 		value = ft_parse_value(arena, process->pos + 2, 4);
 	else
