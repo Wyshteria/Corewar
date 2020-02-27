@@ -6,7 +6,7 @@
 /*   By: jates- <jates-@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/03 22:55:54 by toliver           #+#    #+#             */
-/*   Updated: 2020/02/24 17:20:31 by jates-           ###   ########.fr       */
+/*   Updated: 2020/02/27 03:02:59 by jates-           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,10 +37,8 @@ void		ft_live(t_opcode *op, t_process *process, t_arena *arena)
 
 void		ft_lld(t_opcode *op, t_process *process, t_arena *arena)
 {
-	int		reg_number;
 	int32_t	value;
 
-	reg_number = op->params[1];
 	if (op->params_types[0] == T_DIR)
 		value = ft_parse_value(arena, process->pos + 2, 4);
 	else
