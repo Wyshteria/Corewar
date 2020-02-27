@@ -25,7 +25,7 @@ A virtual machine will run the game. It takes .cor files, places each champion i
 The read byte codes, interpret them and run them if it's valid.
 The game run until there is a winner.
 
-## How to use
+## How to use (SDL2's required)
 
 We compile the project : 
 ```bash
@@ -45,6 +45,8 @@ We launch the virtual machine : **./corewar [-dump N || -g] [-n N]  <champion1.c
 >>>* Player 2, weighing 427 bytes, "Wave" ("I'm coming") !
 >>>Player 1, "Wave" has won
 ```
+* flag **g** - will launch the graphic mode
+![](https://github.com/Wyshteria/Corewar/blob/gh-pages/Corewar-video.gif?raw=true)
 * flag **dump** - will show the memory of stated cycle
 ```bash
 ./corewar -dump 1 champs/srcsok/wave.cor champs/srcsok/zork.cor
@@ -124,12 +126,10 @@ We launch the virtual machine : **./corewar [-dump N || -g] [-n N]  <champion1.c
 >>>* Player 21, weighing 23 bytes, "zork" ("I'M ALIIIIVE") !
 >>>Player 42, "Wave" has won
 ```
-* flag **g** - will launch the graphic mode
 
-
-## Contributions
-* Toliver - virtual machine 
-* jates- (me) - assembler 
-* lboukrou  - assembler
+## Contributors
+* [Toliver](https://github.com/blueskin90) - virtual machine 
+* jates- (myself) - assembler 
+* [lboukrou](https://github.com/gambino9)  - assembler
 
 [42]: https://42.fr/
