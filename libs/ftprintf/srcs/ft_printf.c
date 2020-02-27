@@ -6,7 +6,7 @@
 /*   By: toliver <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/29 15:32:16 by toliver           #+#    #+#             */
-/*   Updated: 2020/02/27 02:38:15 by jates-           ###   ########.fr       */
+/*   Updated: 2020/02/27 02:49:50 by jates-           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,10 +67,12 @@ char							*ft_sprintf(const char *str, ...)
 int								ft_printf(const char *str, ...)
 {
 	t_penv						env;
+	int							unused;
 
 	if (str == NULL)
 	{
-		ft_putstr("Gare au segfault !\n");
+		unused = write(1, "Gare au segfault !\n", 35);
+		(void)unused;
 		return (-1);
 	}
 	env_pinit(&env, str);

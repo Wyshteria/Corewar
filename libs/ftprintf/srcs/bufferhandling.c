@@ -6,7 +6,7 @@
 /*   By: toliver <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/18 20:41:34 by toliver           #+#    #+#             */
-/*   Updated: 2018/12/23 19:34:15 by toliver          ###   ########.fr       */
+/*   Updated: 2020/02/27 02:51:40 by jates-           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,13 +41,16 @@ void			buff_malloc(t_penv *env, int len)
 
 void			buff_flush(t_penv *env)
 {
+	int	unused;
+
 	env->printflen += env->buffilasttoken;
 	if (env->is_whatprintf == 0)
-		write(1, env->buff, env->buffilasttoken);
+		unused = write(1, env->buff, env->buffilasttoken);
 	else if (env->is_whatprintf == 1)
 		buff_malloc(env, env->printflen);
 	else if (env->is_whatprintf == 2)
-		write(env->fd, env->buff, env->buffilasttoken);
+		unused = write(env->fd, env->buff, env->buffilasttoken);
 	env->buffi = 0;
 	env->buffilasttoken = 0;
+	(void)unused;
 }
