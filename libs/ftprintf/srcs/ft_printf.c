@@ -6,7 +6,7 @@
 /*   By: toliver <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/29 15:32:16 by toliver           #+#    #+#             */
-/*   Updated: 2018/12/23 19:40:13 by toliver          ###   ########.fr       */
+/*   Updated: 2020/02/27 02:38:15 by jates-           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,7 +70,7 @@ int								ft_printf(const char *str, ...)
 
 	if (str == NULL)
 	{
-		write(1, "Gare au segfault !\n", 35);
+		ft_putstr("Gare au segfault !\n");
 		return (-1);
 	}
 	env_pinit(&env, str);
