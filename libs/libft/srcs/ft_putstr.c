@@ -6,7 +6,7 @@
 /*   By: toliver <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/07 11:37:15 by toliver           #+#    #+#             */
-/*   Updated: 2017/11/08 15:30:22 by toliver          ###   ########.fr       */
+/*   Updated: 2020/02/27 02:31:34 by jates-           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,9 @@
 
 void				ft_putstr(char const *s)
 {
+	int		unused;
+
 	if (s)
-		write(1, s, ft_strlen(s));
+		unused = write(1, s, ft_strlen(s));
+	(void)unused;
 }

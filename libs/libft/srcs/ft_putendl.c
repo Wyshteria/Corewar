@@ -6,7 +6,7 @@
 /*   By: toliver <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/07 11:30:47 by toliver           #+#    #+#             */
-/*   Updated: 2017/11/08 15:43:53 by toliver          ###   ########.fr       */
+/*   Updated: 2020/02/27 02:28:40 by jates-           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,9 +14,12 @@
 
 void				ft_putendl(char const *s)
 {
+	int		unused;
+
 	if (s)
 	{
-		write(1, s, ft_strlen(s));
-		write(1, "\n", 1);
+		unused = write(1, s, ft_strlen(s));
+		unused = write(1, "\n", 1);
 	}
+	(void)unused;
 }
