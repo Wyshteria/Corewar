@@ -14,5 +14,8 @@
 
 void	ft_putchar(char c)
 {
-	(void)write(1, &c, 1);
+	ssize_t unused;
+
+	unused = write(1, &c, 1);
+	(void)unused;
 }
