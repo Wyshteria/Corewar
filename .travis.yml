@@ -7,7 +7,10 @@ os:
   - linux
   - osx
 before_install:
-  - if [ $TRAVIS_OS_NAME == linux ]; then sudo apt -qq update && sudo apt install -y libsdl2-dev libsdl2-ttf-dev; fi
+  - if [ $TRAVIS_OS_NAME == linux ]; 
+    then 
+      sudo apt -qq update && sudo apt install -y libsdl2-dev libsdl2-ttf-dev && sdl2-config --cflags --libs;
+    fi
   - if [ $TRAVIS_OS_NAME == osx ]; then brew update && brew install sdl2 sdl2_ttf; fi
 script:
   - make
