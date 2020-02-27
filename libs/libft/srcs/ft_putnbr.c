@@ -6,7 +6,7 @@
 /*   By: toliver <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/07 11:32:51 by toliver           #+#    #+#             */
-/*   Updated: 2017/11/07 11:34:52 by toliver          ###   ########.fr       */
+/*   Updated: 2020/02/27 02:23:10 by jates-           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,16 +14,18 @@
 
 void	ft_putnbr(int n)
 {
-	unsigned int nb;
+	unsigned int	nb;
+	int				unused;
 
 	nb = n;
 	if (n < 0)
 	{
-		write(1, "-", 1);
+		unused = write(1, "-", 1);
 		nb = (unsigned)-n;
 	}
 	if (nb > 9)
 		ft_putnbr(nb / 10);
 	nb = nb % 10 + 48;
-	write(1, &nb, 1);
+	unused = write(1, &nb, 1);
+	(void)unused;
 }
